@@ -8,6 +8,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { renderComponent } from "@/lib/componentRegistry";
+import type { RegistryHandlers } from "@/lib/componentRegistry";
 import { Preamble } from "./Preamble";
 import type { TranscriptMessage } from "@/lib/session";
 
@@ -17,9 +18,11 @@ const TRACE_ONLY_TYPES = new Set(["system_event"]);
 interface MessageStreamProps {
   messages: TranscriptMessage[];
   onChipClick?: (chip: string) => void;
+  /** Optional callback handlers forwarded to registry components (e.g. CardRow). */
+  registryHandlers?: RegistryHandlers;
 }
 
-export function MessageStream({ messages, onChipClick }: MessageStreamProps) {
+export function MessageStream({ messages, onChipClick, registryHandlers }: MessageStreamProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when messages change
@@ -76,7 +79,7 @@ export function MessageStream({ messages, onChipClick }: MessageStreamProps) {
               <div className="w-full mt-1">
                 {msg.components
                   .filter((c) => !TRACE_ONLY_TYPES.has(c.type))
-                  .map((c, i) => renderComponent(c, i))}
+                  .map((c, i) => renderComponent(c, i, registryHandlers))}
               </div>
             )}
           </div>

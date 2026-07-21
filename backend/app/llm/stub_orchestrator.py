@@ -20,8 +20,17 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
     """
     msg = user_message.lower()
 
+    # A scoped itinerary message looks like:
+    #   "About the <name> itinerary (<cruise_id>): <question>"
+    # These frequently contain the word "cruise"/"cruisetour" in the cruise
+    # name, so they must be detected BEFORE the search branch or search would
+    # hijack the turn. Route scoped/itinerary messages to the itinerary Q&A path.
+    is_scoped_itinerary = bool(re.search(r"\(([a-z][a-z0-9_]+)\):", msg)) or "itinerary" in msg
+
     # --- Cruise search branch ---
-    if any(kw in msg for kw in ("alaska", "mexico", "caribbean", "mediterranean", "cruise", "sail", "voyage")):
+    if not is_scoped_itinerary and any(
+        kw in msg for kw in ("alaska", "mexico", "caribbean", "mediterranean", "cruise", "sail", "voyage")
+    ):
         args: dict = {}
 
         # region
@@ -80,21 +89,64 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
         return {"text": text, "components": components, "chips": chips, "tool_calls": ["search_cruises"]}
 
     # --- Itinerary branch ---
-    elif any(kw in msg for kw in ("itinerary", "ports", "days at sea")):
+    elif is_scoped_itinerary or any(kw in msg for kw in ("itinerary", "ports", "days at sea", "before ", "day ")):
+        # Extract cruise_id from scoped message format: "About the <name> itinerary (<cruise_id>): ..."
+        scoped_match = re.search(r"\(([a-z][a-z0-9_]+)\):", msg)
         cruise_id_match = re.search(r"\b[a-z]{2}-\d{3}\b", msg)
-        if cruise_id_match:
+        if scoped_match:
+            cruise_id = scoped_match.group(1)
+        elif cruise_id_match:
             cruise_id = cruise_id_match.group(0)
         elif session.constraints and hasattr(session.constraints, "__iter__"):
             # try to get first cruise from constraints
             try:
-                cruise_id = session.constraints[0] if session.constraints else "al-001"
+                cruise_id = session.constraints[0] if session.constraints else "denali_explorer"
             except (TypeError, IndexError):
-                cruise_id = "al-001"
+                cruise_id = "denali_explorer"
         else:
-            cruise_id = "al-001"
+            cruise_id = "denali_explorer"
 
         result = TOOL_REGISTRY["get_itinerary"][0](session, {"cruise_id": cruise_id})
+        days = result.get("days", [])
 
+        # --- Scoped Q&A: "before <port>" → list ports with lower day numbers ---
+        before_match = re.search(r"\bbefore\s+([a-z][\w\s]+)", msg)
+        if before_match and days:
+            target_port = before_match.group(1).strip().rstrip("?!.")
+            # Find the first day whose port contains the target (case-insensitive)
+            target_day_idx = None
+            for i, d in enumerate(days):
+                if target_port.lower() in d["port"].lower():
+                    target_day_idx = i
+                    break
+
+            if target_day_idx is not None and target_day_idx > 0:
+                earlier = days[:target_day_idx]
+                port_list = "; ".join(f"{d['day']}: {d['port']}" for d in earlier)
+                text = (
+                    f"Before {days[target_day_idx]['port']} ({days[target_day_idx]['day']}), "
+                    f"the itinerary visits: {port_list}."
+                )
+            elif target_day_idx == 0:
+                text = f"{days[0]['port']} is the first port — nothing comes before it."
+            else:
+                text = (
+                    f"I couldn't find '{target_port}' in this itinerary. "
+                    f"Ports visited: "
+                    + "; ".join(f"{d['day']}: {d['port']}" for d in days)
+                    + "."
+                )
+            if on_text_delta:
+                on_text_delta(text)
+            chips = ["Tell me about the ports", "Create a draft booking", "What are the dining options?"]
+            return {
+                "text": text,
+                "components": [{"type": "itinerary", **result}],
+                "chips": chips,
+                "tool_calls": ["get_itinerary"],
+            }
+
+        # Generic itinerary display
         preamble = "Here's the day-by-day itinerary for your cruise."
         if on_text_delta:
             on_text_delta(preamble)

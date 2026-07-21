@@ -165,3 +165,53 @@ def test_greeting_returns_helpful_response():
     assert len(text_events) >= 1, "Expected at least one text_delta event"
     full_text = "".join(e["data"]["delta"] for e in text_events)
     assert len(full_text) > 10, f"Greeting response text too short: {full_text!r}"
+
+
+# ---------------------------------------------------------------------------
+# Test 4 (P8 D1): Scoped itinerary question must route to itinerary Q&A,
+# NOT the search branch — even though the cruise name contains 'Cruisetour'.
+# ---------------------------------------------------------------------------
+
+def test_scoped_itinerary_question_routes_to_qa_not_search():
+    """
+    A scoped message like:
+      'About the Denali Explorer — Pre-Cruise Cruisetour itinerary
+       (denali_explorer): what do we see before Glacier Bay?'
+    contains the substring 'cruise', which previously made the search branch
+    hijack the turn. It must instead route to the itinerary Q&A path:
+      - response text cites 'Day' numbers and earlier ports (Seattle/Juneau/Skagway)
+      - NO card_row component is emitted
+    """
+    from backend.app.main import app
+
+    client = TestClient(app)
+    scoped = (
+        "About the Denali Explorer — Pre-Cruise Cruisetour itinerary "
+        "(denali_explorer): what do we see before Glacier Bay?"
+    )
+    resp = client.post("/chat", json={"session_id": "stub-test-4", "message": scoped})
+    assert resp.status_code == 200
+
+    events = parse_sse(resp.content)
+    last = events[-1]
+    assert last["event"] == "components"
+
+    components = last["data"]["components"]
+
+    # Must NOT contain a card_row (would mean search hijacked the turn)
+    card_row = next((c for c in components if c.get("type") == "card_row"), None)
+    assert card_row is None, f"Scoped itinerary question should not yield card_row, got {components}"
+
+    # Should render an itinerary component instead
+    itinerary = next((c for c in components if c.get("type") == "itinerary"), None)
+    assert itinerary is not None, f"Expected itinerary component, got {components}"
+
+    # Response text must cite Day numbers and earlier ports
+    text_events = [e for e in events if e["event"] == "text_delta"]
+    assert len(text_events) >= 1, "Expected at least one text_delta event"
+    full_text = "".join(e["data"]["delta"] for e in text_events)
+
+    assert "Day" in full_text, f"Response should cite Day numbers: {full_text!r}"
+    earlier_ports = ["Seattle", "Juneau", "Skagway"]
+    assert all(p in full_text for p in earlier_ports), \
+        f"Response should list earlier ports {earlier_ports}: {full_text!r}"

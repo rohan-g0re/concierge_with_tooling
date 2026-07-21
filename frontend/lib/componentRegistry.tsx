@@ -2,97 +2,55 @@
  * Compass component registry — maps descriptor.type → React component.
  *
  * P7: real stubs that render structured data legibly in brand style.
- * P8-P12: full visual components replace these stubs.
+ * P8: CardRow replaced with real component; ItineraryPanel opened via handlers.
+ * P9-P12: full visual components replace remaining stubs.
  */
 "use client";
 
 import React from "react";
 import type { ComponentDescriptor } from "./api";
+import { CardRow as CardRowComponent } from "@/components/cards/CardRow";
+import type { CardRowProps } from "@/components/cards/CardRow";
 
 // ---------------------------------------------------------------------------
-// Card Row (search_cruises result)
+// Handler types — injected by page.tsx when rendering
 // ---------------------------------------------------------------------------
 
-function CardRow({ descriptor }: { descriptor: ComponentDescriptor }) {
-  const cards = (descriptor.cards as Record<string, unknown>[] | undefined) ?? [];
-  const filters = (descriptor.filters as Record<string, unknown> | undefined) ?? {};
+export type RegistryHandlers = {
+  /** Called when the user taps Select on a cruise card. */
+  onSelect?: (cruiseId: string) => void;
+  /** Called when the user taps See Itinerary on a cruise card. */
+  onOpenItinerary?: (card: unknown) => void;
+};
 
+// ---------------------------------------------------------------------------
+// Card Row (search_cruises result) — real component (P8)
+// ---------------------------------------------------------------------------
+
+function CardRow({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
   return (
-    <div className="mt-3 w-full">
-      {Object.keys(filters).length > 0 && (
-        <p className="text-xs font-sans mb-2" style={{ color: "#8A97A6" }}>
-          Filters:{" "}
-          {Object.entries(filters)
-            .map(([k, v]) => `${k}: ${v}`)
-            .join(" · ")}
-        </p>
-      )}
-      <div className="flex gap-3 overflow-x-auto pb-2">
-        {cards.map((card, i) => (
-          <div
-            key={(card.cruise_id as string) ?? i}
-            className="flex-none w-64 rounded-xl overflow-hidden border"
-            style={{ borderColor: "rgba(12,35,64,0.12)", background: "#fff" }}
-          >
-            {/* Image placeholder */}
-            <div
-              className="w-full h-32"
-              style={{ background: "linear-gradient(135deg, #0C2340 0%, #4E7E86 100%)" }}
-            />
-            <div className="p-3">
-              <p className="font-display font-semibold text-sm" style={{ color: "#0C2340" }}>
-                {(card.name as string) ?? "Cruise"}
-              </p>
-              <p className="font-sans text-xs mt-0.5" style={{ color: "#5A6B7E" }}>
-                {card.nights as number} nights · {card.embark_port as string}
-              </p>
-              <p className="font-sans text-xs mt-0.5" style={{ color: "#5A6B7E" }}>
-                {card.ship as string}
-              </p>
-              <p className="font-sans text-sm mt-2" style={{ color: "#0C2340" }}>
-                {card.fare_was ? (
-                  <span
-                    className="font-normal text-xs mr-1.5 line-through"
-                    style={{ color: "#8A97A6" }}
-                  >
-                    {card.fare_was as string}
-                  </span>
-                ) : null}
-                <span className="font-semibold" style={{ color: "#0C2340" }}>
-                  {(card.fare_now as string) ?? "—"}
-                </span>{" "}
-                <span className="font-normal text-xs" style={{ color: "#8A97A6" }}>
-                  /person
-                </span>
-              </p>
-              <div className="flex gap-2 mt-2">
-                <button
-                  className="flex-1 py-1.5 rounded-full text-xs font-sans font-semibold transition-colors"
-                  style={{ background: "#C8A45C", color: "#fff" }}
-                >
-                  Select
-                </button>
-                <button
-                  className="flex-1 py-1.5 rounded-full text-xs font-sans border transition-colors"
-                  style={{ borderColor: "#0C2340", color: "#0C2340" }}
-                >
-                  Itinerary
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <CardRowComponent
+      descriptor={descriptor}
+      onSelect={handlers?.onSelect ?? (() => {})}
+      onOpenItinerary={handlers?.onOpenItinerary as CardRowProps["onOpenItinerary"] ?? (() => {})}
+    />
   );
 }
 
 // ---------------------------------------------------------------------------
-// Itinerary
+// Itinerary (inline summary — panel opened via onOpenItinerary from CardRow)
 // ---------------------------------------------------------------------------
 
 function Itinerary({ descriptor }: { descriptor: ComponentDescriptor }) {
-  const days = (descriptor.days as Array<{ day: number; port: string; description?: string }> | undefined) ?? [];
+  // When get_itinerary is called directly (e.g. via postAction), render an
+  // inline day summary. The full panel is opened via "See Itinerary" on cards.
+  const days = (descriptor.days as Array<{ day: string | number; port: string; note?: string }> | undefined) ?? [];
   const cruiseId = descriptor.cruise_id as string | undefined;
 
   return (
@@ -106,20 +64,20 @@ function Itinerary({ descriptor }: { descriptor: ComponentDescriptor }) {
         </p>
       )}
       <div className="space-y-1.5">
-        {days.map((d) => (
-          <div key={d.day} className="flex gap-3 items-baseline">
+        {days.map((d, i) => (
+          <div key={i} className="flex gap-3 items-baseline">
             <span
               className="font-sans text-xs font-semibold w-10 flex-none"
               style={{ color: "#C8A45C" }}
             >
-              Day {d.day}
+              {d.day}
             </span>
             <span className="font-sans text-sm" style={{ color: "#22344B" }}>
               {d.port}
             </span>
-            {d.description && (
+            {d.note && (
               <span className="font-sans text-xs" style={{ color: "#8A97A6" }}>
-                {d.description}
+                {d.note}
               </span>
             )}
           </div>
@@ -266,7 +224,12 @@ function ErrorComponent({ descriptor }: { descriptor: ComponentDescriptor }) {
 // Registry
 // ---------------------------------------------------------------------------
 
-const REGISTRY: Record<string, React.ComponentType<{ descriptor: ComponentDescriptor }>> = {
+type RegistryEntry = React.ComponentType<{
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}>;
+
+const REGISTRY: Record<string, RegistryEntry> = {
   card_row: CardRow,
   itinerary: Itinerary,
   tracker_update: TrackerUpdate,
@@ -277,9 +240,18 @@ const REGISTRY: Record<string, React.ComponentType<{ descriptor: ComponentDescri
 
 /**
  * Render a component descriptor using the registry.
+ *
+ * @param descriptor - The component descriptor to render
+ * @param key        - React key for the element
+ * @param handlers   - Optional callback handlers (onSelect, onOpenItinerary)
+ *
  * Unknown types render a small debug pill so nothing is silently swallowed.
  */
-export function renderComponent(descriptor: ComponentDescriptor, key: string | number): React.ReactNode {
+export function renderComponent(
+  descriptor: ComponentDescriptor,
+  key: string | number,
+  handlers?: RegistryHandlers
+): React.ReactNode {
   const Component = REGISTRY[descriptor.type];
   if (!Component) {
     return (
@@ -292,5 +264,5 @@ export function renderComponent(descriptor: ComponentDescriptor, key: string | n
       </div>
     );
   }
-  return <Component key={key} descriptor={descriptor} />;
+  return <Component key={key} descriptor={descriptor} handlers={handlers} />;
 }

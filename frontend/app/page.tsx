@@ -1,14 +1,11 @@
 /**
- * P7 Chat Shell — Full implementation.
+ * P8 Chat Shell — CardRow + ItineraryPanel wired.
  *
- * Layout (1280px desktop-first):
- *   - Top bar (navy, Meridian Line brand) — unchanged from P0
- *   - Body: flex row
- *     - Chat column (flex:1, bg chatBg): greeting → message stream → suggestion chips → composer
- *     - Draft rail (240px, bg white): placeholder for P9
- *
- * Session: per-tab sessionStorage (new tab = new session, reload = restored transcript)
- * Streaming: SSE via fetch ReadableStream; text deltas accumulate in last assistant message
+ * Added in P8:
+ *  - ItineraryPanel state (open/close, loaded data)
+ *  - onSelect: postAction('create_draft', {cruise_id}) → merge components/chips
+ *  - onOpenItinerary: postAction('get_itinerary', {cruise_id}) → open panel
+ *  - handlers passed to renderComponent via registryHandlers prop on MessageStream
  */
 "use client";
 
@@ -16,7 +13,9 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { MessageStream } from "@/components/chat/MessageStream";
 import { Composer } from "@/components/chat/Composer";
 import { SuggestionChips } from "@/components/chips/SuggestionChips";
-import { postChat } from "@/lib/api";
+import { ItineraryPanel } from "@/components/itinerary/ItineraryPanel";
+import type { ItineraryDay } from "@/components/itinerary/ItineraryPanel";
+import { postChat, postAction } from "@/lib/api";
 import {
   getSessionId,
   saveTranscript,
@@ -25,6 +24,7 @@ import {
 } from "@/lib/session";
 import type { TranscriptMessage } from "@/lib/session";
 import type { ComponentDescriptor } from "@/lib/api";
+import type { RegistryHandlers } from "@/lib/componentRegistry";
 
 // ---------------------------------------------------------------------------
 // Greeting
@@ -79,6 +79,32 @@ function DraftRail() {
 }
 
 // ---------------------------------------------------------------------------
+// Itinerary panel state shape
+// ---------------------------------------------------------------------------
+
+interface ItineraryPanelState {
+  open: boolean;
+  loading: boolean;
+  cruiseId: string;
+  cruiseName: string;
+  nights: number;
+  isCruisetour: boolean;
+  datesLine?: string;
+  ship?: string;
+  days: ItineraryDay[];
+}
+
+const PANEL_CLOSED: ItineraryPanelState = {
+  open: false,
+  loading: false,
+  cruiseId: "",
+  cruiseName: "",
+  nights: 0,
+  isCruisetour: false,
+  days: [],
+};
+
+// ---------------------------------------------------------------------------
 // Main page
 // ---------------------------------------------------------------------------
 
@@ -86,6 +112,7 @@ export default function ChatShellPage() {
   const [messages, setMessages] = useState<TranscriptMessage[]>([]);
   const [chips, setChips] = useState<string[]>([]);
   const [streaming, setStreaming] = useState(false);
+  const [panel, setPanel] = useState<ItineraryPanelState>(PANEL_CLOSED);
   const sessionIdRef = useRef<string>("");
 
   // Hydrate transcript from sessionStorage on mount
@@ -94,7 +121,6 @@ export default function ChatShellPage() {
     const saved = loadTranscript();
     if (saved) {
       setMessages(saved.messages);
-      // Restore chips from the last assistant message
       const lastAssistant = [...saved.messages].reverse().find((m) => m.role === "assistant");
       if (lastAssistant?.chips) setChips(lastAssistant.chips);
     }
@@ -107,18 +133,20 @@ export default function ChatShellPage() {
     }
   }, [messages]);
 
+  // ---------------------------------------------------------------------------
+  // Core send message
+  // ---------------------------------------------------------------------------
+
   const sendMessage = useCallback(
     async (text: string) => {
       if (streaming) return;
 
-      // Add user message
       const userMsg: TranscriptMessage = {
         id: newMessageId(),
         role: "user",
         text,
       };
 
-      // Add streaming assistant placeholder
       const assistantId = newMessageId();
       const assistantMsg: TranscriptMessage = {
         id: assistantId,
@@ -137,7 +165,6 @@ export default function ChatShellPage() {
         await postChat(
           sessionIdRef.current,
           text,
-          // onDelta — accumulate streaming text
           (delta: string) => {
             setMessages((prev) =>
               prev.map((m) =>
@@ -147,7 +174,6 @@ export default function ChatShellPage() {
               )
             );
           },
-          // onTerminal — attach components and chips
           (payload: { components: ComponentDescriptor[]; chips: string[] }) => {
             setMessages((prev) =>
               prev.map((m) =>
@@ -165,7 +191,6 @@ export default function ChatShellPage() {
           }
         );
       } catch {
-        // Show error in assistant bubble
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantId
@@ -185,12 +210,130 @@ export default function ChatShellPage() {
     [streaming]
   );
 
+  // ---------------------------------------------------------------------------
+  // Chip click
+  // ---------------------------------------------------------------------------
+
   const handleChipClick = useCallback(
     (chip: string) => {
       sendMessage(chip);
     },
     [sendMessage]
   );
+
+  // ---------------------------------------------------------------------------
+  // Select cruise → create_draft action
+  // Merges returned components/chips into a new synthetic assistant message
+  // so tracker_update stub renders in the transcript.
+  // ---------------------------------------------------------------------------
+
+  const handleSelect = useCallback(
+    async (cruiseId: string) => {
+      try {
+        const response = await postAction("create_draft", sessionIdRef.current, { cruise_id: cruiseId });
+
+        // Merge components + chips as a synthetic assistant message
+        if (response.components && response.components.length > 0) {
+          const syntheticId = newMessageId();
+          const syntheticMsg: TranscriptMessage = {
+            id: syntheticId,
+            role: "assistant",
+            text: `Draft created for cruise ${cruiseId}.`,
+            streaming: false,
+            components: response.components,
+            chips: response.chips ?? [],
+          };
+          setMessages((prev) => [...prev, syntheticMsg]);
+          if (response.chips && response.chips.length > 0) {
+            setChips(response.chips);
+          }
+        }
+      } catch (err) {
+        console.error("create_draft failed:", err);
+      }
+    },
+    []
+  );
+
+  // ---------------------------------------------------------------------------
+  // Open itinerary panel → get_itinerary action
+  // ---------------------------------------------------------------------------
+
+  const handleOpenItinerary = useCallback(
+    async (card: unknown) => {
+      const c = card as {
+        cruise_id: string;
+        name: string;
+        nights: number;
+        is_cruisetour?: boolean;
+        ship?: string;
+      };
+
+      // Open panel in loading state immediately
+      setPanel({
+        open: true,
+        loading: true,
+        cruiseId: c.cruise_id,
+        cruiseName: c.name,
+        nights: c.nights ?? 0,
+        isCruisetour: c.is_cruisetour ?? false,
+        ship: c.ship,
+        datesLine: undefined,
+        days: [],
+      });
+
+      try {
+        const response = await postAction("get_itinerary", sessionIdRef.current, {
+          cruise_id: c.cruise_id,
+        });
+
+        const result = response.result as {
+          days?: ItineraryDay[];
+          cruise_id?: string;
+          day_count?: number;
+        };
+
+        setPanel((prev) => ({
+          ...prev,
+          loading: false,
+          days: (result.days ?? []) as ItineraryDay[],
+        }));
+      } catch (err) {
+        console.error("get_itinerary failed:", err);
+        setPanel((prev) => ({ ...prev, loading: false }));
+      }
+    },
+    []
+  );
+
+  // ---------------------------------------------------------------------------
+  // Close itinerary panel
+  // ---------------------------------------------------------------------------
+
+  const handleClosePanel = useCallback(() => {
+    setPanel(PANEL_CLOSED);
+  }, []);
+
+  // ---------------------------------------------------------------------------
+  // Itinerary Q&A — scoped to the open cruise (P8 D2).
+  // The ItineraryPanel handles the request itself (local postChat) and renders
+  // the answer INSIDE the panel, keeping the panel open. The scoped message is
+  // intentionally NOT forwarded to sendMessage, so it never enters the main
+  // transcript. This handler is a no-op notification hook.
+  // ---------------------------------------------------------------------------
+
+  const handleItineraryAsk = useCallback((_message: string) => {
+    // Intentionally does nothing: panel renders the answer locally.
+  }, []);
+
+  // ---------------------------------------------------------------------------
+  // Registry handlers (stable reference via useCallback)
+  // ---------------------------------------------------------------------------
+
+  const registryHandlers: RegistryHandlers = {
+    onSelect: handleSelect,
+    onOpenItinerary: handleOpenItinerary,
+  };
 
   const isEmpty = messages.length === 0;
 
@@ -261,6 +404,7 @@ export default function ChatShellPage() {
               <MessageStream
                 messages={messages}
                 onChipClick={handleChipClick}
+                registryHandlers={registryHandlers}
               />
             )}
           </div>
@@ -277,6 +421,23 @@ export default function ChatShellPage() {
         {/* Draft rail */}
         <DraftRail />
       </div>
+
+      {/* ── Itinerary slide-over ── */}
+      {panel.open && (
+        <ItineraryPanel
+          cruiseId={panel.cruiseId}
+          cruiseName={panel.cruiseName}
+          nights={panel.nights}
+          isCruisetour={panel.isCruisetour}
+          datesLine={panel.datesLine}
+          ship={panel.ship}
+          days={panel.days}
+          loading={panel.loading}
+          sessionId={sessionIdRef.current}
+          onClose={handleClosePanel}
+          onAsk={handleItineraryAsk}
+        />
+      )}
     </div>
   );
 }
