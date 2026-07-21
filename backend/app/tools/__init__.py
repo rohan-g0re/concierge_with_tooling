@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from .search import search_cruises
 from .itinerary import get_itinerary
-from .draft import create_draft, set_fare, set_stateroom, remove_draft
+from .draft import create_draft, set_fare, set_stateroom, remove_draft, set_sailing
 from .dining import list_dining, reserve_dining
 from .land import list_land_options, set_land_days
 from .compare import compare_drafts
@@ -59,6 +59,7 @@ TOOL_REGISTRY: dict[str, tuple] = {
                 "type": "object",
                 "properties": {
                     "cruise_id": {"type": "string", "description": "The cruise to book"},
+                    "sailing_id": {"type": "string", "description": "Optional specific sailing ID to pin; if omitted, best sailing is auto-selected from session constraints"},
                 },
                 "required": ["cruise_id"],
             },
@@ -215,6 +216,21 @@ TOOL_REGISTRY: dict[str, tuple] = {
                     "draft_id": {"type": "string", "description": "The draft ID to remove"},
                 },
                 "required": ["draft_id"],
+            },
+        },
+    ),
+    "set_sailing": (
+        set_sailing,
+        {
+            "name": "set_sailing",
+            "description": "Change the sailing (departure date) on an existing draft.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_id": {"type": "string", "description": "The draft ID"},
+                    "sailing_id": {"type": "string", "description": "The sailing ID to switch to"},
+                },
+                "required": ["draft_id", "sailing_id"],
             },
         },
     ),

@@ -17,6 +17,13 @@ export interface DraftInfo {
   label: string;
   completed_steps: number[];
   total_formatted: string | null;
+  // Unit 5 — rich draft identity
+  region?: string | null;
+  embark_port?: string | null;
+  departure_date?: string | null;
+  return_date?: string | null;
+  nights?: number | null;
+  addons_note?: string | null;
 }
 
 export interface DraftRailProps {
@@ -38,6 +45,19 @@ function nextStep(completed: number[]): number {
     if (!done.has(s)) return s;
   }
   return 6; // all done
+}
+
+/**
+ * Format a date string "YYYY-MM-DD" as short "Aug 3" (no leading zero).
+ * Returns null if input is null/undefined/empty.
+ */
+function formatShortDate(iso: string | null | undefined): string | null {
+  if (!iso) return null;
+  const [, mm, dd] = iso.split("-");
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const month = months[parseInt(mm, 10) - 1];
+  const day = parseInt(dd, 10);
+  return `${month} ${day}`;
 }
 
 /** stroke-dashoffset for a 5-step ring. circumference = 2π×11 ≈ 69.1 */
@@ -185,6 +205,14 @@ function ActiveDraftCard({ draft, onRemove }: { draft: DraftInfo; onRemove: () =
       {/* 5-segment progress bar */}
       <SegmentBar completed={draft.completed_steps} />
 
+      {/* Dates line */}
+      {draft.departure_date && draft.return_date && (
+        <div style={{ fontSize: "11px", color: "#8A97A6" }}>
+          {formatShortDate(draft.departure_date)} – {formatShortDate(draft.return_date)}
+          {draft.nights != null && ` · ${draft.nights} nights`}
+        </div>
+      )}
+
       {/* Total line */}
       {draft.total_formatted && (
         <div
@@ -195,6 +223,13 @@ function ActiveDraftCard({ draft, onRemove }: { draft: DraftInfo; onRemove: () =
           }}
         >
           {draft.total_formatted}
+        </div>
+      )}
+
+      {/* Add-ons note */}
+      {draft.addons_note && (
+        <div style={{ fontSize: "11px", color: "#8A97A6", fontStyle: "italic" }}>
+          {draft.addons_note}
         </div>
       )}
     </div>

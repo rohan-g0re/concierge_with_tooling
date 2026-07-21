@@ -19,6 +19,56 @@ from ..money import draft_total, format_money
 _DRAFT_CAP = 5
 _ALL_STEPS = {1, 2, 3, 4, 5}
 
+ANCHOR_DATE = "2026-07-01"
+
+
+def _pick_sailing(cruise, constraints):
+    """
+    Pick the best sailing for a cruise given session constraints.
+
+    Selection rules (mirrors search_cruises date logic):
+      - If constraints.month set: earliest sailing whose departure_date month matches.
+      - If constraints.return_by set: latest sailing whose return_date <= return_by.
+      - If both set: both constraints applied, then earliest.
+      - Else: next upcoming sailing with departure_date >= ANCHOR_DATE.
+      - Fall back to first sailing if no constraint-satisfying sailing found.
+
+    Returns a Sailing object, or None if cruise has no sailings.
+    """
+    sailings = getattr(cruise, "sailings", []) or []
+    if not sailings:
+        return None
+
+    candidates = list(sailings)
+
+    if constraints and constraints.month:
+        month_matches = [s for s in candidates if int(s.departure_date.split("-")[1]) == constraints.month]
+        if month_matches:
+            candidates = month_matches
+        # else fall through with all sailings
+
+    if constraints and constraints.return_by:
+        by_matches = [s for s in candidates if s.return_date <= constraints.return_by]
+        if by_matches:
+            candidates = by_matches
+        # else fall through
+
+    if constraints and constraints.month:
+        # earliest matching
+        return min(candidates, key=lambda s: s.departure_date)
+
+    if constraints and constraints.return_by:
+        # latest returning on/before — already filtered above
+        return min(candidates, key=lambda s: s.departure_date)
+
+    # Next upcoming >= anchor
+    upcoming = [s for s in candidates if s.departure_date >= ANCHOR_DATE]
+    if upcoming:
+        return min(upcoming, key=lambda s: s.departure_date)
+
+    # fallback: first sailing
+    return sailings[0]
+
 
 def checkout_entry(draft: "Draft") -> int:
     """Return the next booking step: min of steps not yet completed."""
@@ -68,6 +118,20 @@ def create_draft(session: "Session", args: dict) -> dict:
     if cruise is None:
         return {"error": "cruise_not_found", "message": f"Cruise {cruise_id!r} not found"}
 
+    # Resolve sailing
+    sailing_id_arg = args.get("sailing_id")
+    if sailing_id_arg:
+        sailing = next(
+            (s for s in (cruise.sailings or []) if s.sailing_id == sailing_id_arg), None
+        )
+        if sailing is None:
+            return {
+                "error": "sailing_not_found",
+                "message": f"Sailing {sailing_id_arg!r} not found for cruise {cruise_id!r}",
+            }
+    else:
+        sailing = _pick_sailing(cruise, session.constraints)
+
     draft_id = str(uuid.uuid4())
     draft = Draft(
         draft_id=draft_id,
@@ -77,6 +141,12 @@ def create_draft(session: "Session", args: dict) -> dict:
         stateroom=DraftStateroom(category="Inside", location=None),
         completed_steps=[1],
     )
+
+    # Set sailing dates
+    if sailing is not None:
+        draft.sailing_id = sailing.sailing_id
+        draft.departure_date = sailing.departure_date
+        draft.return_date = sailing.return_date
 
     # Compute initial total
     _recompute_totals(draft, catalog, party=session.party)
@@ -92,6 +162,9 @@ def create_draft(session: "Session", args: dict) -> dict:
         "checkout_entry": checkout_entry(draft),
         "total": draft.total,
         "total_formatted": format_money(draft.total) if draft.total is not None else None,
+        "sailing_id": draft.sailing_id,
+        "departure_date": draft.departure_date,
+        "return_date": draft.return_date,
     }
 
 
@@ -230,6 +303,58 @@ def remove_draft(session: "Session", args: dict) -> dict:
         "removed": True,
         "draft_id": draft_id,
         "remaining": len(session.drafts),
+    }
+
+
+def set_sailing(session: "Session", args: dict) -> dict:
+    """
+    Update the sailing on an existing draft.
+
+    Args:
+        session: current session
+        args: {"draft_id": str, "sailing_id": str}
+
+    Returns:
+        dict with updated sailing info, or error
+    """
+    draft_id = args.get("draft_id")
+    sailing_id = args.get("sailing_id")
+
+    if not draft_id:
+        return {"error": "missing_draft_id", "message": "draft_id is required"}
+    if not sailing_id:
+        return {"error": "missing_sailing_id", "message": "sailing_id is required"}
+
+    draft = _find_draft(session, draft_id)
+    if draft is None:
+        return {"error": "draft_not_found", "message": f"Draft {draft_id!r} not found"}
+
+    catalog = get_catalog()
+    cruise = next(
+        (c for c in catalog["cruises"] if c.cruise_id == draft.cruise_id), None
+    )
+    if cruise is None:
+        return {"error": "cruise_not_found", "message": f"Cruise {draft.cruise_id!r} not found"}
+
+    sailing = next(
+        (s for s in (cruise.sailings or []) if s.sailing_id == sailing_id), None
+    )
+    if sailing is None:
+        return {
+            "error": "sailing_not_found",
+            "message": f"Sailing {sailing_id!r} not found for cruise {draft.cruise_id!r}",
+        }
+
+    draft.sailing_id = sailing.sailing_id
+    draft.departure_date = sailing.departure_date
+    draft.return_date = sailing.return_date
+
+    return {
+        "draft_id": draft_id,
+        "sailing_id": sailing.sailing_id,
+        "departure_date": sailing.departure_date,
+        "return_date": sailing.return_date,
+        "label": draft.label,
     }
 
 

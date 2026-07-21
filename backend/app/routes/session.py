@@ -50,6 +50,11 @@ async def get_session(session_id: str) -> dict:
     """
     session = get_or_create(session_id)
 
+    from ..catalog.loader import get_catalog
+    from ..money import draft_total
+    catalog = get_catalog()
+    cruise_map = {c.cruise_id: c for c in catalog["cruises"]}
+
     drafts = []
     for draft in session.drafts:
         if draft.total is not None:
@@ -60,6 +65,20 @@ async def get_session(session_id: str) -> dict:
         else:
             deposit_formatted = None
             balance_formatted = None
+
+        cruise = cruise_map.get(draft.cruise_id)
+        region = cruise.region if cruise else None
+        embark_port = cruise.embark_port if cruise else None
+        nights = cruise.nights if cruise else None
+
+        # addons_note: "includes US$ NNN add-ons" when add-ons delta > 0 and draft has dates
+        addons_note = None
+        if draft.total is not None and cruise is not None and draft.departure_date is not None:
+            base_fare_total = cruise.fare_now * session.party
+            addon_delta = draft.total - base_fare_total
+            if addon_delta > 0:
+                addons_note = f"includes {format_money(addon_delta)} add-ons"
+
         drafts.append({
             "draft_id": draft.draft_id,
             "cruise_id": draft.cruise_id,
@@ -69,6 +88,12 @@ async def get_session(session_id: str) -> dict:
             "fare_package": draft.fare_package,
             "deposit_formatted": deposit_formatted,
             "balance_formatted": balance_formatted,
+            "region": region,
+            "embark_port": embark_port,
+            "departure_date": draft.departure_date,
+            "return_date": draft.return_date,
+            "nights": nights,
+            "addons_note": addons_note,
         })
 
     return {

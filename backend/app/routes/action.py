@@ -112,6 +112,12 @@ def _make_event_text(tool_name: str, args: dict, result: dict) -> str:
         draft_id = args.get("draft_id", "unknown")
         return f"user removed draft {draft_id}"
 
+    if tool_name == "set_sailing":
+        draft_id = args.get("draft_id", "unknown")
+        sailing_id = result.get("sailing_id") or args.get("sailing_id", "unknown")
+        dep = result.get("departure_date", "")
+        return f"user changed sailing for draft {draft_id} to {sailing_id} (dep {dep})"
+
     # Fallback
     return f"user called {tool_name}"
 
@@ -219,7 +225,7 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
         components.append({"type": "handoff", **result})
 
     # Tracker update for any tool that touches a draft
-    if tool_name in ("create_draft", "set_fare", "set_stateroom", "reserve_dining", "set_land_days"):
+    if tool_name in ("create_draft", "set_fare", "set_stateroom", "reserve_dining", "set_land_days", "set_sailing"):
         draft_id = result.get("draft_id") or (result.get("draft") or {}).get("draft_id")
         if draft_id:
             draft = next((d for d in session.drafts if d.draft_id == draft_id), None)
@@ -417,6 +423,7 @@ _CHIPS: dict[str, list[str]] = {
     "set_stateroom":     ["Reserve dining", "Compare my drafts", "Continue to checkout"],
     "reserve_dining":    ["Add another dining night", "Compare my drafts", "Continue to checkout"],
     "set_land_days":     ["Reserve dining", "Compare my drafts", "Continue to checkout"],
+    "set_sailing":       ["Search cruises", "Compare my drafts", "Continue to checkout"],
     "compare_drafts":    ["Continue to checkout", "Modify a draft", "Search for more cruises"],
     "handoff_checkout":  ["Start a new search", "Help me with something else"],
     "search_cruises":    ["Tell me more about the top result", "Show Alaska cruises", "What's included?"],

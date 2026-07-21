@@ -114,6 +114,11 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
     if tool_name == "remove_draft":
         return None  # no UI component; DraftRail refreshes from session
 
+    if tool_name == "set_sailing":
+        if "error" in result:
+            return {"type": "error", "message": result["error"]}
+        return None  # sailing change reflected on next session refresh
+
     return None
 
 
@@ -148,6 +153,7 @@ def _build_session_snapshot(session) -> str:
     convention.
     """
     from ..catalog.loader import get_catalog  # noqa: PLC0415
+    from ..money import format_money as _fmt  # noqa: PLC0415
 
     lines: list[str] = []
     lines.append(f"party={session.party}")
@@ -168,9 +174,17 @@ def _build_session_snapshot(session) -> str:
             if d.stateroom and d.stateroom.location:
                 stateroom += f"/{d.stateroom.location}"
             steps = ",".join(str(s) for s in d.completed_steps) if d.completed_steps else "none"
+            cruise_obj = next((c for c in catalog["cruises"] if c.cruise_id == d.cruise_id), None)
+            region = cruise_obj.region if cruise_obj else "?"
+            embark_port = cruise_obj.embark_port if cruise_obj else "?"
+            nights_val = cruise_obj.nights if cruise_obj else "?"
+            dep = d.departure_date or "?"
+            ret = d.return_date or "?"
+            total_str = _fmt(d.total) if d.total is not None else "?"
             lines.append(
-                f"  - id={d.draft_id} label={d.label!r} cruise={cruise_name!r} "
-                f"fare={d.fare_package} stateroom={stateroom} completed_steps=[{steps}]"
+                f"  - id={d.draft_id} label={d.label!r} region={region} port={embark_port!r}"
+                f" dep={dep} ret={ret} nights={nights_val} total={total_str}"
+                f" fare={d.fare_package} stateroom={stateroom} steps=[{steps}]"
             )
 
     body = "\n".join(lines)
