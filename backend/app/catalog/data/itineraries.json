@@ -1,0 +1,1242 @@
+[
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 1",
+    "port": "Seattle, Washington",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "Via the Inside Passage · 8:00 AM – 9:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 4",
+    "port": "Skagway, Alaska",
+    "note": "7:00 AM – 8:30 PM",
+    "tag": "White Pass rail nearby",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 5",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 6",
+    "port": "Ketchikan, Alaska",
+    "note": "7:00 AM – 1:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 8",
+    "port": "Whittier — begin land tour",
+    "note": "Domed rail to Talkeetna",
+    "tag": "Rail journey",
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "day": "Day 9–12",
+    "port": "Denali & Fairbanks",
+    "note": "Denali Lodge, 2 nights",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 1",
+    "port": "Seattle, Washington",
+    "note": "Embark · departs 4:30 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 2",
+    "port": "At Sea",
+    "note": "Inside Passage scenic cruising",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": false
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "7:00 AM – 8:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 4",
+    "port": "Skagway, Alaska",
+    "note": "7:00 AM – 5:00 PM",
+    "tag": "White Pass rail nearby",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 5",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 6",
+    "port": "Ketchikan, Alaska",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "day": "Day 7",
+    "port": "Vancouver, B.C.",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 1",
+    "port": "Seattle, Washington",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "8:00 AM – 9:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 5",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 7",
+    "port": "Ketchikan, Alaska",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 10",
+    "port": "Sitka, Alaska",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "day": "Day 14",
+    "port": "Seattle, Washington",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "day": "Day 1",
+    "port": "Vancouver, B.C.",
+    "note": "Embark · departs 5:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "day": "Day 3",
+    "port": "Skagway, Alaska",
+    "note": "7:00 AM – 8:00 PM",
+    "tag": "Yukon border excursions",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "day": "Day 4",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "day": "Day 6",
+    "port": "Whittier — begin land tour",
+    "note": "Domed rail to Talkeetna",
+    "tag": "Rail journey",
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "day": "Day 7–10",
+    "port": "Denali & Fairbanks",
+    "note": "Denali Lodge, 2 nights; Fairbanks, 1 night",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "day": "Day 1",
+    "port": "Seattle, Washington",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "day": "Day 4",
+    "port": "Skagway, Alaska",
+    "note": "7:00 AM – 7:00 PM",
+    "tag": "White Pass rail nearby",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "day": "Day 5",
+    "port": "Ketchikan, Alaska",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "day": "Day 7",
+    "port": "Seattle, Washington",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "day": "Day 1",
+    "port": "Whittier, Alaska",
+    "note": "Embark · departs 6:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "day": "Day 2",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "day": "Day 5",
+    "port": "Ketchikan, Alaska",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "day": "Day 7",
+    "port": "Vancouver, B.C.",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "day": "Day 1",
+    "port": "Vancouver, B.C.",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "8:00 AM – 9:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "day": "Day 4",
+    "port": "Skagway, Alaska",
+    "note": "7:00 AM – 8:00 PM",
+    "tag": "Gold Rush heritage sites",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "day": "Day 6",
+    "port": "Ketchikan, Alaska",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "day": "Day 10",
+    "port": "Vancouver, B.C.",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "day": "Day 1",
+    "port": "Seattle, Washington",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "day": "Day 3",
+    "port": "Juneau, Alaska",
+    "note": "8:00 AM – 10:00 PM · midnight sun viewing",
+    "tag": "Midnight sun",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "day": "Day 5",
+    "port": "Glacier Bay National Park",
+    "note": "Scenic cruising · park ranger aboard",
+    "tag": "Glacier highlight",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "day": "Day 7",
+    "port": "Sitka, Alaska",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "day": "Day 14",
+    "port": "Seattle, Washington",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "day": "Day 1",
+    "port": "Los Angeles, California",
+    "note": "Embark · departs 5:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "day": "Day 3",
+    "port": "Cabo San Lucas, Mexico",
+    "note": "7:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "day": "Day 4",
+    "port": "Mazatlán, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "day": "Day 5",
+    "port": "Puerto Vallarta, Mexico",
+    "note": "7:00 AM – 10:00 PM",
+    "tag": "Best beach day",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "day": "Day 7",
+    "port": "Los Angeles, California",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "day": "Day 1",
+    "port": "San Diego, California",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "day": "Day 3",
+    "port": "Ensenada, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "day": "Day 5",
+    "port": "Cabo San Lucas, Mexico",
+    "note": "7:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "day": "Day 7",
+    "port": "Puerto Vallarta, Mexico",
+    "note": "7:00 AM – 10:00 PM",
+    "tag": "Best beach day",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "day": "Day 10",
+    "port": "San Diego, California",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "day": "Day 1",
+    "port": "Miami, Florida",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "day": "Day 3",
+    "port": "Cozumel, Mexico",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Snorkeling & reefs",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "day": "Day 5",
+    "port": "Costa Maya, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "day": "Day 7",
+    "port": "Miami, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "day": "Day 1",
+    "port": "Los Angeles, California",
+    "note": "Embark · departs 5:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "day": "Day 2",
+    "port": "Ensenada, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "day": "Day 3",
+    "port": "Cabo San Lucas, Mexico",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": "Arch of Cabo",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "day": "Day 5",
+    "port": "Los Angeles, California",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "day": "Day 1",
+    "port": "Los Angeles, California",
+    "note": "Embark · departs 5:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "day": "Day 3",
+    "port": "Cabo San Lucas, Mexico",
+    "note": "7:00 AM – 6:00 PM · holiday festivities",
+    "tag": "Festive port call",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "day": "Day 5",
+    "port": "Puerto Vallarta, Mexico",
+    "note": "7:00 AM – 10:00 PM",
+    "tag": "Best beach day",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "day": "Day 7",
+    "port": "Los Angeles, California",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 1",
+    "port": "San Diego, California",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 4",
+    "port": "Cabo San Lucas, Mexico",
+    "note": "7:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 6",
+    "port": "Mazatlán, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 8",
+    "port": "Puerto Vallarta, Mexico",
+    "note": "7:00 AM – 11:00 PM",
+    "tag": "Best beach day",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 11",
+    "port": "Manzanillo, Mexico",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "day": "Day 14",
+    "port": "San Diego, California",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "day": "Day 1",
+    "port": "Fort Lauderdale, Florida",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "day": "Day 3",
+    "port": "St. Thomas, U.S.V.I.",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Duty-free shopping",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "day": "Day 4",
+    "port": "St. Maarten",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "day": "Day 5",
+    "port": "Nassau, Bahamas",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "day": "Day 7",
+    "port": "Fort Lauderdale, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "day": "Day 1",
+    "port": "Tampa, Florida",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "day": "Day 2",
+    "port": "Cozumel, Mexico",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Snorkeling & reefs",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "day": "Day 4",
+    "port": "Grand Cayman",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": "Stingray City",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "day": "Day 5",
+    "port": "Montego Bay, Jamaica",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "day": "Day 7",
+    "port": "Tampa, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "day": "Day 1",
+    "port": "San Juan, Puerto Rico",
+    "note": "Embark · departs 5:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "day": "Day 3",
+    "port": "Barbados",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Rum distillery tours",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "day": "Day 5",
+    "port": "St. Lucia",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": "Piton views",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "day": "Day 7",
+    "port": "Aruba",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "day": "Day 10",
+    "port": "San Juan, Puerto Rico",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "day": "Day 1",
+    "port": "Miami, Florida",
+    "note": "Embark · departs 4:30 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "day": "Day 2",
+    "port": "Nassau, Bahamas",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "day": "Day 3",
+    "port": "Perfect Day at CocoCay",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": "Private island",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "day": "Day 4",
+    "port": "Miami, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "day": "Day 1",
+    "port": "Miami, Florida",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "day": "Day 3",
+    "port": "St. Thomas, U.S.V.I.",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Holiday port call",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "day": "Day 5",
+    "port": "Nassau, Bahamas",
+    "note": "8:00 AM – 5:00 PM · Thanksgiving dinner aboard",
+    "tag": "Thanksgiving feast",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "day": "Day 7",
+    "port": "Miami, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 1",
+    "port": "Fort Lauderdale, Florida",
+    "note": "Embark · departs 4:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 3",
+    "port": "St. Thomas, U.S.V.I.",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Duty-free shopping",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 5",
+    "port": "Barbados",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 8",
+    "port": "Aruba",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 11",
+    "port": "Grand Cayman",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": "Stingray City",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "day": "Day 14",
+    "port": "Fort Lauderdale, Florida",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "day": "Day 1",
+    "port": "Athens (Piraeus), Greece",
+    "note": "Embark · departs 6:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "day": "Day 2",
+    "port": "Mykonos, Greece",
+    "note": "8:00 AM – 9:00 PM",
+    "tag": "Cyclades island hopping",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "day": "Day 3",
+    "port": "Santorini, Greece",
+    "note": "7:00 AM – 10:00 PM · tender port",
+    "tag": "Caldera sunset",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "day": "Day 5",
+    "port": "Rhodes, Greece",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "day": "Day 7",
+    "port": "Athens (Piraeus), Greece",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 1",
+    "port": "Barcelona, Spain",
+    "note": "Embark · departs 6:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 2",
+    "port": "Marseille, France",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 4",
+    "port": "Cannes, France",
+    "note": "8:00 AM – 5:00 PM · tender port",
+    "tag": "French Riviera",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 6",
+    "port": "Florence/Pisa (Livorno), Italy",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": "Tuscany day trip",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 8",
+    "port": "Rome (Civitavecchia), Italy",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "day": "Day 10",
+    "port": "Barcelona, Spain",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_western",
+    "day": "Day 1",
+    "port": "Rome (Civitavecchia), Italy",
+    "note": "Embark · departs 6:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_western",
+    "day": "Day 2",
+    "port": "Naples, Italy",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Pompeii & Amalfi",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_western",
+    "day": "Day 4",
+    "port": "Palma de Mallorca, Spain",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_western",
+    "day": "Day 5",
+    "port": "Barcelona, Spain",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": "Gaudí architecture",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_western",
+    "day": "Day 7",
+    "port": "Rome (Civitavecchia), Italy",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 1",
+    "port": "Venice, Italy",
+    "note": "Embark · departs 6:00 PM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 3",
+    "port": "Dubrovnik, Croatia",
+    "note": "8:00 AM – 8:00 PM",
+    "tag": "Old Town walls",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 5",
+    "port": "Kotor, Montenegro",
+    "note": "8:00 AM – 5:00 PM",
+    "tag": "Bay of Kotor",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 7",
+    "port": "Corfu, Greece",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": null,
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 10",
+    "port": "Split, Croatia",
+    "note": "8:00 AM – 6:00 PM",
+    "tag": "Diocletian's Palace",
+    "dot": "#0C2340",
+    "ring": "#0C2340",
+    "thumb": true
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "day": "Day 12",
+    "port": "Venice, Italy",
+    "note": "Disembark · arrives 7:00 AM",
+    "tag": null,
+    "dot": "#C8A45C",
+    "ring": "#C8A45C",
+    "thumb": true
+  }
+]

@@ -1,0 +1,121 @@
+[
+  {"cruise_id": "denali_explorer", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "denali_explorer", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "denali_explorer", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": 3},
+  {"cruise_id": "denali_explorer", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "glacier_discovery", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "glacier_discovery", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "glacier_discovery", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "glacier_discovery", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "great_alaskan_explorer", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "great_alaskan_explorer", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "great_alaskan_explorer", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "great_alaskan_explorer", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "yukon_denali", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "yukon_denali", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "yukon_denali", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "yukon_denali", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "alaska_inside_passage", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "alaska_inside_passage", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "alaska_inside_passage", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "alaska_inside_passage", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "alaska_glacier_south", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "alaska_glacier_south", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "alaska_glacier_south", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "alaska_glacier_south", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "alaska_gold_rush", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "alaska_gold_rush", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "alaska_gold_rush", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "alaska_gold_rush", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "alaska_midnight_sun", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "alaska_midnight_sun", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "alaska_midnight_sun", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "alaska_midnight_sun", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": 1},
+
+  {"cruise_id": "mexico_riviera", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_riviera", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_riviera", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_riviera", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "mexico_pacific", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_pacific", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_pacific", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_pacific", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "mexico_yucatan", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_yucatan", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_yucatan", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_yucatan", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "mexico_baja", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_baja", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_baja", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_baja", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "mexico_holiday", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_holiday", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_holiday", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_holiday", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "mexico_extended", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "mexico_extended", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "mexico_extended", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "mexico_extended", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_eastern", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_eastern", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_eastern", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_eastern", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_western", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_western", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_western", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_western", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_southern", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_southern", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_southern", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_southern", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_bahamas", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_bahamas", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_bahamas", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_bahamas", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_thanksgiving", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_thanksgiving", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_thanksgiving", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": 2},
+  {"cruise_id": "caribbean_thanksgiving", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "caribbean_grand", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_grand", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_grand", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "caribbean_grand", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "med_greek_isles", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "med_greek_isles", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "med_greek_isles", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": 2},
+  {"cruise_id": "med_greek_isles", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "med_italy_france", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "med_italy_france", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "med_italy_france", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "med_italy_france", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "med_western", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "med_western", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "med_western", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "med_western", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null},
+
+  {"cruise_id": "med_adriatic", "category": "Inside", "location": null, "delta": 0, "remaining_at_fare": null},
+  {"cruise_id": "med_adriatic", "category": "Ocean View", "location": null, "delta": 214, "remaining_at_fare": null},
+  {"cruise_id": "med_adriatic", "category": "Verandah", "location": "Midship", "delta": 486, "remaining_at_fare": null},
+  {"cruise_id": "med_adriatic", "category": "Suite", "location": null, "delta": 1240, "remaining_at_fare": null}
+]
