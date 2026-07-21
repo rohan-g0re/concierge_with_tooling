@@ -425,6 +425,62 @@ export default function ChatShellPage() {
   );
 
   // ---------------------------------------------------------------------------
+  // Reserve dining → postAction('reserve_dining', ...) — component is self-contained
+  // but we need to merge returned refreshed dining_tiles into the transcript.
+  // ---------------------------------------------------------------------------
+
+  const handleReserveDining = useCallback(
+    async (data: unknown) => {
+      const response = data as { components?: ComponentDescriptor[]; chips?: string[] };
+      if (response.components && response.components.length > 0) {
+        const syntheticId = newMessageId();
+        const syntheticMsg: TranscriptMessage = {
+          id: syntheticId,
+          role: "assistant",
+          text: `Dining reservation updated.`,
+          streaming: false,
+          components: response.components,
+          chips: response.chips ?? [],
+        };
+        setMessages((prev) => [...prev, syntheticMsg]);
+        if (response.chips && response.chips.length > 0) {
+          setChips(response.chips);
+        }
+        await refreshDrafts();
+      }
+    },
+    [refreshDrafts]
+  );
+
+  // ---------------------------------------------------------------------------
+  // Set land days → postAction('set_land_days', ...) — component is self-contained
+  // but we need to merge returned refreshed land_builder into the transcript.
+  // ---------------------------------------------------------------------------
+
+  const handleSetLandDays = useCallback(
+    async (data: unknown) => {
+      const response = data as { components?: ComponentDescriptor[]; chips?: string[] };
+      if (response.components && response.components.length > 0) {
+        const syntheticId = newMessageId();
+        const syntheticMsg: TranscriptMessage = {
+          id: syntheticId,
+          role: "assistant",
+          text: `Land tour plan updated.`,
+          streaming: false,
+          components: response.components,
+          chips: response.chips ?? [],
+        };
+        setMessages((prev) => [...prev, syntheticMsg]);
+        if (response.chips && response.chips.length > 0) {
+          setChips(response.chips);
+        }
+        await refreshDrafts();
+      }
+    },
+    [refreshDrafts]
+  );
+
+  // ---------------------------------------------------------------------------
   // Itinerary Q&A — scoped to the open cruise (P8 D2).
   // The ItineraryPanel handles the request itself (local postChat) and renders
   // the answer INSIDE the panel, keeping the panel open. The scoped message is
@@ -445,6 +501,8 @@ export default function ChatShellPage() {
     onOpenItinerary: handleOpenItinerary,
     onSetFare: handleSetFare,
     onSetStateroom: handleSetStateroom,
+    onReserveDining: handleReserveDining,
+    onSetLandDays: handleSetLandDays,
   };
 
   const isEmpty = messages.length === 0;

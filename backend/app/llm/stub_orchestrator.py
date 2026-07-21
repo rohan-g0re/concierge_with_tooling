@@ -268,6 +268,64 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
             on_text_delta(text)
         return {"text": text, "components": components, "chips": chips, "tool_calls": []}
 
+    # --- Dining branch ---
+    elif "dining" in msg or "restaurant" in msg or "dinner" in msg:
+        draft = None
+        if session.active_draft_id:
+            draft = next((d for d in session.drafts if d.draft_id == session.active_draft_id), None)
+        if draft is None and session.drafts:
+            draft = session.drafts[0]
+
+        if draft:
+            from ..tools.dining import list_dining
+            result = list_dining(session, {"cruise_id": draft.cruise_id})
+            if "error" not in result:
+                text = "Here are the dining venues for your cruise."
+                if on_text_delta:
+                    on_text_delta(text)
+                components = [{
+                    "type": "dining_tiles",
+                    "draft_id": draft.draft_id,
+                    "venues": result.get("venues", []),
+                }]
+                chips = ["Reserve a dining night", "Compare my drafts", "Continue to checkout"]
+                return {"text": text, "components": components, "chips": chips, "tool_calls": ["list_dining"]}
+
+        text = "Create a draft first to see dining options."
+        if on_text_delta:
+            on_text_delta(text)
+        return {"text": text, "components": [], "chips": ["Search for cruises"], "tool_calls": []}
+
+    # --- Land/excursion branch ---
+    elif "land option" in msg or "excursion" in msg or ("land" in msg and ("tour" in msg or "option" in msg)):
+        draft = None
+        if session.active_draft_id:
+            draft = next((d for d in session.drafts if d.draft_id == session.active_draft_id), None)
+        if draft is None and session.drafts:
+            draft = session.drafts[0]
+
+        if draft:
+            from ..catalog.loader import get_catalog
+            catalog = get_catalog()
+            cruise = next((c for c in catalog["cruises"] if c.cruise_id == draft.cruise_id), None)
+            if cruise and cruise.is_cruisetour:
+                from ..tools.land import list_land_options
+                result = list_land_options(session, {"cruise_id": draft.cruise_id})
+                if "error" not in result:
+                    from ..routes.action import _append_land_builder
+                    components: list = []
+                    _append_land_builder(components, draft.draft_id, session)
+                    text = "Here are the land tour options for your cruisetour."
+                    if on_text_delta:
+                        on_text_delta(text)
+                    chips = ["Select land options", "Reserve dining", "Compare my drafts"]
+                    return {"text": text, "components": components, "chips": chips, "tool_calls": ["list_land_options"]}
+
+        text = "Land options are only available for cruisetour itineraries. Create a cruisetour draft to see land options."
+        if on_text_delta:
+            on_text_delta(text)
+        return {"text": text, "components": [], "chips": ["Search for cruises"], "tool_calls": []}
+
     # --- Draft/booking branch ---
     elif any(kw in msg for kw in ("total", "my draft", "booking", "draft")):
         if session.drafts:

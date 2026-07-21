@@ -222,6 +222,19 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
         _append_fare_tiles(components, result, session)
     elif tool_name == "set_fare":
         _append_stateroom_picker(components, result, session)
+    elif tool_name == "set_stateroom":
+        draft_id = result.get("draft_id")
+        if draft_id:
+            _append_dining_tiles(components, draft_id, session)
+            _append_land_builder(components, draft_id, session)
+    elif tool_name == "reserve_dining":
+        draft_id = result.get("draft_id")
+        if draft_id:
+            _append_dining_tiles(components, draft_id, session)
+    elif tool_name == "set_land_days":
+        draft_id = result.get("draft_id")
+        if draft_id:
+            _append_land_builder(components, draft_id, session)
 
     return components
 
@@ -301,6 +314,76 @@ def _append_stateroom_picker(components: list, result: dict, session) -> None:
         "categories": categories,
         "locations": ["Forward", "Midship", "Aft"],
         "total_formatted": format_money(draft.total) if draft.total is not None else None,
+    })
+
+
+def _append_dining_tiles(components: list, draft_id: str, session) -> None:
+    """Append a dining_tiles descriptor for the given draft's cruise."""
+    draft = next((d for d in session.drafts if d.draft_id == draft_id), None)
+    if draft is None:
+        return
+    from ..tools.dining import list_dining
+    result = list_dining(session, {"cruise_id": draft.cruise_id})
+    if "error" in result:
+        return
+    components.append({
+        "type": "dining_tiles",
+        "draft_id": draft_id,
+        "venues": result.get("venues", []),
+    })
+
+
+def _append_land_builder(components: list, draft_id: str, session) -> None:
+    """Append a land_builder descriptor for the given draft's cruise (cruisetours only)."""
+    draft = next((d for d in session.drafts if d.draft_id == draft_id), None)
+    if draft is None:
+        return
+    from ..catalog.loader import get_catalog
+    catalog = get_catalog()
+    cruise = next((c for c in catalog["cruises"] if c.cruise_id == draft.cruise_id), None)
+    if cruise is None or not cruise.is_cruisetour:
+        return
+    from ..tools.land import list_land_options
+    result = list_land_options(session, {"cruise_id": draft.cruise_id})
+    if "error" in result:
+        return
+    options = result.get("options", [])
+
+    # Get currently selected option_ids from draft
+    selected_ids = {ld.option_id for ld in draft.land_days}
+
+    # Group by day
+    days_map: dict = {}
+    for opt in options:
+        day = opt["day"]
+        if day not in days_map:
+            days_map[day] = []
+        days_map[day].append({
+            "id": opt["option_id"],
+            "name": opt["name"],
+            "price_formatted": opt["price_formatted"],
+            "conflicts_with": opt["conflicts_with"],
+            "conflict_reason": opt["conflict_reason"],
+            "selected": opt["option_id"] in selected_ids,
+        })
+
+    days = [
+        {"day": day, "label": f"Day {day}", "options": day_opts}
+        for day, day_opts in sorted(days_map.items())
+    ]
+
+    # Build plan (selected options in day order)
+    plan = []
+    for day, day_opts in sorted(days_map.items()):
+        for opt in day_opts:
+            if opt["selected"]:
+                plan.append({"day": day, "label": f"Day {day}", "option_id": opt["id"], "name": opt["name"]})
+
+    components.append({
+        "type": "land_builder",
+        "draft_id": draft_id,
+        "days": days,
+        "plan": plan,
     })
 
 

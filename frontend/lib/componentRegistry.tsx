@@ -14,6 +14,8 @@ import type { CardRowProps } from "@/components/cards/CardRow";
 import { StepTracker } from "@/components/tracker/StepTracker";
 import { FareTiles } from "@/components/fare/FareTiles";
 import { StateroomPicker } from "@/components/stateroom/StateroomPicker";
+import { DiningTiles } from "@/components/dining/DiningTiles";
+import { LandTourBuilder } from "@/components/land/LandTourBuilder";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -28,6 +30,10 @@ export type RegistryHandlers = {
   onSetFare?: (args: { draft_id: string; package: string }) => Promise<void>;
   /** Called when the user taps a stateroom category or changes location. Returns server result with total_formatted. */
   onSetStateroom?: (args: { draft_id: string; category: string; location: string }) => Promise<{ total_formatted?: string } | undefined>;
+  /** Called after a successful dining reservation to merge refreshed components. */
+  onReserveDining?: (data: unknown) => Promise<void>;
+  /** Called after successful land day selection to merge refreshed components. */
+  onSetLandDays?: (data: unknown) => Promise<void>;
 };
 
 // ---------------------------------------------------------------------------
@@ -195,6 +201,34 @@ function StateroomPickerWrapper({
 }
 
 // ---------------------------------------------------------------------------
+// DiningTiles wrapper
+// ---------------------------------------------------------------------------
+
+function DiningTilesWrapper({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  return <DiningTiles descriptor={descriptor} handlers={handlers} />;
+}
+
+// ---------------------------------------------------------------------------
+// LandTourBuilder wrapper
+// ---------------------------------------------------------------------------
+
+function LandTourBuilderWrapper({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  return <LandTourBuilder descriptor={descriptor} handlers={handlers} />;
+}
+
+// ---------------------------------------------------------------------------
 // Error
 // ---------------------------------------------------------------------------
 
@@ -229,6 +263,8 @@ const REGISTRY: Record<string, RegistryEntry> = {
   error: ErrorComponent,
   fare_tiles: FareTilesWrapper,
   stateroom_picker: StateroomPickerWrapper,
+  dining_tiles: DiningTilesWrapper,
+  land_builder: LandTourBuilderWrapper,
 };
 
 /**
