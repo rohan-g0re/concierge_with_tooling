@@ -38,3 +38,6 @@ Desktop.ini
 *.egg-info/
 build/
 *.whl
+
+# verifier screenshots (repo root only)
+/*.png
