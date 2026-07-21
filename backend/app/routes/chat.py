@@ -20,7 +20,36 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from ..session_store import get_or_create, update
-from ..llm.gemini_client import run_turn
+from ..config import get_settings
+
+
+def _get_run_turn():
+    """Select run_turn implementation based on llm_mode setting.
+
+    Priority order:
+    1. If a test has injected a fake client via gemini_client.set_client(), always
+       use gemini_client so existing tests that monkeypatch the client keep working.
+    2. llm_mode='gemini' — force Gemini client.
+    3. llm_mode='stub'   — force stub orchestrator.
+    4. llm_mode='auto'   — use Gemini if GEMINI_API_KEY is set, else stub.
+    """
+    from ..llm import gemini_client as _gc
+    # If a client has been injected (e.g. in tests), always use the Gemini path
+    if _gc._client is not None:
+        return _gc.run_turn
+
+    settings = get_settings()
+    mode = settings.llm_mode
+    if mode == "gemini":
+        return _gc.run_turn
+    if mode == "stub":
+        from ..llm.stub_orchestrator import run_turn
+        return run_turn
+    # auto: use gemini if key set, else stub
+    if settings.gemini_api_key:
+        return _gc.run_turn
+    from ..llm.stub_orchestrator import run_turn
+    return run_turn
 
 router = APIRouter()
 
@@ -51,7 +80,7 @@ async def _stream_turn(session_id: str, user_message: str) -> AsyncGenerator[str
         delta_buffer.append(text)
 
     # Run the turn (blocking call — runs in sync context)
-    result = run_turn(session, user_message, on_text_delta=on_delta)
+    result = _get_run_turn()(session, user_message, on_text_delta=on_delta)
 
     # Yield all buffered text_delta events
     for delta in delta_buffer:
