@@ -25,6 +25,28 @@ import {
 import type { TranscriptMessage } from "@/lib/session";
 import type { ComponentDescriptor } from "@/lib/api";
 import type { RegistryHandlers } from "@/lib/componentRegistry";
+import { DraftRail } from "@/components/drafts/DraftRail";
+import type { DraftInfo } from "@/components/drafts/DraftRail";
+
+// ---------------------------------------------------------------------------
+// Session fetch
+// ---------------------------------------------------------------------------
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+async function fetchSession(sessionId: string): Promise<{ drafts: DraftInfo[]; active_draft_id: string | null }> {
+  try {
+    const res = await fetch(`${API_BASE}/session/${sessionId}`);
+    if (!res.ok) return { drafts: [], active_draft_id: null };
+    const data = await res.json();
+    return {
+      drafts: (data.drafts ?? []) as DraftInfo[],
+      active_draft_id: data.active_draft_id ?? null,
+    };
+  } catch {
+    return { drafts: [], active_draft_id: null };
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Greeting
@@ -47,34 +69,6 @@ function Greeting() {
         build your cruise — step by step.
       </p>
     </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Draft rail placeholder
-// ---------------------------------------------------------------------------
-
-function DraftRail() {
-  return (
-    <aside
-      className="flex-none flex flex-col"
-      style={{ width: "240px", background: "#fff", borderLeft: "1px solid rgba(12,35,64,0.08)" }}
-    >
-      <div
-        className="px-4 py-4 font-sans font-semibold text-sm"
-        style={{ color: "#0C2340", borderBottom: "1px solid rgba(12,35,64,0.08)" }}
-      >
-        Drafts
-      </div>
-      <div className="flex-1 flex items-center justify-center px-4">
-        <p
-          className="font-sans text-xs text-center"
-          style={{ color: "#8A97A6", lineHeight: "1.6" }}
-        >
-          Pinned drafts appear here
-        </p>
-      </div>
-    </aside>
   );
 }
 
@@ -114,6 +108,8 @@ export default function ChatShellPage() {
   const [streaming, setStreaming] = useState(false);
   const [panel, setPanel] = useState<ItineraryPanelState>(PANEL_CLOSED);
   const sessionIdRef = useRef<string>("");
+  const [drafts, setDrafts] = useState<DraftInfo[]>([]);
+  const [activeDraftId, setActiveDraftId] = useState<string | null>(null);
 
   // Hydrate transcript from sessionStorage on mount
   useEffect(() => {
@@ -124,6 +120,24 @@ export default function ChatShellPage() {
       const lastAssistant = [...saved.messages].reverse().find((m) => m.role === "assistant");
       if (lastAssistant?.chips) setChips(lastAssistant.chips);
     }
+
+    // Hydrate drafts from GET /session (backend source of truth)
+    // Also try sessionStorage as fallback for immediate render
+    const savedDraftsRaw = sessionStorage.getItem("compass_drafts");
+    if (savedDraftsRaw) {
+      try {
+        const savedDrafts = JSON.parse(savedDraftsRaw) as { drafts: DraftInfo[]; activeDraftId: string | null };
+        setDrafts(savedDrafts.drafts);
+        setActiveDraftId(savedDrafts.activeDraftId);
+      } catch { /* ignore */ }
+    }
+    // Then fetch from backend (authoritative)
+    fetchSession(sessionIdRef.current).then(({ drafts: d, active_draft_id }) => {
+      setDrafts(d);
+      setActiveDraftId(active_draft_id);
+      // Mirror to sessionStorage for refresh survival
+      sessionStorage.setItem("compass_drafts", JSON.stringify({ drafts: d, activeDraftId: active_draft_id }));
+    });
   }, []);
 
   // Persist transcript whenever messages change
@@ -222,6 +236,17 @@ export default function ChatShellPage() {
   );
 
   // ---------------------------------------------------------------------------
+  // Refresh drafts from backend
+  // ---------------------------------------------------------------------------
+
+  const refreshDrafts = useCallback(async () => {
+    const { drafts: d, active_draft_id } = await fetchSession(sessionIdRef.current);
+    setDrafts(d);
+    setActiveDraftId(active_draft_id);
+    sessionStorage.setItem("compass_drafts", JSON.stringify({ drafts: d, activeDraftId: active_draft_id }));
+  }, []);
+
+  // ---------------------------------------------------------------------------
   // Select cruise → create_draft action
   // Merges returned components/chips into a new synthetic assistant message
   // so tracker_update stub renders in the transcript.
@@ -247,12 +272,30 @@ export default function ChatShellPage() {
           if (response.chips && response.chips.length > 0) {
             setChips(response.chips);
           }
+          // Refresh draft rail from backend
+          await refreshDrafts();
         }
       } catch (err) {
         console.error("create_draft failed:", err);
       }
     },
-    []
+    [refreshDrafts]
+  );
+
+  // ---------------------------------------------------------------------------
+  // Set active draft
+  // ---------------------------------------------------------------------------
+
+  const handleSetActiveDraft = useCallback(
+    async (draftId: string) => {
+      try {
+        await postAction("set_active_draft", sessionIdRef.current, { draft_id: draftId });
+        await refreshDrafts();
+      } catch (err) {
+        console.error("set_active_draft failed:", err);
+      }
+    },
+    [refreshDrafts]
   );
 
   // ---------------------------------------------------------------------------
@@ -419,7 +462,11 @@ export default function ChatShellPage() {
         </main>
 
         {/* Draft rail */}
-        <DraftRail />
+        <DraftRail
+          drafts={drafts}
+          activeDraftId={activeDraftId}
+          onSetActive={handleSetActiveDraft}
+        />
       </div>
 
       {/* ── Itinerary slide-over ── */}

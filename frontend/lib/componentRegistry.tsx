@@ -11,6 +11,7 @@ import React from "react";
 import type { ComponentDescriptor } from "./api";
 import { CardRow as CardRowComponent } from "@/components/cards/CardRow";
 import type { CardRowProps } from "@/components/cards/CardRow";
+import { StepTracker } from "@/components/tracker/StepTracker";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -83,50 +84,6 @@ function Itinerary({ descriptor }: { descriptor: ComponentDescriptor }) {
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Tracker Update (draft booking progress)
-// ---------------------------------------------------------------------------
-
-function TrackerUpdate({ descriptor }: { descriptor: ComponentDescriptor }) {
-  const draftId = descriptor.draft_id as string | undefined;
-  const steps = (descriptor.completed_steps as string[] | undefined) ?? [];
-  const total = descriptor.total_formatted as string | undefined;
-
-  return (
-    <div
-      className="mt-3 rounded-xl p-4 border"
-      style={{ background: "#fff", borderColor: "rgba(200,164,92,0.4)" }}
-    >
-      <div className="flex items-center justify-between mb-2">
-        <p className="font-sans text-xs font-semibold" style={{ color: "#0C2340" }}>
-          Draft {draftId}
-        </p>
-        {total && (
-          <p className="font-display text-sm font-semibold" style={{ color: "#C8A45C" }}>
-            {total}
-          </p>
-        )}
-      </div>
-      <div className="flex gap-1">
-        {["select", "fare", "stateroom", "dining", "land"].map((step) => (
-          <div
-            key={step}
-            className="flex-1 h-1 rounded-full"
-            style={{
-              background: steps.includes(step) ? "#0C2340" : "rgba(12,35,64,0.12)",
-            }}
-          />
-        ))}
-      </div>
-      {steps.length > 0 && (
-        <p className="font-sans text-xs mt-2" style={{ color: "#5A6B7E" }}>
-          Completed: {steps.join(", ")}
-        </p>
-      )}
     </div>
   );
 }
@@ -232,7 +189,7 @@ type RegistryEntry = React.ComponentType<{
 const REGISTRY: Record<string, RegistryEntry> = {
   card_row: CardRow,
   itinerary: Itinerary,
-  tracker_update: TrackerUpdate,
+  tracker_update: StepTracker,
   comparison: Comparison,
   handoff: Handoff,
   error: ErrorComponent,

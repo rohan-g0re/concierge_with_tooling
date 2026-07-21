@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import get_settings
 from .routes.chat import router as chat_router
 from .routes.action import router as action_router
+from .routes.session import router as session_router
 
 settings = get_settings()
 
@@ -30,6 +31,7 @@ app.add_middleware(
 
 app.include_router(chat_router)
 app.include_router(action_router)
+app.include_router(session_router)
 
 
 @app.get("/health")

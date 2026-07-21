@@ -13,6 +13,7 @@ from .dining import list_dining, reserve_dining
 from .land import list_land_options, set_land_days
 from .compare import compare_drafts
 from .handoff import handoff_checkout
+from .set_active_draft import set_active_draft
 
 TOOL_REGISTRY: dict[str, tuple] = {
     "search_cruises": (
@@ -182,6 +183,20 @@ TOOL_REGISTRY: dict[str, tuple] = {
                 "type": "object",
                 "properties": {
                     "draft_id": {"type": "string", "description": "The draft ID to check out"},
+                },
+                "required": ["draft_id"],
+            },
+        },
+    ),
+    "set_active_draft": (
+        set_active_draft,
+        {
+            "name": "set_active_draft",
+            "description": "Switch the active draft to the specified draft_id. The next chat turns will reference this draft.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_id": {"type": "string", "description": "The draft ID to make active"},
                 },
                 "required": ["draft_id"],
             },
