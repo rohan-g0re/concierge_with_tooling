@@ -298,7 +298,7 @@ export function CardRow({ descriptor, onSelect, onOpenItinerary }: CardRowProps)
   }
 
   return (
-    <div style={{ marginTop: "12px", width: "100%" }}>
+    <div style={{ marginTop: "12px", width: "100%", minWidth: 0 }}>
       {/* Active filters summary */}
       {Object.keys(filters).length > 0 && (
         <p

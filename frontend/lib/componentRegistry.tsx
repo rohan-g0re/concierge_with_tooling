@@ -16,6 +16,7 @@ import { FareTiles } from "@/components/fare/FareTiles";
 import { StateroomPicker } from "@/components/stateroom/StateroomPicker";
 import { DiningTiles } from "@/components/dining/DiningTiles";
 import { LandTourBuilder } from "@/components/land/LandTourBuilder";
+import { ComparisonView } from "@/components/compare/ComparisonView";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -34,6 +35,8 @@ export type RegistryHandlers = {
   onReserveDining?: (data: unknown) => Promise<void>;
   /** Called after successful land day selection to merge refreshed components. */
   onSetLandDays?: (data: unknown) => Promise<void>;
+  /** Called when the user clicks "Continue with this" in comparison view to set active draft. */
+  onSetActiveDraft?: (draftId: string) => Promise<void>;
 };
 
 // ---------------------------------------------------------------------------
@@ -101,44 +104,17 @@ function Itinerary({ descriptor }: { descriptor: ComponentDescriptor }) {
 }
 
 // ---------------------------------------------------------------------------
-// Comparison
+// Comparison (real component — P12)
 // ---------------------------------------------------------------------------
 
-function Comparison({ descriptor }: { descriptor: ComponentDescriptor }) {
-  const rows = (descriptor.rows as Array<{ label: string; values: unknown[]; differ?: boolean }> | undefined) ?? [];
-
-  return (
-    <div
-      className="mt-3 rounded-xl overflow-hidden border"
-      style={{ background: "#fff", borderColor: "rgba(12,35,64,0.12)" }}
-    >
-      <p className="font-display font-semibold text-sm p-4 pb-2" style={{ color: "#0C2340" }}>
-        Comparison
-      </p>
-      <table className="w-full text-sm font-sans">
-        <tbody>
-          {rows.map((row, i) => (
-            <tr
-              key={i}
-              style={{
-                background: row.differ ? "rgba(200,164,92,0.06)" : "transparent",
-                borderTop: "1px solid rgba(12,35,64,0.08)",
-              }}
-            >
-              <td className="px-4 py-2 font-semibold text-xs" style={{ color: "#5A6B7E", width: "30%" }}>
-                {row.label}
-              </td>
-              {(row.values ?? []).map((v, j) => (
-                <td key={j} className="px-4 py-2 text-xs" style={{ color: "#22344B" }}>
-                  {String(v ?? "—")}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+function Comparison({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  return <ComparisonView descriptor={descriptor} handlers={handlers} />;
 }
 
 // ---------------------------------------------------------------------------
@@ -232,14 +208,45 @@ function LandTourBuilderWrapper({
 // Error
 // ---------------------------------------------------------------------------
 
+/**
+ * Map known backend error codes to polite, on-brand refusal copy so raw codes
+ * (e.g. "draft_not_found", "draft_cap") never surface as bare text in chat.
+ */
+const ERROR_COPY: Record<string, string> = {
+  draft_cap:
+    "You already have three drafts — remove or continue with one before starting another.",
+  compare_cap:
+    "I can compare up to three drafts at a time. Pick up to three and I'll line them up side by side.",
+  draft_not_found:
+    "I couldn't find that draft — here's what you have saved.",
+  no_drafts:
+    "You'll need at least two drafts to compare. Create a second one and I'll set them side by side.",
+  cruise_not_found:
+    "I couldn't find that sailing just now. Let's try another option together.",
+};
+
+function politeErrorCopy(descriptor: ComponentDescriptor): string {
+  const code = descriptor.code ?? descriptor.error;
+  if (typeof code === "string" && ERROR_COPY[code]) {
+    return ERROR_COPY[code];
+  }
+  // Fall back to a server-provided message only if it doesn't look like a raw
+  // error code (no spaces, snake_case) — otherwise use a generic polite line.
+  const message = descriptor.message;
+  if (typeof message === "string" && message.trim() && /\s/.test(message.trim())) {
+    return message;
+  }
+  return "Something went sideways on my end — let's try that again.";
+}
+
 function ErrorComponent({ descriptor }: { descriptor: ComponentDescriptor }) {
   return (
     <div
       className="mt-3 rounded-xl p-3 border"
-      style={{ background: "#fff5f5", borderColor: "rgba(200,50,50,0.2)" }}
+      style={{ background: "rgba(217,232,232,0.35)", borderColor: "rgba(12,35,64,0.12)" }}
     >
-      <p className="font-sans text-sm" style={{ color: "#c0392b" }}>
-        {(descriptor.message as string) ?? "An error occurred."}
+      <p className="font-sans text-sm" style={{ color: "#5A6B7E" }}>
+        {politeErrorCopy(descriptor)}
       </p>
     </div>
   );

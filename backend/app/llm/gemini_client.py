@@ -85,6 +85,22 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
         draft = result.get("draft") or result
         return {"type": "tracker_update", "draft": draft}
 
+    if tool_name == "compare_drafts":
+        return {
+            "type": "comparison",
+            "rows": result.get("rows", []),
+            "headers": result.get("headers", []),
+            "checkout_urls": result.get("checkout_urls", []),
+            "party": result.get("party", 2),
+        }
+
+    if tool_name == "set_active_draft":
+        return {
+            "type": "active_draft_set",
+            "draft_id": result.get("active_draft_id") or result.get("draft_id"),
+            "label": result.get("label"),
+        }
+
     return None
 
 
@@ -106,6 +122,49 @@ def _parse_chips(text: str) -> tuple[str, list[str]]:
         except json.JSONDecodeError:
             pass
     return text, []
+
+
+def _build_session_snapshot(session) -> str:
+    """
+    Build a compact per-turn state snapshot so the live model can reference
+    real draft ids/labels instead of hallucinating them.
+
+    Kept intentionally terse (one line per draft + a few session fields) to
+    minimize token cost. Returned as a bracketed system note; the caller
+    injects it as a user-role message following the existing system_event
+    convention.
+    """
+    from ..catalog.loader import get_catalog  # noqa: PLC0415
+
+    lines: list[str] = []
+    lines.append(f"party={session.party}")
+    if session.active_draft_id:
+        lines.append(f"active_draft_id={session.active_draft_id}")
+
+    catalog = get_catalog()
+    cruise_names = {c.cruise_id: c.name for c in catalog["cruises"]}
+
+    drafts = session.drafts or []
+    if not drafts:
+        lines.append("drafts: (none yet)")
+    else:
+        lines.append(f"drafts ({len(drafts)}):")
+        for d in drafts:
+            cruise_name = cruise_names.get(d.cruise_id, d.cruise_id)
+            stateroom = d.stateroom.category if d.stateroom else "—"
+            if d.stateroom and d.stateroom.location:
+                stateroom += f"/{d.stateroom.location}"
+            steps = ",".join(str(s) for s in d.completed_steps) if d.completed_steps else "none"
+            lines.append(
+                f"  - id={d.draft_id} label={d.label!r} cruise={cruise_name!r} "
+                f"fare={d.fare_package} stateroom={stateroom} completed_steps=[{steps}]"
+            )
+
+    body = "\n".join(lines)
+    return (
+        "[session state — use these exact draft ids when calling tools; "
+        "never invent ids:\n" + body + "]"
+    )
 
 
 def _default_chips(tool_calls: list[str]) -> list[str]:
@@ -158,6 +217,13 @@ def run_turn(
             text = msg.get("content", "")
             contents.append(types.Content(role=role, parts=[types.Part(text=text)]))
         # else: skip unknown roles silently
+
+    # Inject a compact per-turn session snapshot so the live model can reference
+    # real draft ids / labels / state instead of hallucinating them. Placed
+    # immediately before the current user message, following the same user-role
+    # bracketed-note convention used for system_event entries above.
+    snapshot = _build_session_snapshot(session)
+    contents.append(types.Content(role="user", parts=[types.Part(text=snapshot)]))
 
     # Add current user message
     contents.append(types.Content(role="user", parts=[types.Part(text=user_message)]))

@@ -42,24 +42,39 @@ def compare_drafts(session: "Session", args: dict) -> dict:
         "headers" (per-draft info), and "checkout_urls".
         On error: {"error": "compare_cap", "message": "...up to three..."}
     """
-    draft_ids = args.get("draft_ids", [])
+    raw_ids = args.get("draft_ids") or []
 
-    if len(draft_ids) > _MAX_COMPARE:
+    # Cap check fires first, on the caller's explicit request.
+    if len(raw_ids) > _MAX_COMPARE:
         return {
             "error": "compare_cap",
             "message": f"Comparison supports up to three drafts at a time. Please select up to 3 drafts to compare.",
         }
 
-    if not draft_ids:
-        return {"error": "no_drafts", "message": "At least one draft_id is required."}
+    session_ids = [d.draft_id for d in session.drafts]
 
-    # Resolve drafts from session
+    # Defense in depth: the live model may pass hallucinated / stale ids, or
+    # none at all. Filter the requested ids to those that actually exist in the
+    # session. If fewer than 2 valid ids survive, fall back to *all* session
+    # drafts (capped at 3) so "compare my drafts" still works without the model
+    # needing to know exact ids.
+    valid_ids = [did for did in raw_ids if did in session_ids]
+    if len(valid_ids) < 2:
+        valid_ids = session_ids[:_MAX_COMPARE]
+
+    # Even after fallback, we need at least 2 drafts to compare.
+    if len(valid_ids) < 2:
+        return {
+            "error": "no_drafts",
+            "message": "You'll need at least two drafts to compare. Create a second draft and I'll line them up side by side.",
+        }
+
+    # Resolve drafts from session (all ids here are known to exist)
     drafts = []
-    for did in draft_ids:
+    for did in valid_ids:
         d = next((d for d in session.drafts if d.draft_id == did), None)
-        if d is None:
-            return {"error": "draft_not_found", "message": f"Draft {did!r} not found in session."}
-        drafts.append(d)
+        if d is not None:
+            drafts.append(d)
 
     catalog = get_catalog()
     party = session.party

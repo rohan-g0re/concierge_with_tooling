@@ -33,14 +33,14 @@ export function MessageStream({ messages, onChipClick, registryHandlers }: Messa
   if (messages.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-4 px-4 py-4">
+    <div className="flex flex-col gap-4 px-4 py-4 w-full">
       {messages.map((msg) => (
         <div
           key={msg.id}
-          className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+          className={`flex flex-col w-full min-w-0 ${msg.role === "user" ? "items-end" : "items-start"}`}
         >
-          <div className={`max-w-[80%] ${msg.role === "user" ? "flex flex-col items-end" : "flex flex-col items-start"}`}>
-            {/* Bubble */}
+          {/* Bubble — capped at 80% width */}
+          <div className={`min-w-0 max-w-[80%] ${msg.role === "user" ? "flex flex-col items-end" : "flex flex-col items-start"}`}>
             <div
               className={`rounded-2xl px-4 py-2.5 font-sans text-sm leading-relaxed ${
                 msg.role === "user"
@@ -72,17 +72,17 @@ export function MessageStream({ messages, onChipClick, registryHandlers }: Messa
                 </>
               )}
             </div>
-
-            {/* Visible components rendered beneath assistant bubble
-                (trace-only descriptors like system_event go to ReasoningPanel, not here) */}
-            {msg.role === "assistant" && msg.components && msg.components.length > 0 && (
-              <div className="w-full mt-1">
-                {msg.components
-                  .filter((c) => !TRACE_ONLY_TYPES.has(c.type))
-                  .map((c, i) => renderComponent(c, i, registryHandlers))}
-              </div>
-            )}
           </div>
+
+          {/* Visible components rendered beneath assistant bubble at full column width
+              (trace-only descriptors like system_event go to ReasoningPanel, not here) */}
+          {msg.role === "assistant" && msg.components && msg.components.length > 0 && (
+            <div className="w-full min-w-0 mt-1">
+              {msg.components
+                .filter((c) => !TRACE_ONLY_TYPES.has(c.type))
+                .map((c, i) => renderComponent(c, i, registryHandlers))}
+            </div>
+          )}
         </div>
       ))}
       <div ref={bottomRef} />

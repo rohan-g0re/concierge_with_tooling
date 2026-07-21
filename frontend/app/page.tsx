@@ -148,6 +148,17 @@ export default function ChatShellPage() {
   }, [messages]);
 
   // ---------------------------------------------------------------------------
+  // Refresh drafts from backend
+  // ---------------------------------------------------------------------------
+
+  const refreshDrafts = useCallback(async () => {
+    const { drafts: d, active_draft_id } = await fetchSession(sessionIdRef.current);
+    setDrafts(d);
+    setActiveDraftId(active_draft_id);
+    sessionStorage.setItem("compass_drafts", JSON.stringify({ drafts: d, activeDraftId: active_draft_id }));
+  }, []);
+
+  // ---------------------------------------------------------------------------
   // Core send message
   // ---------------------------------------------------------------------------
 
@@ -202,6 +213,9 @@ export default function ChatShellPage() {
               )
             );
             setChips(payload.chips);
+            // Sync rail after every chat turn so model-originated state changes
+            // (e.g. set_active_draft called during a turn) are reflected immediately.
+            refreshDrafts();
           }
         );
       } catch {
@@ -221,7 +235,7 @@ export default function ChatShellPage() {
         setStreaming(false);
       }
     },
-    [streaming]
+    [streaming, refreshDrafts]
   );
 
   // ---------------------------------------------------------------------------
@@ -234,17 +248,6 @@ export default function ChatShellPage() {
     },
     [sendMessage]
   );
-
-  // ---------------------------------------------------------------------------
-  // Refresh drafts from backend
-  // ---------------------------------------------------------------------------
-
-  const refreshDrafts = useCallback(async () => {
-    const { drafts: d, active_draft_id } = await fetchSession(sessionIdRef.current);
-    setDrafts(d);
-    setActiveDraftId(active_draft_id);
-    sessionStorage.setItem("compass_drafts", JSON.stringify({ drafts: d, activeDraftId: active_draft_id }));
-  }, []);
 
   // ---------------------------------------------------------------------------
   // Select cruise → create_draft action
@@ -496,6 +499,22 @@ export default function ChatShellPage() {
   // Registry handlers (stable reference via useCallback)
   // ---------------------------------------------------------------------------
 
+  // ---------------------------------------------------------------------------
+  // Set active draft from comparison view CTA
+  // ---------------------------------------------------------------------------
+
+  const handleSetActiveDraftFromComparison = useCallback(
+    async (draftId: string) => {
+      try {
+        await postAction("set_active_draft", sessionIdRef.current, { draft_id: draftId });
+        await refreshDrafts();
+      } catch (err) {
+        console.error("set_active_draft from comparison failed:", err);
+      }
+    },
+    [refreshDrafts]
+  );
+
   const registryHandlers: RegistryHandlers = {
     onSelect: handleSelect,
     onOpenItinerary: handleOpenItinerary,
@@ -503,6 +522,7 @@ export default function ChatShellPage() {
     onSetStateroom: handleSetStateroom,
     onReserveDining: handleReserveDining,
     onSetLandDays: handleSetLandDays,
+    onSetActiveDraft: handleSetActiveDraftFromComparison,
   };
 
   const isEmpty = messages.length === 0;
@@ -560,14 +580,14 @@ export default function ChatShellPage() {
       </header>
 
       {/* ── Body: chat column + draft rail ── */}
-      <div className="flex flex-1 min-h-0 max-w-[1280px] w-full mx-auto">
-        {/* Chat column */}
+      <div className="flex flex-1 min-h-0 max-w-[1280px] w-full mx-auto overflow-hidden">
+        {/* Chat column — min-w-0 prevents flex-1 from overflowing the container */}
         <main
-          className="flex-1 flex flex-col min-h-0"
+          className="flex-1 flex flex-col min-h-0 min-w-0"
           style={{ background: "#F4F6F8" }}
         >
-          {/* Scrollable message area */}
-          <div className="flex-1 overflow-y-auto">
+          {/* Scrollable message area — overflow-x-hidden contains wide components */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden">
             {isEmpty ? (
               <Greeting />
             ) : (
