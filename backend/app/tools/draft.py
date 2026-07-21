@@ -363,3 +363,53 @@ def _find_draft(session: "Session", draft_id: Optional[str]) -> "Optional[Draft]
     if not draft_id:
         return None
     return next((d for d in session.drafts if d.draft_id == draft_id), None)
+
+
+def disambiguate_drafts(session: "Session", args: dict) -> dict:
+    """
+    Return candidate draft summaries so the guest can pick between ambiguous drafts.
+
+    Args:
+        session: current session
+        args: {"draft_ids": [str]} — optional; if absent or empty, use all session drafts
+
+    Returns:
+        dict with candidates list and active_draft_id
+    """
+    draft_ids = args.get("draft_ids") or []
+    if draft_ids:
+        candidates_drafts = [d for d in session.drafts if d.draft_id in draft_ids]
+        # If no valid ids matched, fall back to all session drafts
+        if not candidates_drafts:
+            candidates_drafts = list(session.drafts)
+    else:
+        candidates_drafts = list(session.drafts)
+
+    candidates = []
+    for d in candidates_drafts:
+        candidates.append({
+            "draft_id": d.draft_id,
+            "label": d.label,
+            "region": None,  # enriched by caller if needed; basic version uses label
+            "departure_date": d.departure_date,
+            "return_date": d.return_date,
+            "nights": None,
+            "total_formatted": format_money(d.total) if d.total is not None else None,
+        })
+
+    # Enrich with region and nights from catalog
+    from ..catalog.loader import get_catalog as _get_catalog
+    catalog = _get_catalog()
+    cruise_map = {c.cruise_id: c for c in catalog["cruises"]}
+    for item in candidates:
+        draft_obj = next((d for d in candidates_drafts if d.draft_id == item["draft_id"]), None)
+        if draft_obj:
+            cruise_obj = cruise_map.get(draft_obj.cruise_id)
+            if cruise_obj:
+                item["region"] = cruise_obj.region
+                item["nights"] = cruise_obj.nights
+
+    return {
+        "candidates": candidates,
+        "active_draft_id": session.active_draft_id,
+    }

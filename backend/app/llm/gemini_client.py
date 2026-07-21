@@ -111,6 +111,13 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
             "label": result.get("label"),
         }
 
+    if tool_name == "disambiguate_drafts":
+        return {
+            "type": "draft_disambiguation",
+            "candidates": result.get("candidates", []),
+            "active_draft_id": result.get("active_draft_id"),
+        }
+
     if tool_name == "remove_draft":
         return None  # no UI component; DraftRail refreshes from session
 

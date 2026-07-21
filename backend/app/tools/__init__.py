@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from .search import search_cruises
 from .itinerary import get_itinerary
-from .draft import create_draft, set_fare, set_stateroom, remove_draft, set_sailing
+from .draft import create_draft, set_fare, set_stateroom, remove_draft, set_sailing, disambiguate_drafts
 from .dining import list_dining, reserve_dining
 from .land import list_land_options, set_land_days
 from .compare import compare_drafts
@@ -202,6 +202,24 @@ TOOL_REGISTRY: dict[str, tuple] = {
                     "draft_id": {"type": "string", "description": "The draft ID to make active"},
                 },
                 "required": ["draft_id"],
+            },
+        },
+    ),
+    "disambiguate_drafts": (
+        disambiguate_drafts,
+        {
+            "name": "disambiguate_drafts",
+            "description": "Return candidate draft summaries when a guest's reference matches two or more drafts and nothing distinguishes them. The guest picks from the returned candidates.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_ids": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "Draft IDs to present as candidates (optional — if absent or empty, all session drafts are used)",
+                    },
+                },
+                "required": [],
             },
         },
     ),

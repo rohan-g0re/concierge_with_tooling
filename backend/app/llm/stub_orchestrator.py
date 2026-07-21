@@ -27,8 +27,188 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
     # hijack the turn. Route scoped/itinerary messages to the itinerary Q&A path.
     is_scoped_itinerary = bool(re.search(r"\(([a-z][a-z0-9_]+)\):", msg)) or "itinerary" in msg
 
+    # --- Draft-switch branch (BEFORE search so "alaska" with a draft fires here) ---
+    # Fires BEFORE the search branch so that "back to the Alaska one"
+    # with an existing Alaska draft triggers a switch, not a new search.
+    #
+    # Gate: only attempt matching when drafts exist.
+    # Incidental-mention guard: messages that describe someone else's past
+    # experience ("my friend loved X", "last year", "once", "used to") without
+    # explicit switch-intent verbs are passed through — no switch, no search.
+    _INCIDENTAL_MARKERS = ("friend", "last year", "once", "used to", "i heard", "someone")
+    _SWITCH_INTENT = ("back to", "switch", "go to", "go back", "let's look at", "the one", "my draft", "show me my", "what about my")
+
+    _has_switch_intent = any(p in msg for p in _SWITCH_INTENT)
+    _is_incidental = (
+        any(m in msg for m in _INCIDENTAL_MARKERS)
+        and not _has_switch_intent
+    )
+
+    if session.drafts and not is_scoped_itinerary and not _is_incidental:
+        # Build a normalised representation of each draft for matching.
+        # We match on: region word, cruise-name token, N-day/N-night, departure date.
+        from ..catalog.loader import get_catalog as _get_catalog_sw
+        _catalog_sw = _get_catalog_sw()
+        _cruise_map_sw = {c.cruise_id: c for c in _catalog_sw["cruises"]}
+
+        _REGION_WORDS = {
+            "alaska": "alaska",
+            "mexico": "mexico",
+            "caribbean": "caribbean",
+            "mediterranean": "mediterranean",
+            "hawaii": "hawaii",
+            "bermuda": "bermuda_bahamas",
+            "bahamas": "bermuda_bahamas",
+        }
+
+        # Month abbreviations for date matching (e.g. "aug 3", "august 3")
+        _MONTH_ABBREV = {
+            "jan": 1, "january": 1, "feb": 2, "february": 2,
+            "mar": 3, "march": 3, "apr": 4, "april": 4,
+            "may": 5, "jun": 6, "june": 6, "jul": 7, "july": 7,
+            "aug": 8, "august": 8, "sep": 9, "sept": 9, "september": 9,
+            "oct": 10, "october": 10, "nov": 11, "november": 11,
+            "dec": 12, "december": 12,
+        }
+
+        def _draft_score(draft, msg_lower):
+            """Return a match score for how specifically msg_lower references this draft.
+
+            Signals are weighted so that a specific reference (duration, date,
+            cruise-name) outscores a generic region-only reference:
+              - region word     → 1 (weak; fires for every same-region draft)
+              - cruise-name token → 2
+              - duration (N-day) → 2
+              - departure date   → 2
+
+            Scores accumulate across signals. Two-pass selection in the caller
+            keeps only the highest scorers: a unique top scorer with a specific
+            signal switches; genuine ties (e.g. region-only for all) disambiguate.
+            """
+            cruise_obj = _cruise_map_sw.get(draft.cruise_id)
+            score = 0
+
+            # 1. Region word match (weak signal — same for every same-region draft)
+            if cruise_obj:
+                draft_region = cruise_obj.region  # e.g. "alaska"
+                for word, region_key in _REGION_WORDS.items():
+                    if word in msg_lower and region_key == draft_region:
+                        score += 1
+                        break
+
+            # 2. Cruise name token match (any word >= 4 chars from label in msg)
+            if draft.label:
+                for token in draft.label.lower().split():
+                    if len(token) >= 4 and token in msg_lower:
+                        score += 2
+                        break
+
+            # 3. Duration match: "N-day" or "N-night" matching draft nights
+            if cruise_obj:
+                nights = cruise_obj.nights
+                if nights:
+                    patterns = [
+                        f"{nights}-day", f"{nights} day",
+                        f"{nights}-night", f"{nights} night",
+                    ]
+                    if any(p in msg_lower for p in patterns):
+                        score += 2
+
+            # 4. Departure date match: "aug 3", "august 3", "3rd august"
+            if draft.departure_date:
+                dep = draft.departure_date  # "YYYY-MM-DD"
+                dep_month = int(dep[5:7])
+                dep_day = int(dep[8:10])
+                # Check "monthname day" patterns
+                for abbrev, mnum in _MONTH_ABBREV.items():
+                    if mnum == dep_month:
+                        # "aug 3" or "aug 03"
+                        if re.search(r"\b" + abbrev + r"\s+" + str(dep_day) + r"\b", msg_lower):
+                            score += 2
+                            break
+                        # "3 aug" or "3rd aug"
+                        if re.search(r"\b" + str(dep_day) + r"(?:st|nd|rd|th)?\s+" + abbrev + r"\b", msg_lower):
+                            score += 2
+                            break
+
+            return score
+
+        # Only activate draft-switch branch when switch-intent is signalled
+        # OR when a region/duration/date reference clearly points to a draft
+        # and it's not a search-intent ("show me", "find me", "search").
+        _SEARCH_INTENT = ("show me", "find me", "search for", "find cruises", "show cruises")
+        _is_search_intent = any(p in msg for p in _SEARCH_INTENT)
+
+        # Check if any region in the message has a matching draft
+        _region_in_msg = any(w in msg for w in _REGION_WORDS)
+
+        # Two-pass scoring: score every draft, then keep only the highest scorers.
+        # A unique top scorer driven by a specific signal (duration/date/name)
+        # switches; a genuine tie (e.g. region-only for all same-region drafts)
+        # still disambiguates.
+        _scored = [(d, _draft_score(d, msg)) for d in session.drafts]
+        _scored = [(d, s) for (d, s) in _scored if s > 0]
+
+        _unique_matched = []
+        if _scored:
+            _top_score = max(s for (_, s) in _scored)
+            _seen = set()
+            for d, s in _scored:
+                if s == _top_score and d.draft_id not in _seen:
+                    _seen.add(d.draft_id)
+                    _unique_matched.append(d)
+
+        # Determine if draft-switch branch should fire:
+        # - Must have switch-intent OR (region/duration/date match that isn't a fresh search)
+        # - Must have at least one matched draft
+        _should_switch = (
+            _unique_matched
+            and (_has_switch_intent or (not _is_search_intent and _region_in_msg))
+        )
+
+        if _should_switch:
+            if len(_unique_matched) == 1:
+                # Exactly one match — switch to it
+                target = _unique_matched[0]
+                switch_result = TOOL_REGISTRY["set_active_draft"][0](session, {"draft_id": target.draft_id})
+                label = switch_result.get("label", target.draft_id)
+                text = f"Switched to {label} — what would you like to explore?"
+                if on_text_delta:
+                    on_text_delta(text)
+                components = [
+                    {
+                        "type": "active_draft_set",
+                        "draft_id": target.draft_id,
+                        "label": label,
+                    }
+                ]
+                chips = ["Tell me about dining", "Choose stateroom", "Compare my drafts"]
+                return {"text": text, "components": components, "chips": chips, "tool_calls": ["set_active_draft"]}
+
+            else:
+                # 2+ matches — disambiguate
+                matched_ids = [d.draft_id for d in _unique_matched]
+                disambig_result = TOOL_REGISTRY["disambiguate_drafts"][0](session, {"draft_ids": matched_ids})
+                text = "Which one do you mean?"
+                if on_text_delta:
+                    on_text_delta(text)
+                components = [
+                    {
+                        "type": "draft_disambiguation",
+                        "candidates": disambig_result.get("candidates", []),
+                        "active_draft_id": disambig_result.get("active_draft_id"),
+                    }
+                ]
+                chips = ["Pick the first option", "Show me all my drafts", "Start a new search"]
+                return {"text": text, "components": components, "chips": chips, "tool_calls": ["disambiguate_drafts"]}
+
+        # If region referenced but NO matching draft → fall through to search branch below.
+        # (no explicit else needed — execution continues)
+
     # --- Cruise search branch ---
-    if not is_scoped_itinerary and any(
+    # Incidental mentions ("my friend loved the Caribbean last year") must not
+    # trigger a fresh search either — they fall through to the default reply.
+    if not is_scoped_itinerary and not _is_incidental and any(
         kw in msg for kw in ("alaska", "mexico", "caribbean", "mediterranean", "hawaii", "bermuda", "bahamas", "cruise", "sail", "voyage", "october", "november", "december", "january", "february", "march", "april", "august", "september", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "return before", "back before", "returning before", "return by", "back by")
     ):
         args: dict = {}

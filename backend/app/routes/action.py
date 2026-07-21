@@ -81,6 +81,11 @@ def _make_event_text(tool_name: str, args: dict, result: dict) -> str:
         ids = args.get("draft_ids", [])
         return f"user compared drafts: {', '.join(ids)}"
 
+    if tool_name == "disambiguate_drafts":
+        ids = args.get("draft_ids") or []
+        count = len(result.get("candidates", []))
+        return f"system presented {count} draft candidates for disambiguation"
+
     if tool_name == "handoff_checkout":
         draft_id = args.get("draft_id", "unknown")
         return f"user proceeded to checkout for draft {draft_id}"
@@ -220,6 +225,13 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
 
     elif tool_name == "compare_drafts":
         components.append({"type": "comparison", **result})
+
+    elif tool_name == "disambiguate_drafts":
+        components.append({
+            "type": "draft_disambiguation",
+            "candidates": result.get("candidates", []),
+            "active_draft_id": result.get("active_draft_id"),
+        })
 
     elif tool_name == "handoff_checkout":
         components.append({"type": "handoff", **result})
@@ -425,6 +437,7 @@ _CHIPS: dict[str, list[str]] = {
     "set_land_days":     ["Reserve dining", "Compare my drafts", "Continue to checkout"],
     "set_sailing":       ["Search cruises", "Compare my drafts", "Continue to checkout"],
     "compare_drafts":    ["Continue to checkout", "Modify a draft", "Search for more cruises"],
+    "disambiguate_drafts": ["Pick the first option", "Show me all my drafts", "Start a new search"],
     "handoff_checkout":  ["Start a new search", "Help me with something else"],
     "search_cruises":    ["Tell me more about the top result", "Show Alaska cruises", "What's included?"],
     "get_itinerary":     ["Create a draft booking", "What are the dining options?", "Tell me about the ports"],
