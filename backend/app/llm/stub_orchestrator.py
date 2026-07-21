@@ -29,15 +29,23 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
 
     # --- Cruise search branch ---
     if not is_scoped_itinerary and any(
-        kw in msg for kw in ("alaska", "mexico", "caribbean", "mediterranean", "cruise", "sail", "voyage")
+        kw in msg for kw in ("alaska", "mexico", "caribbean", "mediterranean", "hawaii", "bermuda", "bahamas", "cruise", "sail", "voyage", "october", "november", "december", "january", "february", "march", "april", "august", "september", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "return before", "back before", "returning before", "return by", "back by")
     ):
         args: dict = {}
 
         # region
-        for region in ("alaska", "mexico", "caribbean", "mediterranean"):
-            if region in msg:
-                args["region"] = region
-                break
+        if "hawaii" in msg:
+            args["region"] = "hawaii"
+        elif "bermuda" in msg or "bahamas" in msg:
+            args["region"] = "bermuda_bahamas"
+        elif "alaska" in msg:
+            args["region"] = "alaska"
+        elif "mexico" in msg:
+            args["region"] = "mexico"
+        elif "caribbean" in msg:
+            args["region"] = "caribbean"
+        elif "mediterranean" in msg:
+            args["region"] = "mediterranean"
 
         # nights_min / nights_max
         range_match = re.search(r"(\d+)\s*[-–]\s*(\d+)\s*day", msg)
@@ -63,6 +71,45 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
         budget_match = re.search(r"under\s+\$([0-9,]+)", msg)
         if budget_match:
             args["budget_max"] = int(budget_match.group(1).replace(",", ""))
+
+        # return_by: "return(ing) before/by <date>", "back before/by <date>"
+        # Parse BEFORE month scan so the matched date span can be excised,
+        # preventing a month abbreviation inside the return_by clause (e.g.
+        # "back before dec 28") from being mistaken for a month filter.
+        return_by_match = re.search(
+            r"(?:return(?:ing)?\s+(?:before|by)|back\s+(?:before|by))\s+([a-z]+\s+\d{1,2}|\d{4}-\d{2}-\d{2})",
+            msg,
+        )
+        if return_by_match:
+            args["return_by"] = return_by_match.group(1)
+
+        # Build a version of msg with the return_by span removed so month
+        # abbreviations that appear only inside that clause are not picked up.
+        msg_for_month = (
+            msg[: return_by_match.start()] + msg[return_by_match.end():]
+            if return_by_match
+            else msg
+        )
+
+        # month: parse month names (full + 3-letter abbrevs, case-insensitive)
+        _MONTH_MAP = {
+            "january": 1, "jan": 1,
+            "february": 2, "feb": 2,
+            "march": 3, "mar": 3,
+            "april": 4, "apr": 4,
+            "may": 5,
+            "june": 6, "jun": 6,
+            "july": 7, "jul": 7,
+            "august": 8, "aug": 8,
+            "september": 9, "sep": 9, "sept": 9,
+            "october": 10, "oct": 10,
+            "november": 11, "nov": 11,
+            "december": 12, "dec": 12,
+        }
+        for month_name, month_int in _MONTH_MAP.items():
+            if re.search(r"\b" + month_name + r"\b", msg_for_month):
+                args["month"] = month_int
+                break
 
         result = TOOL_REGISTRY["search_cruises"][0](session, args)
 

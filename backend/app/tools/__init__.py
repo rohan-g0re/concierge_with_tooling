@@ -24,11 +24,13 @@ TOOL_REGISTRY: dict[str, tuple] = {
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "region": {"type": "string", "description": "Cruise region: alaska|mexico|caribbean|mediterranean"},
+                    "region": {"type": "string", "description": "Cruise region: alaska|mexico|caribbean|mediterranean|hawaii|bermuda_bahamas"},
                     "nights_min": {"type": "integer", "description": "Minimum number of nights"},
                     "nights_max": {"type": "integer", "description": "Maximum number of nights"},
                     "embark_port": {"type": "string", "description": "Embarkation port (substring match)"},
                     "budget_max": {"type": "integer", "description": "Maximum per-person budget in USD"},
+                    "month": {"type": "integer", "description": "Departure month 1-12 (e.g. 10 for October)"},
+                    "return_by": {"type": "string", "description": "Latest acceptable return date, ISO YYYY-MM-DD"},
                 },
                 "required": [],
             },
