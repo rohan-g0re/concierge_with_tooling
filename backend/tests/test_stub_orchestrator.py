@@ -16,7 +16,7 @@ import os
 os.environ["LLM_MODE"] = "stub"
 
 # Must invalidate lru_cache after setting env var
-from backend.app.config import get_settings
+from app.config import get_settings
 get_settings.cache_clear()
 
 import pytest
@@ -52,7 +52,7 @@ def force_stub_mode():
     os.environ["LLM_MODE"] = "stub"
     get_settings.cache_clear()
     # Ensure no injected Gemini client overrides stub selection
-    from backend.app.llm import gemini_client
+    from app.llm import gemini_client
     saved_client = gemini_client._client
     gemini_client._client = None
     yield
@@ -69,7 +69,7 @@ def test_alaska_cruise_search_returns_card_row():
     'Show me Alaska cruises' must yield SSE with a terminal components event
     containing a card_row component with ≤5 cards and 2-3 chips.
     """
-    from backend.app.main import app
+    from app.main import app
 
     client = TestClient(app)
     resp = client.post("/chat", json={"session_id": "stub-test-1", "message": "Show me Alaska cruises"})
@@ -109,7 +109,7 @@ def test_off_scope_message_no_card_row():
     'what is the wifi password' must yield a text-only response (no card_row
     component) with redirect chips.
     """
-    from backend.app.main import app
+    from app.main import app
 
     client = TestClient(app)
     resp = client.post("/chat", json={"session_id": "stub-test-2", "message": "what is the wifi password"})
@@ -145,7 +145,7 @@ def test_greeting_returns_helpful_response():
     """
     'hello' must yield a helpful text response and chips (no crash, no empty response).
     """
-    from backend.app.main import app
+    from app.main import app
 
     client = TestClient(app)
     resp = client.post("/chat", json={"session_id": "stub-test-3", "message": "hello"})
@@ -182,7 +182,7 @@ def test_scoped_itinerary_question_routes_to_qa_not_search():
       - response text cites 'Day' numbers and earlier ports (Seattle/Juneau/Skagway)
       - NO card_row component is emitted
     """
-    from backend.app.main import app
+    from app.main import app
 
     client = TestClient(app)
     scoped = (

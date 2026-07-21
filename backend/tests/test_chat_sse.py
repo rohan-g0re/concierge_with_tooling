@@ -125,7 +125,7 @@ def reset_client():
     """Reset the lazy _client after each test."""
     import importlib
     # Import and reset
-    from backend.app.llm import gemini_client
+    from app.llm import gemini_client
     old_client = gemini_client._client
     yield gemini_client
     gemini_client._client = old_client
@@ -189,8 +189,8 @@ def test_sse_framing():
       - exactly one terminal components event with {"components": [...], "chips": [...]}
     The components event must be last.
     """
-    from backend.app.llm import gemini_client
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app.main import app
 
     # Response with no function calls → triggers streaming
     no_fc_response = FakeResponse([FakeCandidate([FakePart(text=None)])])
@@ -230,8 +230,8 @@ def test_function_call_search_cruises():
     and the result mapped to a card_row component with ≤5 cards.
     Chips must be present (2-3).
     """
-    from backend.app.llm import gemini_client
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app.main import app
 
     # Step 1: model response with a function_call for search_cruises
     fc = FakeFunctionCall(name="search_cruises", args={"region": "alaska"})
@@ -274,9 +274,9 @@ def test_observability_log():
     After a turn that calls search_cruises, the observability log must contain
     an event with event='tool_call', tool='search_cruises', and latency_ms.
     """
-    from backend.app.llm import gemini_client
-    from backend.app import observability
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app import observability
+    from app.main import app
 
     observability.clear_log()
 
@@ -310,8 +310,8 @@ def test_max_steps_guard():
     If the model returns function_calls indefinitely, the loop must stop after
     MAX_STEPS and return a fallback message without raising an exception.
     """
-    from backend.app.llm import gemini_client
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app.main import app
 
     MAX_STEPS = gemini_client.MAX_STEPS
 
@@ -356,9 +356,9 @@ def test_session_messages_persisted():
     After a /chat turn, session.messages must contain the user message
     and the assistant response.
     """
-    from backend.app.llm import gemini_client
-    from backend.app import session_store
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app import session_store
+    from app.main import app
 
     session_id = "test-persist-msgs"
     user_msg = "What cruises do you have?"
@@ -400,8 +400,8 @@ def test_search_cruises_cards_populated():
     Previously broken because _map_tool_result_to_component read result.get("cruises")
     instead of result.get("results"), yielding cards=[].
     """
-    from backend.app.llm import gemini_client
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app.main import app
 
     fc = FakeFunctionCall(name="search_cruises", args={"region": "alaska"})
     fc_part = FakePart(function_call=fc)
@@ -443,8 +443,8 @@ def test_chips_not_in_streamed_deltas():
     or the JSON chips array.  The CHIPS marker must only influence the terminal
     components event (chips field), never the visible text stream.
     """
-    from backend.app.llm import gemini_client
-    from backend.app.main import app
+    from app.llm import gemini_client
+    from app.main import app
 
     no_fc_response = FakeResponse([FakeCandidate([FakePart(text=None)])])
     # Simulate a realistic stream where CHIPS arrives in a late chunk

@@ -94,6 +94,8 @@ export function DiningTiles({
         setReserved((prev) => ({ ...prev, [venueId]: { night, time: "7:30 PM" } }));
         setOpenPopover(null);
         setSelectedNight((prev) => ({ ...prev, [venueId]: null }));
+        // Notify parent so DraftRail (total + steps) refreshes
+        handlers?.onReserveDining?.(data);
       }
     } catch {
       setErrors((prev) => ({ ...prev, [venueId]: "Network error. Please try again." }));

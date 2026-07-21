@@ -128,6 +128,8 @@ export function LandTourBuilder({
           setError(data.result.message || "Unable to update land options.");
         }
       } else {
+        // Notify parent so DraftRail (total + steps) refreshes
+        handlers?.onSetLandDays?.(data);
         // Update local state from server response
         setSelectedIds(newIds);
 

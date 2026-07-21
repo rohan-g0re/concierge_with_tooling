@@ -41,3 +41,6 @@ build/
 
 # verifier screenshots (repo root only)
 /*.png
+
+# TS incremental build info
+frontend/tsconfig.tsbuildinfo

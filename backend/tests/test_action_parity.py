@@ -129,7 +129,7 @@ def make_fake_chat_client(reply_text: str = "Your total is US$ 7,656."):
 
 @pytest.fixture(scope="module")
 def catalog():
-    from backend.app.catalog.loader import load_catalog
+    from app.catalog.loader import load_catalog
     return load_catalog()
 
 
@@ -144,7 +144,7 @@ def first_cruise_id(catalog: dict) -> str:
 
 def make_client():
     """Return a fresh TestClient (imports app fresh each call)."""
-    from backend.app.main import app
+    from app.main import app
     return TestClient(app)
 
 
@@ -166,7 +166,7 @@ def create_session_with_draft(client: TestClient, session_id: str, cruise_id: st
 # ---------------------------------------------------------------------------
 
 def test_set_stateroom_updates_draft_and_appends_event(catalog):
-    from backend.app import session_store
+    from app import session_store
 
     client = make_client()
     session_id = "test-p6-t1"
@@ -226,9 +226,9 @@ def test_set_stateroom_updates_draft_and_appends_event(catalog):
 # ---------------------------------------------------------------------------
 
 def test_parity_set_fare_via_action_vs_direct_handler(catalog):
-    from backend.app import session_store
-    from backend.app.models import Session
-    from backend.app.tools import TOOL_REGISTRY
+    from app import session_store
+    from app.models import Session
+    from app.tools import TOOL_REGISTRY
 
     cruise_id = first_cruise_id(catalog)
 
@@ -246,7 +246,7 @@ def test_parity_set_fare_via_action_vs_direct_handler(catalog):
     draft_a = next(d for d in session_a.drafts if d.draft_id == draft_id_a)
 
     # --- Path B: direct handler call (simulated model path) ---
-    from backend.app.tools.draft import create_draft, set_fare
+    from app.tools.draft import create_draft, set_fare
     session_b = Session(session_id="test-p6-t2b")
     result_b_create = create_draft(session_b, {"cruise_id": cruise_id})
     assert "error" not in result_b_create
@@ -289,8 +289,8 @@ def test_chat_sees_system_event_after_tap(catalog):
        history-building logic directly (bypassing the MagicMock type issue where
        from google.genai import types returns a MagicMock not FakeTypes).
     """
-    from backend.app.llm import gemini_client
-    from backend.app import session_store
+    from app.llm import gemini_client
+    from app import session_store
 
     client = make_client()
     session_id = "test-p6-t3"
@@ -368,7 +368,7 @@ def test_reserve_dining_sold_out(catalog):
     Find a night with capacity_remaining == 0 and attempt to reserve it.
     Expect {error: 'sold_out'} in result.
     """
-    from backend.app import session_store
+    from app import session_store
 
     client = make_client()
     session_id = "test-p6-t4"
