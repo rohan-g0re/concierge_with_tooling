@@ -9,7 +9,7 @@ Tests:
   3. After a tap, POST /chat {message:"what's my total?"} receives history
      containing the event text (assert fake client saw the system note).
   4. POST /action/reserve_dining on sold-out night → {error: 'sold_out'}.
-  5. POST /action/create_draft 4th time → {error: 'draft_cap'}.
+  5. POST /action/create_draft 6th time → {error: 'draft_cap'}.
   PLUS:
   6. Unknown tool → structured error (HTTP 404 with error/message).
   7. Bad args → validation error response.
@@ -415,8 +415,8 @@ def test_create_draft_cap(catalog):
     session_id = "test-p6-t5"
     cruise_id = first_cruise_id(catalog)
 
-    # Create 3 drafts (the cap)
-    for i in range(3):
+    # Create 5 drafts (the cap)
+    for i in range(5):
         resp = client.post(
             "/action/create_draft",
             json={"session_id": session_id, "args": {"cruise_id": cruise_id}},
@@ -424,7 +424,7 @@ def test_create_draft_cap(catalog):
         assert resp.status_code == 200
         assert "error" not in resp.json()["result"], f"Draft {i+1} creation failed"
 
-    # 4th attempt must return draft_cap
+    # 6th attempt must return draft_cap
     resp = client.post(
         "/action/create_draft",
         json={"session_id": session_id, "args": {"cruise_id": cruise_id}},

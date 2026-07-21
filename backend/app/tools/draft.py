@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from ..catalog.loader import get_catalog
 from ..money import draft_total, format_money
 
-_DRAFT_CAP = 3
+_DRAFT_CAP = 5
 _ALL_STEPS = {1, 2, 3, 4, 5}
 
 
@@ -54,7 +54,7 @@ def create_draft(session: "Session", args: dict) -> dict:
     if len(session.drafts) >= _DRAFT_CAP:
         return {
             "error": "draft_cap",
-            "message": f"Maximum of {_DRAFT_CAP} drafts allowed. Please remove a draft before creating a new one.",
+            "message": "You already have five drafts — delete one before starting another.",
         }
 
     cruise_id = args.get("cruise_id")
@@ -198,6 +198,38 @@ def set_stateroom(session: "Session", args: dict) -> dict:
         "total": draft.total,
         "total_formatted": format_money(draft.total) if draft.total is not None else None,
         "total_delta": (draft.total or 0) - old_total,
+    }
+
+
+def remove_draft(session: "Session", args: dict) -> dict:
+    """
+    Remove a draft from the session.
+
+    Args:
+        session: current session
+        args: {"draft_id": str}
+
+    Returns:
+        dict with removed=True and remaining count, or {"error": "draft_not_found"}
+    """
+    draft_id = args.get("draft_id")
+    if not draft_id:
+        return {"error": "missing_draft_id", "message": "draft_id is required"}
+
+    draft = _find_draft(session, draft_id)
+    if draft is None:
+        return {"error": "draft_not_found", "message": f"Draft {draft_id!r} not found"}
+
+    session.drafts = [d for d in session.drafts if d.draft_id != draft_id]
+
+    # Clear or reassign active_draft_id
+    if session.active_draft_id == draft_id:
+        session.active_draft_id = session.drafts[0].draft_id if session.drafts else None
+
+    return {
+        "removed": True,
+        "draft_id": draft_id,
+        "remaining": len(session.drafts),
     }
 
 

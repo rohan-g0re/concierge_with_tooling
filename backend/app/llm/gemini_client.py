@@ -76,7 +76,17 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
         filters = result.get("filters", {})
         # Limit to 5 cards
         cards = cruises[:5]
-        return {"type": "card_row", "cards": cards, "filters": filters}
+        descriptor: dict = {"type": "card_row", "cards": cards, "filters": filters}
+        # Forward sections/no_exact when present (Unit 4)
+        if "sections" in result:
+            sections = result["sections"]
+            capped_sections = [
+                {"label": s["label"], "cards": s["cards"][:5]}
+                for s in sections
+            ]
+            descriptor["sections"] = capped_sections
+            descriptor["no_exact"] = result.get("no_exact", False)
+        return descriptor
 
     if tool_name == "get_itinerary":
         return {"type": "itinerary", **result}
@@ -100,6 +110,9 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
             "draft_id": result.get("active_draft_id") or result.get("draft_id"),
             "label": result.get("label"),
         }
+
+    if tool_name == "remove_draft":
+        return None  # no UI component; DraftRail refreshes from session
 
     return None
 

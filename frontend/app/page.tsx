@@ -301,6 +301,18 @@ export default function ChatShellPage() {
     [refreshDrafts]
   );
 
+  const handleRemoveDraft = useCallback(
+    async (draftId: string) => {
+      try {
+        await postAction("remove_draft", sessionIdRef.current, { draft_id: draftId });
+        await refreshDrafts();
+      } catch (err) {
+        console.error("remove_draft failed:", err);
+      }
+    },
+    [refreshDrafts]
+  );
+
   // ---------------------------------------------------------------------------
   // Open itinerary panel → get_itinerary action
   // ---------------------------------------------------------------------------
@@ -633,6 +645,7 @@ export default function ChatShellPage() {
           drafts={drafts}
           activeDraftId={activeDraftId}
           onSetActive={handleSetActiveDraft}
+          onRemoveDraft={handleRemoveDraft}
         />
       </div>
 

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from .search import search_cruises
 from .itinerary import get_itinerary
-from .draft import create_draft, set_fare, set_stateroom
+from .draft import create_draft, set_fare, set_stateroom, remove_draft
 from .dining import list_dining, reserve_dining
 from .land import list_land_options, set_land_days
 from .compare import compare_drafts
@@ -54,7 +54,7 @@ TOOL_REGISTRY: dict[str, tuple] = {
         create_draft,
         {
             "name": "create_draft",
-            "description": "Create a new booking draft for a cruise. Max 3 drafts per session.",
+            "description": "Create a new booking draft for a cruise. Max 5 drafts per session.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -199,6 +199,20 @@ TOOL_REGISTRY: dict[str, tuple] = {
                 "type": "object",
                 "properties": {
                     "draft_id": {"type": "string", "description": "The draft ID to make active"},
+                },
+                "required": ["draft_id"],
+            },
+        },
+    ),
+    "remove_draft": (
+        remove_draft,
+        {
+            "name": "remove_draft",
+            "description": "Remove a draft from the session by draft_id.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_id": {"type": "string", "description": "The draft ID to remove"},
                 },
                 "required": ["draft_id"],
             },

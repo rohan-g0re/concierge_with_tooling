@@ -52,8 +52,8 @@ export function Composer({ onSend, disabled, placeholder = "Ask about cruises, i
         className="flex items-end gap-2 rounded-full px-3 py-2 w-full max-w-3xl mx-auto"
         style={{
           background: "#fff",
-          border: "1px solid rgba(12,35,64,0.15)",
-          boxShadow: "0 1px 4px rgba(12,35,64,0.06)",
+          border: "1px solid rgba(12,35,64,0.25)",
+          boxShadow: "0 1px 6px rgba(12,35,64,0.10)",
         }}
       >
         {/* Mic button */}

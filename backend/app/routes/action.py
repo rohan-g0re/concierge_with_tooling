@@ -108,6 +108,10 @@ def _make_event_text(tool_name: str, args: dict, result: dict) -> str:
         label = result.get("label", draft_id)
         return f"user switched active draft to {label}"
 
+    if tool_name == "remove_draft":
+        draft_id = args.get("draft_id", "unknown")
+        return f"user removed draft {draft_id}"
+
     # Fallback
     return f"user called {tool_name}"
 
@@ -187,7 +191,17 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
     # Natural descriptor for the tool's result
     if tool_name == "search_cruises":
         cards = result.get("results", [])[:5]
-        components.append({"type": "card_row", "cards": cards, "filters": result.get("filters", {})})
+        descriptor: dict = {"type": "card_row", "cards": cards, "filters": result.get("filters", {})}
+        # Forward sections/no_exact when present (Unit 4)
+        if "sections" in result:
+            sections = result["sections"]
+            capped_sections = [
+                {"label": s["label"], "cards": s["cards"][:5]}
+                for s in sections
+            ]
+            descriptor["sections"] = capped_sections
+            descriptor["no_exact"] = result.get("no_exact", False)
+        components.append(descriptor)
 
     elif tool_name == "get_itinerary":
         components.append({"type": "itinerary", **result})

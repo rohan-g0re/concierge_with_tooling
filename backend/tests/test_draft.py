@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import pytest
 from app.models import Session, Constraints
 from app.catalog.loader import load_catalog
-from app.tools.draft import create_draft, set_fare, set_stateroom, checkout_entry
+from app.tools.draft import create_draft, set_fare, set_stateroom, checkout_entry, remove_draft
 
 
 @pytest.fixture(scope="module")
@@ -21,30 +21,30 @@ def make_session(party: int = 2) -> Session:
     return Session(session_id="test-session", party=party)
 
 
-# Test 4: create_draft 4 times → 4th is refused, len(drafts)==3
-def test_create_draft_cap_at_3(catalog):
-    """4th create_draft call returns draft_cap error; session has exactly 3 drafts."""
+# Test 4: create_draft 6 times → 6th is refused, len(drafts)==5
+def test_create_draft_cap_at_5(catalog):
+    """6th create_draft call returns draft_cap error; session has exactly 5 drafts."""
     session = make_session()
 
-    r1 = create_draft(session, {"cruise_id": "denali_explorer"})
-    assert "error" not in r1, f"1st draft failed: {r1}"
-    assert len(session.drafts) == 1
+    cruise_ids = [
+        "denali_explorer",
+        "glacier_discovery",
+        "alaska_inside_passage",
+        "yukon_denali",
+        "denali_explorer",  # reuse is fine for cap testing
+    ]
+    for i, cid in enumerate(cruise_ids, start=1):
+        r = create_draft(session, {"cruise_id": cid})
+        assert "error" not in r, f"Draft {i} failed: {r}"
+        assert len(session.drafts) == i
 
-    r2 = create_draft(session, {"cruise_id": "glacier_discovery"})
-    assert "error" not in r2, f"2nd draft failed: {r2}"
-    assert len(session.drafts) == 2
+    # 6th attempt must be refused
+    r6 = create_draft(session, {"cruise_id": "glacier_discovery"})
+    assert r6.get("error") == "draft_cap", f"Expected draft_cap error, got: {r6}"
+    assert "message" in r6, "Error response must include 'message'"
 
-    r3 = create_draft(session, {"cruise_id": "alaska_inside_passage"})
-    assert "error" not in r3, f"3rd draft failed: {r3}"
-    assert len(session.drafts) == 3
-
-    # 4th attempt must be refused
-    r4 = create_draft(session, {"cruise_id": "yukon_denali"})
-    assert r4.get("error") == "draft_cap", f"Expected draft_cap error, got: {r4}"
-    assert "message" in r4, "Error response must include 'message'"
-
-    # Session must still have exactly 3 drafts
-    assert len(session.drafts) == 3, f"Expected 3 drafts, got {len(session.drafts)}"
+    # Session must still have exactly 5 drafts
+    assert len(session.drafts) == 5, f"Expected 5 drafts, got {len(session.drafts)}"
 
 
 def test_create_draft_sets_active_draft(catalog):
@@ -212,3 +212,75 @@ def test_create_draft_invalid_cruise(catalog):
     result = create_draft(session, {"cruise_id": "nonexistent_cruise"})
     assert "error" in result
     assert result["error"] == "cruise_not_found"
+
+
+# ---------------------------------------------------------------------------
+# remove_draft tests
+# ---------------------------------------------------------------------------
+
+def test_remove_draft_removes_and_returns_remaining(catalog):
+    """remove_draft removes the draft and returns remaining count."""
+    session = make_session()
+    r1 = create_draft(session, {"cruise_id": "denali_explorer"})
+    r2 = create_draft(session, {"cruise_id": "glacier_discovery"})
+    draft_id = r1["draft_id"]
+
+    result = remove_draft(session, {"draft_id": draft_id})
+    assert result.get("removed") is True
+    assert result.get("draft_id") == draft_id
+    assert result.get("remaining") == 1
+    assert not any(d.draft_id == draft_id for d in session.drafts)
+
+
+def test_remove_active_draft_reassigns_active(catalog):
+    """Removing the active draft sets active_draft_id to another draft or None."""
+    session = make_session()
+    r1 = create_draft(session, {"cruise_id": "denali_explorer"})
+    r2 = create_draft(session, {"cruise_id": "glacier_discovery"})
+    # active is now r2 (last created)
+    active_id = session.active_draft_id
+    assert active_id == r2["draft_id"]
+
+    result = remove_draft(session, {"draft_id": active_id})
+    assert result.get("removed") is True
+    # active should reassign to the remaining draft
+    assert session.active_draft_id == r1["draft_id"]
+
+
+def test_remove_only_draft_sets_active_none(catalog):
+    """Removing the only draft sets active_draft_id to None."""
+    session = make_session()
+    r1 = create_draft(session, {"cruise_id": "denali_explorer"})
+    draft_id = r1["draft_id"]
+
+    result = remove_draft(session, {"draft_id": draft_id})
+    assert result.get("removed") is True
+    assert result.get("remaining") == 0
+    assert session.active_draft_id is None
+
+
+def test_remove_draft_unknown_id_returns_error(catalog):
+    """remove_draft with unknown draft_id returns draft_not_found error."""
+    session = make_session()
+    result = remove_draft(session, {"draft_id": "nonexistent-id"})
+    assert result.get("error") == "draft_not_found"
+    assert "message" in result
+
+
+def test_create_draft_five_allowed_sixth_rejected(catalog):
+    """5 drafts allowed; 6th returns draft_cap."""
+    session = make_session()
+    cruise_ids = [
+        "denali_explorer",
+        "glacier_discovery",
+        "alaska_inside_passage",
+        "yukon_denali",
+        "denali_explorer",
+    ]
+    for cid in cruise_ids:
+        r = create_draft(session, {"cruise_id": cid})
+        assert "error" not in r, f"Failed: {r}"
+    assert len(session.drafts) == 5
+
+    r6 = create_draft(session, {"cruise_id": "glacier_discovery"})
+    assert r6.get("error") == "draft_cap"

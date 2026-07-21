@@ -23,6 +23,7 @@ export interface DraftRailProps {
   drafts: DraftInfo[];
   activeDraftId: string | null;
   onSetActive: (draftId: string) => void;
+  onRemoveDraft: (draftId: string) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -111,11 +112,15 @@ function SegmentBar({ completed }: { completed: number[] }) {
 // Active draft card
 // ---------------------------------------------------------------------------
 
-function ActiveDraftCard({ draft }: { draft: DraftInfo }) {
+function ActiveDraftCard({ draft, onRemove }: { draft: DraftInfo; onRemove: () => void }) {
+  const [hovered, setHovered] = React.useState(false);
   const stepCount = draft.completed_steps.length;
   return (
     <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
+        position: "relative",
         border: "1px solid #C8A45C",
         borderRadius: "10px",
         padding: "12px",
@@ -125,6 +130,35 @@ function ActiveDraftCard({ draft }: { draft: DraftInfo }) {
         background: "rgba(200,164,92,.06)",
       }}
     >
+      {/* Delete button — appears on hover */}
+      {hovered && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onRemove(); }}
+          aria-label={`Delete draft: ${draft.label}`}
+          style={{
+            position: "absolute",
+            top: "6px",
+            right: "6px",
+            width: "18px",
+            height: "18px",
+            borderRadius: "50%",
+            border: "none",
+            background: "rgba(12,35,64,0.15)",
+            color: "#0C2340",
+            fontSize: "11px",
+            lineHeight: "18px",
+            textAlign: "center",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 0,
+          }}
+        >
+          ×
+        </button>
+      )}
+
       {/* Ring + label */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
         <div style={{ flexShrink: 0 }}>
@@ -174,49 +208,86 @@ function ActiveDraftCard({ draft }: { draft: DraftInfo }) {
 function InactiveDraftChip({
   draft,
   onSetActive,
+  onRemove,
 }: {
   draft: DraftInfo;
   onSetActive: (id: string) => void;
+  onRemove: () => void;
 }) {
+  const [hovered, setHovered] = React.useState(false);
   const stepCount = draft.completed_steps.length;
   return (
-    <button
-      onClick={() => onSetActive(draft.draft_id)}
-      style={{
-        border: "1px solid rgba(12,35,64,.12)",
-        borderRadius: "10px",
-        padding: "12px",
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        background: "#fff",
-        cursor: "pointer",
-        width: "100%",
-        minWidth: 0,
-        textAlign: "left",
-      }}
-      aria-label={`Switch to draft: ${draft.label}`}
+    <div
+      style={{ position: "relative" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <div style={{ flexShrink: 0 }}>
-        <ProgressRing completed={draft.completed_steps} />
-      </div>
-      <div style={{ minWidth: 0 }}>
-        <div
+      <button
+        onClick={() => onSetActive(draft.draft_id)}
+        style={{
+          border: "1px solid rgba(12,35,64,.12)",
+          borderRadius: "10px",
+          padding: "12px",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          background: "#fff",
+          cursor: "pointer",
+          width: "100%",
+          minWidth: 0,
+          textAlign: "left",
+        }}
+        aria-label={`Switch to draft: ${draft.label}`}
+      >
+        <div style={{ flexShrink: 0 }}>
+          <ProgressRing completed={draft.completed_steps} />
+        </div>
+        <div style={{ minWidth: 0 }}>
+          <div
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "14px",
+              color: "#0C2340",
+              lineHeight: 1.3,
+              overflowWrap: "anywhere",
+            }}
+          >
+            {draft.label}
+          </div>
+          <div style={{ fontSize: "11px", color: "#8A97A6" }}>
+            {stepCount} of 5 steps
+          </div>
+        </div>
+      </button>
+      {/* Delete button — appears on hover */}
+      {hovered && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onRemove(); }}
+          aria-label={`Delete draft: ${draft.label}`}
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "14px",
+            position: "absolute",
+            top: "6px",
+            right: "6px",
+            width: "18px",
+            height: "18px",
+            borderRadius: "50%",
+            border: "none",
+            background: "rgba(12,35,64,0.15)",
             color: "#0C2340",
-            lineHeight: 1.3,
-            overflowWrap: "anywhere",
+            fontSize: "11px",
+            lineHeight: "18px",
+            textAlign: "center",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 0,
           }}
         >
-          {draft.label}
-        </div>
-        <div style={{ fontSize: "11px", color: "#8A97A6" }}>
-          {stepCount} of 5 steps
-        </div>
-      </div>
-    </button>
+          ×
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -224,7 +295,7 @@ function InactiveDraftChip({
 // DraftRail
 // ---------------------------------------------------------------------------
 
-export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRailProps) {
+export function DraftRail({ drafts = [], activeDraftId, onSetActive, onRemoveDraft }: DraftRailProps) {
   const activeDraft = drafts.find((d) => d.draft_id === activeDraftId) ?? null;
   const otherDrafts = drafts.filter((d) => d.draft_id !== activeDraftId);
 
@@ -277,7 +348,7 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRail
       >
         {/* Active draft or empty state */}
         {activeDraft ? (
-          <ActiveDraftCard draft={activeDraft} />
+          <ActiveDraftCard draft={activeDraft} onRemove={() => onRemoveDraft(activeDraft.draft_id)} />
         ) : (
           <div
             style={{
@@ -299,6 +370,7 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRail
             key={draft.draft_id}
             draft={draft}
             onSetActive={onSetActive}
+            onRemove={() => onRemoveDraft(draft.draft_id)}
           />
         ))}
       </div>

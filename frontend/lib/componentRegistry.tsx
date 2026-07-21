@@ -220,7 +220,7 @@ function LandTourBuilderWrapper({
  */
 const ERROR_COPY: Record<string, string> = {
   draft_cap:
-    "You already have three drafts — remove or continue with one before starting another.",
+    "You already have five drafts — delete one before starting another.",
   compare_cap:
     "I can compare up to three drafts at a time. Pick up to three and I'll line them up side by side.",
   draft_not_found:
