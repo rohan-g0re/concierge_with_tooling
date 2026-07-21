@@ -192,6 +192,31 @@ def _alt_sailings(cruise, selected_sailing, *, month: int | None, return_by: dat
     ]
 
 
+def _build_near_miss_card(cruise, sailing) -> dict:
+    """Build a card descriptor for a near-miss cruise+sailing pair."""
+    return {
+        "cruise_id": cruise.cruise_id,
+        "name": cruise.name,
+        "ship": cruise.ship,
+        "region": cruise.region,
+        "nights": cruise.nights,
+        "embark_port": cruise.embark_port,
+        "fare_was": format_money(cruise.fare_was),
+        "fare_now": format_money(cruise.fare_now),
+        "fare_now_raw": cruise.fare_now,
+        "popularity_score": cruise.popularity_score,
+        "badge": cruise.badge,
+        "photo": cruise.photo,
+        "remaining_at_fare": cruise.remaining_at_fare,
+        "historically_sells_out_weeks": cruise.historically_sells_out_weeks,
+        "holiday_overlap": cruise.holiday_overlap,
+        "sailing_id": sailing.sailing_id,
+        "departure_date": sailing.departure_date,
+        "return_date": sailing.return_date,
+        "alt_sailings": [],
+    }
+
+
 def search_cruises(session: "Session", args: dict) -> dict:
     """
     Merge args into session constraints, filter catalog, return ≤5 cards.
@@ -324,8 +349,256 @@ def search_cruises(session: "Session", args: dict) -> dict:
     if merged.return_by is not None:
         filters["return_by"] = merged.return_by
 
+    # -----------------------------------------------------------------------
+    # Sections — near-miss logic (Unit 4)
+    # Only when a date/duration constraint is active.
+    # -----------------------------------------------------------------------
+    has_date_or_duration = (
+        merged.nights_min is not None
+        or merged.nights_max is not None
+        or merged.month is not None
+        or merged.return_by is not None
+    )
+
+    if not has_date_or_duration:
+        return {
+            "results": cards,
+            "filters": filters,
+            "total_matches": total_matches,
+        }
+
+    # Exact-match section (same as `cards`)
+    no_exact = len(cards) == 0
+    sections: list[dict] = [{"label": None, "cards": cards}]
+
+    # Track which cruise_ids are already shown (in exact section)
+    shown_ids: set[str] = {c["cruise_id"] for c in cards}
+
+    # All cruises (not already in exact) that pass region/port/budget filters
+    # (we relax the nights/date constraints for near-miss)
+    def _passes_non_date_filters(cruise) -> bool:
+        if merged.region and cruise.region.lower() != merged.region.lower():
+            return False
+        if merged.embark_port and merged.embark_port.lower() not in cruise.embark_port.lower():
+            return False
+        if merged.budget_max is not None and cruise.fare_now > merged.budget_max:
+            return False
+        return True
+
+    def _select_sailing_relaxed_date(cruise, *, allow_any_month: bool, allow_any_date: bool):
+        """Select a sailing with relaxed date constraints."""
+        month_to_use = None if allow_any_month else merged.month
+        return_by_to_use = None if allow_any_date else return_by_date
+        return _select_sailing(cruise, month=month_to_use, return_by=return_by_to_use)
+
+    # ---- Section 1: Duration ± (if nights band set) ----
+    if merged.nights_min is not None or merged.nights_max is not None:
+        # Determine the reference N for label text
+        if merged.nights_min == merged.nights_max and merged.nights_min is not None:
+            ref_n = merged.nights_min
+        elif merged.nights_min is not None:
+            ref_n = merged.nights_min
+        else:
+            ref_n = merged.nights_max  # type: ignore[assignment]
+        duration_label = f"Options outside your {ref_n}-night request"
+
+        duration_cards: list[dict] = []
+        duration_candidates = []
+        for cruise in cruises:
+            if cruise.cruise_id in shown_ids:
+                continue
+            if not _passes_non_date_filters(cruise):
+                continue
+            # Outside the nights band by up to ±3
+            if merged.nights_min is not None and merged.nights_max is not None:
+                lo = merged.nights_min - 3
+                hi = merged.nights_max + 3
+                in_expanded = lo <= cruise.nights <= hi
+                in_exact = merged.nights_min <= cruise.nights <= merged.nights_max
+                outside_exact_but_in_band = in_expanded and not in_exact
+            elif merged.nights_min is not None:
+                outside_exact_but_in_band = (
+                    merged.nights_min - 3 <= cruise.nights < merged.nights_min
+                )
+            else:  # nights_max only
+                outside_exact_but_in_band = (
+                    merged.nights_max < cruise.nights <= merged.nights_max + 3
+                )
+
+            if not outside_exact_but_in_band:
+                continue
+
+            # Select a sailing (relax nothing — just the nights band is relaxed implicitly)
+            sailing = _select_sailing(cruise, month=merged.month, return_by=return_by_date)
+            if sailing is None:
+                # Relax date too (pick any upcoming sailing)
+                sailing = _select_sailing(cruise, month=None, return_by=None)
+            if sailing is None:
+                continue
+            duration_candidates.append((cruise, sailing))
+
+        duration_candidates.sort(key=lambda t: t[0].popularity_score, reverse=True)
+        for cruise, sailing in duration_candidates[:5]:
+            duration_cards.append(_build_near_miss_card(cruise, sailing))
+            shown_ids.add(cruise.cruise_id)
+
+        # Zero-match fallback: if ±3 band produced nothing and there are no exact
+        # matches, widen to nearest-nights cruises from the full catalog so that
+        # R10 (zero-match must never be empty) is always satisfied.
+        if not duration_cards and no_exact:
+            # Collect all catalog cruises that pass non-date filters and aren't shown
+            nearest_candidates = []
+            for cruise in cruises:
+                if cruise.cruise_id in shown_ids:
+                    continue
+                if not _passes_non_date_filters(cruise):
+                    continue
+                # Skip cruises that ARE in the exact band (they would have been shown)
+                if merged.nights_min is not None and merged.nights_max is not None:
+                    if merged.nights_min <= cruise.nights <= merged.nights_max:
+                        continue
+                elif merged.nights_min is not None:
+                    if cruise.nights >= merged.nights_min:
+                        continue
+                else:  # nights_max only
+                    if cruise.nights <= merged.nights_max:  # type: ignore[operator]
+                        continue
+                sailing = _select_sailing(cruise, month=merged.month, return_by=return_by_date)
+                if sailing is None:
+                    sailing = _select_sailing(cruise, month=None, return_by=None)
+                if sailing is None:
+                    continue
+                nearest_candidates.append((cruise, sailing))
+
+            # Sort by proximity to requested nights, then popularity
+            ref_nights = ref_n if ref_n is not None else 0
+            nearest_candidates.sort(
+                key=lambda t: (abs(t[0].nights - ref_nights), -t[0].popularity_score)
+            )
+            for cruise, sailing in nearest_candidates[:5]:
+                duration_cards.append(_build_near_miss_card(cruise, sailing))
+                shown_ids.add(cruise.cruise_id)
+
+        if duration_cards:
+            sections.append({"label": duration_label, "cards": duration_cards})
+
+    # ---- Section 2: Date shift ±7 days (if month or return_by set) ----
+    if merged.month is not None or merged.return_by is not None:
+        date_shift_label = "Sailings within a week of your dates"
+        date_shift_cards: list[dict] = []
+        date_shift_candidates = []
+
+        for cruise in cruises:
+            if cruise.cruise_id in shown_ids:
+                continue
+            if not _passes_non_date_filters(cruise):
+                continue
+            # Must pass nights filter exactly
+            if merged.nights_min is not None and cruise.nights < merged.nights_min:
+                continue
+            if merged.nights_max is not None and cruise.nights > merged.nights_max:
+                continue
+
+            # Try sailings within ±7 days of the constraint boundary
+            best_sailing = None
+            best_dist = 999999
+
+            for s in cruise.sailings:
+                dep = date.fromisoformat(s.departure_date)
+                ret = date.fromisoformat(s.return_date)
+                if dep < DEMO_ANCHOR:
+                    continue
+
+                if merged.month is not None:
+                    # Find earliest sailing in adjacent months (month ± 1) or same month diff year
+                    # Actually: within ±7 days of the nearest month boundary
+                    # Boundary = first day of the month, last day of month
+                    from calendar import monthrange
+                    year = dep.year
+                    m = merged.month
+                    # Clamp year: find nearest occurrence of month m
+                    # Try same year and next year
+                    for try_year in [year - 1, year, year + 1]:
+                        if try_year < DEMO_ANCHOR.year:
+                            continue
+                        try:
+                            month_start = date(try_year, m, 1)
+                            last_day = monthrange(try_year, m)[1]
+                            month_end = date(try_year, m, last_day)
+                        except ValueError:
+                            continue
+                        # Distance from sailing departure to nearest month boundary
+                        dist_start = abs((dep - month_start).days)
+                        dist_end = abs((dep - month_end).days)
+                        dist = min(dist_start, dist_end)
+                        # Also require departure is NOT in the target month (those are exact)
+                        if dep.month == m and dep.year == try_year:
+                            continue
+                        if dist <= 7 and dist < best_dist:
+                            best_dist = dist
+                            best_sailing = s
+
+                if merged.return_by is not None and return_by_date is not None:
+                    # Sailings within ±7 days of return_by boundary
+                    dist = abs((ret - return_by_date).days)
+                    if dist <= 7 and ret > return_by_date and dist < best_dist:
+                        best_dist = dist
+                        best_sailing = s
+
+            if best_sailing is not None:
+                date_shift_candidates.append((cruise, best_sailing))
+
+        date_shift_candidates.sort(key=lambda t: t[0].popularity_score, reverse=True)
+        for cruise, sailing in date_shift_candidates[:5]:
+            date_shift_cards.append(_build_near_miss_card(cruise, sailing))
+            shown_ids.add(cruise.cruise_id)
+
+        if date_shift_cards:
+            sections.append({"label": date_shift_label, "cards": date_shift_cards})
+
+    # ---- Section 3: Adjacent region (zero-match only) ----
+    if no_exact and merged.region:
+        adjacent_label = "Other regions matching your dates"
+        adjacent_cards: list[dict] = []
+        adjacent_candidates = []
+
+        for cruise in cruises:
+            if cruise.cruise_id in shown_ids:
+                continue
+            # Different region
+            if cruise.region.lower() == merged.region.lower():
+                continue
+            # Must pass non-region, non-date filters
+            if merged.embark_port and merged.embark_port.lower() not in cruise.embark_port.lower():
+                continue
+            if merged.budget_max is not None and cruise.fare_now > merged.budget_max:
+                continue
+            # Must pass nights filter
+            if merged.nights_min is not None and cruise.nights < merged.nights_min:
+                continue
+            if merged.nights_max is not None and cruise.nights > merged.nights_max:
+                continue
+            # Select sailing with date constraints
+            sailing = _select_sailing(cruise, month=merged.month, return_by=return_by_date)
+            if sailing is None:
+                # Relax date
+                sailing = _select_sailing(cruise, month=None, return_by=None)
+            if sailing is None:
+                continue
+            adjacent_candidates.append((cruise, sailing))
+
+        adjacent_candidates.sort(key=lambda t: t[0].popularity_score, reverse=True)
+        for cruise, sailing in adjacent_candidates[:5]:
+            adjacent_cards.append(_build_near_miss_card(cruise, sailing))
+            shown_ids.add(cruise.cruise_id)
+
+        if adjacent_cards:
+            sections.append({"label": adjacent_label, "cards": adjacent_cards})
+
     return {
         "results": cards,
         "filters": filters,
         "total_matches": total_matches,
+        "sections": sections,
+        "no_exact": no_exact,
     }

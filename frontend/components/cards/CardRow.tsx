@@ -284,9 +284,124 @@ const WIDEN_CHIPS = [
   { label: "Try July instead", value: "Try July instead" },
 ];
 
+// ---------------------------------------------------------------------------
+// Internal helpers for sections rendering
+// ---------------------------------------------------------------------------
+
+interface Section {
+  label: string | null;
+  cards: CardData[];
+}
+
+function SectionScroller({
+  cards,
+  onSelect,
+  onOpenItinerary,
+}: {
+  cards: CardData[];
+  onSelect: (cruiseId: string) => void;
+  onOpenItinerary: (card: CardData) => void;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        overflowX: "auto",
+        paddingBottom: "4px",
+        scrollbarWidth: "none",
+      }}
+    >
+      {cards.map((card, i) => (
+        <CruiseCard
+          key={card.cruise_id ?? i}
+          card={card}
+          onSelect={onSelect}
+          onOpenItinerary={onOpenItinerary}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function CardRow({ descriptor, onSelect, onOpenItinerary, onChipClick }: CardRowProps) {
-  const cards = ((descriptor.cards as CardData[] | undefined) ?? []).slice(0, 5);
+  const sections = descriptor.sections as Section[] | undefined;
   const filters = (descriptor.filters as Record<string, unknown> | undefined) ?? {};
+
+  // ── Sections mode ───────────────────────────────────────────────────────
+  if (sections && sections.length > 0) {
+    // Check if ALL sections are empty (true zero-match with no near-misses)
+    const totalCards = sections.reduce((n, s) => n + s.cards.length, 0);
+    if (totalCards === 0) {
+      return (
+        <EmptyState
+          message="No sailings match those dates."
+          chips={WIDEN_CHIPS}
+          onChipClick={onChipClick}
+        />
+      );
+    }
+
+    return (
+      <div style={{ marginTop: "12px", width: "100%", minWidth: 0 }}>
+        {/* Active filters summary */}
+        {Object.keys(filters).length > 0 && (
+          <p
+            style={{
+              fontSize: "11px",
+              color: "#8A97A6",
+              marginBottom: "10px",
+              fontFamily: "var(--font-source-sans), system-ui, sans-serif",
+            }}
+          >
+            {Object.entries(filters)
+              .map(([k, v]) => `${k}: ${v}`)
+              .join(" · ")}
+          </p>
+        )}
+
+        {sections.map((section, si) => {
+          if (section.cards.length === 0) return null;
+          return (
+            <div key={si} style={{ marginBottom: si < sections.length - 1 ? "20px" : 0 }}>
+              {/* Section label (kicker + hairline) — only for non-null labels */}
+              {section.label && (
+                <>
+                  <div
+                    style={{
+                      fontSize: "10px",
+                      fontWeight: 700,
+                      letterSpacing: ".13em",
+                      textTransform: "uppercase",
+                      color: "#8A97A6",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {section.label}
+                  </div>
+                  <div
+                    style={{
+                      height: "1px",
+                      background: "rgba(12,35,64,.08)",
+                      marginBottom: "12px",
+                    }}
+                  />
+                </>
+              )}
+              <SectionScroller
+                cards={section.cards}
+                onSelect={onSelect}
+                onOpenItinerary={onOpenItinerary}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  // ── Flat mode (back-compat) ──────────────────────────────────────────────
+  const cards = ((descriptor.cards as CardData[] | undefined) ?? []).slice(0, 5);
 
   if (cards.length === 0) {
     return (
@@ -323,7 +438,6 @@ export function CardRow({ descriptor, onSelect, onOpenItinerary, onChipClick }: 
           gap: "16px",
           overflowX: "auto",
           paddingBottom: "4px",
-          // Hide scrollbar on webkit but keep scrollability
           scrollbarWidth: "none",
         }}
       >

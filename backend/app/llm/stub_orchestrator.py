@@ -48,8 +48,8 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
             args["region"] = "mediterranean"
 
         # nights_min / nights_max
-        range_match = re.search(r"(\d+)\s*[-–]\s*(\d+)\s*day", msg)
-        single_match = re.search(r"(\d+)\s*day", msg)
+        range_match = re.search(r"(\d+)\s*[-–]\s*(\d+)[\s-]*day", msg)
+        single_match = re.search(r"(\d+)[\s-]*day", msg)
         if "two-week" in msg or "14 day" in msg or "14-day" in msg:
             args["nights_min"] = 14
             args["nights_max"] = 14
@@ -113,19 +113,36 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
 
         result = TOOL_REGISTRY["search_cruises"][0](session, args)
 
-        preamble_1 = "I found some great options for you."
-        preamble_2 = " Here's what matches your request:"
+        no_exact = result.get("no_exact", False)
+        if no_exact:
+            preamble_1 = "No exact matches — here are the closest options."
+            preamble_2 = ""
+        else:
+            preamble_1 = "I found some great options for you."
+            preamble_2 = " Here's what matches your request:"
         if on_text_delta:
             on_text_delta(preamble_1)
-            on_text_delta(preamble_2)
+            if preamble_2:
+                on_text_delta(preamble_2)
         text = preamble_1 + preamble_2
 
+        card_row: dict = {
+            "type": "card_row",
+            "cards": result.get("results", [])[:5],
+            "filters": result.get("filters", {}),
+        }
+        # Forward sections/no_exact when present (Unit 4)
+        if "sections" in result:
+            sections = result["sections"]
+            capped_sections = [
+                {"label": s["label"], "cards": s["cards"][:5]}
+                for s in sections
+            ]
+            card_row["sections"] = capped_sections
+            card_row["no_exact"] = no_exact
+
         components = [
-            {
-                "type": "card_row",
-                "cards": result.get("results", [])[:5],
-                "filters": result.get("filters", {}),
-            },
+            card_row,
             {
                 "type": "system_event",
                 "tool_calls": ["search_cruises"],
