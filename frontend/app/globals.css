@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand colour custom properties — mirrors tailwind.config.ts tokens */
+  --navy: #0c2340;
+  --gold: #c8a45c;
+  --gold-dark: #b08f44;
+  --sea-mist: #e9ecef;
+  --chat-bg: #f4f6f8;
+  --ink: #22344b;
+  --slate: #5a6b7e;
+  --mute: #8a97a6;
+  --teal: #4e7e86;
+}
+
+/* Global resets — body uses sea-mist background per design spec */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--sea-mist);
+  color: var(--ink);
+  font-family: var(--font-source-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility: brand display text */
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+/* Thin gold horizontal rule used throughout design */
+.rule-gold {
+  border: 0;
+  border-top: 1px solid var(--gold);
+}
+
+/* Scrollbar styling — subtle */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--mute);
+  border-radius: 2px;
+}

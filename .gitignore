@@ -1,0 +1,40 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# ── Node / Next.js ──
+node_modules/
+.next/
+out/
+dist/
+
+# ── Playwright / browser automation ──
+.playwright-mcp/
+playwright-report/
+test-results/
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── Editor ──
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# ── Build artefacts ──
+*.egg-info/
+build/
+*.whl

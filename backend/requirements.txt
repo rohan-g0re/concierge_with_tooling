@@ -1,0 +1,21 @@
+# === Core framework ===
+fastapi>=0.111.0
+uvicorn>=0.29.0
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
+
+# === LLM clients ===
+# Text orchestrator — NOTE: use `google-genai` (v2.x GA), NOT google-generativeai (deprecated)
+google-genai>=1.0.0
+# Voice ephemeral-token minting
+openai>=1.30.0
+
+# === HTTP / streaming ===
+httpx>=0.27.0
+sse-starlette>=2.1.0
+
+# === Dev / testing ===
+pytest>=8.2.0
+pytest-asyncio>=0.23.0
+httpx>=0.27.0
+python-dotenv>=1.0.0

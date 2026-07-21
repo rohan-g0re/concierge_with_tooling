@@ -2,6 +2,10 @@
 
 This file defines the **agent orchestration model** for this project. It complements the global `~/.claude/CLAUDE.md` (which applies to every prompt); where the two overlap, this file governs project-specific workflow.
 
+## Git Commit Policy
+
+Never add Claude as a contributor on commits. No `Co-Authored-By: Claude ...` trailers, no "Generated with Claude Code" lines — in any commit message, ever.
+
 ## Role of the Foreground Session (Fable)
 
 The foreground agent (Fable, this session) is a **pure orchestrator**. It must NOT:
