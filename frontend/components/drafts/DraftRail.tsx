@@ -234,6 +234,7 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRail
       style={{
         width: "240px",
         flexShrink: 0,
+        overflow: "hidden",
         background: "#fff",
         borderLeft: "1px solid rgba(12,35,64,.10)",
         padding: "20px 16px",
@@ -263,38 +264,50 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRail
         </div>
       </div>
 
-      {/* Active draft or empty state */}
-      {activeDraft ? (
-        <ActiveDraftCard draft={activeDraft} />
-      ) : (
-        <div
-          style={{
-            border: "1px dashed rgba(12,35,64,.2)",
-            borderRadius: "10px",
-            padding: "14px",
-            textAlign: "center",
-            fontSize: "12px",
-            color: "#8A97A6",
-          }}
-        >
-          Pinned drafts appear here as you plan.
-        </div>
-      )}
+      {/* Scrollable card list — grows to fill available aside height, scrolls internally */}
+      <div
+        style={{
+          flex: "1 1 auto",
+          minHeight: 0,
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+        }}
+      >
+        {/* Active draft or empty state */}
+        {activeDraft ? (
+          <ActiveDraftCard draft={activeDraft} />
+        ) : (
+          <div
+            style={{
+              border: "1px dashed rgba(12,35,64,.2)",
+              borderRadius: "10px",
+              padding: "14px",
+              textAlign: "center",
+              fontSize: "12px",
+              color: "#8A97A6",
+            }}
+          >
+            Pinned drafts appear here as you plan.
+          </div>
+        )}
 
-      {/* Other draft chips */}
-      {otherDrafts.map((draft) => (
-        <InactiveDraftChip
-          key={draft.draft_id}
-          draft={draft}
-          onSetActive={onSetActive}
-        />
-      ))}
+        {/* Other draft chips */}
+        {otherDrafts.map((draft) => (
+          <InactiveDraftChip
+            key={draft.draft_id}
+            draft={draft}
+            onSetActive={onSetActive}
+          />
+        ))}
+      </div>
 
-      {/* Footer note */}
+      {/* Footer note — pinned outside scroll area so always visible */}
       {drafts.length > 0 && (
         <div
           style={{
-            marginTop: "auto",
+            flexShrink: 0,
             fontSize: "11px",
             color: "#8A97A6",
             lineHeight: 1.5,

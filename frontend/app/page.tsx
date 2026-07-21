@@ -537,7 +537,7 @@ export default function ChatShellPage() {
   const isEmpty = messages.length === 0;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#E9ECEF" }}>
+    <div className="h-screen h-dvh overflow-hidden flex flex-col" style={{ background: "#E9ECEF" }}>
       {/* ── Top bar ── */}
       <header
         className="w-full flex items-center justify-between px-6 py-4 flex-none"
@@ -615,13 +615,17 @@ export default function ChatShellPage() {
             )}
           </div>
 
-          {/* Suggestion chips from last turn */}
+          {/* Suggestion chips from last turn — flex-none so chip strip never gets pushed below viewport */}
           {!streaming && chips.length > 0 && (
-            <SuggestionChips chips={chips} onChipClick={handleChipClick} />
+            <div className="flex-none">
+              <SuggestionChips chips={chips} onChipClick={handleChipClick} />
+            </div>
           )}
 
-          {/* Composer */}
-          <Composer onSend={sendMessage} disabled={streaming} sessionId={sessionIdRef.current} />
+          {/* Composer — flex-none so it is always anchored at the bottom of the chat column */}
+          <div className="flex-none">
+            <Composer onSend={sendMessage} disabled={streaming} sessionId={sessionIdRef.current} />
+          </div>
         </main>
 
         {/* Draft rail */}
