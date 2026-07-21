@@ -1,0 +1,3 @@
+[  134871ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://cdn.openai.com/API/docs/images/voice-agents-rounded.png:0
+[  134872ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://cdn.openai.com/API/docs/images/tts-rounded.png:0
+[  134872ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://cdn.openai.com/API/docs/images/stt-rounded.png:0

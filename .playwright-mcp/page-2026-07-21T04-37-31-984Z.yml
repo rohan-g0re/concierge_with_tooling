@@ -1,0 +1,348 @@
+- generic [active] [ref=f37e1]:
+  - generic [ref=f37e2]:
+    - region "Notifications alt+T"
+    - generic [ref=f37e3]:
+      - banner [ref=f37e4]:
+        - navigation "Main navigation" [ref=f37e6]:
+          - button "Current site pulkit.blog. Switch domain" [ref=f37e8] [cursor=pointer]: P
+          - region "Toggle navigation" [ref=f37e9]:
+            - generic [ref=f37e11]:
+              - list [ref=f37e12]:
+                - listitem [ref=f37e13]:
+                  - link "Experience (e)" [ref=f37e14] [cursor=pointer]:
+                    - /url: https://www.pulkit.page/exp
+                    - generic [ref=f37e15]: Experience
+                - listitem [ref=f37e16]:
+                  - link "Blogs (b)" [ref=f37e17] [cursor=pointer]:
+                    - /url: /
+                    - generic [ref=f37e18]: Blogs
+                - listitem [ref=f37e19]:
+                  - link "Components (p)" [ref=f37e20] [cursor=pointer]:
+                    - /url: https://www.pulkit.page/components
+                    - generic [ref=f37e21]: Components
+                - listitem [ref=f37e22]:
+                  - link "Claude Directory (l)" [ref=f37e23] [cursor=pointer]:
+                    - /url: https://www.pulkit.page/claude-directory
+                    - generic [ref=f37e24]: Claude Directory
+                - listitem [ref=f37e25]:
+                  - link "Contact (c)" [ref=f37e26] [cursor=pointer]:
+                    - /url: https://www.pulkit.page/contact
+                    - generic [ref=f37e27]: Contact
+                - listitem [ref=f37e28]:
+                  - button "More navigation items" [ref=f37e31] [cursor=pointer]
+              - generic [ref=f37e32]:
+                - link [ref=f37e33] [cursor=pointer]:
+                  - /url: https://www.pulkit.page/guestbook
+                  - button "Guestbook - Sign my guestbook" [ref=f37e34]: Guestbook
+                - button "Open search (⌘K)" [ref=f37e35] [cursor=pointer]:
+                  - generic [ref=f37e36]:
+                    - generic: ⌘
+                    - generic: K
+                - button "Toggle layout" [ref=f37e37] [cursor=pointer]
+                - button "Switch to light mode" [ref=f37e156] [cursor=pointer]
+      - main "Main content" [ref=f37e41]:
+        - article [ref=f37e157]:
+          - generic [ref=f37e159]:
+            - link "Blog" [ref=f37e161] [cursor=pointer]:
+              - /url: /
+            - generic [ref=f37e165]:
+              - 'heading "FastAPI SSE: Server-Sent Events in Python" [level=1] [ref=f37e166]'
+              - paragraph [ref=f37e167]: Stream real-time Server-Sent Events from FastAPI with sse-starlette's EventSourceResponse for long-running tasks and live updates. Full Python code.
+              - generic [ref=f37e168]:
+                - generic [ref=f37e169]:
+                  - img "Pulkit" [ref=f37e170]
+                  - generic [ref=f37e171]:
+                    - generic [ref=f37e172]: Pulkit
+                    - generic [ref=f37e173]:
+                      - time [ref=f37e174]:
+                        - generic [ref=f37e177]: Jul 26, 2024
+                      - generic [ref=f37e178]: •
+                      - generic "683 words" [ref=f37e179]: 9 min read
+                - generic [ref=f37e184]:
+                  - generic [ref=f37e185]:
+                    - button "Copy markdown" [ref=f37e186] [cursor=pointer]:
+                      - generic [ref=f37e187]: Copy Markdown
+                      - generic [ref=f37e188]: Copied!
+                    - button "More actions" [ref=f37e189] [cursor=pointer]
+                  - generic [ref=f37e190]:
+                    - link "Previous component" [ref=f37e191] [cursor=pointer]:
+                      - /url: /creating-npx-command
+                    - link "Next component" [ref=f37e192] [cursor=pointer]:
+                      - /url: /scroll-indicator-with-framer
+          - navigation [ref=f37e193]:
+            - group [ref=f37e194]:
+              - heading "Table of contents" [level=2] [ref=f37e196] [cursor=pointer]
+              - list [ref=f37e199]:
+                - listitem [ref=f37e200]:
+                  - link "What exactly is the server-sent event?" [ref=f37e203] [cursor=pointer]:
+                    - /url: "#what-exactly-is-the-server-sent-event"
+                - listitem [ref=f37e204]:
+                  - link "Use Cases for a Server-Sent Events (SSE) Server" [ref=f37e207] [cursor=pointer]:
+                    - /url: "#use-cases-for-a-server-sent-events-sse-server"
+                - listitem [ref=f37e208]:
+                  - link "Basic FastAPI Server Initialization" [ref=f37e211] [cursor=pointer]:
+                    - /url: "#basic-fastapi-server-initialization"
+                - listitem [ref=f37e212]:
+                  - link "Adding the SSE (Server-Sent Events)" [ref=f37e216] [cursor=pointer]:
+                    - /url: "#adding-the-sse-server-sent-events"
+          - generic [ref=f37e217]:
+            - paragraph [ref=f37e218]: During my recent internship, I faced a task where the server needed to run a long-running process. This couldn't be done with just a POST request because the task could take up to 15 minutes to complete. So, we needed an alternative for this use case. And yes, you guessed it right, the solution is server-sent events.
+            - heading [level=3] [ref=f37e219]:
+              - generic [ref=f37e220]:
+                - 'link "Link to section: What exactly is the server-sent event?" [ref=f37e221] [cursor=pointer]':
+                  - /url: "#what-exactly-is-the-server-sent-event"
+                  - text: "#"
+                - text: What exactly is the server-sent event?
+            - paragraph [ref=f37e222]: It is a standard allowing servers to push updates to the client over a single HTTP connection. This is useful for tasks that take a long time to complete, as it keeps the client informed about the progress without needing to constantly poll the server.
+            - paragraph [ref=f37e223]: SSEs (Server-Sent Events) are essentially a subset of a WebSocket connection. While WebSockets provide a two-way communication channel, SSEs offer a one-way connection from the server to the client. This allows the server to send updates to the client without the client needing to request them repeatedly.
+            - paragraph [ref=f37e224]: Since the client of our app doesn't need to push any updates to the server for this task, it fits well with the use case.
+            - paragraph [ref=f37e225]:
+              - img "Server-Sent Events diagram showing client-server communication" [ref=f37e226] [cursor=pointer]
+            - heading [level=3] [ref=f37e227]:
+              - generic [ref=f37e228]:
+                - 'link "Link to section: Use Cases for a Server-Sent Events (SSE) Server" [ref=f37e229] [cursor=pointer]':
+                  - /url: "#use-cases-for-a-server-sent-events-sse-server"
+                  - text: "#"
+                - text: Use Cases for a Server-Sent Events (SSE) Server
+            - paragraph [ref=f37e230]: Server-Sent Events (SSE) provide a way for servers to push real-time updates to clients over a single HTTP connection. This is particularly useful for applications that require live data updates without the need for constant polling.
+            - list [ref=f37e231]:
+              - listitem [ref=f37e232]:
+                - strong [ref=f37e233]: Real-Time Notifications
+                - text: ": SSE is perfect for sending instant notifications to users, such as updates on social media platforms, email alerts, or system notifications in web applications."
+              - listitem [ref=f37e234]:
+                - strong [ref=f37e235]: Live Sports Scores
+                - text: ": Applications that provide live sports updates can use SSE to push real-time scores and game updates to users, ensuring they receive the latest information without delay."
+              - listitem [ref=f37e236]:
+                - strong [ref=f37e237]: Stock Market Updates
+                - text: ": Financial applications can leverage SSE to deliver real-time stock market data, keeping users informed about the latest market trends and changes as they happen."
+            - heading [level=3] [ref=f37e238]:
+              - generic [ref=f37e239]:
+                - 'link "Link to section: basic-fastapi-server-initialization" [ref=f37e240] [cursor=pointer]':
+                  - /url: "#basic-fastapi-server-initialization"
+                  - text: "#"
+                - strong [ref=f37e242]: Basic FastAPI Server Initialization
+            - paragraph [ref=f37e243]: Follow these steps to create an SSE endpoint, and watch your server push updates to the client with lightning speed and efficiency!
+            - group [ref=f37e244]:
+              - generic "BASH Enable word wrap Copy" [ref=f37e245] [cursor=pointer]:
+                - generic [ref=f37e246]: BASH
+                - generic [ref=f37e250]:
+                  - button "Enable word wrap" [ref=f37e251]
+                  - button "Copy" [ref=f37e252]
+              - code [ref=f37e256]:
+                - generic [ref=f37e257]: python3 -m venv venv
+                - generic [ref=f37e258]: source venv/bin/activate
+            - paragraph [ref=f37e259]:
+              - img "Terminal showing Python virtual environment activation" [ref=f37e260]
+            - group [ref=f37e261]:
+              - generic "BASH Enable word wrap Copy" [ref=f37e262] [cursor=pointer]:
+                - generic [ref=f37e263]: BASH
+                - generic [ref=f37e267]:
+                  - button "Enable word wrap" [ref=f37e268]
+                  - button "Copy" [ref=f37e269]
+              - code [ref=f37e273]:
+                - generic [ref=f37e274]: pip install fastapi sse-starlette uvicorn asyncio
+            - paragraph [ref=f37e275]:
+              - img "Terminal showing FastAPI dependencies installation" [ref=f37e276]
+            - paragraph [ref=f37e277]: Let's set up a basic FastAPI server.
+            - group [ref=f37e278]:
+              - generic "PYTHON Enable word wrap Copy" [ref=f37e279] [cursor=pointer]:
+                - generic [ref=f37e280]: PYTHON
+                - generic [ref=f37e284]:
+                  - button "Enable word wrap" [ref=f37e285]
+                  - button "Copy" [ref=f37e286]
+              - code [ref=f37e290]:
+                - generic [ref=f37e291]: from fastapi import FastAPI, Response
+                - generic [ref=f37e292]: app= FastAPI()
+                - generic [ref=f37e293]: "@app.get(\"/\")"
+                - generic [ref=f37e294]: "async def root():"
+                - generic [ref=f37e295]: "return {\"message\": \"Hello World\"}"
+            - paragraph [ref=f37e296]:
+              - img "Terminal showing FastAPI server running" [ref=f37e297]
+            - group [ref=f37e298]:
+              - generic "BASH Enable word wrap Copy" [ref=f37e299] [cursor=pointer]:
+                - generic [ref=f37e300]: BASH
+                - generic [ref=f37e304]:
+                  - button "Enable word wrap" [ref=f37e305]
+                  - button "Copy" [ref=f37e306]
+              - code [ref=f37e310]:
+                - generic [ref=f37e311]: uvicorn main:app --reload
+            - paragraph [ref=f37e312]: And the server runs as expected.
+            - heading [level=3] [ref=f37e313]:
+              - generic [ref=f37e314]:
+                - 'link "Link to section: Adding the SSE (Server-Sent Events)" [ref=f37e315] [cursor=pointer]':
+                  - /url: "#adding-the-sse-server-sent-events"
+                  - text: "#"
+                - text: Adding the SSE (Server-Sent Events)
+            - group [ref=f37e316]:
+              - generic "PYTHON Enable word wrap Copy" [ref=f37e317] [cursor=pointer]:
+                - generic [ref=f37e318]: PYTHON
+                - generic [ref=f37e322]:
+                  - button "Enable word wrap" [ref=f37e323]
+                  - button "Copy" [ref=f37e324]
+              - code [ref=f37e328]:
+                - generic [ref=f37e329]: from sse_starlette.sse import EventSourceResponse
+            - paragraph [ref=f37e330]:
+              - text: Import the
+              - code [ref=f37e331]: EventSourceResponse
+              - text: from
+              - code [ref=f37e332]: sse_starlette
+              - text: . The
+              - code [ref=f37e333]: EventSourceResponse
+              - text: is used to create a Server-Sent Events (SSE) endpoint that can push updates to the client in real-time.
+            - paragraph [ref=f37e334]:
+              - strong [ref=f37e335]: "Note:"
+              - text: For now, I am adding a test
+              - code [ref=f37e336]: event_generator
+              - text: function that works as a long-running task.
+            - group [ref=f37e337]:
+              - generic "PYTHON Enable word wrap Copy" [ref=f37e338] [cursor=pointer]:
+                - generic [ref=f37e339]: PYTHON
+                - generic [ref=f37e343]:
+                  - button "Enable word wrap" [ref=f37e344]
+                  - button "Copy" [ref=f37e345]
+              - code [ref=f37e349]:
+                - generic [ref=f37e350]: "async def event_generator():"
+                - generic [ref=f37e351]: i= 1
+                - generic [ref=f37e352]: "while i<=5:"
+                - generic [ref=f37e353]: await asyncio.sleep(1)
+                - generic [ref=f37e354]: i+=1
+                - generic [ref=f37e355]: "yield {\"data\": \"New update\"}"
+            - paragraph [ref=f37e356]:
+              - text: Just like we return a response with
+              - code [ref=f37e357]: "return {\"message\": \"Hello World\"}"
+              - text: ", we will now yield updates from our event generator function. This allows the server to push new data to the client continuously.yield is simply a way to send data back to the client without closing the connection."
+            - paragraph [ref=f37e358]: So the final code looks like
+            - group [ref=f37e359]:
+              - generic "PYTHON Enable word wrap Copy" [ref=f37e360] [cursor=pointer]:
+                - generic [ref=f37e361]: PYTHON
+                - generic [ref=f37e365]:
+                  - button "Enable word wrap" [ref=f37e366]
+                  - button "Copy" [ref=f37e367]
+              - code [ref=f37e371]:
+                - generic [ref=f37e372]: from fastapi import FastAPI, Response
+                - generic [ref=f37e373]: from sse_starlette.sse import EventSourceResponse
+                - generic [ref=f37e374]: import asyncio
+                - generic [ref=f37e375]: app = FastAPI()
+                - generic [ref=f37e376]: "@app.get(\"/\")"
+                - generic [ref=f37e377]: "async def root():"
+                - generic [ref=f37e378]: "return {\"message\": \"Hello World\"}"
+                - generic [ref=f37e379]: "@app.get(\"/sse\")"
+                - generic [ref=f37e380]: "async def sse_endpoint():"
+                - generic [ref=f37e381]: "async def event_generator():"
+                - generic [ref=f37e382]: i= 1
+                - generic [ref=f37e383]: "while i<=5:"
+                - generic [ref=f37e384]: await asyncio.sleep(1)
+                - generic [ref=f37e385]: i+=1
+                - generic [ref=f37e386]: "yield {\"data\": \"New update\"}"
+                - generic [ref=f37e387]: return EventSourceResponse(event_generator())
+                - generic [ref=f37e388]: "if __name__ == \"__main__\":"
+                - generic [ref=f37e389]: import uvicorn
+                - generic [ref=f37e390]: uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+            - paragraph [ref=f37e391]:
+              - text: Now if we send a GET request to
+              - code [ref=f37e392]: http://127.0.0.1:8000/sse
+            - paragraph [ref=f37e393]:
+              - img "Browser showing SSE stream response" [ref=f37e394]
+            - paragraph [ref=f37e395]: You can even see the same response in the developer tools.
+            - paragraph [ref=f37e396]:
+              - img "Browser developer tools showing SSE events" [ref=f37e397]
+            - paragraph [ref=f37e398]:
+              - text: Now if we send a GET request to
+              - link "http://127.0.0.1:8000/sse" [ref=f37e399] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/sse
+              - text: ", you will see a stream of updates being sent from the server to the client in real-time, which you can also observe in the developer tools, providing a seamless and efficient way to handle real-time data updates in your application."
+            - paragraph [ref=f37e400]: I hope this guide helps you implement Server-Sent Events with FastAPI smoothly. Happy coding! 🚀
+          - paragraph [ref=f37e401]: Last updated on Jun 20
+          - generic [ref=f37e402]:
+            - generic [ref=f37e403]:
+              - heading "Related Posts" [level=2] [ref=f37e404]
+              - paragraph [ref=f37e405]: More posts you might enjoy
+            - list [ref=f37e407]:
+              - listitem [ref=f37e408]:
+                - link "Python Dependency Management with Poetry Learn how to simplify Python dependency management using Poetry with easy installation, project setup, and a FastAPI server example Jul 13, 2024 8 min read Poetry Python FastAPI" [ref=f37e409] [cursor=pointer]:
+                  - /url: /python-poetry-guide
+                  - generic [ref=f37e411]:
+                    - heading "Python Dependency Management with Poetry" [level=3] [ref=f37e412]
+                    - paragraph [ref=f37e413]: Learn how to simplify Python dependency management using Poetry with easy installation, project setup, and a FastAPI server example
+                    - generic [ref=f37e414]:
+                      - time [ref=f37e418]: Jul 13, 2024
+                      - generic [ref=f37e419]: 8 min read
+                  - generic [ref=f37e424]:
+                    - generic [ref=f37e425]: Poetry
+                    - generic [ref=f37e426]: Python
+                    - generic [ref=f37e427]: FastAPI
+              - listitem [ref=f37e428]:
+                - 'link "BullMQ Cron Jobs with Redis in Node.js Schedule cron jobs in Node.js with BullMQ repeatable jobs and Redis: workers, scheduler internals, graceful shutdown, and DB sync. Full TypeScript code. Mar 29, 2026 30 min read BullMQ Repeatable Jobs Cron Jobs" [ref=f37e429] [cursor=pointer]':
+                  - /url: /cron-jobs-with-bullmq
+                  - generic [ref=f37e431]:
+                    - heading "BullMQ Cron Jobs with Redis in Node.js" [level=3] [ref=f37e432]
+                    - paragraph [ref=f37e433]: "Schedule cron jobs in Node.js with BullMQ repeatable jobs and Redis: workers, scheduler internals, graceful shutdown, and DB sync. Full TypeScript code."
+                    - generic [ref=f37e434]:
+                      - time [ref=f37e438]: Mar 29, 2026
+                      - generic [ref=f37e439]: 30 min read
+                  - generic [ref=f37e444]:
+                    - generic [ref=f37e445]: BullMQ
+                    - generic [ref=f37e446]: Repeatable Jobs
+                    - generic [ref=f37e447]: Cron Jobs
+              - listitem [ref=f37e448]:
+                - link "Prisma ORM with PostgreSQL Prisma ORM with PostgreSQL setup in Node.js and TypeScript, covering schema, migrations, and type-safe CRUD operations for fewer runtime errors Aug 17, 2024 14 min read Prisma Prisma ORM PostgreSQL" [ref=f37e449] [cursor=pointer]:
+                  - /url: /prisma-with-postgresql
+                  - generic [ref=f37e451]:
+                    - heading "Prisma ORM with PostgreSQL" [level=3] [ref=f37e452]
+                    - paragraph [ref=f37e453]: Prisma ORM with PostgreSQL setup in Node.js and TypeScript, covering schema, migrations, and type-safe CRUD operations for fewer runtime errors
+                    - generic [ref=f37e454]:
+                      - time [ref=f37e458]: Aug 17, 2024
+                      - generic [ref=f37e459]: 14 min read
+                  - generic [ref=f37e464]:
+                    - generic [ref=f37e465]: Prisma
+                    - generic [ref=f37e466]: Prisma ORM
+                    - generic [ref=f37e467]: PostgreSQL
+          - generic [ref=f37e471]:
+            - heading "Subscribe to the newsletter" [level=2] [ref=f37e472]
+            - paragraph [ref=f37e473]: Get new posts and occasional updates straight to your inbox. No spam, unsubscribe anytime.
+            - generic [ref=f37e476]:
+              - textbox "Email address" [ref=f37e481]:
+                - /placeholder: you@example.com
+              - button [ref=f37e482] [cursor=pointer]
+          - generic [ref=f37e487]:
+            - img "Pulkit" [ref=f37e488]
+            - heading "Let's build something, or just connect" [level=2] [ref=f37e489]
+            - paragraph [ref=f37e490]: "I'm Pulkit, a software engineer at MagicAPI (ex-CrowdVolt, YC W24). Building something, want to collaborate, or just want to say hi? Reach out:"
+            - generic [ref=f37e491]:
+              - link "Book a call" [ref=f37e492] [cursor=pointer]:
+                - /url: /contact?schedule
+              - link "Work with me" [ref=f37e495] [cursor=pointer]:
+                - /url: /work-with-me
+              - link "Email me" [ref=f37e499] [cursor=pointer]:
+                - /url: /contact?message
+              - link "Résumé" [ref=f37e503] [cursor=pointer]:
+                - /url: /resume.pdf
+            - generic [ref=f37e507]:
+              - link "GitHub profile" [ref=f37e508] [cursor=pointer]:
+                - /url: https://github.com/Pulkitxm
+              - link "LinkedIn profile" [ref=f37e511] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/pulkitxm
+              - link "Discord profile" [ref=f37e514] [cursor=pointer]:
+                - /url: http://discordapp.com/users/790426084994187304
+              - link "X profile" [ref=f37e517] [cursor=pointer]:
+                - /url: https://x.com/_pulkitxm
+              - link "npm profile" [ref=f37e520] [cursor=pointer]:
+                - /url: https://www.npmjs.com/~pulkitxm
+        - generic [ref=f37e88]:
+          - paragraph [ref=f37e89]:
+            - text: Made with ❤️ by Pulkit &
+            - img "pixel alien" [ref=f37e90]
+          - generic [ref=f37e145]:
+            - paragraph [ref=f37e147]: © 2026 Pulkit. All rights reserved
+            - generic [ref=f37e148]:
+              - generic [ref=f37e149]:
+                - link "Sitemap" [ref=f37e150] [cursor=pointer]:
+                  - /url: /sitemap.xml
+                - link "RSS Feed" [ref=f37e151] [cursor=pointer]:
+                  - /url: /feed.xml
+              - tablist "Theme selection" [ref=f37e524]:
+                - tab "Switch to light theme" [ref=f37e525] [cursor=pointer]: Light
+                - tab "Switch to dark theme" [selected] [ref=f37e532] [cursor=pointer]: Dark
+          - paragraph [ref=f37e155]: "Last updated:"
+      - button "Scroll to top"
+  - alert [ref=f37e535]

@@ -1,0 +1,218 @@
+- generic [active] [ref=f38e1]:
+  - generic [ref=f38e2]:
+    - banner [ref=f38e3]:
+      - link "Skip to content" [ref=f38e4] [cursor=pointer]:
+        - /url: "#content"
+      - navigation [ref=f38e6]:
+        - generic [ref=f38e9]:
+          - link "Clay-Technology World Hope every day is better than yesterday" [ref=f38e14] [cursor=pointer]:
+            - /url: https://clay-atlas.com/us/main-page/
+            - generic [ref=f38e16]:
+              - paragraph [ref=f38e17]: Clay-Technology World
+              - generic [ref=f38e18]: Hope every day is better than yesterday
+          - generic [ref=f38e20]:
+            - navigation "Primary Menu" [ref=f38e23]:
+              - list [ref=f38e24]:
+                - listitem [ref=f38e25]:
+                  - link "Main Page" [ref=f38e27] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/main-page/
+                - listitem [ref=f38e28]:
+                  - link "Blog" [ref=f38e30] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/blog-2/
+                - listitem [ref=f38e31]:
+                  - link "About Me" [ref=f38e33] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/about-me/
+                - listitem [ref=f38e34]:
+                  - generic [ref=f38e35]:
+                    - link "English" [ref=f38e36] [cursor=pointer]:
+                      - /url: "#pll_switcher"
+                    - button "Open Submenu" [ref=f38e39]:
+                      - img "Dropdown" [ref=f38e41]
+            - link "Search" [ref=f38e46] [cursor=pointer]:
+              - /url: "#"
+    - generic [ref=f38e52]:
+      - list [ref=f38e53]:
+        - listitem [ref=f38e54]:
+          - img "Clay" [ref=f38e55]
+          - link "Clay" [ref=f38e57] [cursor=pointer]:
+            - /url: https://clay-atlas.com/us/blog/author/ccs96307/
+          - text: /
+        - listitem [ref=f38e58]:
+          - time [ref=f38e59]: 2024-11-02
+          - text: /
+        - listitem [ref=f38e60]:
+          - link "Python" [ref=f38e61] [cursor=pointer]:
+            - /url: https://clay-atlas.com/us/blog/category/python-en/
+      - heading "[Python] FastAPI Using Server-Sent Events (SSE) for Streaming Responses" [level=1] [ref=f38e62]
+    - main [ref=f38e63]:
+      - article [ref=f38e66]:
+        - generic [ref=f38e67]:
+          - paragraph [ref=f38e68]:
+            - text: Last Updated on 2024-11-02 by
+            - link "Clay" [ref=f38e69] [cursor=pointer]:
+              - /url: https://clay-atlas.com
+          - paragraph [ref=f38e70]: I have recently set up numerous backend API servers for Chatbots. Initially, I received user messages and returned the entire LLM-generated reply in one go to the frontend interface. However, this approach did not provide a good user experience. I then switched to HTTP streaming, sending each generated token to the frontend as it was produced. Later, I found that some users’ devices experienced packet sticking, so I finally switched to using WebSocket.
+          - paragraph [ref=f38e71]: Recently, my frontend colleagues and I discussed that using Server-Sent Events (SSE) might be a better option. As a result, I started exploring how to build an SSE API using FastAPI.
+          - paragraph [ref=f38e72]: A quick overview shows that SSE is also based on HTTP and can be considered a lightweight alternative to WebSocket.
+          - paragraph [ref=f38e73]: "First, install the following package:"
+          - code [ref=f38e75]: pip install sse-starlette
+          - paragraph [ref=f38e76]: "Next, you can perform a simple test:"
+          - generic "app.py" [ref=f38e77]:
+            - code [ref=f38e79]:
+              - text: "import asyncio from fastapi import FastAPI from sse_starlette.sse import EventSourceResponse app = FastAPI() async def event_generator(sent: str): for char in sent: yield {\"event\": \"message\", \"data\": char} await asyncio.sleep(0.2)"
+              - generic [ref=f38e80]: "@app.get"
+              - text: "(\"/api/chatbot/stream\") async def sse_endpoint(sent: str): return EventSourceResponse(event_generator(sent))"
+          - paragraph [ref=f38e81]
+          - paragraph [ref=f38e82]: "This is a classic repetitive sentence response bot, used here to test the replacement effect of LLM. You can start it using the following command:"
+          - code [ref=f38e84]: uvicorn app:app --port 8080 --reload
+          - paragraph [ref=f38e85]
+          - paragraph [ref=f38e86]
+          - paragraph [ref=f38e87]: "Once we make the following request:"
+          - generic "app.py" [ref=f38e88]:
+            - code [ref=f38e90]: "import httpx url = \"http://127.0.0.1:8080/api/chatbot/stream\" params = {\"sent\": \"你好，今天天氣不錯～\"} with httpx.stream(\"GET\", url, params=params) as response: for line in response.iter_text(): if line: print(line)"
+          - paragraph [ref=f38e91]: "Output:"
+          - generic [ref=f38e92]: "event: messagedata: 你event: messagedata: 好event: messagedata: ，event: messagedata: 今event: messagedata: 天event: messagedata: 天event: messagedata: 氣event: messagedata: 不event: messagedata: 錯event: messagedata: ～"
+          - paragraph [ref=f38e93]: (Notes are not yet fully organized)
+          - separator [ref=f38e94]
+          - heading "References" [level=2] [ref=f38e95]
+          - list [ref=f38e96]:
+            - listitem [ref=f38e97]:
+              - link "Using server-sent events – Web APIs | MDN" [ref=f38e98] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+            - listitem [ref=f38e99]:
+              - link "Server-sent events" [ref=f38e100] [cursor=pointer]:
+                - /url: https://en.wikipedia.org/wiki/Server-sent_events
+            - listitem [ref=f38e101]:
+              - link "Server-Sent Events with Python FastAPI" [ref=f38e102] [cursor=pointer]:
+                - /url: https://medium.com/@nandagopal05/server-sent-events-with-python-fastapi-f1960e0c8e4b
+          - separator [ref=f38e103]
+          - heading "Read More" [level=2] [ref=f38e104]
+          - figure [ref=f38e105]:
+            - iframe [ref=f38e107]:
+              - generic [ref=f39e2]:
+                - paragraph [ref=f39e3]:
+                  - link "Implementing Streamed Output Token Generation Using TextStreamer and TextIteratorStreamer in HuggingFace Transformers" [ref=f39e4] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/blog/2024/09/01/en-huggingface-transformer-textstreamer/
+                - generic:
+                  - link:
+                    - /url: https://clay-atlas.com/us/blog/2024/09/01/en-huggingface-transformer-textstreamer/
+                - paragraph [ref=f39e6]:
+                  - text: Last Updated on 2024-09-01 by Clay Introduction Generative models are becoming increasingly powerful, and independent researchers are deploying one open-source large language model (LLMs) after another. However, when using LLMs for inference or generating responses, waiting for a longer output can be quite time-consuming. In fact, streaming output like that in ChatGPT, where a sequence …
+                  - link "Continue reading Implementing Streamed Output Token Generation Using TextStreamer and TextIteratorStreamer in HuggingFace Transformers" [ref=f39e7] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/blog/2024/09/01/en-huggingface-transformer-textstreamer/
+                    - text: Continue reading
+                    - generic [ref=f39e8]: Implementing Streamed Output Token Generation Using TextStreamer and TextIteratorStreamer in HuggingFace Transformers
+                - generic [ref=f39e9]:
+                  - link "Clay-Technology World" [ref=f39e11] [cursor=pointer]:
+                    - /url: https://clay-atlas.com
+                  - generic [ref=f39e12]:
+                    - link "0 Comments" [ref=f39e14] [cursor=pointer]:
+                      - /url: https://clay-atlas.com/us/blog/2024/09/01/en-huggingface-transformer-textstreamer/#respond
+                      - text: "0"
+                      - generic [ref=f39e16]: Comments
+                    - button "Open sharing dialog" [ref=f39e18] [cursor=pointer]
+          - generic [ref=f38e109]:
+            - heading "Share this:" [level=3] [ref=f38e110]
+            - list [ref=f38e112]:
+              - listitem [ref=f38e113]:
+                - link "Share on X (Opens in new window)" [ref=f38e114] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2024/11/02/en-python-fastapi-server-sent-events-sse/?share=twitter&nb=1
+                  - text: 
+              - listitem [ref=f38e115]:
+                - link "Share on Facebook (Opens in new window)" [ref=f38e116] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2024/11/02/en-python-fastapi-server-sent-events-sse/?share=facebook&nb=1
+                  - text: 
+              - listitem [ref=f38e117]:
+                - link "Share on LinkedIn (Opens in new window)" [ref=f38e118] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2024/11/02/en-python-fastapi-server-sent-events-sse/?share=linkedin&nb=1
+                  - text: 
+              - listitem [ref=f38e119]:
+                - link "Share on Reddit (Opens in new window)" [ref=f38e120] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2024/11/02/en-python-fastapi-server-sent-events-sse/?share=reddit&nb=1
+                  - text: 
+              - listitem
+          - generic [ref=f38e121]:
+            - heading [level=3] [ref=f38e122]:
+              - emphasis [ref=f38e123]: 相關
+            - generic:
+              - generic [ref=f38e124]:
+                - 'link "[Python] Use `httpx` To Replace `requests` For Asynchronous Requests" [ref=f38e125] [cursor=pointer]':
+                  - /url: https://clay-atlas.com/us/blog/2024/07/28/python-httpx-replace-requests-async-2/
+                - heading [level=4] [ref=f38e126]:
+                  - 'link "[Python] Use `httpx` To Replace `requests` For Asynchronous Requests" [ref=f38e127] [cursor=pointer]':
+                    - /url: https://clay-atlas.com/us/blog/2024/07/28/python-httpx-replace-requests-async-2/
+                - time [ref=f38e128]: 2024-07-28
+                - paragraph [ref=f38e129]: In "Python"
+              - generic [ref=f38e130]:
+                - link "[Python] Notes on Backend Development Using the FastAPI Framework" [ref=f38e131] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2023/07/03/python-fastapi-backend-develop-framework/
+                - heading [level=4] [ref=f38e132]:
+                  - link "[Python] Notes on Backend Development Using the FastAPI Framework" [ref=f38e133] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/blog/2023/07/03/python-fastapi-backend-develop-framework/
+                - time [ref=f38e134]: 2023-07-03
+                - paragraph [ref=f38e135]: In "Python"
+              - generic [ref=f38e136]:
+                - link "[Python] Using Locust Open Source Load Testing Framework for Stress Testing" [ref=f38e137] [cursor=pointer]:
+                  - /url: https://clay-atlas.com/us/blog/2024/10/10/en-python-locust-load-testing-framework/
+                - heading [level=4] [ref=f38e138]:
+                  - link "[Python] Using Locust Open Source Load Testing Framework for Stress Testing" [ref=f38e139] [cursor=pointer]:
+                    - /url: https://clay-atlas.com/us/blog/2024/10/10/en-python-locust-load-testing-framework/
+                - time [ref=f38e140]: 2024-10-10
+                - paragraph [ref=f38e141]: In "Python"
+        - generic [ref=f38e142]:
+          - text: "Tags:"
+          - link "Python" [ref=f38e143] [cursor=pointer]:
+            - /url: https://clay-atlas.com/us/blog/tag/python-en/
+        - generic [ref=f38e145]:
+          - heading "Leave a Reply" [level=3] [ref=f38e146]
+          - iframe [ref=f38e148]:
+            
+    - contentinfo [ref=f38e149]:
+      - generic [ref=f38e150]:
+        - generic [ref=f38e159]:
+          - paragraph [ref=f38e160]: Contact Me
+          - paragraph [ref=f38e162]: "email: ccs96307@gmail.com"
+        - generic [ref=f38e171]:
+          - text: ©
+          - link "clay-atlas.com" [ref=f38e172] [cursor=pointer]:
+            - /url: https://clay-atlas.com
+          - text: Copyright 2022 |
+          - link "Neve" [ref=f38e173] [cursor=pointer]:
+            - /url: https://themeisle.com/themes/neve/
+  - insertion [ref=f38e174]:
+    - iframe [ref=f38e177]:
+      - iframe [ref=f52e1]:
+        - generic [ref=f54e1]:
+          - button [ref=f54e10] [cursor=pointer]
+          - iframe [ref=f54e18]:
+            - generic [ref=f60e2] [cursor=pointer]:
+              - generic [ref=f60e8]:
+                - generic [ref=f60e9]: FAST AND FREE
+                - generic [ref=f60e11]: SHIPPING
+              - generic [ref=f60e15]:
+                - generic [ref=f60e16]:
+                  - generic [ref=f60e19]:
+                    - generic [ref=f60e20]: HUDA BEAUTY
+                    - generic [ref=f60e22]: HUDA BEAUTY Creamy Kohl Longwear Eye Pencil 0.012 oz / 0.35 g
+                  - generic [ref=f60e23]: $21
+                - generic [ref=f60e24]:
+                  - generic [ref=f60e27]:
+                    - generic [ref=f60e28]: CYKLAR
+                    - generic [ref=f60e30]: CYKLAR Ceramide Milky Essence for Full-Body Hydration 8 fl oz/236 mL
+                  - generic [ref=f60e31]: $30
+                - generic [ref=f60e32]:
+                  - generic [ref=f60e35]:
+                    - generic [ref=f60e36]: Benefit Cosmetics
+                    - generic [ref=f60e38]: Benefit Cosmetics 24-HR Brow Setter Clear Brow Gel with Lamination Effect .23 / 7ml
+                  - generic [ref=f60e39]: $28
+                - generic [ref=f60e40]:
+                  - generic [ref=f60e43]:
+                    - generic [ref=f60e44]: Tatcha
+                    - generic [ref=f60e46]: Tatcha The Milky Sunscreen Broad Spectrum SPF 50+ with Encapsulated Ectoin + Vitamin E 1.7 oz/50 ml
+                  - generic [ref=f60e47]: $50
+                - generic [ref=f60e48]:
+                  - generic [ref=f60e51]:
+                    - generic [ref=f60e52]: Moroccanoil
+                    - generic [ref=f60e54]: Moroccanoil Perfect Defense Weightless Heat Protectant 8.1 oz/300 mL
+                  - generic [ref=f60e55]: $32
+              - generic: BUY NOW

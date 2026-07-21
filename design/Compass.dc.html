@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Source+Sans+3:ital,wght@0,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9ECEF;font-family:'Source Sans 3',sans-serif;color:#0C2340}
+a{color:#0C2340;text-decoration:none}a:hover{color:#B08F44}
+.dv-turn{padding:40px 44px 32px;scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 24px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#0C2340;color:#fff;border-radius:4px}
+.dv-tname{font:600 13px/1.2 'Source Sans 3',sans-serif;color:#0C2340}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(12,35,64,.10);color:#0C2340;border-radius:5px}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11.5px/1.3 'Source Sans 3',sans-serif;color:rgba(12,35,64,.6)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:8px;box-shadow:0 2px 12px rgba(12,35,64,.08);overflow:hidden}
+.dv-opt:target .dv-oid{background:#C8A45C;color:#0C2340}
+.dv-next{margin:24px 0 0;font:12px/1.5 'Source Sans 3',sans-serif;color:rgba(12,35,64,.5)}
+@keyframes cshim{0%{background-position:-400px 0}100%{background-position:400px 0}}
+@keyframes cwave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes cpulse{0%,100%{opacity:.55}50%{opacity:1}}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Compass — conversational cruise concierge · hero + 14 frames · navy / gold / sea-mist, Playfair + Source Sans</span></div>
+<div class="dv-opts">
+
+<!-- ============ 1a HERO ============ -->
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Hero — Chat Shell mid-conversation (the money shot)</div>
+<div class="dv-card" style="width:1440px" data-screen-label="Hero — Chat Shell">
+  <!-- top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 24px;background:#fff;border-bottom:1px solid rgba(12,35,64,.10)">
+    <a href="#1a" style="font-size:13px;font-weight:600;color:#0C2340;display:flex;align-items:center;gap:6px"><span style="font-size:16px;line-height:1">‹</span> Exit AI Assistant</a>
+    <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-size:19px;letter-spacing:.22em;color:#0C2340">MERIDIAN LINE</div><div style="font-size:9px;letter-spacing:.3em;color:#8A97A6;margin-top:1px">COMPASS · CRUISE CONCIERGE</div></div>
+    <a href="#1a" style="font-size:13px;font-weight:600;color:#0C2340;display:flex;align-items:center;gap:6px"><span style="font-size:15px;line-height:1">⟳</span> Start New Chat</a>
+  </div>
+  <div style="display:flex;align-items:stretch">
+    <!-- chat column -->
+    <div style="flex:1;background:#F4F6F8;display:flex;flex-direction:column">
+      <div style="flex:1;padding:32px 0 16px;display:flex;flex-direction:column;gap:20px;align-items:center">
+        <!-- user pill -->
+        <div style="width:760px;display:flex;justify-content:flex-end"><div style="max-width:520px;background:#0C2340;color:#fff;padding:12px 20px;border-radius:22px 22px 6px 22px;font-size:15px;line-height:1.5">We&rsquo;re a family of four thinking about Alaska next June &mdash; ideally with a few days in Denali before or after.</div></div>
+        <!-- assistant preamble -->
+        <div style="width:760px;display:flex;flex-direction:column;gap:8px"><div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.6;color:#22344B;box-shadow:0 2px 8px rgba(12,35,64,.05)">A fine time to go &mdash; June brings the longest days and the best wildlife along the Inside Passage. I found four sailings that pair well with time ashore in Denali; three include the domed rail journey. The <em style="font-family:'Playfair Display',serif">Denali Explorer</em> is currently the strongest value.</div></div>
+        <!-- card row -->
+        <div style="width:1020px;align-self:center;overflow:hidden">
+          <div style="display:flex;gap:16px;padding-bottom:4px">
+            <sc-for list="{{ cruises }}" as="c" hint-placeholder-count="3">
+              <div style="width:296px;flex:none;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;box-shadow:0 8px 24px rgba(12,35,64,.08);overflow:hidden;display:flex;flex-direction:column">
+                <div style="position:relative;height:148px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)">
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.08),rgba(12,35,64,.55))"></div>
+                  <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:12px;left:12px;background:#C8A45C;color:#0C2340;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:4px">{{ c.badge }}</div></sc-if>
+                  <div style="position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(12,35,64,.35);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 9 V2 M4.5 4.3 7 1.8 l2.5 2.5" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.5 7.5 v4 h7 v-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"></path></svg></div>
+                  <div style="position:absolute;left:12px;bottom:10px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; {{ c.photo }}</div>
+                </div>
+                <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1">
+                  <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">{{ c.dur }}</div>
+                  <div style="font-family:'Playfair Display',serif;font-size:19px;line-height:1.25;color:#0C2340">{{ c.name }}</div>
+                  <div style="font-size:13px;color:#5A6B7E">{{ c.embark }}</div>
+                  <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#5A6B7E"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M1.5 9.5 h11 l-2 3 h-7 Z" fill="#8A97A6"></path><path d="M3.5 9.5 V6.5 h7 v3 M5.5 6.5 V4.5 h3 v2" fill="none" stroke="#8A97A6" stroke-width="1.2"></path></svg>{{ c.ship }}</div>
+                  <div style="margin-top:6px;display:flex;align-items:baseline;gap:10px;font-variant-numeric:tabular-nums"><span style="font-size:13px;color:#8A97A6;text-decoration:line-through">{{ c.was }}</span><span style="font-size:21px;font-weight:700;color:#0C2340">{{ c.now }}</span></div>
+                  <div style="font-size:11px;color:#8A97A6">Includes Taxes, Fees &amp; Port Expenses</div>
+                  <div style="display:flex;align-items:center;gap:14px;margin-top:10px">
+                    <div style="background:#C8A45C;color:#0C2340;font-size:13px;font-weight:700;padding:9px 22px;border-radius:8px;cursor:pointer" style-hover="background:#B08F44">Select</div>
+                    <a href="#1d" style="font-size:13px;font-weight:600;color:#0C2340;border-bottom:1px solid rgba(12,35,64,.25)">See Itinerary</a>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <!-- assistant + tracker -->
+        <div style="width:760px;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(12,35,64,.05)">
+          <div style="font-size:15px;line-height:1.6;color:#22344B;margin-bottom:16px">Shall we begin with the <em style="font-family:'Playfair Display',serif">Denali Explorer</em>? Here is where the booking stands.</div>
+          <div style="display:flex;align-items:center">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:96px"><div style="width:30px;height:30px;border-radius:50%;border:2px solid #C8A45C;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div style="font-size:12px;font-weight:600;color:#0C2340">Sailing</div></div>
+            <div style="flex:1;height:1px;background:#C8A45C;margin-bottom:20px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:96px"><div style="width:30px;height:30px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#0C2340">2</div><div style="font-size:12px;font-weight:700;color:#0C2340">Fare</div></div>
+            <div style="flex:1;height:1px;background:rgba(12,35,64,.15);margin-bottom:20px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:96px"><div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(12,35,64,.3);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5A6B7E">3</div><div style="font-size:12px;color:#5A6B7E">Stateroom</div></div>
+            <div style="flex:1;height:1px;background:rgba(12,35,64,.15);margin-bottom:20px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:96px"><div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(12,35,64,.3);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5A6B7E">4</div><div style="font-size:12px;color:#5A6B7E">Add-ons</div></div>
+            <div style="flex:1;height:1px;background:rgba(12,35,64,.15);margin-bottom:20px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:96px"><div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(12,35,64,.3);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5A6B7E">5</div><div style="font-size:12px;color:#5A6B7E">Review</div></div>
+          </div>
+        </div>
+        <!-- dining tiles in chat -->
+        <div style="width:760px;display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.6;color:#22344B;box-shadow:0 2px 8px rgba(12,35,64,.05)">While we settle the fare &mdash; specialty dining fills early in June. Two evenings stand out; I have held nothing yet.</div>
+          <div style="display:flex;gap:14px">
+            <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+              <div style="position:relative;height:86px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; steakhouse interior</div></div>
+              <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:17px;color:#0C2340">The Beacon Grill</div><div style="font-size:12px;color:#5A6B7E;font-variant-numeric:tabular-nums">US$ 46 per guest</div></div>
+                <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Steakhouse</div></div>
+                <div style="margin-top:4px;border:1px solid rgba(12,35,64,.25);color:#0C2340;font-size:12.5px;font-weight:600;padding:7px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">Reserve a night</div>
+              </div>
+            </div>
+            <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+              <div style="position:relative;height:86px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; pan-asian dining</div></div>
+              <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:17px;color:#0C2340">Saffron</div><div style="font-size:12px;color:#5A6B7E;font-variant-numeric:tabular-nums">US$ 39 per guest</div></div>
+                <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Pan-Asian</div></div>
+                <div style="margin-top:4px;background:rgba(200,164,92,.14);border:1px solid #C8A45C;color:#0C2340;font-size:12.5px;font-weight:600;padding:7px 0;border-radius:8px;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Reserved &middot; Night 5 &middot; 7:30 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- suggestion chips -->
+        <div style="width:760px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="font-size:12px;color:#8A97A6;display:flex;align-items:center;gap:6px"><span style="color:#C8A45C;font-size:13px">✦</span>You can also try</div>
+          <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C">What ports does ms Aurelia visit?</div>
+          <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C">Compare Verandah vs Suite</div>
+          <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C">What&rsquo;s the Compass Circle?</div>
+        </div>
+      </div>
+      <!-- composer -->
+      <div style="padding:16px 0 22px;display:flex;justify-content:center;background:linear-gradient(180deg,rgba(244,246,248,0),#F4F6F8 40%)">
+        <div style="width:760px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(12,35,64,.14);border-radius:999px;padding:8px 8px 8px 22px;box-shadow:0 6px 20px rgba(12,35,64,.08)">
+          <div style="flex:1;font-size:15px;color:#8A97A6">Ask about sailings, staterooms, or dining&hellip;</div>
+          <div style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(12,35,64,.18);display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="border-color:#C8A45C"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="6" y="1.5" width="4" height="7.5" rx="2" fill="#0C2340"></rect><path d="M3.5 7.5 a4.5 4.5 0 0 0 9 0 M8 12.5 v2" fill="none" stroke="#0C2340" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+          <div style="width:38px;height:38px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#B08F44"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M3 8 h9 M8.5 4.5 12 8 l-3.5 3.5" stroke="#0C2340" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </div>
+      </div>
+    </div>
+    <!-- draft rail -->
+    <div style="width:240px;flex:none;background:#fff;border-left:1px solid rgba(12,35,64,.10);padding:20px 16px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">Drafts</div><div style="font-size:14px;color:#8A97A6;cursor:pointer">»</div></div>
+      <div style="border:1px solid #C8A45C;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:rgba(200,164,92,.06)">
+        <div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="rgba(12,35,64,.12)" stroke-width="3"></circle><circle cx="14" cy="14" r="11" fill="none" stroke="#C8A45C" stroke-width="3" stroke-dasharray="69" stroke-dashoffset="41" stroke-linecap="round" transform="rotate(-90 14 14)"></circle></svg><div><div style="font-family:'Playfair Display',serif;font-size:14px;color:#0C2340">Denali Explorer</div><div style="font-size:11px;color:#8A97A6">Jun 14 &middot; 2 of 5 steps</div></div></div>
+        <div style="display:flex;gap:4px"><div style="height:3px;flex:1;border-radius:2px;background:#0C2340"></div><div style="height:3px;flex:1;border-radius:2px;background:#C8A45C"></div><div style="height:3px;flex:1;border-radius:2px;background:rgba(12,35,64,.12)"></div><div style="height:3px;flex:1;border-radius:2px;background:rgba(12,35,64,.12)"></div><div style="height:3px;flex:1;border-radius:2px;background:rgba(12,35,64,.12)"></div></div>
+        <div style="font-size:12px;color:#5A6B7E;font-variant-numeric:tabular-nums">{{ draftTotalLine }}</div>
+      </div>
+      <div style="border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px">
+        <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="rgba(12,35,64,.12)" stroke-width="3"></circle><circle cx="14" cy="14" r="11" fill="none" stroke="#C8A45C" stroke-width="3" stroke-dasharray="69" stroke-dashoffset="55" stroke-linecap="round" transform="rotate(-90 14 14)"></circle></svg>
+        <div><div style="font-family:'Playfair Display',serif;font-size:14px;color:#0C2340">Glacier Discovery</div><div style="font-size:11px;color:#8A97A6">Jul 02 &middot; 1 of 5 steps</div></div>
+      </div>
+      <div style="margin-top:auto;font-size:11px;color:#8A97A6;line-height:1.5;border-top:1px solid rgba(12,35,64,.08);padding-top:12px">Drafts are held for 7 days. Nothing is charged until you confirm a deposit.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1b CHAT SHELL ============ -->
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>01 · Chat Shell — base state with reasoning affordance</div>
+<div class="dv-card" style="width:1440px" data-screen-label="01 Chat Shell">
+  <div style="display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 24px;background:#fff;border-bottom:1px solid rgba(12,35,64,.10)">
+    <a href="#1b" style="font-size:13px;font-weight:600;color:#0C2340;display:flex;align-items:center;gap:6px"><span style="font-size:16px;line-height:1">‹</span> Exit AI Assistant</a>
+    <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-size:19px;letter-spacing:.22em;color:#0C2340">MERIDIAN LINE</div><div style="font-size:9px;letter-spacing:.3em;color:#8A97A6;margin-top:1px">COMPASS · CRUISE CONCIERGE</div></div>
+    <a href="#1b" style="font-size:13px;font-weight:600;color:#0C2340;display:flex;align-items:center;gap:6px"><span style="font-size:15px;line-height:1">⟳</span> Start New Chat</a>
+  </div>
+  <div style="display:flex;height:660px">
+    <div style="flex:1;background:#F4F6F8;display:flex;flex-direction:column">
+      <div style="flex:1;padding:36px 0 12px;display:flex;flex-direction:column;gap:20px;align-items:center">
+        <div style="width:760px;text-align:center;margin-bottom:4px"><div style="font-family:'Playfair Display',serif;font-size:26px;color:#0C2340">Good afternoon, Eleanor.</div><div style="font-size:14px;color:#5A6B7E;margin-top:4px">Where shall we take you? I can search sailings, hold staterooms, and plan your days ashore.</div></div>
+        <div style="width:760px;display:flex;justify-content:flex-end"><div style="max-width:520px;background:#0C2340;color:#fff;padding:12px 20px;border-radius:22px 22px 6px 22px;font-size:15px;line-height:1.5">Which of your ships sail the Norwegian fjords in late May?</div></div>
+        <div style="width:760px;display:flex;flex-direction:column;gap:8px">
+          <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.6;color:#22344B;box-shadow:0 2px 8px rgba(12,35,64,.05)">Two of our ships are in the fjords that week: <em style="font-family:'Playfair Display',serif">ms Zuiderlicht</em> on a 7-day round trip from Amsterdam, and <em style="font-family:'Playfair Display',serif">ms Borealis</em> on a 14-day voyage that continues to the North Cape. Shall I lay both out for you?</div>
+          <div style="display:flex;align-items:center;gap:6px;padding-left:8px;font-size:12px;color:#8A97A6;cursor:pointer" onClick="{{ toggleReasoning }}"><span style="display:inline-block;transition:transform .2s;transform:rotate({{ reasoningChev }}deg)">▸</span>View reasoning</div>
+          <sc-if value="{{ reasoningOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-left:8px;border-left:2px solid rgba(12,35,64,.12);padding:10px 16px;font-size:13px;line-height:1.6;color:#5A6B7E;background:rgba(255,255,255,.6);border-radius:0 8px 8px 0">Searched deployments May 18 &ndash; Jun 01 filtered to Northern Europe; excluded repositioning voyages; ranked by fjord port-count, then by fare per night. Two itineraries met all criteria.</div>
+          </sc-if>
+        </div>
+        <div style="width:760px;display:flex;align-items:center;gap:10px">
+          <div style="font-size:12px;color:#8A97A6;display:flex;align-items:center;gap:6px"><span style="color:#C8A45C;font-size:13px">✦</span>You can also try</div>
+          <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C">Show both side by side</div>
+          <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C">Which has more sea days?</div>
+        </div>
+      </div>
+      <div style="padding:16px 0 22px;display:flex;justify-content:center">
+        <div style="width:760px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(12,35,64,.14);border-radius:999px;padding:8px 8px 8px 22px;box-shadow:0 6px 20px rgba(12,35,64,.08)">
+          <div style="flex:1;font-size:15px;color:#0C2340">Lay them out side by side<span style="display:inline-block;width:1px;height:16px;background:#C8A45C;margin-left:2px;vertical-align:-3px;animation:cpulse 1.1s infinite"></span></div>
+          <div style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(12,35,64,.18);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="6" y="1.5" width="4" height="7.5" rx="2" fill="#0C2340"></rect><path d="M3.5 7.5 a4.5 4.5 0 0 0 9 0 M8 12.5 v2" fill="none" stroke="#0C2340" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+          <div style="width:38px;height:38px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M3 8 h9 M8.5 4.5 12 8 l-3.5 3.5" stroke="#0C2340" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </div>
+      </div>
+    </div>
+    <div style="width:240px;flex:none;background:#fff;border-left:1px solid rgba(12,35,64,.10);padding:20px 16px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">Drafts</div><div style="font-size:14px;color:#8A97A6;cursor:pointer">»</div></div>
+      <div style="border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px">
+        <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="rgba(12,35,64,.12)" stroke-width="3"></circle><circle cx="14" cy="14" r="11" fill="none" stroke="#C8A45C" stroke-width="3" stroke-dasharray="69" stroke-dashoffset="41" stroke-linecap="round" transform="rotate(-90 14 14)"></circle></svg>
+        <div><div style="font-family:'Playfair Display',serif;font-size:14px;color:#0C2340">Denali Explorer</div><div style="font-size:11px;color:#8A97A6">Jun 14 &middot; 2 of 5 steps</div></div>
+      </div>
+      <div style="border:1px dashed rgba(12,35,64,.2);border-radius:10px;padding:14px;text-align:center;font-size:12px;color:#8A97A6">Pinned drafts appear here as you plan.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1c CARD ROW ============ -->
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>02 · Cruise Result Card Row — 3 visible + peeking 4th</div>
+<div class="dv-card" style="width:1000px;background:#F4F6F8" data-screen-label="02 Card Row">
+  <div style="padding:28px 0 28px 32px;overflow:hidden">
+    <div style="display:flex;gap:16px">
+      <sc-for list="{{ cruises }}" as="c" hint-placeholder-count="4">
+        <div style="width:296px;flex:none;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;box-shadow:0 8px 24px rgba(12,35,64,.08);overflow:hidden;display:flex;flex-direction:column">
+          <div style="position:relative;height:148px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.08),rgba(12,35,64,.55))"></div>
+            <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:12px;left:12px;background:#C8A45C;color:#0C2340;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:4px">{{ c.badge }}</div></sc-if>
+            <div style="position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(12,35,64,.35);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 9 V2 M4.5 4.3 7 1.8 l2.5 2.5" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.5 7.5 v4 h7 v-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:absolute;left:12px;bottom:10px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; {{ c.photo }}</div>
+          </div>
+          <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1">
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">{{ c.dur }}</div>
+            <div style="font-family:'Playfair Display',serif;font-size:19px;line-height:1.25;color:#0C2340">{{ c.name }}</div>
+            <div style="font-size:13px;color:#5A6B7E">{{ c.embark }}</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#5A6B7E"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M1.5 9.5 h11 l-2 3 h-7 Z" fill="#8A97A6"></path><path d="M3.5 9.5 V6.5 h7 v3 M5.5 6.5 V4.5 h3 v2" fill="none" stroke="#8A97A6" stroke-width="1.2"></path></svg>{{ c.ship }}</div>
+            <div style="margin-top:6px;display:flex;align-items:baseline;gap:10px;font-variant-numeric:tabular-nums"><span style="font-size:13px;color:#8A97A6;text-decoration:line-through">{{ c.was }}</span><span style="font-size:21px;font-weight:700;color:#0C2340">{{ c.now }}</span></div>
+            <div style="font-size:11px;color:#8A97A6">Includes Taxes, Fees &amp; Port Expenses</div>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:10px">
+              <div style="background:#C8A45C;color:#0C2340;font-size:13px;font-weight:700;padding:9px 22px;border-radius:8px;cursor:pointer" style-hover="background:#B08F44">Select</div>
+              <a href="#1d" style="font-size:13px;font-weight:600;color:#0C2340;border-bottom:1px solid rgba(12,35,64,.25)">See Itinerary</a>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1d ITINERARY SLIDE-OVER ============ -->
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>03 · Itinerary Slide-Over — 480px right panel</div>
+<div class="dv-card" style="width:620px;background:linear-gradient(90deg,rgba(12,35,64,.28),rgba(12,35,64,.28) 140px,#F4F6F8 140px)" data-screen-label="03 Itinerary Panel">
+  <div style="width:480px;margin-left:140px;background:#fff;box-shadow:-16px 0 40px rgba(12,35,64,.18);display:flex;flex-direction:column;max-height:880px">
+    <div style="padding:24px 28px 16px;border-bottom:1px solid rgba(12,35,64,.10);display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B08F44">12-Day Cruisetour</div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;color:#0C2340;margin-top:4px">Denali Explorer</div>
+        <div style="font-size:13px;color:#5A6B7E;margin-top:2px;font-variant-numeric:tabular-nums">Jun 14 &ndash; Jun 26, 2027 &middot; ms Aurelia</div>
+      </div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(12,35,64,.18);display:flex;align-items:center;justify-content:center;color:#5A6B7E;cursor:pointer;font-size:14px">×</div>
+    </div>
+    <div style="height:64px;background:repeating-linear-gradient(90deg,#DCE4EC 0 10px,#E6EBF1 10px 20px);position:relative;flex:none">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.06),rgba(12,35,64,.3))"></div>
+      <div style="position:absolute;left:14px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.9)">route map strip &mdash; Seattle → Denali</div>
+    </div>
+    <div style="flex:1;overflow:hidden;padding:20px 28px;display:flex;flex-direction:column;gap:0">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="6">
+        <div style="display:flex;gap:16px">
+          <div style="display:flex;flex-direction:column;align-items:center;width:12px;flex:none">
+            <div style="width:11px;height:11px;border-radius:50%;background:{{ d.dot }};border:2px solid {{ d.ring }};flex:none;margin-top:4px"></div>
+            <div style="width:1px;flex:1;background:rgba(12,35,64,.14)"></div>
+          </div>
+          <div style="flex:1;padding-bottom:18px;display:flex;gap:12px;align-items:flex-start">
+            <div style="flex:1">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8A97A6">{{ d.d }}</div>
+              <div style="font-family:'Playfair Display',serif;font-size:16px;color:#0C2340;margin-top:1px">{{ d.port }}</div>
+              <sc-if value="{{ d.note }}" hint-placeholder-val="{{ false }}"><div style="font-size:12.5px;color:#5A6B7E;margin-top:1px">{{ d.note }}</div></sc-if>
+              <sc-if value="{{ d.tag }}" hint-placeholder-val="{{ false }}"><div style="display:inline-block;margin-top:5px;font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">{{ d.tag }}</div></sc-if>
+            </div>
+            <sc-if value="{{ d.thumb }}" hint-placeholder-val="{{ false }}"><div style="width:64px;height:44px;border-radius:6px;background:repeating-linear-gradient(135deg,#DCE4EC 0 8px,#E6EBF1 8px 16px);border:1px solid rgba(12,35,64,.10);flex:none"></div></sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:14px 20px 18px;border-top:1px solid rgba(12,35,64,.10)">
+      <div style="display:flex;align-items:center;gap:10px;background:#F4F6F8;border:1px solid rgba(12,35,64,.12);border-radius:999px;padding:6px 6px 6px 18px">
+        <div style="flex:1;font-size:13.5px;color:#8A97A6">Ask about this itinerary&hellip;</div>
+        <div style="width:30px;height:30px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M3 8 h9 M8.5 4.5 12 8 l-3.5 3.5" stroke="#0C2340" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1e STEP TRACKER ============ -->
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>04 · Booking Step Tracker — in-chat + micro (draft chip)</div>
+<div class="dv-card" style="width:820px;background:#F4F6F8;padding:28px;display:flex;flex-direction:column;gap:22px" data-screen-label="04 Step Tracker">
+  <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:22px 26px;box-shadow:0 2px 8px rgba(12,35,64,.05)">
+    <div style="display:flex;align-items:center">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:110px"><div style="width:32px;height:32px;border-radius:50%;border:2px solid #C8A45C;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div style="font-size:12.5px;font-weight:600;color:#0C2340">Sailing</div></div>
+      <div style="flex:1;height:1px;background:#C8A45C;margin-bottom:22px"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:110px"><div style="width:32px;height:32px;border-radius:50%;border:2px solid #C8A45C;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div style="font-size:12.5px;font-weight:600;color:#0C2340">Fare</div></div>
+      <div style="flex:1;height:1px;background:#C8A45C;margin-bottom:22px"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:110px"><div style="width:32px;height:32px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#0C2340">3</div><div style="font-size:12.5px;font-weight:700;color:#0C2340">Stateroom</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.15);margin-bottom:22px"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:110px"><div style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(12,35,64,.3);background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5A6B7E">4</div><div style="font-size:12.5px;color:#5A6B7E">Add-ons</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.15);margin-bottom:22px"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:110px"><div style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(12,35,64,.3);background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5A6B7E">5</div><div style="font-size:12.5px;color:#5A6B7E">Review</div></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:16px">
+    <div style="width:240px;background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="rgba(12,35,64,.12)" stroke-width="3"></circle><circle cx="14" cy="14" r="11" fill="none" stroke="#C8A45C" stroke-width="3" stroke-dasharray="69" stroke-dashoffset="28" stroke-linecap="round" transform="rotate(-90 14 14)"></circle></svg><div><div style="font-family:'Playfair Display',serif;font-size:14px;color:#0C2340">Denali Explorer</div><div style="font-size:11px;color:#8A97A6">3 of 5 steps</div></div></div>
+      <div style="display:flex;gap:4px"><div style="height:3px;flex:1;border-radius:2px;background:#0C2340"></div><div style="height:3px;flex:1;border-radius:2px;background:#0C2340"></div><div style="height:3px;flex:1;border-radius:2px;background:#C8A45C"></div><div style="height:3px;flex:1;border-radius:2px;background:rgba(12,35,64,.12)"></div><div style="height:3px;flex:1;border-radius:2px;background:rgba(12,35,64,.12)"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#8A97A6"><span>Sailing</span><span>Fare</span><span style="color:#B08F44;font-weight:700">Stateroom</span><span>Add-ons</span><span>Review</span></div>
+    </div>
+    <div style="font-size:12px;color:#8A97A6;max-width:280px;line-height:1.5;padding-top:6px">Micro tracker lives inside the draft chip in the rail; segments share the same navy-done / gold-active / hairline-upcoming grammar.</div>
+  </div>
+</div></div>
+
+<!-- ============ 1f FARE TILES ============ -->
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>05 · Fare Package Tiles — selected state with gold glow</div>
+<div class="dv-card" style="width:860px;background:#F4F6F8;padding:28px;display:flex;gap:18px" data-screen-label="05 Fare Tiles">
+  <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.14);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px">
+    <div>
+      <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">Fare Package</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:#0C2340;margin-top:4px">Standard Fare</div>
+      <div style="font-size:14px;color:#5A6B7E;margin-top:2px;font-variant-numeric:tabular-nums">Included in your fare</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#22344B">
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Stateroom &amp; main dining</div>
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Entertainment &amp; enrichment</div>
+      <div style="display:flex;gap:9px;align-items:center;color:#8A97A6"><span style="width:12px;text-align:center">&ndash;</span>Beverages, specialty dining, Wi-Fi billed separately</div>
+    </div>
+    <div style="margin-top:auto;border-top:1px solid rgba(12,35,64,.08);padding-top:12px;font-size:11.5px;color:#8A97A6">Deposit US$ 350 per guest, refundable for 30 days.</div>
+    <div style="border:1px solid rgba(12,35,64,.3);color:#0C2340;font-size:13.5px;font-weight:600;padding:10px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">Keep Standard</div>
+  </div>
+  <div style="flex:1;position:relative;background:#fff;border:2px solid #0C2340;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 0 0 4px rgba(200,164,92,.25),0 10px 30px rgba(12,35,64,.10)">
+    <div style="position:absolute;top:-11px;left:24px;background:#C8A45C;color:#0C2340;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:4px">Recommended</div>
+    <div>
+      <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B08F44">Fare Package</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:#0C2340;margin-top:4px">The Signature Collection</div>
+      <div style="font-size:14px;color:#0C2340;margin-top:2px;font-variant-numeric:tabular-nums"><span style="font-weight:700">+ US$ 55</span> <span style="color:#5A6B7E">per person, per day</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#22344B">
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Signature Beverage Package</div>
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>One Specialty Dining night</div>
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>US$ 100 Shore Excursion credit</div>
+      <div style="display:flex;gap:9px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Wi-Fi throughout the voyage</div>
+    </div>
+    <div style="margin-top:auto;border-top:1px solid rgba(12,35,64,.08);padding-top:12px;font-size:11.5px;color:#8A97A6">Guests in the same stateroom share one package selection.</div>
+    <div style="background:#C8A45C;color:#0C2340;font-size:13.5px;font-weight:700;padding:10px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="background:#B08F44">Selected</div>
+  </div>
+</div></div>
+
+<!-- ============ 1g STATEROOM PICKER ============ -->
+<div class="dv-opt" id="1g"><div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>06 · Stateroom Picker — categories, location control, live total</div>
+<div class="dv-card" style="width:860px;background:#F4F6F8;padding:28px;display:flex;flex-direction:column;gap:16px" data-screen-label="06 Stateroom Picker">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+    <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="4">
+      <div style="background:#fff;border:{{ r.border }};border-radius:12px;overflow:hidden;box-shadow:{{ r.shadow }};cursor:pointer">
+        <div style="position:relative;height:88px;background:repeating-linear-gradient(135deg,#DCE4EC 0 10px,#E6EBF1 10px 20px)"><div style="position:absolute;left:10px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:#5A6B7E">room photo</div></div>
+        <div style="padding:12px 14px 14px;display:flex;flex-direction:column;gap:5px">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:#0C2340">{{ r.name }}</div>
+          <div style="font-size:13px;color:#22344B;font-variant-numeric:tabular-nums">{{ r.delta }} <span style="color:#8A97A6;font-size:11.5px">per person</span></div>
+          <sc-if value="{{ r.cap }}" hint-placeholder-val="{{ false }}"><div style="align-self:flex-start;font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">{{ r.cap }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8A97A6">Location</div>
+    <div style="display:flex;background:#fff;border:1px solid rgba(12,35,64,.14);border-radius:999px;padding:3px">
+      <div style="padding:7px 20px;border-radius:999px;font-size:13px;color:#5A6B7E;cursor:pointer">Forward</div>
+      <div style="padding:7px 20px;border-radius:999px;font-size:13px;font-weight:700;color:#0C2340;background:rgba(200,164,92,.22);cursor:pointer">Midship</div>
+      <div style="padding:7px 20px;border-radius:999px;font-size:13px;color:#5A6B7E;cursor:pointer">Aft</div>
+    </div>
+  </div>
+  <div style="background:#0C2340;border-radius:10px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between">
+    <div style="font-size:13.5px;color:rgba(255,255,255,.85);font-variant-numeric:tabular-nums">{{ draftTotalLine }}</div>
+    <div style="font-size:12.5px;color:#C8A45C;font-weight:600;cursor:pointer">View breakdown ›</div>
+  </div>
+</div></div>
+
+<!-- ============ 1h DINING TILES ============ -->
+<div class="dv-opt" id="1h"><div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>07 · Dining &amp; Experience Tiles — night-grid popover + reserved state</div>
+<div class="dv-card" style="width:920px;background:#F4F6F8;padding:28px 28px 40px" data-screen-label="07 Dining Tiles">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div style="position:relative;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:visible;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+      <div style="position:relative;height:96px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px);border-radius:12px 12px 0 0;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; steakhouse</div></div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:19px;color:#0C2340">The Beacon Grill</div><div style="font-size:12.5px;color:#5A6B7E;font-variant-numeric:tabular-nums">US$ 46 per guest</div></div>
+        <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Steakhouse</div><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Dress: Elegant</div></div>
+        <div style="margin-top:4px;background:#C8A45C;color:#0C2340;font-size:13px;font-weight:700;padding:9px 0;border-radius:8px;text-align:center;cursor:pointer">Reserve a night</div>
+      </div>
+      <!-- popover -->
+      <div style="position:absolute;left:18px;right:18px;bottom:-26px;transform:translateY(100%);z-index:3;background:#fff;border:1px solid rgba(12,35,64,.14);border-radius:12px;box-shadow:0 18px 44px rgba(12,35,64,.22);padding:16px 18px">
+        <div style="position:absolute;top:-6px;left:44px;width:12px;height:12px;background:#fff;border-left:1px solid rgba(12,35,64,.14);border-top:1px solid rgba(12,35,64,.14);transform:rotate(45deg)"></div>
+        <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8A97A6;margin-bottom:40px">Choose a night</div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:7px">
+          <sc-for list="{{ nights }}" as="n" hint-placeholder-count="12">
+            <div style="position:relative;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;border:{{ n.border }};background:{{ n.bg }};color:{{ n.color }};cursor:{{ n.cursor }}">
+              N{{ n.n }}
+              <sc-if value="{{ n.tip }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-34px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#0C2340;color:#fff;font-size:11px;font-weight:400;padding:5px 10px;border-radius:6px">{{ n.tip }}<div style="position:absolute;bottom:-4px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0C2340"></div></div></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:12px;color:#8A97A6">Night 9 &middot; last sea night &middot; 7:30 PM</div><div style="background:#C8A45C;color:#0C2340;font-size:12.5px;font-weight:700;padding:7px 18px;border-radius:7px;cursor:pointer">Confirm</div></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+      <div style="position:relative;height:96px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; pan-asian</div></div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:19px;color:#0C2340">Saffron</div><div style="font-size:12.5px;color:#5A6B7E;font-variant-numeric:tabular-nums">US$ 39 per guest</div></div>
+        <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Pan-Asian</div></div>
+        <div style="margin-top:4px;background:rgba(200,164,92,.14);border:1px solid #C8A45C;color:#0C2340;font-size:13px;font-weight:600;padding:8px 0;border-radius:8px;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#B08F44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Reserved &middot; Night 5 &middot; 7:30 PM <span style="color:#8A97A6;font-weight:400;margin-left:4px;border-bottom:1px solid rgba(12,35,64,.2);cursor:pointer">Change</span></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+      <div style="position:relative;height:96px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; italian</div></div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:19px;color:#0C2340">Trattoria Lume</div><div style="font-size:12.5px;color:#5A6B7E;font-variant-numeric:tabular-nums">US$ 29 per guest</div></div>
+        <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Italian</div><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Family friendly</div></div>
+        <div style="margin-top:4px;border:1px solid rgba(12,35,64,.25);color:#0C2340;font-size:13px;font-weight:600;padding:8px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">Reserve a night</div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(12,35,64,.06)">
+      <div style="position:relative;height:96px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.05),rgba(12,35,64,.45))"></div><div style="position:absolute;left:12px;bottom:8px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:rgba(255,255,255,.85)">photo &mdash; main dining</div></div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:19px;color:#0C2340">Main Dining Room</div><div style="font-size:12.5px;color:#5A6B7E">Included</div></div>
+        <div style="display:flex;gap:6px"><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Classic</div><div style="font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:3px 9px;border-radius:999px">Open seating</div></div>
+        <div style="margin-top:4px;border:1px solid rgba(12,35,64,.25);color:#0C2340;font-size:13px;font-weight:600;padding:8px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">Set a preferred time</div>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px"></div>
+</div></div>
+
+<!-- ============ 1i LAND-TOUR BUILDER ============ -->
+<div class="dv-opt" id="1i"><div class="dv-olabel"><a class="dv-oid" href="#1i">1i</a>08 · Land-Tour Builder — day slots, conflict, mini timeline</div>
+<div class="dv-card" style="width:1000px;background:#F4F6F8;padding:28px;display:flex;flex-direction:column;gap:20px" data-screen-label="08 Land-Tour Builder">
+  <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Playfair Display',serif;font-size:20px;color:#0C2340">Your four land days, before the ship</div><div style="font-size:12.5px;color:#8A97A6">Anchorage → Denali → Whittier</div></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6;padding-left:2px">Day 1 · Anchorage</div>
+      <div style="background:#fff;border:2px solid #0C2340;border-radius:10px;padding:14px;box-shadow:0 0 0 3px rgba(200,164,92,.22)"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">City Arrival &amp; Coastal Trail</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">Half day &middot; included</div><div style="margin-top:8px;font-size:11.5px;font-weight:700;color:#B08F44">Selected</div></div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:14px;cursor:pointer" style-hover="border-color:#C8A45C"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Wildlife Conservation Center</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">4 hours &middot; + US$ 89</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6;padding-left:2px">Day 2 · To Denali</div>
+      <div style="background:#fff;border:2px solid #0C2340;border-radius:10px;padding:14px;box-shadow:0 0 0 3px rgba(200,164,92,.22)"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Domed Rail — Talkeetna → Denali</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">Full day &middot; included</div><div style="margin-top:8px;font-size:11.5px;font-weight:700;color:#B08F44">Selected</div></div>
+      <div style="position:relative;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:10px;padding:14px;opacity:.45">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Motorcoach Direct</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">6 hours &middot; included</div>
+        <div style="position:absolute;top:-38px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#0C2340;color:#fff;font-size:11px;padding:6px 12px;border-radius:6px;opacity:1">Conflicts with the rail journey on Day 2<div style="position:absolute;bottom:-4px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0C2340"></div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6;padding-left:2px">Day 3 · Denali</div>
+      <div style="background:#fff;border:2px solid #0C2340;border-radius:10px;padding:14px;box-shadow:0 0 0 3px rgba(200,164,92,.22)"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Denali Lodge — 2 Nights</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">Tundra Wilderness Tour &middot; included</div><div style="margin-top:8px;font-size:11.5px;font-weight:700;color:#B08F44">Selected</div></div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:14px;cursor:pointer" style-hover="border-color:#C8A45C"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Flightseeing — Summit Circle</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">2 hours &middot; + US$ 429</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6;padding-left:2px">Day 4 · Fairbanks</div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:14px;cursor:pointer" style-hover="border-color:#C8A45C"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Fairbanks City &amp; Riverboat</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">Full day &middot; + US$ 119</div></div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:14px;cursor:pointer" style-hover="border-color:#C8A45C"><div style="font-family:'Playfair Display',serif;font-size:15px;color:#0C2340">Gold Dredge &amp; Pipeline</div><div style="font-size:12px;color:#5A6B7E;margin-top:3px">Half day &middot; + US$ 74</div></div>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:10px;padding:16px 20px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6;margin-bottom:12px">Your plan so far</div>
+    <div style="display:flex;align-items:center;gap:0">
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;width:140px"><div style="width:9px;height:9px;border-radius:50%;background:#C8A45C"></div><div style="font-size:12px;font-weight:600;color:#0C2340">Anchorage</div><div style="font-size:10.5px;color:#8A97A6">Coastal Trail</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.18);margin-bottom:26px"></div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;width:140px"><div style="width:9px;height:9px;border-radius:50%;background:#C8A45C"></div><div style="font-size:12px;font-weight:600;color:#0C2340">Domed Rail</div><div style="font-size:10.5px;color:#8A97A6">Talkeetna → Denali</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.18);margin-bottom:26px"></div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;width:140px"><div style="width:9px;height:9px;border-radius:50%;background:#C8A45C"></div><div style="font-size:12px;font-weight:600;color:#0C2340">Denali Lodge</div><div style="font-size:10.5px;color:#8A97A6">2 nights</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.18);margin-bottom:26px"></div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;width:140px"><div style="width:9px;height:9px;border-radius:50%;border:1.5px dashed #8A97A6;background:#fff"></div><div style="font-size:12px;color:#8A97A6">Day 4 open</div><div style="font-size:10.5px;color:#8A97A6">choose above</div></div>
+      <div style="flex:1;height:1px;background:rgba(12,35,64,.18);margin-bottom:26px"></div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;width:140px"><div style="width:9px;height:9px;border-radius:50%;background:#0C2340"></div><div style="font-size:12px;font-weight:600;color:#0C2340">Embark ms Aurelia</div><div style="font-size:10.5px;color:#8A97A6">Whittier · Day 5</div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1j COMPARISON ============ -->
+<div class="dv-opt" id="1j"><div class="dv-olabel"><a class="dv-oid" href="#1j">1j</a>09 · Comparison View — 2 columns, differences tinted, 3 max</div>
+<div class="dv-card" style="width:880px;background:#F4F6F8;padding:28px" data-screen-label="09 Comparison">
+  <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden">
+    <div style="display:grid;grid-template-columns:170px 1fr 1fr;border-bottom:1px solid rgba(12,35,64,.10);background:#fff">
+      <div style="padding:18px;display:flex;flex-direction:column;justify-content:flex-end"><div style="font-size:11px;color:#8A97A6;line-height:1.5">Comparing 2 of 3<br>possible sailings</div></div>
+      <div style="padding:18px;border-left:1px solid rgba(12,35,64,.08)">
+        <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(135deg,#D8E1EA 0 10px,#E4EAF1 10px 20px);margin-bottom:10px;position:relative"><div style="position:absolute;left:8px;bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5A6B7E">photo</div></div>
+        <div style="font-family:'Playfair Display',serif;font-size:17px;color:#0C2340">Denali Explorer</div>
+        <div style="font-size:12px;color:#8A97A6">ms Aurelia · Cruisetour</div>
+      </div>
+      <div style="padding:18px;border-left:1px solid rgba(12,35,64,.08)">
+        <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(135deg,#D8E1EA 0 10px,#E4EAF1 10px 20px);margin-bottom:10px;position:relative"><div style="position:absolute;left:8px;bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5A6B7E">photo</div></div>
+        <div style="font-family:'Playfair Display',serif;font-size:17px;color:#0C2340">Glacier Discovery</div>
+        <div style="font-size:12px;color:#8A97A6">ms Zuiderlicht · Cruise only</div>
+      </div>
+    </div>
+    <sc-for list="{{ compareRows }}" as="row" hint-placeholder-count="8">
+      <div style="display:grid;grid-template-columns:170px 1fr 1fr;background:{{ row.bg }};border-bottom:1px solid rgba(12,35,64,.06)">
+        <div style="padding:11px 18px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8A97A6">{{ row.k }}</div>
+        <div style="padding:11px 18px;font-size:14px;color:#22344B;border-left:1px solid rgba(12,35,64,.06);font-variant-numeric:tabular-nums">{{ row.a }}</div>
+        <div style="padding:11px 18px;font-size:14px;color:#22344B;border-left:1px solid rgba(12,35,64,.06);font-variant-numeric:tabular-nums">{{ row.b }}</div>
+      </div>
+    </sc-for>
+    <div style="display:grid;grid-template-columns:170px 1fr 1fr">
+      <div></div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(12,35,64,.06)"><div style="background:#C8A45C;color:#0C2340;font-size:13px;font-weight:700;padding:10px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="background:#B08F44">Continue to checkout</div></div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(12,35,64,.06)"><div style="background:#C8A45C;color:#0C2340;font-size:13px;font-weight:700;padding:10px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="background:#B08F44">Continue to checkout</div></div>
+    </div>
+  </div>
+  <div style="margin-top:12px;text-align:center;font-size:12px;color:#8A97A6">+ Add a third sailing to compare</div>
+</div></div>
+
+<!-- ============ 1k CHECKOUT ============ -->
+<div class="dv-opt" id="1k"><div class="dv-olabel"><a class="dv-oid" href="#1k">1k</a>10 · Checkout — accordion open at Step 4, order summary right</div>
+<div class="dv-card" style="width:1440px;background:#F4F6F8" data-screen-label="10 Checkout">
+  <div style="background:#fff;border-bottom:1px solid rgba(12,35,64,.10)">
+    <div style="height:3px;background:rgba(12,35,64,.08)"><div style="height:3px;width:70%;background:#C8A45C"></div></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px">
+      <a href="#1a" style="font-size:13px;font-weight:600;color:#0C2340;display:flex;align-items:center;gap:6px"><span style="font-size:16px;line-height:1">‹</span> Return to concierge</a>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.2em;color:#0C2340">MERIDIAN LINE</div>
+      <div style="font-size:12px;color:#8A97A6">Step 4 of 5 · Add-ons</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:28px;padding:32px 40px 44px;align-items:flex-start">
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:14px">
+        <div style="width:26px;height:26px;border-radius:50%;border:2px solid #C8A45C;display:flex;align-items:center;justify-content:center;flex:none"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <div style="flex:1"><span style="font-size:14px;font-weight:700;color:#0C2340">1 · Sailing</span><span style="font-size:13.5px;color:#5A6B7E;margin-left:12px">Denali Explorer &middot; Jun 14 &ndash; Jun 26, 2027 &middot; ms Aurelia</span></div>
+        <a href="#1k" style="font-size:13px;font-weight:600;color:#0C2340;border-bottom:1px solid rgba(12,35,64,.25)">Edit</a>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:14px">
+        <div style="width:26px;height:26px;border-radius:50%;border:2px solid #C8A45C;display:flex;align-items:center;justify-content:center;flex:none"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <div style="flex:1"><span style="font-size:14px;font-weight:700;color:#0C2340">2 · Fare</span><span style="font-size:13.5px;color:#5A6B7E;margin-left:12px">The Signature Collection &middot; 2 guests</span></div>
+        <a href="#1k" style="font-size:13px;font-weight:600;color:#0C2340;border-bottom:1px solid rgba(12,35,64,.25)">Edit</a>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:14px">
+        <div style="width:26px;height:26px;border-radius:50%;border:2px solid #C8A45C;display:flex;align-items:center;justify-content:center;flex:none"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#0C2340" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <div style="flex:1"><span style="font-size:14px;font-weight:700;color:#0C2340">3 · Stateroom</span><span style="font-size:13.5px;color:#5A6B7E;margin-left:12px">Verandah VB &middot; Midship &middot; Deck 6</span></div>
+        <a href="#1k" style="font-size:13px;font-weight:600;color:#0C2340;border-bottom:1px solid rgba(12,35,64,.25)">Edit</a>
+      </div>
+      <div style="background:#fff;border:2px solid #0C2340;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(12,35,64,.08)">
+        <div style="padding:18px 22px 6px;display:flex;align-items:center;gap:14px">
+          <div style="width:26px;height:26px;border-radius:50%;background:#C8A45C;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#0C2340;flex:none">4</div>
+          <div style="font-size:15px;font-weight:700;color:#0C2340">Add-ons</div>
+        </div>
+        <div style="padding:10px 22px 22px 62px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:13px 16px">
+            <div><div style="font-size:14px;font-weight:600;color:#0C2340">Specialty dining · Saffron</div><div style="font-size:12.5px;color:#5A6B7E">Night 5 &middot; 7:30 PM &middot; 2 guests</div></div>
+            <div style="display:flex;align-items:center;gap:14px"><div style="font-size:14px;font-variant-numeric:tabular-nums;color:#22344B">US$ 78</div><div style="width:36px;height:20px;border-radius:999px;background:#0C2340;position:relative;cursor:pointer"><div style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff"></div></div></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:13px 16px">
+            <div><div style="font-size:14px;font-weight:600;color:#0C2340">Shore excursion · Glacier Bay kayaking</div><div style="font-size:12.5px;color:#5A6B7E">Day 5 &middot; morning &middot; uses US$ 100 credit</div></div>
+            <div style="display:flex;align-items:center;gap:14px"><div style="font-size:14px;font-variant-numeric:tabular-nums;color:#22344B">US$ 158</div><div style="width:36px;height:20px;border-radius:999px;background:#0C2340;position:relative;cursor:pointer"><div style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff"></div></div></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(12,35,64,.12);border-radius:10px;padding:13px 16px;opacity:.75">
+            <div><div style="font-size:14px;font-weight:600;color:#0C2340">Flightseeing · Summit Circle</div><div style="font-size:12.5px;color:#5A6B7E">Denali &middot; Day 3 &middot; weather dependent</div></div>
+            <div style="display:flex;align-items:center;gap:14px"><div style="font-size:14px;font-variant-numeric:tabular-nums;color:#22344B">US$ 858</div><div style="width:36px;height:20px;border-radius:999px;background:rgba(12,35,64,.15);position:relative;cursor:pointer"><div style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff"></div></div></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:6px"><div style="background:#C8A45C;color:#0C2340;font-size:13.5px;font-weight:700;padding:10px 28px;border-radius:8px;cursor:pointer" style-hover="background:#B08F44">Continue to Review</div></div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:14px;opacity:.6">
+        <div style="width:26px;height:26px;border-radius:50%;border:1px solid rgba(12,35,64,.3);display:flex;align-items:center;justify-content:center;font-size:12px;color:#5A6B7E;flex:none">5</div>
+        <div style="font-size:14px;color:#5A6B7E">Review &amp; reserve</div>
+      </div>
+    </div>
+    <div style="width:380px;flex:none;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(12,35,64,.08)">
+      <div style="position:relative;height:120px;background:repeating-linear-gradient(135deg,#D8E1EA 0 12px,#E4EAF1 12px 24px)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,.1),rgba(12,35,64,.6))"></div><div style="position:absolute;left:16px;bottom:12px"><div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)">12-Day Cruisetour</div><div style="font-family:'Playfair Display',serif;font-size:20px;color:#fff">Denali Explorer</div></div></div>
+      <div style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Dates</span><span style="color:#22344B;font-variant-numeric:tabular-nums">Jun 14 &ndash; Jun 26, 2027</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Fare package</span><span style="color:#22344B">The Signature Collection</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Stateroom</span><span style="color:#22344B">Verandah VB · Midship</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Guests</span><span style="color:#22344B;font-variant-numeric:tabular-nums">{{ guestsLabel }}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Add-ons</span><span style="color:#22344B;font-variant-numeric:tabular-nums">US$ 236</span></div>
+        <sc-if value="{{ showScarcity }}" hint-placeholder-val="{{ true }}"><div style="align-self:flex-start;font-size:11px;font-weight:600;color:#4E7E86;background:rgba(78,126,134,.10);padding:4px 10px;border-radius:999px">3 left at this fare</div></sc-if>
+        <div style="border-top:1px solid rgba(12,35,64,.10);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:#5A6B7E">Total</span><span style="font-size:24px;font-weight:700;color:#0C2340;font-variant-numeric:tabular-nums">{{ draftTotal }}</span></div>
+        <div style="font-size:11px;color:#8A97A6;margin-top:-4px">Includes Taxes, Fees &amp; Port Expenses</div>
+        <div style="background:#C8A45C;color:#0C2340;font-size:14.5px;font-weight:700;padding:12px 0;border-radius:8px;text-align:center;cursor:pointer;margin-top:6px" style-hover="background:#B08F44">Reserve</div>
+        <div style="font-size:11.5px;color:#8A97A6;text-align:center">Deposit US$ 700 due today &middot; refundable for 30 days</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1l VOICE OVERLAY ============ -->
+<div class="dv-opt" id="1l"><div class="dv-olabel"><a class="dv-oid" href="#1l">1l</a>11 · Voice Overlay — live chat behind, waveform sheet</div>
+<div class="dv-card" style="width:1000px;position:relative;background:#F4F6F8;height:560px;overflow:hidden" data-screen-label="11 Voice Overlay">
+  <div style="padding:32px 0;display:flex;flex-direction:column;gap:18px;align-items:center;filter:none">
+    <div style="width:720px;display:flex;justify-content:flex-end"><div style="max-width:480px;background:#0C2340;color:#fff;padding:12px 20px;border-radius:22px 22px 6px 22px;font-size:15px;line-height:1.5">Actually, can we move dinner at Saffron?</div></div>
+    <div style="width:720px;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.6;color:#22344B;box-shadow:0 2px 8px rgba(12,35,64,.05)">Of course. Night 9 is your last sea night &mdash; the dining room tends to be quietest then. Here is the change, ready to confirm.</div>
+    <div style="width:720px;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(12,35,64,.05)">
+      <div><div style="font-size:14px;font-weight:600;color:#0C2340">Saffron &middot; move reservation</div><div style="font-size:12.5px;color:#5A6B7E">Night 5, 7:30 PM → Night 9, 7:30 PM</div></div>
+      <div style="background:#C8A45C;color:#0C2340;font-size:12.5px;font-weight:700;padding:8px 18px;border-radius:7px">Confirm change</div>
+    </div>
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,35,64,0) 30%,rgba(12,35,64,.35))"></div>
+  <div style="position:absolute;left:50%;transform:translateX(-50%);bottom:24px;width:640px;background:#fff;border:1px solid rgba(12,35,64,.12);border-radius:18px;box-shadow:0 24px 60px rgba(12,35,64,.3);padding:22px 28px;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:center;justify-content:center;gap:3px;height:36px">
+      <sc-for list="{{ bars }}" as="b" hint-placeholder-count="21">
+        <div style="width:4px;border-radius:2px;background:{{ b.c }};height:{{ b.h }}px;transform-origin:center;animation:cwave 1.2s ease-in-out infinite;animation-delay:{{ b.d }}"></div>
+      </sc-for>
+    </div>
+    <div style="text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:#0C2340">&ldquo;&hellip;swap dining to the last sea night&rdquo;</div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:12px;color:#8A97A6">Listening &mdash; tap to interrupt</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-size:12px;color:#5A6B7E;border:1px solid rgba(12,35,64,.18);padding:6px 14px;border-radius:999px;cursor:pointer">Switch to typing</div>
+        <div style="width:34px;height:34px;border-radius:50%;background:#0C2340;display:flex;align-items:center;justify-content:center;cursor:pointer"><div style="width:11px;height:11px;border-radius:2px;background:#fff"></div></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1m SUGGESTION CHIPS ============ -->
+<div class="dv-opt" id="1m"><div class="dv-olabel"><a class="dv-oid" href="#1m">1m</a>12 · Suggestion Chips</div>
+<div class="dv-card" style="width:820px;background:#F4F6F8;padding:26px 30px;display:flex;flex-direction:column;gap:12px" data-screen-label="12 Suggestion Chips">
+  <div style="font-size:12px;color:#8A97A6;display:flex;align-items:center;gap:6px"><span style="color:#C8A45C;font-size:13px">✦</span>You can also try</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:8px 18px;font-size:13.5px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C;background:rgba(200,164,92,.06)">What ports does ms Aurelia visit?</div>
+    <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:8px 18px;font-size:13.5px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C;background:rgba(200,164,92,.06)">Compare Verandah vs Suite</div>
+    <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:8px 18px;font-size:13.5px;color:#0C2340;cursor:pointer;background:#fff" style-hover="border-color:#C8A45C;background:rgba(200,164,92,.06)">What&rsquo;s the Compass Circle?</div>
+  </div>
+</div></div>
+
+<!-- ============ 1n HANDOFF / CONFIRMATION ============ -->
+<div class="dv-opt" id="1n"><div class="dv-olabel"><a class="dv-oid" href="#1n">1n</a>13 · Handoff &amp; Confirmation Cards</div>
+<div class="dv-card" style="width:980px;background:#F4F6F8;padding:28px;display:flex;gap:20px;align-items:flex-start" data-screen-label="13 Handoff / Confirmation">
+  <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(12,35,64,.08)">
+    <div style="display:flex;gap:3px;height:88px">
+      <div style="flex:1;background:repeating-linear-gradient(135deg,#D8E1EA 0 10px,#E4EAF1 10px 20px);position:relative"><div style="position:absolute;left:8px;bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5A6B7E">glacier</div></div>
+      <div style="flex:1;background:repeating-linear-gradient(45deg,#DCE4EC 0 10px,#E6EBF1 10px 20px);position:relative"><div style="position:absolute;left:8px;bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5A6B7E">rail car</div></div>
+      <div style="flex:1;background:repeating-linear-gradient(135deg,#D8E1EA 0 10px,#E4EAF1 10px 20px);position:relative"><div style="position:absolute;left:8px;bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5A6B7E">denali</div></div>
+    </div>
+    <div style="padding:20px 22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A97A6">Your draft is ready</div>
+      <div style="font-family:'Playfair Display',serif;font-size:21px;color:#0C2340">Denali Explorer &mdash; Jun 14 &ndash; 26, 2027</div>
+      <div style="font-size:13.5px;color:#5A6B7E;line-height:1.6">Signature Collection fare &middot; Verandah VB midship &middot; Saffron on Night 9 &middot; four Denali land days.</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(12,35,64,.08);padding-top:12px;margin-top:4px"><span style="font-size:13px;color:#5A6B7E">Total, 2 guests</span><span style="font-size:22px;font-weight:700;color:#0C2340;font-variant-numeric:tabular-nums">US$ 8,092</span></div>
+      <div style="background:#C8A45C;color:#0C2340;font-size:14px;font-weight:700;padding:11px 0;border-radius:8px;text-align:center;cursor:pointer;margin-top:4px" style-hover="background:#B08F44">Continue to checkout</div>
+      <div style="font-size:11.5px;color:#8A97A6;text-align:center">Your draft is held for 7 days &mdash; no payment yet.</div>
+    </div>
+  </div>
+  <div style="flex:1;background:#fff;border:1px solid #C8A45C;border-radius:12px;overflow:hidden;box-shadow:0 0 0 4px rgba(200,164,92,.18),0 8px 24px rgba(12,35,64,.08)">
+    <div style="background:#0C2340;padding:18px 22px;display:flex;align-items:center;gap:12px">
+      <div style="width:34px;height:34px;border-radius:50%;border:2px solid #C8A45C;display:flex;align-items:center;justify-content:center;flex:none"><svg width="14" height="14" viewBox="0 0 12 12"><path d="M2.5 6.5 5 9 9.5 3.5" fill="none" stroke="#C8A45C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:18px;color:#fff">Reserved, and gladly so.</div><div style="font-size:12px;color:rgba(255,255,255,.7)">Booking reference <span style="font-variant-numeric:tabular-nums;color:#C8A45C;font-weight:600">MRD-4A72K</span></div></div>
+    </div>
+    <div style="padding:20px 22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:'Playfair Display',serif;font-size:19px;color:#0C2340">Denali Explorer &mdash; Jun 14 &ndash; 26, 2027</div>
+      <div style="font-size:13.5px;color:#5A6B7E;line-height:1.6">A confirmation has been sent to eleanor@&hellip;com. Your travel documents will follow closer to sailing.</div>
+      <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Deposit received</span><span style="color:#22344B;font-variant-numeric:tabular-nums">US$ 700</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13.5px"><span style="color:#5A6B7E">Balance due Mar 16, 2027</span><span style="color:#22344B;font-variant-numeric:tabular-nums">US$ 7,392</span></div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <div style="flex:1;border:1px solid rgba(12,35,64,.25);color:#0C2340;font-size:13px;font-weight:600;padding:9px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">View booking</div>
+        <div style="flex:1;border:1px solid rgba(12,35,64,.25);color:#0C2340;font-size:13px;font-weight:600;padding:9px 0;border-radius:8px;text-align:center;cursor:pointer" style-hover="border-color:#C8A45C">Add to calendar</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ 1o STATES PASS ============ -->
+<div class="dv-opt" id="1o"><div class="dv-olabel"><a class="dv-oid" href="#1o">1o</a>14 · States — loading shimmer, empty, error</div>
+<div class="dv-card" style="width:1000px;background:#F4F6F8;padding:28px;display:flex;flex-direction:column;gap:24px" data-screen-label="14 States">
+  <div>
+    <div style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#8A97A6;margin-bottom:10px">loading — skeleton card row</div>
+    <div style="display:flex;gap:16px">
+      <div style="width:296px;background:#fff;border:1px solid rgba(12,35,64,.08);border-radius:12px;overflow:hidden">
+        <div style="height:148px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite"></div>
+        <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+          <div style="height:9px;width:40%;border-radius:4px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite"></div>
+          <div style="height:16px;width:85%;border-radius:4px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite"></div>
+          <div style="height:11px;width:60%;border-radius:4px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite"></div>
+          <div style="height:20px;width:45%;border-radius:4px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite;margin-top:6px"></div>
+          <div style="height:34px;width:100%;border-radius:8px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite;margin-top:4px"></div>
+        </div>
+      </div>
+      <div style="width:296px;background:#fff;border:1px solid rgba(12,35,64,.08);border-radius:12px;overflow:hidden;opacity:.7">
+        <div style="height:148px;background:linear-gradient(90deg,#EDF1F5 25%,#F6F8FA 50%,#EDF1F5 75%);background-size:800px 100%;animation:cshim 1.4s linear infinite"></div>
+        <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+          <div style="height:9px;width:40%;border-radius:4px;background:#EDF1F5"></div>
+          <div style="height:16px;width:85%;border-radius:4px;background:#EDF1F5"></div>
+          <div style="height:11px;width:60%;border-radius:4px;background:#EDF1F5"></div>
+          <div style="height:20px;width:45%;border-radius:4px;background:#EDF1F5;margin-top:6px"></div>
+          <div style="height:34px;width:100%;border-radius:8px;background:#EDF1F5;margin-top:4px"></div>
+        </div>
+      </div>
+      <div style="width:296px;background:#fff;border:1px solid rgba(12,35,64,.08);border-radius:12px;overflow:hidden;opacity:.4">
+        <div style="height:148px;background:#EDF1F5"></div>
+        <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+          <div style="height:9px;width:40%;border-radius:4px;background:#EDF1F5"></div>
+          <div style="height:16px;width:85%;border-radius:4px;background:#EDF1F5"></div>
+          <div style="height:11px;width:60%;border-radius:4px;background:#EDF1F5"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:13px;color:#8A97A6;display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#C8A45C;animation:cpulse 1s infinite"></span>Searching June sailings to Alaska&hellip;</div>
+  </div>
+  <div style="display:flex;gap:20px">
+    <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#8A97A6;align-self:flex-start">empty</div>
+      <div style="width:44px;height:44px;border-radius:50%;background:#F4F6F8;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="8" cy="8" r="5.5" fill="none" stroke="#8A97A6" stroke-width="1.5"></circle><path d="M12.2 12.2 16 16" stroke="#8A97A6" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;color:#0C2340">No sailings match those dates.</div>
+      <div style="font-size:13.5px;color:#5A6B7E;max-width:320px;line-height:1.6">Shall I widen the dates? June departures a week either side have good availability.</div>
+      <div style="display:flex;gap:10px">
+        <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer" style-hover="border-color:#C8A45C">Widen by a week</div>
+        <div style="border:1px solid rgba(12,35,64,.25);border-radius:999px;padding:7px 16px;font-size:13px;color:#0C2340;cursor:pointer" style-hover="border-color:#C8A45C">Try July instead</div>
+      </div>
+    </div>
+    <div style="flex:1;background:#fff;border:1px solid rgba(12,35,64,.10);border-radius:12px;padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#8A97A6;align-self:flex-start">error</div>
+      <div style="width:44px;height:44px;border-radius:50%;background:#F4F6F8;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 3.5 v5.5" stroke="#5A6B7E" stroke-width="1.8" stroke-linecap="round"></path><circle cx="8" cy="12" r="1.1" fill="#5A6B7E"></circle></svg></div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;color:#0C2340">That didn&rsquo;t go through.</div>
+      <div style="font-size:13.5px;color:#5A6B7E;max-width:320px;line-height:1.6">The fare search paused mid-request. Your draft is safe &mdash; nothing was changed.</div>
+      <div style="border:1px solid rgba(12,35,64,.3);border-radius:999px;padding:8px 22px;font-size:13px;font-weight:600;color:#0C2340;cursor:pointer" style-hover="border-color:#C8A45C">Try again</div>
+    </div>
+  </div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: &ldquo;riff on the hero with a darker, navy-immersive shell&rdquo; &middot; &ldquo;tighten the card row to 4 visible&rdquo; &middot; &ldquo;design the mobile companion of <a class="dv-oid" href="#1a">1a</a>&rdquo;</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1560,&quot;height&quot;:2400},&quot;guests&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:1,&quot;max&quot;:4,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;showScarcity&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;reasoningOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Chat&quot;}}">
+class Component extends DCLogic {
+  state = { reasoningOpen: this.props.reasoningOpen ?? false };
+  renderVals() {
+    const guests = this.props.guests ?? 2;
+    const perGuest = 3828, addons = 236;
+    const total = perGuest * guests + addons;
+    const fmt = n => 'US$ ' + n.toLocaleString('en-US');
+    const gold = '#C8A45C', navy = 'rgba(12,35,64,';
+    return {
+      showScarcity: this.props.showScarcity ?? true,
+      reasoningOpen: this.state.reasoningOpen,
+      reasoningChev: this.state.reasoningOpen ? 90 : 0,
+      toggleReasoning: () => this.setState(s => ({ reasoningOpen: !s.reasoningOpen })),
+      guestsLabel: guests + (guests === 1 ? ' guest' : ' guests'),
+      draftTotal: fmt(total),
+      draftTotalLine: 'Draft total · ' + guests + ' guests · ' + fmt(total),
+      cruises: [
+        { badge: 'Best Value', dur: '12-Day Cruisetour', name: 'Denali Explorer — Pre-Cruise Cruisetour', embark: 'From Seattle, Washington', ship: 'ms Aurelia', was: 'US$ 4,657', now: 'US$ 3,828', photo: 'denali range' },
+        { badge: '', dur: '7-Day Cruise', name: 'Glacier Discovery — Northbound', embark: 'From Vancouver, B.C.', ship: 'ms Zuiderlicht', was: 'US$ 2,149', now: 'US$ 1,899', photo: 'glacier bay' },
+        { badge: '', dur: '14-Day Cruise', name: 'Great Alaskan Explorer', embark: 'From Seattle, Washington', ship: 'ms Borealis', was: 'US$ 3,999', now: 'US$ 3,410', photo: 'inside passage' },
+        { badge: '', dur: '10-Day Cruisetour', name: 'Yukon & Denali — Post-Cruise', embark: 'From Whittier, Alaska', ship: 'ms Aurelia', was: 'US$ 5,212', now: 'US$ 4,655', photo: 'yukon river' }
+      ],
+      days: [
+        { d: 'Day 1', port: 'Seattle, Washington', note: 'Embark · departs 4:00 PM', dot: gold, ring: gold, thumb: true },
+        { d: 'Day 3', port: 'Juneau, Alaska', note: 'Via the Inside Passage · 8:00 AM – 9:00 PM', dot: '#0C2340', ring: '#0C2340', thumb: true },
+        { d: 'Day 4', port: 'Skagway, Alaska', note: '7:00 AM – 8:30 PM', tag: 'White Pass rail nearby', dot: '#0C2340', ring: '#0C2340', thumb: true },
+        { d: 'Day 5', port: 'Glacier Bay National Park', note: 'Scenic cruising · park ranger aboard', tag: 'Glacier highlight', dot: '#0C2340', ring: '#0C2340', thumb: true },
+        { d: 'Day 6', port: 'Ketchikan, Alaska', note: '7:00 AM – 1:00 PM', dot: '#0C2340', ring: '#0C2340', thumb: true },
+        { d: 'Day 8', port: 'Whittier — begin land tour', note: 'Domed rail to Talkeetna', tag: 'Rail journey', dot: gold, ring: gold, thumb: true },
+        { d: 'Day 9–12', port: 'Denali & Fairbanks', note: 'Denali Lodge, 2 nights', dot: gold, ring: gold, thumb: true }
+      ],
+      nights: Array.from({ length: 12 }, (_, i) => {
+        const n = i + 1, sold = n === 3 || n === 8, chosen = n === 9;
+        return {
+          n, tip: sold && n === 3 ? 'Fully reserved this night' : '',
+          border: chosen ? '1px solid #C8A45C' : sold ? '1px solid rgba(12,35,64,.08)' : '1px solid rgba(12,35,64,.18)',
+          bg: chosen ? gold : sold ? '#F4F6F8' : '#fff',
+          color: chosen ? '#0C2340' : sold ? '#B9C2CC' : '#0C2340',
+          cursor: sold ? 'not-allowed' : 'pointer'
+        };
+      }),
+      rooms: [
+        { name: 'Inside', delta: '+ US$ 0', cap: '', border: '1px solid rgba(12,35,64,.12)', shadow: 'none' },
+        { name: 'Ocean View', delta: '+ US$ 214', cap: '', border: '1px solid rgba(12,35,64,.12)', shadow: 'none' },
+        { name: 'Verandah', delta: '+ US$ 486', cap: '3 left at this fare', border: '2px solid #0C2340', shadow: '0 0 0 3px rgba(200,164,92,.25)' },
+        { name: 'Suite', delta: '+ US$ 1,240', cap: '', border: '1px solid rgba(12,35,64,.12)', shadow: 'none' }
+      ],
+      compareRows: [
+        { k: 'Dates', a: 'Jun 14 – Jun 26, 2027', b: 'Jul 02 – Jul 09, 2027', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Nights', a: '12 (7 sea + 5 land)', b: '7', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Ship', a: 'ms Aurelia', b: 'ms Zuiderlicht', bg: '#fff' },
+        { k: 'Fare package', a: 'The Signature Collection', b: 'The Signature Collection', bg: '#fff' },
+        { k: 'Stateroom', a: 'Verandah VB · Midship', b: 'Verandah VA · Aft', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Dining reserved', a: 'Saffron · Night 9', b: 'None yet', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Land days', a: '4 · Denali & Fairbanks', b: '—', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Per person', a: 'US$ 3,828', b: 'US$ 1,899', bg: '#fff' },
+        { k: 'Total · 2 guests', a: 'US$ 8,092', b: 'US$ 4,034', bg: 'rgba(200,164,92,.08)' },
+        { k: 'Deposit terms', a: 'US$ 700 · refundable 30 days', b: 'US$ 500 · refundable 30 days', bg: '#fff' }
+      ],
+      bars: Array.from({ length: 21 }, (_, i) => ({
+        h: [8, 14, 22, 30, 34, 26, 18, 24, 32, 36, 28, 20, 26, 34, 30, 22, 16, 24, 18, 12, 8][i],
+        d: (i * 0.06).toFixed(2) + 's',
+        c: i % 4 === 0 ? '#C8A45C' : '#0C2340'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
