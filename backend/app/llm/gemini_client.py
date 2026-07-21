@@ -71,7 +71,8 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
         return {"type": "error", "message": result["error"]}
 
     if tool_name == "search_cruises":
-        cruises = result.get("cruises", [])
+        # search_cruises returns results under key "results" (not "cruises")
+        cruises = result.get("results", [])
         filters = result.get("filters", {})
         # Limit to 5 cards
         cards = cruises[:5]
@@ -166,7 +167,7 @@ def run_turn(
     final_text = ""
     first_token_logged = False
 
-    model_name = "gemini-2.0-flash"
+    model_name = "gemini-flash-latest"
 
     for step in range(MAX_STEPS):
         response = client.models.generate_content(
@@ -240,7 +241,16 @@ def run_turn(
                 config=config,
             )
 
+            # CHIPS stripping strategy:
+            # Buffer a rolling tail window (large enough to contain any CHIPS suffix).
+            # Only emit text that is safely before the buffered tail.  After the stream
+            # ends, strip CHIPS from the full raw text and emit whatever tail remains
+            # (minus the CHIPS marker itself).
+            TAIL_BUFFER = 200  # bytes — large enough for "CHIPS: [\"x\", \"y\", \"z\"]"
+
             text_chunks = []
+            emitted_len = 0  # number of chars already emitted via on_text_delta
+
             for chunk in stream:
                 for candidate in chunk.candidates:
                     for part in candidate.content.parts:
@@ -251,8 +261,14 @@ def run_turn(
                                     observability.record_first_token(t_turn_start)
                                     first_token_logged = True
                             text_chunks.append(part.text)
+
                             if on_text_delta:
-                                on_text_delta(part.text)
+                                # Emit only the portion that's safely before the tail buffer
+                                accumulated = "".join(text_chunks)
+                                safe_end = max(emitted_len, len(accumulated) - TAIL_BUFFER)
+                                if safe_end > emitted_len:
+                                    on_text_delta(accumulated[emitted_len:safe_end])
+                                    emitted_len = safe_end
 
             raw_text = "".join(text_chunks)
             final_text, chips = _parse_chips(raw_text)
@@ -260,6 +276,11 @@ def run_turn(
                 chips = _default_chips(tool_calls_made)
             # Limit chips to 3
             chips = chips[:3]
+
+            # Emit any remaining safe tail (after CHIPS stripped from final_text)
+            if on_text_delta and emitted_len < len(final_text):
+                on_text_delta(final_text[emitted_len:])
+
             break
 
     else:

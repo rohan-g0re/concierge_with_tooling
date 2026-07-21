@@ -385,3 +385,100 @@ def test_session_messages_persisted():
     assert any(m.get("content") == user_msg for m in user_msgs), \
         f"User message not found in {user_msgs}"
     assert len(model_msgs) >= 1, "Expected at least one model message"
+
+
+# ---------------------------------------------------------------------------
+# Test 6: search_cruises card_row uses "results" key (not "cruises")
+# Regression for defect: _map_tool_result_to_component was reading result["cruises"]
+# but search_cruises returns {"results": [...], "filters": {...}}
+# ---------------------------------------------------------------------------
+
+def test_search_cruises_cards_populated():
+    """
+    When the model calls search_cruises for Alaska, the card_row component
+    must contain non-empty cards (catalog has 8 Alaska cruises).
+    Previously broken because _map_tool_result_to_component read result.get("cruises")
+    instead of result.get("results"), yielding cards=[].
+    """
+    from backend.app.llm import gemini_client
+    from backend.app.main import app
+
+    fc = FakeFunctionCall(name="search_cruises", args={"region": "alaska"})
+    fc_part = FakePart(function_call=fc)
+    fc_response = FakeResponse([FakeCandidate([fc_part])])
+    text_response = FakeResponse([FakeCandidate([FakePart(text=None)])])
+    stream_text = ["Here are Alaska cruises!\nCHIPS: [\"View itinerary\", \"Book now\", \"More options\"]"]
+
+    fake_client = make_fake_client([fc_response, text_response], stream_chunks=stream_text)
+    gemini_client.set_client(fake_client)
+
+    client = TestClient(app)
+    resp = client.post("/chat", json={"session_id": "test-cards-populated", "message": "show me alaska cruises"})
+    assert resp.status_code == 200
+
+    events = parse_sse(resp.content)
+    last = events[-1]
+    assert last["event"] == "components"
+
+    components = last["data"]["components"]
+    card_row = next((c for c in components if c.get("type") == "card_row"), None)
+    assert card_row is not None, f"Expected card_row, got {components}"
+    # Catalog has Alaska cruises — cards must NOT be empty
+    assert len(card_row["cards"]) > 0, (
+        f"card_row.cards is empty — search_cruises result key mismatch. "
+        f"Got card_row={card_row}"
+    )
+    assert len(card_row["cards"]) <= 5
+
+
+# ---------------------------------------------------------------------------
+# Test 7: CHIPS must never appear in streamed text_delta events
+# Regression for defect: raw chunks (including "CHIPS: [...]") were emitted
+# before stripping, leaking the marker into the visible stream.
+# ---------------------------------------------------------------------------
+
+def test_chips_not_in_streamed_deltas():
+    """
+    Streamed text_delta events must never contain the literal string "CHIPS:"
+    or the JSON chips array.  The CHIPS marker must only influence the terminal
+    components event (chips field), never the visible text stream.
+    """
+    from backend.app.llm import gemini_client
+    from backend.app.main import app
+
+    no_fc_response = FakeResponse([FakeCandidate([FakePart(text=None)])])
+    # Simulate a realistic stream where CHIPS arrives in a late chunk
+    stream_text = [
+        "Here are your results. ",
+        "Alaska is beautiful in summer.",
+        "\nCHIPS: [\"View itinerary\", \"Book now\", \"More options\"]",
+    ]
+
+    fake_client = make_fake_client([no_fc_response], stream_chunks=stream_text)
+    gemini_client.set_client(fake_client)
+
+    client = TestClient(app)
+    resp = client.post("/chat", json={"session_id": "test-chips-hidden", "message": "show alaska"})
+    assert resp.status_code == 200
+
+    events = parse_sse(resp.content)
+
+    # Collect all text_delta events
+    text_deltas = [ev for ev in events if ev["event"] == "text_delta"]
+    assert len(text_deltas) >= 1, "Expected at least one text_delta"
+
+    full_streamed_text = "".join(ev["data"]["delta"] for ev in text_deltas)
+
+    # The CHIPS marker must not appear in the streamed text
+    assert "CHIPS:" not in full_streamed_text, (
+        f"'CHIPS:' leaked into streamed text_delta. Streamed text was: {full_streamed_text!r}"
+    )
+    assert "[" not in full_streamed_text or "View itinerary" not in full_streamed_text, (
+        f"Chips array content leaked into text_delta. Streamed text was: {full_streamed_text!r}"
+    )
+
+    # But the terminal components event must still have chips parsed from it
+    last = events[-1]
+    assert last["event"] == "components"
+    chips = last["data"]["chips"]
+    assert len(chips) >= 2, f"Expected chips from CHIPS marker, got {chips}"
