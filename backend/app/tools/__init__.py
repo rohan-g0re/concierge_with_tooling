@@ -11,6 +11,8 @@ from .itinerary import get_itinerary
 from .draft import create_draft, set_fare, set_stateroom
 from .dining import list_dining, reserve_dining
 from .land import list_land_options, set_land_days
+from .compare import compare_drafts
+from .handoff import handoff_checkout
 
 TOOL_REGISTRY: dict[str, tuple] = {
     "search_cruises": (
@@ -150,6 +152,38 @@ TOOL_REGISTRY: dict[str, tuple] = {
                     },
                 },
                 "required": ["draft_id", "option_ids"],
+            },
+        },
+    ),
+    "compare_drafts": (
+        compare_drafts,
+        {
+            "name": "compare_drafts",
+            "description": "Compare up to 3 customized drafts side-by-side with aligned rows and diff highlighting. Returns rows with differ flags, per-draft headers, and checkout URLs.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_ids": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "List of draft IDs to compare (max 3)",
+                    },
+                },
+                "required": ["draft_ids"],
+            },
+        },
+    ),
+    "handoff_checkout": (
+        handoff_checkout,
+        {
+            "name": "handoff_checkout",
+            "description": "Get the checkout URL for a draft to hand off to the booking flow.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_id": {"type": "string", "description": "The draft ID to check out"},
+                },
+                "required": ["draft_id"],
             },
         },
     ),
