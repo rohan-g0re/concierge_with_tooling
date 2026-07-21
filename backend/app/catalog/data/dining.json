@@ -1,1 +1,3390 @@
-[{"cruise_id":"denali_explorer","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":8},{"night":2,"capacity_remaining":6},{"night":3,"capacity_remaining":0},{"night":4,"capacity_remaining":7},{"night":5,"capacity_remaining":5},{"night":6,"capacity_remaining":8},{"night":7,"capacity_remaining":3},{"night":8,"capacity_remaining":0},{"night":9,"capacity_remaining":4},{"night":10,"capacity_remaining":6},{"night":11,"capacity_remaining":7},{"night":12,"capacity_remaining":5}]},{"cruise_id":"denali_explorer","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":22},{"night":2,"capacity_remaining":29},{"night":3,"capacity_remaining":20},{"night":4,"capacity_remaining":27},{"night":5,"capacity_remaining":18},{"night":6,"capacity_remaining":25},{"night":7,"capacity_remaining":16},{"night":8,"capacity_remaining":23},{"night":9,"capacity_remaining":30},{"night":10,"capacity_remaining":21},{"night":11,"capacity_remaining":28},{"night":12,"capacity_remaining":19}]},{"cruise_id":"denali_explorer","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50}]},{"cruise_id":"glacier_discovery","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":5},{"night":2,"capacity_remaining":0},{"night":3,"capacity_remaining":7},{"night":4,"capacity_remaining":4},{"night":5,"capacity_remaining":0},{"night":6,"capacity_remaining":6},{"night":7,"capacity_remaining":3}]},{"cruise_id":"glacier_discovery","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":24},{"night":2,"capacity_remaining":15},{"night":3,"capacity_remaining":22},{"night":4,"capacity_remaining":29},{"night":5,"capacity_remaining":20},{"night":6,"capacity_remaining":27},{"night":7,"capacity_remaining":18}]},{"cruise_id":"glacier_discovery","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"great_alaskan_explorer","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":6},{"night":2,"capacity_remaining":0},{"night":3,"capacity_remaining":4},{"night":4,"capacity_remaining":7},{"night":5,"capacity_remaining":3},{"night":6,"capacity_remaining":0},{"night":7,"capacity_remaining":8},{"night":8,"capacity_remaining":5},{"night":9,"capacity_remaining":0},{"night":10,"capacity_remaining":6},{"night":11,"capacity_remaining":4},{"night":12,"capacity_remaining":3},{"night":13,"capacity_remaining":7},{"night":14,"capacity_remaining":0}]},{"cruise_id":"great_alaskan_explorer","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":26},{"night":2,"capacity_remaining":17},{"night":3,"capacity_remaining":24},{"night":4,"capacity_remaining":15},{"night":5,"capacity_remaining":22},{"night":6,"capacity_remaining":29},{"night":7,"capacity_remaining":20},{"night":8,"capacity_remaining":27},{"night":9,"capacity_remaining":18},{"night":10,"capacity_remaining":25},{"night":11,"capacity_remaining":16},{"night":12,"capacity_remaining":23},{"night":13,"capacity_remaining":30},{"night":14,"capacity_remaining":21}]},{"cruise_id":"great_alaskan_explorer","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50},{"night":13,"capacity_remaining":50},{"night":14,"capacity_remaining":50}]},{"cruise_id":"yukon_denali","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":4},{"night":2,"capacity_remaining":7},{"night":3,"capacity_remaining":0},{"night":4,"capacity_remaining":5},{"night":5,"capacity_remaining":3},{"night":6,"capacity_remaining":8},{"night":7,"capacity_remaining":0},{"night":8,"capacity_remaining":6},{"night":9,"capacity_remaining":4},{"night":10,"capacity_remaining":7}]},{"cruise_id":"yukon_denali","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":28},{"night":2,"capacity_remaining":19},{"night":3,"capacity_remaining":26},{"night":4,"capacity_remaining":17},{"night":5,"capacity_remaining":24},{"night":6,"capacity_remaining":15},{"night":7,"capacity_remaining":22},{"night":8,"capacity_remaining":29},{"night":9,"capacity_remaining":20},{"night":10,"capacity_remaining":27}]},{"cruise_id":"yukon_denali","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50}]},{"cruise_id":"alaska_inside_passage","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":3},{"night":2,"capacity_remaining":6},{"night":3,"capacity_remaining":0},{"night":4,"capacity_remaining":8},{"night":5,"capacity_remaining":4},{"night":6,"capacity_remaining":0},{"night":7,"capacity_remaining":5}]},{"cruise_id":"alaska_inside_passage","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":30},{"night":2,"capacity_remaining":21},{"night":3,"capacity_remaining":28},{"night":4,"capacity_remaining":19},{"night":5,"capacity_remaining":26},{"night":6,"capacity_remaining":17},{"night":7,"capacity_remaining":24}]},{"cruise_id":"alaska_inside_passage","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"alaska_glacier_south","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":7},{"night":2,"capacity_remaining":0},{"night":3,"capacity_remaining":5},{"night":4,"capacity_remaining":3},{"night":5,"capacity_remaining":8},{"night":6,"capacity_remaining":0},{"night":7,"capacity_remaining":6}]},{"cruise_id":"alaska_glacier_south","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":16},{"night":2,"capacity_remaining":23},{"night":3,"capacity_remaining":30},{"night":4,"capacity_remaining":21},{"night":5,"capacity_remaining":28},{"night":6,"capacity_remaining":19},{"night":7,"capacity_remaining":26}]},{"cruise_id":"alaska_glacier_south","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"alaska_gold_rush","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":5},{"night":2,"capacity_remaining":3},{"night":3,"capacity_remaining":0},{"night":4,"capacity_remaining":7},{"night":5,"capacity_remaining":4},{"night":6,"capacity_remaining":8},{"night":7,"capacity_remaining":0},{"night":8,"capacity_remaining":6},{"night":9,"capacity_remaining":3},{"night":10,"capacity_remaining":5}]},{"cruise_id":"alaska_gold_rush","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":18},{"night":2,"capacity_remaining":25},{"night":3,"capacity_remaining":16},{"night":4,"capacity_remaining":23},{"night":5,"capacity_remaining":30},{"night":6,"capacity_remaining":21},{"night":7,"capacity_remaining":28},{"night":8,"capacity_remaining":19},{"night":9,"capacity_remaining":26},{"night":10,"capacity_remaining":17}]},{"cruise_id":"alaska_gold_rush","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50}]},{"cruise_id":"alaska_midnight_sun","venue_id":"saffron","name":"Saffron","cuisine":["Asian Fusion","Fine Dining"],"price_per_guest":38,"nights":[{"night":1,"capacity_remaining":4},{"night":2,"capacity_remaining":8},{"night":3,"capacity_remaining":0},{"night":4,"capacity_remaining":6},{"night":5,"capacity_remaining":3},{"night":6,"capacity_remaining":7},{"night":7,"capacity_remaining":0},{"night":8,"capacity_remaining":5},{"night":9,"capacity_remaining":8},{"night":10,"capacity_remaining":0},{"night":11,"capacity_remaining":4},{"night":12,"capacity_remaining":6},{"night":13,"capacity_remaining":3},{"night":14,"capacity_remaining":7}]},{"cruise_id":"alaska_midnight_sun","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":20},{"night":2,"capacity_remaining":27},{"night":3,"capacity_remaining":18},{"night":4,"capacity_remaining":25},{"night":5,"capacity_remaining":16},{"night":6,"capacity_remaining":23},{"night":7,"capacity_remaining":30},{"night":8,"capacity_remaining":21},{"night":9,"capacity_remaining":28},{"night":10,"capacity_remaining":19},{"night":11,"capacity_remaining":26},{"night":12,"capacity_remaining":17},{"night":13,"capacity_remaining":24},{"night":14,"capacity_remaining":15}]},{"cruise_id":"alaska_midnight_sun","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50},{"night":13,"capacity_remaining":50},{"night":14,"capacity_remaining":50}]},{"cruise_id":"mexico_riviera","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":22},{"night":2,"capacity_remaining":29},{"night":3,"capacity_remaining":20},{"night":4,"capacity_remaining":27},{"night":5,"capacity_remaining":18},{"night":6,"capacity_remaining":25},{"night":7,"capacity_remaining":16}]},{"cruise_id":"mexico_riviera","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"mexico_pacific","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":24},{"night":2,"capacity_remaining":15},{"night":3,"capacity_remaining":22},{"night":4,"capacity_remaining":29},{"night":5,"capacity_remaining":20},{"night":6,"capacity_remaining":27},{"night":7,"capacity_remaining":18},{"night":8,"capacity_remaining":25},{"night":9,"capacity_remaining":16},{"night":10,"capacity_remaining":23}]},{"cruise_id":"mexico_pacific","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50}]},{"cruise_id":"mexico_yucatan","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":26},{"night":2,"capacity_remaining":17},{"night":3,"capacity_remaining":24},{"night":4,"capacity_remaining":15},{"night":5,"capacity_remaining":22},{"night":6,"capacity_remaining":29},{"night":7,"capacity_remaining":20}]},{"cruise_id":"mexico_yucatan","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"mexico_baja","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":28},{"night":2,"capacity_remaining":19},{"night":3,"capacity_remaining":26},{"night":4,"capacity_remaining":17},{"night":5,"capacity_remaining":24}]},{"cruise_id":"mexico_baja","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50}]},{"cruise_id":"mexico_holiday","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":30},{"night":2,"capacity_remaining":21},{"night":3,"capacity_remaining":28},{"night":4,"capacity_remaining":19},{"night":5,"capacity_remaining":26},{"night":6,"capacity_remaining":17},{"night":7,"capacity_remaining":24}]},{"cruise_id":"mexico_holiday","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"mexico_extended","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":16},{"night":2,"capacity_remaining":23},{"night":3,"capacity_remaining":30},{"night":4,"capacity_remaining":21},{"night":5,"capacity_remaining":28},{"night":6,"capacity_remaining":19},{"night":7,"capacity_remaining":26},{"night":8,"capacity_remaining":17},{"night":9,"capacity_remaining":24},{"night":10,"capacity_remaining":15},{"night":11,"capacity_remaining":22},{"night":12,"capacity_remaining":29},{"night":13,"capacity_remaining":20},{"night":14,"capacity_remaining":27}]},{"cruise_id":"mexico_extended","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50},{"night":13,"capacity_remaining":50},{"night":14,"capacity_remaining":50}]},{"cruise_id":"caribbean_eastern","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":18},{"night":2,"capacity_remaining":25},{"night":3,"capacity_remaining":16},{"night":4,"capacity_remaining":23},{"night":5,"capacity_remaining":30},{"night":6,"capacity_remaining":21},{"night":7,"capacity_remaining":28}]},{"cruise_id":"caribbean_eastern","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"caribbean_western","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":20},{"night":2,"capacity_remaining":27},{"night":3,"capacity_remaining":18},{"night":4,"capacity_remaining":25},{"night":5,"capacity_remaining":16},{"night":6,"capacity_remaining":23},{"night":7,"capacity_remaining":30}]},{"cruise_id":"caribbean_western","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"caribbean_southern","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":22},{"night":2,"capacity_remaining":29},{"night":3,"capacity_remaining":20},{"night":4,"capacity_remaining":27},{"night":5,"capacity_remaining":18},{"night":6,"capacity_remaining":25},{"night":7,"capacity_remaining":16},{"night":8,"capacity_remaining":23},{"night":9,"capacity_remaining":30},{"night":10,"capacity_remaining":21}]},{"cruise_id":"caribbean_southern","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50}]},{"cruise_id":"caribbean_bahamas","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":24},{"night":2,"capacity_remaining":15},{"night":3,"capacity_remaining":22},{"night":4,"capacity_remaining":29}]},{"cruise_id":"caribbean_bahamas","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50}]},{"cruise_id":"caribbean_thanksgiving","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":26},{"night":2,"capacity_remaining":17},{"night":3,"capacity_remaining":24},{"night":4,"capacity_remaining":0},{"night":5,"capacity_remaining":0},{"night":6,"capacity_remaining":29},{"night":7,"capacity_remaining":20}]},{"cruise_id":"caribbean_thanksgiving","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"caribbean_grand","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":28},{"night":2,"capacity_remaining":19},{"night":3,"capacity_remaining":26},{"night":4,"capacity_remaining":17},{"night":5,"capacity_remaining":24},{"night":6,"capacity_remaining":15},{"night":7,"capacity_remaining":0},{"night":8,"capacity_remaining":29},{"night":9,"capacity_remaining":20},{"night":10,"capacity_remaining":27},{"night":11,"capacity_remaining":18},{"night":12,"capacity_remaining":25},{"night":13,"capacity_remaining":16},{"night":14,"capacity_remaining":23}]},{"cruise_id":"caribbean_grand","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50},{"night":13,"capacity_remaining":50},{"night":14,"capacity_remaining":50}]},{"cruise_id":"med_greek_isles","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":30},{"night":2,"capacity_remaining":21},{"night":3,"capacity_remaining":28},{"night":4,"capacity_remaining":19},{"night":5,"capacity_remaining":26},{"night":6,"capacity_remaining":17},{"night":7,"capacity_remaining":24}]},{"cruise_id":"med_greek_isles","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"med_italy_france","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":16},{"night":2,"capacity_remaining":23},{"night":3,"capacity_remaining":30},{"night":4,"capacity_remaining":21},{"night":5,"capacity_remaining":28},{"night":6,"capacity_remaining":19},{"night":7,"capacity_remaining":26},{"night":8,"capacity_remaining":17},{"night":9,"capacity_remaining":24},{"night":10,"capacity_remaining":15}]},{"cruise_id":"med_italy_france","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50}]},{"cruise_id":"med_western","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":18},{"night":2,"capacity_remaining":25},{"night":3,"capacity_remaining":16},{"night":4,"capacity_remaining":23},{"night":5,"capacity_remaining":30},{"night":6,"capacity_remaining":21},{"night":7,"capacity_remaining":28}]},{"cruise_id":"med_western","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50}]},{"cruise_id":"med_adriatic","venue_id":"main_dining","name":"Main Dining Room","cuisine":["American","Continental"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":20},{"night":2,"capacity_remaining":27},{"night":3,"capacity_remaining":18},{"night":4,"capacity_remaining":25},{"night":5,"capacity_remaining":16},{"night":6,"capacity_remaining":23},{"night":7,"capacity_remaining":30},{"night":8,"capacity_remaining":21},{"night":9,"capacity_remaining":28},{"night":10,"capacity_remaining":19},{"night":11,"capacity_remaining":26},{"night":12,"capacity_remaining":17}]},{"cruise_id":"med_adriatic","venue_id":"lido","name":"Lido Buffet","cuisine":["Casual","Buffet"],"price_per_guest":0,"nights":[{"night":1,"capacity_remaining":50},{"night":2,"capacity_remaining":50},{"night":3,"capacity_remaining":50},{"night":4,"capacity_remaining":50},{"night":5,"capacity_remaining":50},{"night":6,"capacity_remaining":50},{"night":7,"capacity_remaining":50},{"night":8,"capacity_remaining":50},{"night":9,"capacity_remaining":50},{"night":10,"capacity_remaining":50},{"night":11,"capacity_remaining":50},{"night":12,"capacity_remaining":50}]}]
+[
+  {
+    "cruise_id": "denali_explorer",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 8,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 22,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "denali_explorer",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 5,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 24,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "glacier_discovery",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 6,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 26,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "great_alaskan_explorer",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 4,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 28,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "yukon_denali",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 3,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 30,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "alaska_inside_passage",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 7,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "alaska_glacier_south",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 5,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 18,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "alaska_gold_rush",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "cuisine": [
+      "Asian Fusion",
+      "Fine Dining"
+    ],
+    "name": "Saffron",
+    "nights": [
+      {
+        "capacity_remaining": 4,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 5,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 8,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 4,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 6,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 3,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 7,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 38,
+    "venue_id": "saffron"
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 20,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "alaska_midnight_sun",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 22,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_riviera",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 24,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_pacific",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 26,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_yucatan",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 28,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 5
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_baja",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 30,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_holiday",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "mexico_extended",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 18,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_eastern",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 20,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_western",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 22,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_southern",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 24,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 4
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_bahamas",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 26,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_thanksgiving",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 28,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 0,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "caribbean_grand",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 14
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 30,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "med_greek_isles",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 15,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "med_italy_france",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "med_western",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 18,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "med_western",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 20,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 16,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "med_adriatic",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "hawaii_nonstop",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 28,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 29,
+        "night": 14
+      },
+      {
+        "capacity_remaining": 30,
+        "night": 15
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "hawaii_nonstop",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 13
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 14
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 15
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "hawaii_neighbor_islands",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "hawaii_neighbor_islands",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "hawaii_maui_big_island",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 23,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 24,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 25,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 26,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 27,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "hawaii_maui_big_island",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 8
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 9
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 10
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 11
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 12
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "bermuda_classic",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "bermuda_classic",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "bermuda_pink_sand",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 22,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "bermuda_pink_sand",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 7
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "bahamas_weekend",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "bahamas_weekend",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  },
+  {
+    "cruise_id": "bahamas_grand_escape",
+    "cuisine": [
+      "American",
+      "Continental"
+    ],
+    "name": "Main Dining Room",
+    "nights": [
+      {
+        "capacity_remaining": 16,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 17,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 18,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 19,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 20,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 21,
+        "night": 6
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "main_dining"
+  },
+  {
+    "cruise_id": "bahamas_grand_escape",
+    "cuisine": [
+      "Casual",
+      "Buffet"
+    ],
+    "name": "Lido Buffet",
+    "nights": [
+      {
+        "capacity_remaining": 50,
+        "night": 1
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 2
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 3
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 4
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 5
+      },
+      {
+        "capacity_remaining": 50,
+        "night": 6
+      }
+    ],
+    "price_per_guest": 0,
+    "venue_id": "lido"
+  }
+]

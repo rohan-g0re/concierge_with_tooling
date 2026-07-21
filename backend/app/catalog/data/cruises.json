@@ -1,410 +1,3001 @@
 [
   {
+    "badge": "Best Value",
     "cruise_id": "denali_explorer",
-    "region": "alaska",
-    "name": "Denali Explorer — Pre-Cruise Cruisetour",
-    "ship": "ms Aurelia",
     "embark_port": "Seattle, Washington",
-    "nights": 12,
-    "is_cruisetour": true,
-    "fare_was": 4657,
     "fare_now": 2682,
-    "popularity_score": 0.95,
-    "badge": "Best Value",
-    "photo": "/ports/denali_range.svg",
-    "remaining_at_fare": 3,
+    "fare_was": 4657,
     "historically_sells_out_weeks": 8,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "glacier_discovery",
-    "region": "alaska",
-    "name": "Glacier Discovery — Northbound",
-    "ship": "ms Zuiderlicht",
-    "embark_port": "Vancouver, B.C.",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 2149,
-    "fare_now": 1899,
-    "popularity_score": 0.88,
-    "badge": null,
-    "photo": "/ports/glacier_bay.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "great_alaskan_explorer",
-    "region": "alaska",
-    "name": "Great Alaskan Explorer",
-    "ship": "ms Aurelia",
-    "embark_port": "Seattle, Washington",
-    "nights": 14,
-    "is_cruisetour": false,
-    "fare_was": 3899,
-    "fare_now": 3299,
-    "popularity_score": 0.85,
-    "badge": null,
-    "photo": "/ports/inside_passage.svg",
-    "remaining_at_fare": 5,
-    "historically_sells_out_weeks": 6,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "yukon_denali",
-    "region": "alaska",
-    "name": "Yukon & Denali Cruisetour",
-    "ship": "ms Zuiderlicht",
-    "embark_port": "Vancouver, B.C.",
-    "nights": 10,
+    "holiday_overlap": null,
     "is_cruisetour": true,
-    "fare_was": 3199,
-    "fare_now": 2799,
-    "popularity_score": 0.87,
-    "badge": null,
-    "photo": "/ports/denali_range.svg",
-    "remaining_at_fare": 8,
-    "historically_sells_out_weeks": 7,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "alaska_inside_passage",
-    "region": "alaska",
-    "name": "Inside Passage Discovery",
-    "ship": "ms Borealis",
-    "embark_port": "Seattle, Washington",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1899,
-    "fare_now": 1649,
-    "popularity_score": 0.75,
-    "badge": null,
-    "photo": "/ports/inside_passage.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": 6,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "alaska_glacier_south",
-    "region": "alaska",
-    "name": "Glacier Bay Southbound",
-    "ship": "ms Zuiderlicht",
-    "embark_port": "Whittier, Alaska",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 2099,
-    "fare_now": 1799,
-    "popularity_score": 0.72,
-    "badge": null,
-    "photo": "/ports/glacier_bay.svg",
-    "remaining_at_fare": 12,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "alaska_gold_rush",
-    "region": "alaska",
-    "name": "Gold Rush Explorer",
-    "ship": "ms Borealis",
-    "embark_port": "Vancouver, B.C.",
-    "nights": 10,
-    "is_cruisetour": true,
-    "fare_was": 2799,
-    "fare_now": 2399,
-    "popularity_score": 0.68,
-    "badge": null,
-    "photo": "/ports/skagway.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "alaska_midnight_sun",
-    "region": "alaska",
-    "name": "Midnight Sun Voyage",
-    "ship": "ms Aurelia",
-    "embark_port": "Seattle, Washington",
-    "nights": 14,
-    "is_cruisetour": true,
-    "fare_was": 3599,
-    "fare_now": 3099,
-    "popularity_score": 0.71,
-    "badge": null,
-    "photo": "/ports/juneau.svg",
-    "remaining_at_fare": 7,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": "Summer Solstice week"
-  },
-  {
-    "cruise_id": "mexico_riviera",
-    "region": "mexico",
-    "name": "Mexican Riviera Escape",
-    "ship": "ms Corona",
-    "embark_port": "Los Angeles, California",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1299,
-    "fare_now": 999,
-    "popularity_score": 0.82,
-    "badge": "Best Value",
-    "photo": "/ports/cabo.svg",
-    "remaining_at_fare": 15,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "mexico_pacific",
-    "region": "mexico",
-    "name": "Pacific Coast Discovery",
-    "ship": "ms Soleil",
-    "embark_port": "San Diego, California",
-    "nights": 10,
-    "is_cruisetour": false,
-    "fare_was": 1799,
-    "fare_now": 1549,
-    "popularity_score": 0.74,
-    "badge": null,
-    "photo": "/ports/mazatlan.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "mexico_yucatan",
-    "region": "mexico",
-    "name": "Yucatán Getaway",
-    "ship": "ms Tropica",
-    "embark_port": "Miami, Florida",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1449,
-    "fare_now": 1199,
-    "popularity_score": 0.79,
-    "badge": null,
-    "photo": "/ports/cozumel.svg",
-    "remaining_at_fare": 8,
-    "historically_sells_out_weeks": 4,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "mexico_baja",
-    "region": "mexico",
-    "name": "Baja Peninsula Explorer",
-    "ship": "ms Corona",
-    "embark_port": "Los Angeles, California",
-    "nights": 5,
-    "is_cruisetour": false,
-    "fare_was": 899,
-    "fare_now": 749,
-    "popularity_score": 0.65,
-    "badge": null,
-    "photo": "/ports/cabo.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "mexico_holiday",
-    "region": "mexico",
-    "name": "Festive Mexican Riviera",
-    "ship": "ms Soleil",
-    "embark_port": "Los Angeles, California",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1599,
-    "fare_now": 1349,
-    "popularity_score": 0.83,
-    "badge": null,
-    "photo": "/ports/puerto_vallarta.svg",
-    "remaining_at_fare": 4,
-    "historically_sells_out_weeks": 6,
-    "holiday_overlap": "Christmas week"
-  },
-  {
-    "cruise_id": "mexico_extended",
-    "region": "mexico",
-    "name": "Extended Mexican Coast",
-    "ship": "ms Tropica",
-    "embark_port": "San Diego, California",
-    "nights": 14,
-    "is_cruisetour": false,
-    "fare_was": 2399,
-    "fare_now": 2099,
-    "popularity_score": 0.7,
-    "badge": null,
-    "photo": "/ports/mazatlan.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "caribbean_eastern",
-    "region": "caribbean",
-    "name": "Eastern Caribbean Adventure",
-    "ship": "ms Caribe",
-    "embark_port": "Fort Lauderdale, Florida",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1399,
-    "fare_now": 1149,
-    "popularity_score": 0.86,
-    "badge": null,
-    "photo": "/ports/st_thomas.svg",
-    "remaining_at_fare": 20,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "caribbean_western",
-    "region": "caribbean",
-    "name": "Western Caribbean Explorer",
-    "ship": "ms Caribe",
-    "embark_port": "Tampa, Florida",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1249,
-    "fare_now": 1049,
-    "popularity_score": 0.8,
-    "badge": "Best Value",
-    "photo": "/ports/cozumel.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "caribbean_southern",
-    "region": "caribbean",
-    "name": "Southern Caribbean Discovery",
-    "ship": "ms Antilles",
-    "embark_port": "San Juan, Puerto Rico",
-    "nights": 10,
-    "is_cruisetour": false,
-    "fare_was": 1999,
-    "fare_now": 1699,
-    "popularity_score": 0.77,
-    "badge": null,
-    "photo": "/ports/barbados.svg",
-    "remaining_at_fare": 5,
-    "historically_sells_out_weeks": 5,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "caribbean_bahamas",
-    "region": "caribbean",
-    "name": "Bahamas & Perfect Day",
-    "ship": "ms Paradiso",
-    "embark_port": "Miami, Florida",
-    "nights": 4,
-    "is_cruisetour": false,
-    "fare_was": 799,
-    "fare_now": 649,
-    "popularity_score": 0.73,
-    "badge": null,
-    "photo": "/ports/nassau.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "caribbean_thanksgiving",
-    "region": "caribbean",
-    "name": "Thanksgiving Caribbean",
-    "ship": "ms Caribe",
-    "embark_port": "Miami, Florida",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1799,
-    "fare_now": 1549,
-    "popularity_score": 0.91,
-    "badge": null,
-    "photo": "/ports/st_thomas.svg",
-    "remaining_at_fare": 2,
-    "historically_sells_out_weeks": 10,
-    "holiday_overlap": "Thanksgiving week"
-  },
-  {
-    "cruise_id": "caribbean_grand",
-    "region": "caribbean",
-    "name": "Grand Caribbean Loop",
-    "ship": "ms Antilles",
-    "embark_port": "Fort Lauderdale, Florida",
-    "nights": 14,
-    "is_cruisetour": false,
-    "fare_was": 2799,
-    "fare_now": 2399,
-    "popularity_score": 0.76,
-    "badge": null,
-    "photo": "/ports/barbados.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "med_greek_isles",
-    "region": "mediterranean",
-    "name": "Greek Isles Discovery",
-    "ship": "ms Hellenia",
-    "embark_port": "Athens (Piraeus), Greece",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 2299,
-    "fare_now": 1999,
-    "popularity_score": 0.89,
-    "badge": null,
-    "photo": "/ports/santorini.svg",
-    "remaining_at_fare": 6,
-    "historically_sells_out_weeks": 7,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "med_italy_france",
-    "region": "mediterranean",
-    "name": "Italian & French Riviera",
-    "ship": "ms Adriatica",
-    "embark_port": "Barcelona, Spain",
-    "nights": 10,
-    "is_cruisetour": false,
-    "fare_was": 2999,
-    "fare_now": 2599,
-    "popularity_score": 0.84,
-    "badge": "Best Value",
-    "photo": "/ports/barcelona.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "med_western",
-    "region": "mediterranean",
-    "name": "Western Mediterranean Classic",
-    "ship": "ms Adriatica",
-    "embark_port": "Rome (Civitavecchia), Italy",
-    "nights": 7,
-    "is_cruisetour": false,
-    "fare_was": 1999,
-    "fare_now": 1749,
-    "popularity_score": 0.78,
-    "badge": null,
-    "photo": "/ports/rome.svg",
-    "remaining_at_fare": null,
-    "historically_sells_out_weeks": null,
-    "holiday_overlap": null
-  },
-  {
-    "cruise_id": "med_adriatic",
-    "region": "mediterranean",
-    "name": "Adriatic & Dalmatian Coast",
-    "ship": "ms Hellenia",
-    "embark_port": "Venice, Italy",
+    "name": "Denali Explorer \u2014 Pre-Cruise Cruisetour",
     "nights": 12,
-    "is_cruisetour": false,
-    "fare_was": 3299,
-    "fare_now": 2899,
-    "popularity_score": 0.81,
+    "photo": "/ports/denali_range.svg",
+    "popularity_score": 0.95,
+    "region": "alaska",
+    "remaining_at_fare": 3,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-13",
+        "sailing_id": "denali_explorer-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-20",
+        "sailing_id": "denali_explorer-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-27",
+        "sailing_id": "denali_explorer-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-03",
+        "sailing_id": "denali_explorer-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-10",
+        "sailing_id": "denali_explorer-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-17",
+        "sailing_id": "denali_explorer-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-24",
+        "sailing_id": "denali_explorer-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-31",
+        "sailing_id": "denali_explorer-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-07",
+        "sailing_id": "denali_explorer-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-14",
+        "sailing_id": "denali_explorer-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-21",
+        "sailing_id": "denali_explorer-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-28",
+        "sailing_id": "denali_explorer-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-05",
+        "sailing_id": "denali_explorer-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-12",
+        "sailing_id": "denali_explorer-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-19",
+        "sailing_id": "denali_explorer-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-26",
+        "sailing_id": "denali_explorer-2026-10-14"
+      }
+    ],
+    "ship": "ms Aurelia"
+  },
+  {
     "badge": null,
-    "photo": "/ports/dubrovnik.svg",
-    "remaining_at_fare": 9,
+    "cruise_id": "glacier_discovery",
+    "embark_port": "Vancouver, B.C.",
+    "fare_now": 1899,
+    "fare_was": 2149,
     "historically_sells_out_weeks": null,
-    "holiday_overlap": null
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Glacier Discovery \u2014 Northbound",
+    "nights": 7,
+    "photo": "/ports/glacier_bay.svg",
+    "popularity_score": 0.88,
+    "region": "alaska",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "glacier_discovery-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "glacier_discovery-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "glacier_discovery-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "glacier_discovery-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "glacier_discovery-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "glacier_discovery-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "glacier_discovery-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "glacier_discovery-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "glacier_discovery-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "glacier_discovery-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "glacier_discovery-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "glacier_discovery-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "glacier_discovery-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "glacier_discovery-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "glacier_discovery-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "glacier_discovery-2026-10-14"
+      }
+    ],
+    "ship": "ms Zuiderlicht"
+  },
+  {
+    "badge": null,
+    "cruise_id": "great_alaskan_explorer",
+    "embark_port": "Seattle, Washington",
+    "fare_now": 3299,
+    "fare_was": 3899,
+    "historically_sells_out_weeks": 6,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Great Alaskan Explorer",
+    "nights": 14,
+    "photo": "/ports/inside_passage.svg",
+    "popularity_score": 0.85,
+    "region": "alaska",
+    "remaining_at_fare": 5,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-15",
+        "sailing_id": "great_alaskan_explorer-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-22",
+        "sailing_id": "great_alaskan_explorer-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-29",
+        "sailing_id": "great_alaskan_explorer-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-05",
+        "sailing_id": "great_alaskan_explorer-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-12",
+        "sailing_id": "great_alaskan_explorer-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-19",
+        "sailing_id": "great_alaskan_explorer-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-26",
+        "sailing_id": "great_alaskan_explorer-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-09-02",
+        "sailing_id": "great_alaskan_explorer-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-09",
+        "sailing_id": "great_alaskan_explorer-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-16",
+        "sailing_id": "great_alaskan_explorer-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-23",
+        "sailing_id": "great_alaskan_explorer-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-30",
+        "sailing_id": "great_alaskan_explorer-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-07",
+        "sailing_id": "great_alaskan_explorer-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-14",
+        "sailing_id": "great_alaskan_explorer-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-21",
+        "sailing_id": "great_alaskan_explorer-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-28",
+        "sailing_id": "great_alaskan_explorer-2026-10-14"
+      }
+    ],
+    "ship": "ms Aurelia"
+  },
+  {
+    "badge": null,
+    "cruise_id": "yukon_denali",
+    "embark_port": "Vancouver, B.C.",
+    "fare_now": 2799,
+    "fare_was": 3199,
+    "historically_sells_out_weeks": 7,
+    "holiday_overlap": null,
+    "is_cruisetour": true,
+    "name": "Yukon & Denali Cruisetour",
+    "nights": 10,
+    "photo": "/ports/denali_range.svg",
+    "popularity_score": 0.87,
+    "region": "alaska",
+    "remaining_at_fare": 8,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "yukon_denali-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-18",
+        "sailing_id": "yukon_denali-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "yukon_denali-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-01",
+        "sailing_id": "yukon_denali-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "yukon_denali-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-15",
+        "sailing_id": "yukon_denali-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "yukon_denali-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-29",
+        "sailing_id": "yukon_denali-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "yukon_denali-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-12",
+        "sailing_id": "yukon_denali-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "yukon_denali-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-26",
+        "sailing_id": "yukon_denali-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "yukon_denali-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-10",
+        "sailing_id": "yukon_denali-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "yukon_denali-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-24",
+        "sailing_id": "yukon_denali-2026-10-14"
+      }
+    ],
+    "ship": "ms Zuiderlicht"
+  },
+  {
+    "badge": null,
+    "cruise_id": "alaska_inside_passage",
+    "embark_port": "Seattle, Washington",
+    "fare_now": 1649,
+    "fare_was": 1899,
+    "historically_sells_out_weeks": 6,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Inside Passage Discovery",
+    "nights": 7,
+    "photo": "/ports/inside_passage.svg",
+    "popularity_score": 0.75,
+    "region": "alaska",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "alaska_inside_passage-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "alaska_inside_passage-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "alaska_inside_passage-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "alaska_inside_passage-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "alaska_inside_passage-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "alaska_inside_passage-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "alaska_inside_passage-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "alaska_inside_passage-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "alaska_inside_passage-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "alaska_inside_passage-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "alaska_inside_passage-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "alaska_inside_passage-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "alaska_inside_passage-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "alaska_inside_passage-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "alaska_inside_passage-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "alaska_inside_passage-2026-10-14"
+      }
+    ],
+    "ship": "ms Borealis"
+  },
+  {
+    "badge": null,
+    "cruise_id": "alaska_glacier_south",
+    "embark_port": "Whittier, Alaska",
+    "fare_now": 1799,
+    "fare_was": 2099,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Glacier Bay Southbound",
+    "nights": 7,
+    "photo": "/ports/glacier_bay.svg",
+    "popularity_score": 0.72,
+    "region": "alaska",
+    "remaining_at_fare": 12,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "alaska_glacier_south-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "alaska_glacier_south-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "alaska_glacier_south-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "alaska_glacier_south-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "alaska_glacier_south-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "alaska_glacier_south-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "alaska_glacier_south-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "alaska_glacier_south-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "alaska_glacier_south-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "alaska_glacier_south-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "alaska_glacier_south-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "alaska_glacier_south-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "alaska_glacier_south-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "alaska_glacier_south-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "alaska_glacier_south-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "alaska_glacier_south-2026-10-14"
+      }
+    ],
+    "ship": "ms Zuiderlicht"
+  },
+  {
+    "badge": null,
+    "cruise_id": "alaska_gold_rush",
+    "embark_port": "Vancouver, B.C.",
+    "fare_now": 2399,
+    "fare_was": 2799,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": true,
+    "name": "Gold Rush Explorer",
+    "nights": 10,
+    "photo": "/ports/skagway.svg",
+    "popularity_score": 0.68,
+    "region": "alaska",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "alaska_gold_rush-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-18",
+        "sailing_id": "alaska_gold_rush-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "alaska_gold_rush-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-01",
+        "sailing_id": "alaska_gold_rush-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "alaska_gold_rush-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-15",
+        "sailing_id": "alaska_gold_rush-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "alaska_gold_rush-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-29",
+        "sailing_id": "alaska_gold_rush-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "alaska_gold_rush-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-12",
+        "sailing_id": "alaska_gold_rush-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "alaska_gold_rush-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-26",
+        "sailing_id": "alaska_gold_rush-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "alaska_gold_rush-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-10",
+        "sailing_id": "alaska_gold_rush-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "alaska_gold_rush-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-24",
+        "sailing_id": "alaska_gold_rush-2026-10-14"
+      }
+    ],
+    "ship": "ms Borealis"
+  },
+  {
+    "badge": null,
+    "cruise_id": "alaska_midnight_sun",
+    "embark_port": "Seattle, Washington",
+    "fare_now": 3099,
+    "fare_was": 3599,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": "Summer Solstice week",
+    "is_cruisetour": true,
+    "name": "Midnight Sun Voyage",
+    "nights": 14,
+    "photo": "/ports/juneau.svg",
+    "popularity_score": 0.71,
+    "region": "alaska",
+    "remaining_at_fare": 7,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-15",
+        "sailing_id": "alaska_midnight_sun-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-22",
+        "sailing_id": "alaska_midnight_sun-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-29",
+        "sailing_id": "alaska_midnight_sun-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-05",
+        "sailing_id": "alaska_midnight_sun-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-12",
+        "sailing_id": "alaska_midnight_sun-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-19",
+        "sailing_id": "alaska_midnight_sun-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-26",
+        "sailing_id": "alaska_midnight_sun-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-09-02",
+        "sailing_id": "alaska_midnight_sun-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-09",
+        "sailing_id": "alaska_midnight_sun-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-16",
+        "sailing_id": "alaska_midnight_sun-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-23",
+        "sailing_id": "alaska_midnight_sun-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-30",
+        "sailing_id": "alaska_midnight_sun-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-07",
+        "sailing_id": "alaska_midnight_sun-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-14",
+        "sailing_id": "alaska_midnight_sun-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-21",
+        "sailing_id": "alaska_midnight_sun-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-28",
+        "sailing_id": "alaska_midnight_sun-2026-10-14"
+      }
+    ],
+    "ship": "ms Aurelia"
+  },
+  {
+    "badge": "Best Value",
+    "cruise_id": "mexico_riviera",
+    "embark_port": "Los Angeles, California",
+    "fare_now": 999,
+    "fare_was": 1299,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Mexican Riviera Escape",
+    "nights": 7,
+    "photo": "/ports/cabo.svg",
+    "popularity_score": 0.82,
+    "region": "mexico",
+    "remaining_at_fare": 15,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "mexico_riviera-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "mexico_riviera-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "mexico_riviera-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "mexico_riviera-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "mexico_riviera-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "mexico_riviera-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "mexico_riviera-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "mexico_riviera-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "mexico_riviera-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "mexico_riviera-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "mexico_riviera-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "mexico_riviera-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "mexico_riviera-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "mexico_riviera-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "mexico_riviera-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "mexico_riviera-2026-10-14"
+      }
+    ],
+    "ship": "ms Corona"
+  },
+  {
+    "badge": null,
+    "cruise_id": "mexico_pacific",
+    "embark_port": "San Diego, California",
+    "fare_now": 1549,
+    "fare_was": 1799,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Pacific Coast Discovery",
+    "nights": 10,
+    "photo": "/ports/mazatlan.svg",
+    "popularity_score": 0.74,
+    "region": "mexico",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "mexico_pacific-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-18",
+        "sailing_id": "mexico_pacific-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "mexico_pacific-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-01",
+        "sailing_id": "mexico_pacific-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "mexico_pacific-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-15",
+        "sailing_id": "mexico_pacific-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "mexico_pacific-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-29",
+        "sailing_id": "mexico_pacific-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "mexico_pacific-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-12",
+        "sailing_id": "mexico_pacific-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "mexico_pacific-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-26",
+        "sailing_id": "mexico_pacific-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "mexico_pacific-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-10",
+        "sailing_id": "mexico_pacific-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "mexico_pacific-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-24",
+        "sailing_id": "mexico_pacific-2026-10-14"
+      }
+    ],
+    "ship": "ms Soleil"
+  },
+  {
+    "badge": null,
+    "cruise_id": "mexico_yucatan",
+    "embark_port": "Miami, Florida",
+    "fare_now": 1199,
+    "fare_was": 1449,
+    "historically_sells_out_weeks": 4,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Yucat\u00e1n Getaway",
+    "nights": 7,
+    "photo": "/ports/cozumel.svg",
+    "popularity_score": 0.79,
+    "region": "mexico",
+    "remaining_at_fare": 8,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "mexico_yucatan-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "mexico_yucatan-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "mexico_yucatan-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "mexico_yucatan-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "mexico_yucatan-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "mexico_yucatan-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "mexico_yucatan-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "mexico_yucatan-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "mexico_yucatan-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "mexico_yucatan-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "mexico_yucatan-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "mexico_yucatan-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "mexico_yucatan-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "mexico_yucatan-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "mexico_yucatan-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "mexico_yucatan-2026-10-14"
+      }
+    ],
+    "ship": "ms Tropica"
+  },
+  {
+    "badge": null,
+    "cruise_id": "mexico_baja",
+    "embark_port": "Los Angeles, California",
+    "fare_now": 749,
+    "fare_was": 899,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Baja Peninsula Explorer",
+    "nights": 5,
+    "photo": "/ports/cabo.svg",
+    "popularity_score": 0.65,
+    "region": "mexico",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-06",
+        "sailing_id": "mexico_baja-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-13",
+        "sailing_id": "mexico_baja-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-20",
+        "sailing_id": "mexico_baja-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-27",
+        "sailing_id": "mexico_baja-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-03",
+        "sailing_id": "mexico_baja-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-10",
+        "sailing_id": "mexico_baja-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-17",
+        "sailing_id": "mexico_baja-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-24",
+        "sailing_id": "mexico_baja-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-08-31",
+        "sailing_id": "mexico_baja-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-07",
+        "sailing_id": "mexico_baja-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-14",
+        "sailing_id": "mexico_baja-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-21",
+        "sailing_id": "mexico_baja-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-28",
+        "sailing_id": "mexico_baja-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-05",
+        "sailing_id": "mexico_baja-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-12",
+        "sailing_id": "mexico_baja-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-19",
+        "sailing_id": "mexico_baja-2026-10-14"
+      }
+    ],
+    "ship": "ms Corona"
+  },
+  {
+    "badge": null,
+    "cruise_id": "mexico_holiday",
+    "embark_port": "Los Angeles, California",
+    "fare_now": 1349,
+    "fare_was": 1599,
+    "historically_sells_out_weeks": 6,
+    "holiday_overlap": "Christmas week",
+    "is_cruisetour": false,
+    "name": "Festive Mexican Riviera",
+    "nights": 7,
+    "photo": "/ports/puerto_vallarta.svg",
+    "popularity_score": 0.83,
+    "region": "mexico",
+    "remaining_at_fare": 4,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "mexico_holiday-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "mexico_holiday-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "mexico_holiday-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "mexico_holiday-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "mexico_holiday-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "mexico_holiday-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "mexico_holiday-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "mexico_holiday-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "mexico_holiday-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "mexico_holiday-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "mexico_holiday-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "mexico_holiday-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "mexico_holiday-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "mexico_holiday-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "mexico_holiday-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "mexico_holiday-2026-10-14"
+      }
+    ],
+    "ship": "ms Soleil"
+  },
+  {
+    "badge": null,
+    "cruise_id": "mexico_extended",
+    "embark_port": "San Diego, California",
+    "fare_now": 2099,
+    "fare_was": 2399,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Extended Mexican Coast",
+    "nights": 14,
+    "photo": "/ports/mazatlan.svg",
+    "popularity_score": 0.7,
+    "region": "mexico",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-15",
+        "sailing_id": "mexico_extended-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-22",
+        "sailing_id": "mexico_extended-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-29",
+        "sailing_id": "mexico_extended-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-05",
+        "sailing_id": "mexico_extended-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-12",
+        "sailing_id": "mexico_extended-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-19",
+        "sailing_id": "mexico_extended-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-26",
+        "sailing_id": "mexico_extended-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-09-02",
+        "sailing_id": "mexico_extended-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-09",
+        "sailing_id": "mexico_extended-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-16",
+        "sailing_id": "mexico_extended-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-23",
+        "sailing_id": "mexico_extended-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-30",
+        "sailing_id": "mexico_extended-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-07",
+        "sailing_id": "mexico_extended-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-14",
+        "sailing_id": "mexico_extended-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-21",
+        "sailing_id": "mexico_extended-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-28",
+        "sailing_id": "mexico_extended-2026-10-14"
+      }
+    ],
+    "ship": "ms Tropica"
+  },
+  {
+    "badge": null,
+    "cruise_id": "caribbean_eastern",
+    "embark_port": "Fort Lauderdale, Florida",
+    "fare_now": 1149,
+    "fare_was": 1399,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Eastern Caribbean Adventure",
+    "nights": 7,
+    "photo": "/ports/st_thomas.svg",
+    "popularity_score": 0.86,
+    "region": "caribbean",
+    "remaining_at_fare": 20,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "caribbean_eastern-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "caribbean_eastern-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "caribbean_eastern-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "caribbean_eastern-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "caribbean_eastern-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "caribbean_eastern-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "caribbean_eastern-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "caribbean_eastern-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "caribbean_eastern-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "caribbean_eastern-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "caribbean_eastern-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "caribbean_eastern-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "caribbean_eastern-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "caribbean_eastern-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "caribbean_eastern-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "caribbean_eastern-2026-10-14"
+      }
+    ],
+    "ship": "ms Caribe"
+  },
+  {
+    "badge": "Best Value",
+    "cruise_id": "caribbean_western",
+    "embark_port": "Tampa, Florida",
+    "fare_now": 1049,
+    "fare_was": 1249,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Western Caribbean Explorer",
+    "nights": 7,
+    "photo": "/ports/cozumel.svg",
+    "popularity_score": 0.8,
+    "region": "caribbean",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "caribbean_western-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "caribbean_western-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "caribbean_western-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "caribbean_western-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "caribbean_western-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "caribbean_western-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "caribbean_western-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "caribbean_western-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "caribbean_western-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "caribbean_western-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "caribbean_western-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "caribbean_western-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "caribbean_western-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "caribbean_western-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "caribbean_western-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "caribbean_western-2026-10-14"
+      }
+    ],
+    "ship": "ms Caribe"
+  },
+  {
+    "badge": null,
+    "cruise_id": "caribbean_southern",
+    "embark_port": "San Juan, Puerto Rico",
+    "fare_now": 1699,
+    "fare_was": 1999,
+    "historically_sells_out_weeks": 5,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Southern Caribbean Discovery",
+    "nights": 10,
+    "photo": "/ports/barbados.svg",
+    "popularity_score": 0.77,
+    "region": "caribbean",
+    "remaining_at_fare": 5,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "caribbean_southern-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-18",
+        "sailing_id": "caribbean_southern-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "caribbean_southern-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-01",
+        "sailing_id": "caribbean_southern-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "caribbean_southern-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-15",
+        "sailing_id": "caribbean_southern-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "caribbean_southern-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-29",
+        "sailing_id": "caribbean_southern-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "caribbean_southern-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-12",
+        "sailing_id": "caribbean_southern-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "caribbean_southern-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-26",
+        "sailing_id": "caribbean_southern-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "caribbean_southern-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-10",
+        "sailing_id": "caribbean_southern-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "caribbean_southern-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-24",
+        "sailing_id": "caribbean_southern-2026-10-14"
+      }
+    ],
+    "ship": "ms Antilles"
+  },
+  {
+    "badge": null,
+    "cruise_id": "caribbean_bahamas",
+    "embark_port": "Miami, Florida",
+    "fare_now": 649,
+    "fare_was": 799,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Bahamas & Perfect Day",
+    "nights": 4,
+    "photo": "/ports/nassau.svg",
+    "popularity_score": 0.73,
+    "region": "caribbean",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-05",
+        "sailing_id": "caribbean_bahamas-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-12",
+        "sailing_id": "caribbean_bahamas-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-19",
+        "sailing_id": "caribbean_bahamas-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-26",
+        "sailing_id": "caribbean_bahamas-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-02",
+        "sailing_id": "caribbean_bahamas-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-09",
+        "sailing_id": "caribbean_bahamas-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-16",
+        "sailing_id": "caribbean_bahamas-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-23",
+        "sailing_id": "caribbean_bahamas-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-08-30",
+        "sailing_id": "caribbean_bahamas-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-06",
+        "sailing_id": "caribbean_bahamas-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-13",
+        "sailing_id": "caribbean_bahamas-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-20",
+        "sailing_id": "caribbean_bahamas-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-27",
+        "sailing_id": "caribbean_bahamas-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-04",
+        "sailing_id": "caribbean_bahamas-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-11",
+        "sailing_id": "caribbean_bahamas-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-18",
+        "sailing_id": "caribbean_bahamas-2026-10-14"
+      }
+    ],
+    "ship": "ms Paradiso"
+  },
+  {
+    "badge": null,
+    "cruise_id": "caribbean_thanksgiving",
+    "embark_port": "Miami, Florida",
+    "fare_now": 1549,
+    "fare_was": 1799,
+    "historically_sells_out_weeks": 10,
+    "holiday_overlap": "Thanksgiving week",
+    "is_cruisetour": false,
+    "name": "Thanksgiving Caribbean",
+    "nights": 7,
+    "photo": "/ports/st_thomas.svg",
+    "popularity_score": 0.91,
+    "region": "caribbean",
+    "remaining_at_fare": 2,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "caribbean_thanksgiving-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "caribbean_thanksgiving-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "caribbean_thanksgiving-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "caribbean_thanksgiving-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "caribbean_thanksgiving-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "caribbean_thanksgiving-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "caribbean_thanksgiving-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "caribbean_thanksgiving-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "caribbean_thanksgiving-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "caribbean_thanksgiving-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "caribbean_thanksgiving-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "caribbean_thanksgiving-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "caribbean_thanksgiving-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "caribbean_thanksgiving-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "caribbean_thanksgiving-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "caribbean_thanksgiving-2026-10-14"
+      }
+    ],
+    "ship": "ms Caribe"
+  },
+  {
+    "badge": null,
+    "cruise_id": "caribbean_grand",
+    "embark_port": "Fort Lauderdale, Florida",
+    "fare_now": 2399,
+    "fare_was": 2799,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Grand Caribbean Loop",
+    "nights": 14,
+    "photo": "/ports/barbados.svg",
+    "popularity_score": 0.76,
+    "region": "caribbean",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-15",
+        "sailing_id": "caribbean_grand-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-22",
+        "sailing_id": "caribbean_grand-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-29",
+        "sailing_id": "caribbean_grand-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-08-05",
+        "sailing_id": "caribbean_grand-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-12",
+        "sailing_id": "caribbean_grand-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-19",
+        "sailing_id": "caribbean_grand-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-26",
+        "sailing_id": "caribbean_grand-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-09-02",
+        "sailing_id": "caribbean_grand-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-09",
+        "sailing_id": "caribbean_grand-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-16",
+        "sailing_id": "caribbean_grand-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-23",
+        "sailing_id": "caribbean_grand-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-30",
+        "sailing_id": "caribbean_grand-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-07",
+        "sailing_id": "caribbean_grand-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-14",
+        "sailing_id": "caribbean_grand-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-21",
+        "sailing_id": "caribbean_grand-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-28",
+        "sailing_id": "caribbean_grand-2026-10-14"
+      }
+    ],
+    "ship": "ms Antilles"
+  },
+  {
+    "badge": null,
+    "cruise_id": "med_greek_isles",
+    "embark_port": "Athens (Piraeus), Greece",
+    "fare_now": 1999,
+    "fare_was": 2299,
+    "historically_sells_out_weeks": 7,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Greek Isles Discovery",
+    "nights": 7,
+    "photo": "/ports/santorini.svg",
+    "popularity_score": 0.89,
+    "region": "mediterranean",
+    "remaining_at_fare": 6,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "med_greek_isles-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "med_greek_isles-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "med_greek_isles-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "med_greek_isles-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "med_greek_isles-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "med_greek_isles-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "med_greek_isles-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "med_greek_isles-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-10-28",
+        "sailing_id": "med_greek_isles-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-11",
+        "sailing_id": "med_greek_isles-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-25",
+        "sailing_id": "med_greek_isles-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-09",
+        "sailing_id": "med_greek_isles-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-23",
+        "sailing_id": "med_greek_isles-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-06",
+        "sailing_id": "med_greek_isles-2026-12-30"
+      }
+    ],
+    "ship": "ms Hellenia"
+  },
+  {
+    "badge": "Best Value",
+    "cruise_id": "med_italy_france",
+    "embark_port": "Barcelona, Spain",
+    "fare_now": 2599,
+    "fare_was": 2999,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Italian & French Riviera",
+    "nights": 10,
+    "photo": "/ports/barcelona.svg",
+    "popularity_score": 0.84,
+    "region": "mediterranean",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "med_italy_france-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "med_italy_france-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "med_italy_france-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "med_italy_france-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "med_italy_france-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "med_italy_france-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "med_italy_france-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "med_italy_france-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-10-31",
+        "sailing_id": "med_italy_france-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-14",
+        "sailing_id": "med_italy_france-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-28",
+        "sailing_id": "med_italy_france-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-12",
+        "sailing_id": "med_italy_france-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-26",
+        "sailing_id": "med_italy_france-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-09",
+        "sailing_id": "med_italy_france-2026-12-30"
+      }
+    ],
+    "ship": "ms Adriatica"
+  },
+  {
+    "badge": null,
+    "cruise_id": "med_western",
+    "embark_port": "Rome (Civitavecchia), Italy",
+    "fare_now": 1749,
+    "fare_was": 1999,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Western Mediterranean Classic",
+    "nights": 7,
+    "photo": "/ports/rome.svg",
+    "popularity_score": 0.78,
+    "region": "mediterranean",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "med_western-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "med_western-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "med_western-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "med_western-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "med_western-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "med_western-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "med_western-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "med_western-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-10-28",
+        "sailing_id": "med_western-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-11",
+        "sailing_id": "med_western-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-25",
+        "sailing_id": "med_western-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-09",
+        "sailing_id": "med_western-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-23",
+        "sailing_id": "med_western-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-06",
+        "sailing_id": "med_western-2026-12-30"
+      }
+    ],
+    "ship": "ms Adriatica"
+  },
+  {
+    "badge": null,
+    "cruise_id": "med_adriatic",
+    "embark_port": "Venice, Italy",
+    "fare_now": 2899,
+    "fare_was": 3299,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Adriatic & Dalmatian Coast",
+    "nights": 12,
+    "photo": "/ports/dubrovnik.svg",
+    "popularity_score": 0.81,
+    "region": "mediterranean",
+    "remaining_at_fare": 9,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-13",
+        "sailing_id": "med_adriatic-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-27",
+        "sailing_id": "med_adriatic-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-10",
+        "sailing_id": "med_adriatic-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-24",
+        "sailing_id": "med_adriatic-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-07",
+        "sailing_id": "med_adriatic-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-21",
+        "sailing_id": "med_adriatic-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-05",
+        "sailing_id": "med_adriatic-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-19",
+        "sailing_id": "med_adriatic-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-11-02",
+        "sailing_id": "med_adriatic-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-16",
+        "sailing_id": "med_adriatic-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-30",
+        "sailing_id": "med_adriatic-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-14",
+        "sailing_id": "med_adriatic-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-28",
+        "sailing_id": "med_adriatic-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-11",
+        "sailing_id": "med_adriatic-2026-12-30"
+      }
+    ],
+    "ship": "ms Hellenia"
+  },
+  {
+    "badge": null,
+    "cruise_id": "hawaii_nonstop",
+    "embark_port": "Los Angeles, California",
+    "fare_now": 2899,
+    "fare_was": 3499,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Hawaii Nonstop \u2014 Round Voyage",
+    "nights": 15,
+    "photo": "/ports/inside_passage.svg",
+    "popularity_score": 0.82,
+    "region": "hawaii",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-16",
+        "sailing_id": "hawaii_nonstop-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-30",
+        "sailing_id": "hawaii_nonstop-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-13",
+        "sailing_id": "hawaii_nonstop-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-27",
+        "sailing_id": "hawaii_nonstop-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-10",
+        "sailing_id": "hawaii_nonstop-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-24",
+        "sailing_id": "hawaii_nonstop-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-08",
+        "sailing_id": "hawaii_nonstop-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-22",
+        "sailing_id": "hawaii_nonstop-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-11-05",
+        "sailing_id": "hawaii_nonstop-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-19",
+        "sailing_id": "hawaii_nonstop-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-12-03",
+        "sailing_id": "hawaii_nonstop-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-17",
+        "sailing_id": "hawaii_nonstop-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-31",
+        "sailing_id": "hawaii_nonstop-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-14",
+        "sailing_id": "hawaii_nonstop-2026-12-30"
+      }
+    ],
+    "ship": "ms Pacific Star"
+  },
+  {
+    "badge": null,
+    "cruise_id": "hawaii_neighbor_islands",
+    "embark_port": "Honolulu, Hawaii",
+    "fare_now": 2299,
+    "fare_was": 2799,
+    "historically_sells_out_weeks": 5,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Neighbor Islands Explorer",
+    "nights": 10,
+    "photo": "/ports/glacier_bay.svg",
+    "popularity_score": 0.79,
+    "region": "hawaii",
+    "remaining_at_fare": 8,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-11",
+        "sailing_id": "hawaii_neighbor_islands-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-25",
+        "sailing_id": "hawaii_neighbor_islands-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-08",
+        "sailing_id": "hawaii_neighbor_islands-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-22",
+        "sailing_id": "hawaii_neighbor_islands-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-05",
+        "sailing_id": "hawaii_neighbor_islands-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-19",
+        "sailing_id": "hawaii_neighbor_islands-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-03",
+        "sailing_id": "hawaii_neighbor_islands-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-17",
+        "sailing_id": "hawaii_neighbor_islands-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-10-31",
+        "sailing_id": "hawaii_neighbor_islands-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-14",
+        "sailing_id": "hawaii_neighbor_islands-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-28",
+        "sailing_id": "hawaii_neighbor_islands-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-12",
+        "sailing_id": "hawaii_neighbor_islands-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-26",
+        "sailing_id": "hawaii_neighbor_islands-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-09",
+        "sailing_id": "hawaii_neighbor_islands-2026-12-30"
+      }
+    ],
+    "ship": "ms Aloha Spirit"
+  },
+  {
+    "badge": "Best Value",
+    "cruise_id": "hawaii_maui_big_island",
+    "embark_port": "Honolulu, Hawaii",
+    "fare_now": 2599,
+    "fare_was": 3199,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Maui & Big Island Discovery",
+    "nights": 12,
+    "photo": "/ports/cabo.svg",
+    "popularity_score": 0.75,
+    "region": "hawaii",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-13",
+        "sailing_id": "hawaii_maui_big_island-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-27",
+        "sailing_id": "hawaii_maui_big_island-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-10",
+        "sailing_id": "hawaii_maui_big_island-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-24",
+        "sailing_id": "hawaii_maui_big_island-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-07",
+        "sailing_id": "hawaii_maui_big_island-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-21",
+        "sailing_id": "hawaii_maui_big_island-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-10-05",
+        "sailing_id": "hawaii_maui_big_island-2026-09-23"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-19",
+        "sailing_id": "hawaii_maui_big_island-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-21",
+        "return_date": "2026-11-02",
+        "sailing_id": "hawaii_maui_big_island-2026-10-21"
+      },
+      {
+        "departure_date": "2026-11-04",
+        "return_date": "2026-11-16",
+        "sailing_id": "hawaii_maui_big_island-2026-11-04"
+      },
+      {
+        "departure_date": "2026-11-18",
+        "return_date": "2026-11-30",
+        "sailing_id": "hawaii_maui_big_island-2026-11-18"
+      },
+      {
+        "departure_date": "2026-12-02",
+        "return_date": "2026-12-14",
+        "sailing_id": "hawaii_maui_big_island-2026-12-02"
+      },
+      {
+        "departure_date": "2026-12-16",
+        "return_date": "2026-12-28",
+        "sailing_id": "hawaii_maui_big_island-2026-12-16"
+      },
+      {
+        "departure_date": "2026-12-30",
+        "return_date": "2027-01-11",
+        "sailing_id": "hawaii_maui_big_island-2026-12-30"
+      }
+    ],
+    "ship": "ms Pacific Star"
+  },
+  {
+    "badge": null,
+    "cruise_id": "bermuda_classic",
+    "embark_port": "New York, New York",
+    "fare_now": 1349,
+    "fare_was": 1699,
+    "historically_sells_out_weeks": 4,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Classic Bermuda Getaway",
+    "nights": 7,
+    "photo": "/ports/nassau.svg",
+    "popularity_score": 0.84,
+    "region": "bermuda_bahamas",
+    "remaining_at_fare": 6,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "bermuda_classic-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "bermuda_classic-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "bermuda_classic-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "bermuda_classic-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "bermuda_classic-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "bermuda_classic-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "bermuda_classic-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "bermuda_classic-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "bermuda_classic-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "bermuda_classic-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "bermuda_classic-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "bermuda_classic-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "bermuda_classic-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "bermuda_classic-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "bermuda_classic-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "bermuda_classic-2026-10-14"
+      }
+    ],
+    "ship": "ms Atlantic Star"
+  },
+  {
+    "badge": null,
+    "cruise_id": "bermuda_pink_sand",
+    "embark_port": "Baltimore, Maryland",
+    "fare_now": 1299,
+    "fare_was": 1599,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Pink Sand & Turquoise Water",
+    "nights": 7,
+    "photo": "/ports/st_thomas.svg",
+    "popularity_score": 0.78,
+    "region": "bermuda_bahamas",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-08",
+        "sailing_id": "bermuda_pink_sand-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-15",
+        "sailing_id": "bermuda_pink_sand-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-22",
+        "sailing_id": "bermuda_pink_sand-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-29",
+        "sailing_id": "bermuda_pink_sand-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-05",
+        "sailing_id": "bermuda_pink_sand-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-12",
+        "sailing_id": "bermuda_pink_sand-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-19",
+        "sailing_id": "bermuda_pink_sand-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-26",
+        "sailing_id": "bermuda_pink_sand-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-02",
+        "sailing_id": "bermuda_pink_sand-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-09",
+        "sailing_id": "bermuda_pink_sand-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-16",
+        "sailing_id": "bermuda_pink_sand-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-23",
+        "sailing_id": "bermuda_pink_sand-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-30",
+        "sailing_id": "bermuda_pink_sand-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-07",
+        "sailing_id": "bermuda_pink_sand-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-14",
+        "sailing_id": "bermuda_pink_sand-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-21",
+        "sailing_id": "bermuda_pink_sand-2026-10-14"
+      }
+    ],
+    "ship": "ms Atlantic Star"
+  },
+  {
+    "badge": "Best Value",
+    "cruise_id": "bahamas_weekend",
+    "embark_port": "New York, New York",
+    "fare_now": 799,
+    "fare_was": 999,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Bahamas Weekend Escape",
+    "nights": 5,
+    "photo": "/ports/nassau.svg",
+    "popularity_score": 0.72,
+    "region": "bermuda_bahamas",
+    "remaining_at_fare": null,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-06",
+        "sailing_id": "bahamas_weekend-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-13",
+        "sailing_id": "bahamas_weekend-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-20",
+        "sailing_id": "bahamas_weekend-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-27",
+        "sailing_id": "bahamas_weekend-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-03",
+        "sailing_id": "bahamas_weekend-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-10",
+        "sailing_id": "bahamas_weekend-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-17",
+        "sailing_id": "bahamas_weekend-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-24",
+        "sailing_id": "bahamas_weekend-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-08-31",
+        "sailing_id": "bahamas_weekend-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-07",
+        "sailing_id": "bahamas_weekend-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-14",
+        "sailing_id": "bahamas_weekend-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-21",
+        "sailing_id": "bahamas_weekend-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-28",
+        "sailing_id": "bahamas_weekend-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-05",
+        "sailing_id": "bahamas_weekend-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-12",
+        "sailing_id": "bahamas_weekend-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-19",
+        "sailing_id": "bahamas_weekend-2026-10-14"
+      }
+    ],
+    "ship": "ms Paradise Cay"
+  },
+  {
+    "badge": null,
+    "cruise_id": "bahamas_grand_escape",
+    "embark_port": "Baltimore, Maryland",
+    "fare_now": 949,
+    "fare_was": 1199,
+    "historically_sells_out_weeks": null,
+    "holiday_overlap": null,
+    "is_cruisetour": false,
+    "name": "Grand Bahama Island Escape",
+    "nights": 6,
+    "photo": "/ports/barbados.svg",
+    "popularity_score": 0.69,
+    "region": "bermuda_bahamas",
+    "remaining_at_fare": 12,
+    "sailings": [
+      {
+        "departure_date": "2026-07-01",
+        "return_date": "2026-07-07",
+        "sailing_id": "bahamas_grand_escape-2026-07-01"
+      },
+      {
+        "departure_date": "2026-07-08",
+        "return_date": "2026-07-14",
+        "sailing_id": "bahamas_grand_escape-2026-07-08"
+      },
+      {
+        "departure_date": "2026-07-15",
+        "return_date": "2026-07-21",
+        "sailing_id": "bahamas_grand_escape-2026-07-15"
+      },
+      {
+        "departure_date": "2026-07-22",
+        "return_date": "2026-07-28",
+        "sailing_id": "bahamas_grand_escape-2026-07-22"
+      },
+      {
+        "departure_date": "2026-07-29",
+        "return_date": "2026-08-04",
+        "sailing_id": "bahamas_grand_escape-2026-07-29"
+      },
+      {
+        "departure_date": "2026-08-05",
+        "return_date": "2026-08-11",
+        "sailing_id": "bahamas_grand_escape-2026-08-05"
+      },
+      {
+        "departure_date": "2026-08-12",
+        "return_date": "2026-08-18",
+        "sailing_id": "bahamas_grand_escape-2026-08-12"
+      },
+      {
+        "departure_date": "2026-08-19",
+        "return_date": "2026-08-25",
+        "sailing_id": "bahamas_grand_escape-2026-08-19"
+      },
+      {
+        "departure_date": "2026-08-26",
+        "return_date": "2026-09-01",
+        "sailing_id": "bahamas_grand_escape-2026-08-26"
+      },
+      {
+        "departure_date": "2026-09-02",
+        "return_date": "2026-09-08",
+        "sailing_id": "bahamas_grand_escape-2026-09-02"
+      },
+      {
+        "departure_date": "2026-09-09",
+        "return_date": "2026-09-15",
+        "sailing_id": "bahamas_grand_escape-2026-09-09"
+      },
+      {
+        "departure_date": "2026-09-16",
+        "return_date": "2026-09-22",
+        "sailing_id": "bahamas_grand_escape-2026-09-16"
+      },
+      {
+        "departure_date": "2026-09-23",
+        "return_date": "2026-09-29",
+        "sailing_id": "bahamas_grand_escape-2026-09-23"
+      },
+      {
+        "departure_date": "2026-09-30",
+        "return_date": "2026-10-06",
+        "sailing_id": "bahamas_grand_escape-2026-09-30"
+      },
+      {
+        "departure_date": "2026-10-07",
+        "return_date": "2026-10-13",
+        "sailing_id": "bahamas_grand_escape-2026-10-07"
+      },
+      {
+        "departure_date": "2026-10-14",
+        "return_date": "2026-10-20",
+        "sailing_id": "bahamas_grand_escape-2026-10-14"
+      }
+    ],
+    "ship": "ms Paradise Cay"
   }
 ]

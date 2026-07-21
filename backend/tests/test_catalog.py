@@ -33,10 +33,12 @@ def test_catalog_cruise_count(catalog):
 
 
 def test_catalog_regions(catalog):
-    """All four regions must be present."""
+    """All original four regions must be present (catalog may have more)."""
     regions = {c.region for c in catalog["cruises"]}
-    assert regions == {"alaska", "mexico", "caribbean", "mediterranean"}, (
-        f"Expected 4 regions, got: {regions}"
+    required = {"alaska", "mexico", "caribbean", "mediterranean"}
+    # hawaii and bermuda_bahamas are new regions added in catalog expansion
+    assert required.issubset(regions), (
+        f"Expected at least {required}, got: {regions}"
     )
 
 

@@ -19,12 +19,24 @@ FarePackage = Literal["good_to_go", "have_it_all"]
 # ---------------------------------------------------------------------------
 
 class Constraints(BaseModel):
-    region: Optional[str] = None          # "alaska" | "mexico" | "caribbean" | "mediterranean"
+    region: Optional[str] = None          # e.g. "alaska" | "mexico" | "caribbean" | "mediterranean" | "hawaii" | "bermuda_bahamas"
     nights_min: Optional[int] = None
     nights_max: Optional[int] = None
     embark_port: Optional[str] = None
     budget_max: Optional[int] = None      # per-person integer dollars
     party: int = 2                         # number of guests
+    month: Optional[int] = None
+    return_by: Optional[str] = None
+
+
+# ---------------------------------------------------------------------------
+# Sailing (a specific departure of a cruise)
+# ---------------------------------------------------------------------------
+
+class Sailing(BaseModel):
+    sailing_id: str
+    departure_date: str                    # ISO YYYY-MM-DD
+    return_date: str                       # ISO YYYY-MM-DD
 
 
 # ---------------------------------------------------------------------------
@@ -33,7 +45,7 @@ class Constraints(BaseModel):
 
 class Cruise(BaseModel):
     cruise_id: str
-    region: str                            # "alaska" | "mexico" | "caribbean" | "mediterranean"
+    region: str                            # e.g. "alaska" | "mexico" | "caribbean" | "mediterranean" | "hawaii" | "bermuda_bahamas"
     name: str
     ship: str
     embark_port: str
@@ -48,6 +60,7 @@ class Cruise(BaseModel):
     remaining_at_fare: Optional[int] = None
     historically_sells_out_weeks: Optional[int] = None
     holiday_overlap: Optional[str] = None  # e.g. "Thanksgiving week"
+    sailings: list[Sailing] = Field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -131,6 +144,9 @@ class Draft(BaseModel):
     dining: list[str] = Field(default_factory=list)   # list of "{venue_id}:night_{n}" selections
     land_days: list[DraftLandDay] = Field(default_factory=list)
     completed_steps: list[int] = Field(default_factory=list)
+    sailing_id: Optional[str] = None
+    departure_date: Optional[str] = None
+    return_date: Optional[str] = None
     # Computed totals (populated by money.py)
     total_per_person: Optional[int] = None
     total: Optional[int] = None

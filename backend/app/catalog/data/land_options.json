@@ -1,23 +1,198 @@
 [
-  {"cruise_id":"denali_explorer","option_id":"coastal_d1","day":1,"name":"Coastal Scenic Drive","description":"Guided coastal drive with views of Turnagain Arm","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"denali_explorer","option_id":"domed_rail_d2","day":2,"name":"Domed Rail to Talkeetna","description":"Scenic rail journey through Alaskan wilderness in glass-domed car","price_per_guest":45,"conflicts_with":["motorcoach_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"denali_explorer","option_id":"motorcoach_d2","day":2,"name":"Motorcoach to Talkeetna","description":"Comfortable coach journey with mountain views","price_per_guest":45,"conflicts_with":["domed_rail_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"denali_explorer","option_id":"denali_lodge_2n","day":3,"name":"Denali Lodge 2 Nights","description":"Two nights at Denali Lodge with ranger-led activities","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"denali_explorer","option_id":"fairbanks_tour_d4","day":4,"name":"Fairbanks Gold Rush Tour","description":"Guided tour of historic Fairbanks gold mining sites","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-
-  {"cruise_id":"yukon_denali","option_id":"coastal_d1","day":1,"name":"Coastal Scenic Drive","description":"Guided coastal drive with views of Turnagain Arm","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"yukon_denali","option_id":"domed_rail_d2","day":2,"name":"Domed Rail to Talkeetna","description":"Scenic rail journey through Alaskan wilderness in glass-domed car","price_per_guest":45,"conflicts_with":["motorcoach_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"yukon_denali","option_id":"motorcoach_d2","day":2,"name":"Motorcoach to Talkeetna","description":"Comfortable coach journey with mountain views","price_per_guest":45,"conflicts_with":["domed_rail_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"yukon_denali","option_id":"denali_lodge_2n","day":3,"name":"Denali Lodge 2 Nights","description":"Two nights at Denali Lodge with ranger-led activities","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-
-  {"cruise_id":"alaska_gold_rush","option_id":"coastal_d1","day":1,"name":"Coastal Scenic Drive","description":"Guided coastal drive with views of Turnagain Arm","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"alaska_gold_rush","option_id":"domed_rail_d2","day":2,"name":"Domed Rail to Talkeetna","description":"Scenic rail journey through Alaskan wilderness in glass-domed car","price_per_guest":45,"conflicts_with":["motorcoach_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"alaska_gold_rush","option_id":"motorcoach_d2","day":2,"name":"Motorcoach to Talkeetna","description":"Comfortable coach journey with mountain views","price_per_guest":45,"conflicts_with":["domed_rail_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"alaska_gold_rush","option_id":"skagway_summit_d3","day":3,"name":"White Pass Summit Excursion","description":"Historic railway climb to White Pass summit and Yukon border","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-
-  {"cruise_id":"alaska_midnight_sun","option_id":"coastal_d1","day":1,"name":"Coastal Scenic Drive","description":"Guided coastal drive with views of Turnagain Arm","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"alaska_midnight_sun","option_id":"domed_rail_d2","day":2,"name":"Domed Rail to Talkeetna","description":"Scenic rail journey through Alaskan wilderness in glass-domed car","price_per_guest":45,"conflicts_with":["motorcoach_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"alaska_midnight_sun","option_id":"motorcoach_d2","day":2,"name":"Motorcoach to Talkeetna","description":"Comfortable coach journey with mountain views","price_per_guest":45,"conflicts_with":["domed_rail_d2"],"conflict_reason":"Conflicts with the rail journey on Day 2"},
-  {"cruise_id":"alaska_midnight_sun","option_id":"denali_lodge_2n","day":3,"name":"Denali Lodge 2 Nights","description":"Two nights at Denali Lodge with ranger-led activities","price_per_guest":45,"conflicts_with":[],"conflict_reason":null},
-  {"cruise_id":"alaska_midnight_sun","option_id":"fairbanks_tour_d4","day":4,"name":"Fairbanks Gold Rush Tour","description":"Guided tour of historic Fairbanks gold mining sites","price_per_guest":45,"conflicts_with":[],"conflict_reason":null}
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "denali_explorer",
+    "day": 1,
+    "description": "Guided coastal drive with views of Turnagain Arm",
+    "name": "Coastal Scenic Drive",
+    "option_id": "coastal_d1",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "motorcoach_d2"
+    ],
+    "cruise_id": "denali_explorer",
+    "day": 2,
+    "description": "Scenic rail journey through Alaskan wilderness in glass-domed car",
+    "name": "Domed Rail to Talkeetna",
+    "option_id": "domed_rail_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "domed_rail_d2"
+    ],
+    "cruise_id": "denali_explorer",
+    "day": 2,
+    "description": "Comfortable coach journey with mountain views",
+    "name": "Motorcoach to Talkeetna",
+    "option_id": "motorcoach_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "denali_explorer",
+    "day": 3,
+    "description": "Two nights at Denali Lodge with ranger-led activities",
+    "name": "Denali Lodge 2 Nights",
+    "option_id": "denali_lodge_2n",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "denali_explorer",
+    "day": 4,
+    "description": "Guided tour of historic Fairbanks gold mining sites",
+    "name": "Fairbanks Gold Rush Tour",
+    "option_id": "fairbanks_tour_d4",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "yukon_denali",
+    "day": 1,
+    "description": "Guided coastal drive with views of Turnagain Arm",
+    "name": "Coastal Scenic Drive",
+    "option_id": "coastal_d1",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "motorcoach_d2"
+    ],
+    "cruise_id": "yukon_denali",
+    "day": 2,
+    "description": "Scenic rail journey through Alaskan wilderness in glass-domed car",
+    "name": "Domed Rail to Talkeetna",
+    "option_id": "domed_rail_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "domed_rail_d2"
+    ],
+    "cruise_id": "yukon_denali",
+    "day": 2,
+    "description": "Comfortable coach journey with mountain views",
+    "name": "Motorcoach to Talkeetna",
+    "option_id": "motorcoach_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "yukon_denali",
+    "day": 3,
+    "description": "Two nights at Denali Lodge with ranger-led activities",
+    "name": "Denali Lodge 2 Nights",
+    "option_id": "denali_lodge_2n",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "alaska_gold_rush",
+    "day": 1,
+    "description": "Guided coastal drive with views of Turnagain Arm",
+    "name": "Coastal Scenic Drive",
+    "option_id": "coastal_d1",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "motorcoach_d2"
+    ],
+    "cruise_id": "alaska_gold_rush",
+    "day": 2,
+    "description": "Scenic rail journey through Alaskan wilderness in glass-domed car",
+    "name": "Domed Rail to Talkeetna",
+    "option_id": "domed_rail_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "domed_rail_d2"
+    ],
+    "cruise_id": "alaska_gold_rush",
+    "day": 2,
+    "description": "Comfortable coach journey with mountain views",
+    "name": "Motorcoach to Talkeetna",
+    "option_id": "motorcoach_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "alaska_gold_rush",
+    "day": 3,
+    "description": "Historic railway climb to White Pass summit and Yukon border",
+    "name": "White Pass Summit Excursion",
+    "option_id": "skagway_summit_d3",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "alaska_midnight_sun",
+    "day": 1,
+    "description": "Guided coastal drive with views of Turnagain Arm",
+    "name": "Coastal Scenic Drive",
+    "option_id": "coastal_d1",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "motorcoach_d2"
+    ],
+    "cruise_id": "alaska_midnight_sun",
+    "day": 2,
+    "description": "Scenic rail journey through Alaskan wilderness in glass-domed car",
+    "name": "Domed Rail to Talkeetna",
+    "option_id": "domed_rail_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": "Conflicts with the rail journey on Day 2",
+    "conflicts_with": [
+      "domed_rail_d2"
+    ],
+    "cruise_id": "alaska_midnight_sun",
+    "day": 2,
+    "description": "Comfortable coach journey with mountain views",
+    "name": "Motorcoach to Talkeetna",
+    "option_id": "motorcoach_d2",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "alaska_midnight_sun",
+    "day": 3,
+    "description": "Two nights at Denali Lodge with ranger-led activities",
+    "name": "Denali Lodge 2 Nights",
+    "option_id": "denali_lodge_2n",
+    "price_per_guest": 45
+  },
+  {
+    "conflict_reason": null,
+    "conflicts_with": [],
+    "cruise_id": "alaska_midnight_sun",
+    "day": 4,
+    "description": "Guided tour of historic Fairbanks gold mining sites",
+    "name": "Fairbanks Gold Rush Tour",
+    "option_id": "fairbanks_tour_d4",
+    "price_per_guest": 45
+  }
 ]
