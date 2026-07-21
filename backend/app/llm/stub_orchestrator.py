@@ -171,6 +171,103 @@ def run_turn(session, user_message: str, on_text_delta: Callable[[str], None] | 
         chips = ["Create a draft", "Search for more cruises", "Continue to checkout"]
         return {"text": text, "components": components, "chips": chips, "tool_calls": []}
 
+    # --- Fare tiles branch ---
+    elif any(kw in msg for kw in ("fare", "package", "signature")):
+        components = [
+            {
+                "type": "fare_tiles",
+                "draft_id": session.active_draft_id,
+                "options": [
+                    {
+                        "id": "good_to_go",
+                        "name": "Standard Fare",
+                        "label": "Included in your fare",
+                        "amenities": [
+                            {"text": "Stateroom & main dining", "included": True},
+                            {"text": "Entertainment & enrichment", "included": True},
+                            {"text": "Beverages, specialty dining, Wi-Fi billed separately", "included": False},
+                        ],
+                        "cta": "Keep Standard",
+                        "deposit_note": "Deposit US$ 350 per guest, refundable for 30 days.",
+                    },
+                    {
+                        "id": "have_it_all",
+                        "name": "The Signature Collection",
+                        "badge": "Recommended",
+                        "delta_per_day": "+US$ 55 /pp/day",
+                        "amenities": [
+                            {"text": "Signature Beverage Package", "included": True},
+                            {"text": "One Specialty Dining night", "included": True},
+                            {"text": "US$ 100 Shore Excursion credit", "included": True},
+                            {"text": "Wi-Fi throughout the voyage", "included": True},
+                        ],
+                        "cta": "Selected",
+                        "sharing_note": "Guests in the same stateroom share one package selection.",
+                    },
+                ],
+            }
+        ]
+        chips = ["Choose stateroom", "Tell me more", "Compare my drafts"]
+        text = "Here are the available fare packages for your cruise."
+        if on_text_delta:
+            on_text_delta(text)
+        return {"text": text, "components": components, "chips": chips, "tool_calls": []}
+
+    # --- Stateroom picker branch ---
+    elif any(kw in msg for kw in ("stateroom", "room", "cabin")):
+        from ..catalog.loader import get_catalog
+        from ..scarcity import scarcity_for
+        from ..money import format_money
+
+        catalog = get_catalog()
+
+        # Get active draft to know the cruise
+        draft = None
+        if session.active_draft_id:
+            draft = next((d for d in session.drafts if d.draft_id == session.active_draft_id), None)
+
+        cruise_id = draft.cruise_id if draft else None
+
+        # Get stateroom categories for this cruise (or defaults)
+        if cruise_id:
+            cruise_staterooms = [s for s in catalog["staterooms"] if s.cruise_id == cruise_id]
+        else:
+            cruise_staterooms = []
+
+        # Build categories list with scarcity signals
+        categories = []
+        for s in cruise_staterooms:
+            scarcity_signals = scarcity_for(s)
+            cat = {
+                "category": s.category,
+                "delta": s.delta,
+                "delta_formatted": f"+US$ {s.delta:,}" if s.delta > 0 else "Included",
+                "remaining_at_fare": s.remaining_at_fare,
+            }
+            if scarcity_signals:
+                cat["scarcity"] = scarcity_signals
+            categories.append(cat)
+
+        # Compute total_formatted from draft if available
+        total_formatted = None
+        if draft and draft.total is not None:
+            total_formatted = format_money(draft.total)
+
+        components = [
+            {
+                "type": "stateroom_picker",
+                "draft_id": session.active_draft_id,
+                "categories": categories,
+                "locations": ["Forward", "Midship", "Aft"],
+                "total_formatted": total_formatted,
+            }
+        ]
+        chips = ["Choose Verandah", "Tell me about staterooms", "Compare my drafts"]
+        text = "Choose your stateroom category and preferred location."
+        if on_text_delta:
+            on_text_delta(text)
+        return {"text": text, "components": components, "chips": chips, "tool_calls": []}
+
     # --- Draft/booking branch ---
     elif any(kw in msg for kw in ("total", "my draft", "booking", "draft")):
         if session.drafts:

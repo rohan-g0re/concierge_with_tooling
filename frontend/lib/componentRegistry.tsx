@@ -12,6 +12,8 @@ import type { ComponentDescriptor } from "./api";
 import { CardRow as CardRowComponent } from "@/components/cards/CardRow";
 import type { CardRowProps } from "@/components/cards/CardRow";
 import { StepTracker } from "@/components/tracker/StepTracker";
+import { FareTiles } from "@/components/fare/FareTiles";
+import { StateroomPicker } from "@/components/stateroom/StateroomPicker";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -22,6 +24,10 @@ export type RegistryHandlers = {
   onSelect?: (cruiseId: string) => void;
   /** Called when the user taps See Itinerary on a cruise card. */
   onOpenItinerary?: (card: unknown) => void;
+  /** Called when the user taps a fare tile. */
+  onSetFare?: (args: { draft_id: string; package: string }) => Promise<void>;
+  /** Called when the user taps a stateroom category or changes location. Returns server result with total_formatted. */
+  onSetStateroom?: (args: { draft_id: string; category: string; location: string }) => Promise<{ total_formatted?: string } | undefined>;
 };
 
 // ---------------------------------------------------------------------------
@@ -161,6 +167,34 @@ function Handoff({ descriptor }: { descriptor: ComponentDescriptor }) {
 }
 
 // ---------------------------------------------------------------------------
+// FareTiles wrapper
+// ---------------------------------------------------------------------------
+
+function FareTilesWrapper({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  return <FareTiles descriptor={descriptor} handlers={handlers} />;
+}
+
+// ---------------------------------------------------------------------------
+// StateroomPicker wrapper
+// ---------------------------------------------------------------------------
+
+function StateroomPickerWrapper({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  return <StateroomPicker descriptor={descriptor} handlers={handlers} />;
+}
+
+// ---------------------------------------------------------------------------
 // Error
 // ---------------------------------------------------------------------------
 
@@ -193,6 +227,8 @@ const REGISTRY: Record<string, RegistryEntry> = {
   comparison: Comparison,
   handoff: Handoff,
   error: ErrorComponent,
+  fare_tiles: FareTilesWrapper,
+  stateroom_picker: StateroomPickerWrapper,
 };
 
 /**

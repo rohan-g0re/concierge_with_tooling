@@ -217,7 +217,91 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
                 }
                 components.append(tracker)
 
+    # Chain next-step components for tap flow
+    if tool_name == "create_draft":
+        _append_fare_tiles(components, result, session)
+    elif tool_name == "set_fare":
+        _append_stateroom_picker(components, result, session)
+
     return components
+
+
+def _fare_tiles_options() -> list[dict]:
+    """Return the two standard fare option descriptors."""
+    return [
+        {
+            "id": "good_to_go",
+            "name": "Standard Fare",
+            "label": "Included in your fare",
+            "amenities": [
+                {"text": "Stateroom & main dining", "included": True},
+                {"text": "Entertainment & enrichment", "included": True},
+                {"text": "Beverages, specialty dining, Wi-Fi billed separately", "included": False},
+            ],
+            "cta": "Keep Standard",
+            "deposit_note": "Deposit US$ 350 per guest, refundable for 30 days.",
+        },
+        {
+            "id": "have_it_all",
+            "name": "The Signature Collection",
+            "badge": "Recommended",
+            "delta_per_day": "+US$ 55 /pp/day",
+            "amenities": [
+                {"text": "Signature Beverage Package", "included": True},
+                {"text": "One Specialty Dining night", "included": True},
+                {"text": "US$ 100 Shore Excursion credit", "included": True},
+                {"text": "Wi-Fi throughout the voyage", "included": True},
+            ],
+            "cta": "Selected",
+            "sharing_note": "Guests in the same stateroom share one package selection.",
+        },
+    ]
+
+
+def _append_fare_tiles(components: list, result: dict, session) -> None:
+    """Append a fare_tiles descriptor after create_draft."""
+    draft_id = result.get("draft_id")
+    if not draft_id:
+        return
+    components.append({
+        "type": "fare_tiles",
+        "draft_id": draft_id,
+        "options": _fare_tiles_options(),
+    })
+
+
+def _append_stateroom_picker(components: list, result: dict, session) -> None:
+    """Append a stateroom_picker descriptor after set_fare."""
+    draft_id = result.get("draft_id")
+    if not draft_id:
+        return
+    draft = next((d for d in session.drafts if d.draft_id == draft_id), None)
+    if draft is None:
+        return
+    from ..catalog.loader import get_catalog
+    from ..scarcity import scarcity_for
+    from ..money import format_money
+    catalog = get_catalog()
+    cruise_staterooms = [s for s in catalog["staterooms"] if s.cruise_id == draft.cruise_id]
+    categories = []
+    for s in cruise_staterooms:
+        scarcity_signals = scarcity_for(s)
+        cat = {
+            "category": s.category,
+            "delta": s.delta,
+            "delta_formatted": f"+US$ {s.delta:,}" if s.delta > 0 else "Included",
+            "remaining_at_fare": s.remaining_at_fare,
+        }
+        if scarcity_signals:
+            cat["scarcity"] = scarcity_signals
+        categories.append(cat)
+    components.append({
+        "type": "stateroom_picker",
+        "draft_id": draft_id,
+        "categories": categories,
+        "locations": ["Forward", "Midship", "Aft"],
+        "total_formatted": format_money(draft.total) if draft.total is not None else None,
+    })
 
 
 # ---------------------------------------------------------------------------

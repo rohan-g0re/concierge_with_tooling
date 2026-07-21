@@ -358,6 +358,73 @@ export default function ChatShellPage() {
   }, []);
 
   // ---------------------------------------------------------------------------
+  // Set fare → postAction('set_fare', ...) + update transcript + refreshDrafts
+  // ---------------------------------------------------------------------------
+
+  const handleSetFare = useCallback(
+    async (args: { draft_id: string; package: string }) => {
+      try {
+        const response = await postAction("set_fare", sessionIdRef.current, args);
+        if (response.components && response.components.length > 0) {
+          const syntheticId = newMessageId();
+          const syntheticMsg: TranscriptMessage = {
+            id: syntheticId,
+            role: "assistant",
+            text: `Fare package updated.`,
+            streaming: false,
+            components: response.components,
+            chips: response.chips ?? [],
+          };
+          setMessages((prev) => [...prev, syntheticMsg]);
+          if (response.chips && response.chips.length > 0) {
+            setChips(response.chips);
+          }
+          await refreshDrafts();
+        }
+      } catch (err) {
+        console.error("set_fare failed:", err);
+      }
+    },
+    [refreshDrafts]
+  );
+
+  // ---------------------------------------------------------------------------
+  // Set stateroom → postAction('set_stateroom', ...) + update transcript + refreshDrafts
+  // Returns { total_formatted } for StateroomPicker live total update
+  // ---------------------------------------------------------------------------
+
+  const handleSetStateroom = useCallback(
+    async (args: { draft_id: string; category: string; location: string }): Promise<{ total_formatted?: string } | undefined> => {
+      try {
+        const response = await postAction("set_stateroom", sessionIdRef.current, args);
+        if (response.components && response.components.length > 0) {
+          const syntheticId = newMessageId();
+          const syntheticMsg: TranscriptMessage = {
+            id: syntheticId,
+            role: "assistant",
+            text: `Stateroom updated.`,
+            streaming: false,
+            components: response.components,
+            chips: response.chips ?? [],
+          };
+          setMessages((prev) => [...prev, syntheticMsg]);
+          if (response.chips && response.chips.length > 0) {
+            setChips(response.chips);
+          }
+          await refreshDrafts();
+          // Return total_formatted for live total update in StateroomPicker
+          const tracker = response.components.find(c => c.type === "tracker_update");
+          return { total_formatted: tracker?.total_formatted as string | undefined };
+        }
+      } catch (err) {
+        console.error("set_stateroom failed:", err);
+      }
+      return undefined;
+    },
+    [refreshDrafts]
+  );
+
+  // ---------------------------------------------------------------------------
   // Itinerary Q&A — scoped to the open cruise (P8 D2).
   // The ItineraryPanel handles the request itself (local postChat) and renders
   // the answer INSIDE the panel, keeping the panel open. The scoped message is
@@ -376,6 +443,8 @@ export default function ChatShellPage() {
   const registryHandlers: RegistryHandlers = {
     onSelect: handleSelect,
     onOpenItinerary: handleOpenItinerary,
+    onSetFare: handleSetFare,
+    onSetStateroom: handleSetStateroom,
   };
 
   const isEmpty = messages.length === 0;
