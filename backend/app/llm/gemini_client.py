@@ -143,11 +143,20 @@ def run_turn(
     config = _build_config(tool)
 
     # Build conversation history from session.messages
+    # system_event entries (appended by /action) are injected as user-role bracketed
+    # notes so the model sees the result of tile taps on the next turn.
     contents = []
     for msg in session.messages:
         role = msg.get("role", "user")
-        text = msg.get("content", "")
-        contents.append(types.Content(role=role, parts=[types.Part(text=text)]))
+        if role == "system_event":
+            # Inject as a user-role note so Gemini sees state changes from tile taps
+            event_text = msg.get("text", "")
+            note = f"[system note: {event_text}]"
+            contents.append(types.Content(role="user", parts=[types.Part(text=note)]))
+        elif role in ("user", "model"):
+            text = msg.get("content", "")
+            contents.append(types.Content(role=role, parts=[types.Part(text=text)]))
+        # else: skip unknown roles silently
 
     # Add current user message
     contents.append(types.Content(role="user", parts=[types.Part(text=user_message)]))
