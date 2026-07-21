@@ -79,14 +79,12 @@ def denali_reference_draft():
         ],
         completed_steps=[],
     )
-    # Set party size via attribute (money.py uses getattr with default 2)
-    draft._party = 2
     return draft
 
 
 def test_denali_reference_total(catalog, denali_reference_draft):
     """Denali reference draft must total exactly US$ 8,092."""
-    total = draft_total(denali_reference_draft, catalog)
+    total = draft_total(denali_reference_draft, catalog, party=2)
     assert total == 8092, (
         f"Expected Denali reference total 8092, got {total}. "
         f"Check: fare_now=2682, package=55*12=660, verandah_delta=486, "
@@ -114,14 +112,13 @@ def _draft(fare_package: str) -> Draft:
         ],
         completed_steps=[],
     )
-    d._party = 2
     return d
 
 
 def test_package_delta_equals_55_times_nights_times_party(catalog):
     """have_it_all minus good_to_go == 55 * nights * party (the package delta)."""
-    have = draft_total(_draft("have_it_all"), catalog)
-    good = draft_total(_draft("good_to_go"), catalog)
+    have = draft_total(_draft("have_it_all"), catalog, party=2)
+    good = draft_total(_draft("good_to_go"), catalog, party=2)
 
     cruise = next(c for c in catalog["cruises"] if c.cruise_id == "denali_explorer")
     party = 2

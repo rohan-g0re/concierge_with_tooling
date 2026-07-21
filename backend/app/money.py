@@ -51,7 +51,7 @@ def format_money(amount: int) -> str:
     return f"US$ {amount:,}"
 
 
-def draft_total(draft: "Draft", catalog: dict) -> int:
+def draft_total(draft: "Draft", catalog: dict, party: int = 2) -> int:
     """
     Compute the grand total (all guests, all add-ons) for a draft.
 
@@ -72,9 +72,6 @@ def draft_total(draft: "Draft", catalog: dict) -> int:
     if cruise is None:
         raise ValueError(f"Cruise {draft.cruise_id!r} not found in catalog")
 
-    # Determine party size — walk up to session if needed; default 2
-    party = getattr(draft, "_party", 2)
-
     # Base fare (Inside stateroom, per person) — the "from" price, no package
     base_fare = cruise.fare_now
 
@@ -90,8 +87,9 @@ def draft_total(draft: "Draft", catalog: dict) -> int:
     staterooms: list[StateroomCategory] = [
         s for s in catalog["staterooms"] if s.cruise_id == draft.cruise_id
     ]
+    draft_category_norm = (draft.stateroom.category or "").lower()
     for cat in staterooms:
-        if cat.category == draft.stateroom.category:
+        if cat.category.lower() == draft_category_norm:
             stateroom_delta = cat.delta
             break
 

@@ -130,7 +130,7 @@ class Draft(BaseModel):
     stateroom: DraftStateroom
     dining: list[str] = Field(default_factory=list)   # list of "{venue_id}:night_{n}" selections
     land_days: list[DraftLandDay] = Field(default_factory=list)
-    completed_steps: list[str] = Field(default_factory=list)
+    completed_steps: list[int] = Field(default_factory=list)
     # Computed totals (populated by money.py)
     total_per_person: Optional[int] = None
     total: Optional[int] = None
@@ -145,3 +145,5 @@ class Session(BaseModel):
     constraints: Constraints = Field(default_factory=Constraints)
     drafts: list[Draft] = Field(default_factory=list)
     active_draft_id: Optional[str] = None
+    party: int = Field(default=2, ge=1, le=4)
+    messages: list[dict] = Field(default_factory=list)
