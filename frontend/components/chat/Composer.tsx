@@ -12,9 +12,10 @@ interface ComposerProps {
   onSend: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  sessionId: string;
 }
 
-export function Composer({ onSend, disabled, placeholder = "Ask about cruises, itineraries, dining…" }: ComposerProps) {
+export function Composer({ onSend, disabled, placeholder = "Ask about cruises, itineraries, dining…", sessionId }: ComposerProps) {
   const [value, setValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -55,8 +56,8 @@ export function Composer({ onSend, disabled, placeholder = "Ask about cruises, i
           boxShadow: "0 1px 4px rgba(12,35,64,0.06)",
         }}
       >
-        {/* Mic button (visual placeholder) */}
-        <MicToggle />
+        {/* Mic button */}
+        <MicToggle sessionId={sessionId} />
 
         {/* Input */}
         <textarea

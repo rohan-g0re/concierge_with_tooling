@@ -605,7 +605,7 @@ export default function ChatShellPage() {
           )}
 
           {/* Composer */}
-          <Composer onSend={sendMessage} disabled={streaming} />
+          <Composer onSend={sendMessage} disabled={streaming} sessionId={sessionIdRef.current} />
         </main>
 
         {/* Draft rail */}
