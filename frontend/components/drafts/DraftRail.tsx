@@ -217,7 +217,7 @@ function InactiveDraftChip({
 // DraftRail
 // ---------------------------------------------------------------------------
 
-export function DraftRail({ drafts, activeDraftId, onSetActive }: DraftRailProps) {
+export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRailProps) {
   const activeDraft = drafts.find((d) => d.draft_id === activeDraftId) ?? null;
   const otherDrafts = drafts.filter((d) => d.draft_id !== activeDraftId);
 
