@@ -162,7 +162,7 @@ def compare_drafts(session: "Session", args: dict) -> dict:
         return {"label": label, "values": values, "differ": differ}
 
     rows = [
-        _row("Dates", "dates"),
+        _row("Cruise", "dates"),
         _row("Nights", "nights"),
         _row("Ship", "ship"),
         _row("Fare package", "fare_package"),

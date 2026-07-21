@@ -266,7 +266,7 @@ export default function ChatShellPage() {
           const syntheticMsg: TranscriptMessage = {
             id: syntheticId,
             role: "assistant",
-            text: `Draft created for cruise ${cruiseId}.`,
+            text: (response.result as Record<string, unknown>)?.error ? "" : `Draft created for cruise ${cruiseId}.`,
             streaming: false,
             components: response.components,
             chips: response.chips ?? [],

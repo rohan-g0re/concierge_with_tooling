@@ -121,3 +121,27 @@ export async function postAction(
 
   return res.json();
 }
+
+/**
+ * Fetch the inline-editable component descriptors for a given draft + booking
+ * step. Backed by GET /session/{id}/draft/{draft_id}/step/{n}/options, which
+ * reuses the same descriptor builders as the /action route (R21 parity), so the
+ * checkout page renders identical components via the componentRegistry.
+ *
+ * Supported steps: 2 (fare), 3 (stateroom), 4 (add-ons).
+ */
+export async function getStepOptions(
+  sessionId: string,
+  draftId: string,
+  step: number
+): Promise<{ draft_id: string; step: number; components: ComponentDescriptor[] }> {
+  const res = await fetch(
+    `${API_BASE}/session/${sessionId}/draft/${draftId}/step/${step}/options`
+  );
+
+  if (!res.ok) {
+    throw new Error(`Step options request failed: ${res.status} ${res.statusText}`);
+  }
+
+  return res.json();
+}

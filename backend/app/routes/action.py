@@ -103,6 +103,11 @@ def _make_event_text(tool_name: str, args: dict, result: dict) -> str:
         cruise_id = args.get("cruise_id", "unknown")
         return f"user viewed land options for {cruise_id}"
 
+    if tool_name == "set_active_draft":
+        draft_id = result.get("draft_id") or args.get("draft_id", "unknown")
+        label = result.get("label", draft_id)
+        return f"user switched active draft to {label}"
+
     # Fallback
     return f"user called {tool_name}"
 

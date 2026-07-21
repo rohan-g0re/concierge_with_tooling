@@ -54,7 +54,7 @@ def test_compare_two_drafts_row_keys_and_diff(catalog):
 
     # Verify exact row labels match design compareRows
     expected_labels = [
-        "Dates",
+        "Cruise",
         "Nights",
         "Ship",
         "Fare package",
@@ -82,9 +82,9 @@ def test_compare_two_drafts_row_keys_and_diff(catalog):
     assert fare_row["values"][0] == "The Signature Collection"
     assert fare_row["values"][1] == "The Signature Collection"
 
-    # Dates differ==True (different cruises → different proxy dates)
-    dates_row = next(r for r in rows if r["label"] == "Dates")
-    assert dates_row["differ"] is True, f"Dates differ should be True (different cruises), got {dates_row}"
+    # Cruise differ==True (different cruises → different cruise names)
+    dates_row = next(r for r in rows if r["label"] == "Cruise")
+    assert dates_row["differ"] is True, f"Cruise differ should be True (different cruises), got {dates_row}"
 
     # Total values reflect customization (d1 Verandah+Signature > d2 Inside+Signature)
     total_row = next(r for r in rows if r["label"] == "Total · 2 guests")

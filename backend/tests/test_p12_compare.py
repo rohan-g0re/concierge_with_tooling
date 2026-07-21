@@ -70,7 +70,7 @@ def test_compare_drafts_row_labels(catalog):
     d2 = make_mexico_draft(session, catalog)
     result = compare_drafts(session, {"draft_ids": [d1, d2]})
     labels = [r["label"] for r in result["rows"]]
-    expected = ["Dates", "Nights", "Ship", "Fare package", "Stateroom", "Dining reserved", "Land days", "Per person"]
+    expected = ["Cruise", "Nights", "Ship", "Fare package", "Stateroom", "Dining reserved", "Land days", "Per person"]
     for lbl in expected:
         assert lbl in labels, f"Missing row label: {lbl}"
 
