@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Compass · Cruise Concierge | Meridian Line",
   description:
     "Conversational booking concierge — search, compare, and build your cruise in chat.",
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({

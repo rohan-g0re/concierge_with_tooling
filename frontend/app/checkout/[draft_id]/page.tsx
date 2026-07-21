@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { getSessionId } from "@/lib/session";
 import { postAction, getStepOptions, type ComponentDescriptor } from "@/lib/api";
 import { renderComponent, type RegistryHandlers } from "@/lib/componentRegistry";
+import { ErrorState } from "@/components/states/ErrorState";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -133,6 +134,24 @@ export default function CheckoutPage() {
       .catch(() => setState("session_missing"));
   }, [draftId, sessionId]);
 
+  /** Fetch a step's option descriptors (retryable — powers ErrorState "Try again"). */
+  const loadStepOptions = useCallback(
+    async (step: number) => {
+      if (!EDITABLE_STEPS.has(step)) return;
+      setEditError(null);
+      setEditLoading(true);
+      try {
+        const data = await getStepOptions(sessionId, draftId, step);
+        setEditComponents(data.components ?? []);
+      } catch {
+        setEditError("That didn't go through.");
+      } finally {
+        setEditLoading(false);
+      }
+    },
+    [sessionId, draftId]
+  );
+
   /** Open/close the inline editor for a step; fetch its option descriptors. */
   const toggleEdit = useCallback(
     async (step: number) => {
@@ -145,18 +164,9 @@ export default function CheckoutPage() {
       setEditingStep(step);
       setEditComponents([]);
       setEditError(null);
-      if (!EDITABLE_STEPS.has(step)) return;
-      setEditLoading(true);
-      try {
-        const data = await getStepOptions(sessionId, draftId, step);
-        setEditComponents(data.components ?? []);
-      } catch {
-        setEditError("We couldn't load the options for this step. Please try again.");
-      } finally {
-        setEditLoading(false);
-      }
+      await loadStepOptions(step);
     },
-    [editingStep, sessionId, draftId]
+    [editingStep, loadStepOptions]
   );
 
   // Handlers wired to the real /action endpoints, scoped to this draft.
@@ -320,9 +330,10 @@ export default function CheckoutPage() {
                           )}
 
                           {EDITABLE_STEPS.has(step) && editError && (
-                            <p style={{ color: "#c0392b", fontSize: 13, margin: "8px 0 0 0" }}>
-                              {editError}
-                            </p>
+                            <ErrorState
+                              message={editError}
+                              onRetry={() => loadStepOptions(step)}
+                            />
                           )}
 
                           {EDITABLE_STEPS.has(step) && !editLoading && !editError && (

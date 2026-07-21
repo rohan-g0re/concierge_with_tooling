@@ -14,6 +14,7 @@
 
 import React, { useState } from "react";
 import type { ComponentDescriptor } from "@/lib/api";
+import { EmptyState } from "@/components/states/Empty";
 
 // ---------------------------------------------------------------------------
 // Ship icon SVG (inline, from design doc)
@@ -273,27 +274,27 @@ export interface CardRowProps {
   descriptor: ComponentDescriptor;
   onSelect: (cruiseId: string) => void;
   onOpenItinerary: (card: CardData) => void;
+  /** Widen-chip taps flow through the existing chip-click path (sends as a message). */
+  onChipClick?: (value: string) => void;
 }
 
-export function CardRow({ descriptor, onSelect, onOpenItinerary }: CardRowProps) {
+/** Widen chips shown on an empty search — phrased so they re-run search when sent. */
+const WIDEN_CHIPS = [
+  { label: "Widen by a week", value: "Widen the date range by a week" },
+  { label: "Try July instead", value: "Try July instead" },
+];
+
+export function CardRow({ descriptor, onSelect, onOpenItinerary, onChipClick }: CardRowProps) {
   const cards = ((descriptor.cards as CardData[] | undefined) ?? []).slice(0, 5);
   const filters = (descriptor.filters as Record<string, unknown> | undefined) ?? {};
 
   if (cards.length === 0) {
     return (
-      <div
-        style={{
-          marginTop: "12px",
-          padding: "16px",
-          background: "#fff",
-          border: "1px solid rgba(12,35,64,.10)",
-          borderRadius: "12px",
-          fontSize: "14px",
-          color: "#5A6B7E",
-        }}
-      >
-        No cruises found for your search criteria.
-      </div>
+      <EmptyState
+        message="No sailings match those dates."
+        chips={WIDEN_CHIPS}
+        onChipClick={onChipClick}
+      />
     );
   }
 

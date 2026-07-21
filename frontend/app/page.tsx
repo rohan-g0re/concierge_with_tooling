@@ -515,6 +515,13 @@ export default function ChatShellPage() {
     [refreshDrafts]
   );
 
+  // Re-send the most recent user message — powers "Try again" on errored
+  // components (frame 1o) so a failed turn is never a dead-end.
+  const handleRetryLastMessage = useCallback(() => {
+    const lastUser = [...messages].reverse().find((m) => m.role === "user");
+    if (lastUser?.text) sendMessage(lastUser.text);
+  }, [messages, sendMessage]);
+
   const registryHandlers: RegistryHandlers = {
     onSelect: handleSelect,
     onOpenItinerary: handleOpenItinerary,
@@ -523,6 +530,8 @@ export default function ChatShellPage() {
     onReserveDining: handleReserveDining,
     onSetLandDays: handleSetLandDays,
     onSetActiveDraft: handleSetActiveDraftFromComparison,
+    onRetry: handleRetryLastMessage,
+    onChipClick: handleChipClick,
   };
 
   const isEmpty = messages.length === 0;
@@ -595,6 +604,13 @@ export default function ChatShellPage() {
                 messages={messages}
                 onChipClick={handleChipClick}
                 registryHandlers={registryHandlers}
+                feedbackContext={{
+                  session_id: sessionIdRef.current,
+                  active_draft_id: activeDraftId,
+                  active_draft_completed_steps:
+                    drafts.find((d) => d.draft_id === activeDraftId)?.completed_steps ?? [],
+                  draft_count: drafts.length,
+                }}
               />
             )}
           </div>

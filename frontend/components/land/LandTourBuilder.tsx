@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import type { ComponentDescriptor } from "@/lib/api";
 import type { RegistryHandlers } from "@/lib/componentRegistry";
+import { ErrorState } from "@/components/states/ErrorState";
 
 interface LandOption {
   id: string;
@@ -44,6 +45,9 @@ export function LandTourBuilder({
   const [plan, setPlan] = useState<PlanItem[]>(initialPlan);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  // Retryable network failure — holds the ids that failed to persist so
+  // "Try again" can re-invoke the same set_land_days call (frame 1o).
+  const [netErrorIds, setNetErrorIds] = useState<Set<string> | null>(null);
 
   const getConflictingIds = (ids: Set<string>): Set<string> => {
     const conflicting = new Set<string>();
@@ -100,6 +104,7 @@ export function LandTourBuilder({
     if (!draftId) return;
     setLoading(true);
     setError(null);
+    setNetErrorIds(null);
 
     try {
       const res = await fetch(
@@ -118,6 +123,10 @@ export function LandTourBuilder({
           }),
         }
       );
+      if (!res.ok) {
+        setNetErrorIds(newIds);
+        return;
+      }
       const data = await res.json();
 
       if (data.result?.error) {
@@ -156,7 +165,7 @@ export function LandTourBuilder({
         setPlan(newPlan);
       }
     } catch {
-      setError("Network error. Please try again.");
+      setNetErrorIds(newIds);
     } finally {
       setLoading(false);
     }
@@ -204,8 +213,20 @@ export function LandTourBuilder({
               return (
                 <div
                   key={opt.id}
+                  className="tile-selectable"
+                  role="button"
+                  tabIndex={isConflicting ? -1 : 0}
+                  aria-disabled={isConflicting}
+                  aria-pressed={isSelected}
+                  aria-label={`${opt.name}, ${opt.price_formatted}${isSelected ? ", selected" : ""}${isConflicting ? `, unavailable: ${conflictReason}` : ""}`}
                   title={isConflicting ? conflictReason : ""}
                   onClick={() => !isConflicting && handleOptionClick(opt, day.day)}
+                  onKeyDown={(e) => {
+                    if (!isConflicting && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      handleOptionClick(opt, day.day);
+                    }
+                  }}
                   style={{
                     position: "relative",
                     background: "#fff",
@@ -277,9 +298,14 @@ export function LandTourBuilder({
         ))}
       </div>
 
-      {/* Inline error */}
+      {/* Inline (business) error — e.g. conflict */}
       {error && (
         <p style={{ fontSize: "12.5px", color: "#c0392b" }}>{error}</p>
+      )}
+
+      {/* Retryable network failure — re-invoke the same selection call */}
+      {netErrorIds && (
+        <ErrorState onRetry={() => postSelection(netErrorIds)} />
       )}
 
       {/* Mini timeline: "Your plan so far" */}

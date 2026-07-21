@@ -319,6 +319,7 @@ def _append_stateroom_picker(components: list, result: dict, session) -> None:
         "categories": categories,
         "locations": ["Forward", "Midship", "Aft"],
         "total_formatted": format_money(draft.total) if draft.total is not None else None,
+        "party": session.party,
     })
 
 

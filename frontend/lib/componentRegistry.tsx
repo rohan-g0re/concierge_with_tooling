@@ -17,6 +17,7 @@ import { StateroomPicker } from "@/components/stateroom/StateroomPicker";
 import { DiningTiles } from "@/components/dining/DiningTiles";
 import { LandTourBuilder } from "@/components/land/LandTourBuilder";
 import { ComparisonView } from "@/components/compare/ComparisonView";
+import { ErrorState } from "@/components/states/ErrorState";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -37,6 +38,10 @@ export type RegistryHandlers = {
   onSetLandDays?: (data: unknown) => Promise<void>;
   /** Called when the user clicks "Continue with this" in comparison view to set active draft. */
   onSetActiveDraft?: (draftId: string) => Promise<void>;
+  /** Called when the user taps "Try again" on an errored component — re-invokes the failed call. */
+  onRetry?: () => void;
+  /** Called when the user taps a widen chip on an empty card_row (e.g. "Widen by a week"). */
+  onChipClick?: (value: string) => void;
 };
 
 // ---------------------------------------------------------------------------
@@ -55,6 +60,7 @@ function CardRow({
       descriptor={descriptor}
       onSelect={handlers?.onSelect ?? (() => {})}
       onOpenItinerary={handlers?.onOpenItinerary as CardRowProps["onOpenItinerary"] ?? (() => {})}
+      onChipClick={handlers?.onChipClick}
     />
   );
 }
@@ -239,17 +245,17 @@ function politeErrorCopy(descriptor: ComponentDescriptor): string {
   return "Something went sideways on my end — let's try that again.";
 }
 
-function ErrorComponent({ descriptor }: { descriptor: ComponentDescriptor }) {
-  return (
-    <div
-      className="mt-3 rounded-xl p-3 border"
-      style={{ background: "rgba(217,232,232,0.35)", borderColor: "rgba(12,35,64,0.12)" }}
-    >
-      <p className="font-sans text-sm" style={{ color: "#5A6B7E" }}>
-        {politeErrorCopy(descriptor)}
-      </p>
-    </div>
-  );
+function ErrorComponent({
+  descriptor,
+  handlers,
+}: {
+  descriptor: ComponentDescriptor;
+  handlers?: RegistryHandlers;
+}) {
+  // If a retry handler is available (e.g. re-run the last chat turn), surface a
+  // "Try again" affordance so an errored component is never a dead-end (frame 1o).
+  const onRetry = handlers?.onRetry;
+  return <ErrorState message={politeErrorCopy(descriptor)} onRetry={onRetry} />;
 }
 
 // ---------------------------------------------------------------------------

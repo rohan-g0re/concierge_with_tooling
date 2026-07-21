@@ -50,7 +50,18 @@ export function FareTiles({
         return (
           <div
             key={opt.id}
+            className="tile-selectable"
+            role="button"
+            tabIndex={0}
+            aria-label={`${opt.name} fare package${isSelected ? ", selected" : ""}`}
+            aria-pressed={isSelected}
             onClick={() => handleSelect(opt.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleSelect(opt.id);
+              }
+            }}
             style={{
               flex: 1,
               position: "relative",

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import type { ComponentDescriptor } from "@/lib/api";
 import type { RegistryHandlers } from "@/lib/componentRegistry";
+import { ErrorState } from "@/components/states/ErrorState";
 
 interface NightInfo {
   night: number;
@@ -33,6 +34,8 @@ export function DiningTiles({
   const [selectedNight, setSelectedNight] = useState<Record<string, number | null>>({});
   // Track error messages per venue
   const [errors, setErrors] = useState<Record<string, string>>({});
+  // Track retryable network failures per venue (→ ErrorState with Try again)
+  const [netError, setNetError] = useState<Record<string, boolean>>({});
   // Track reserved state per venue: venue_id → { night, time }
   const [reserved, setReserved] = useState<Record<string, { night: number; time: string }>>({});
   // Loading state per venue
@@ -66,6 +69,7 @@ export function DiningTiles({
 
     setLoading((prev) => ({ ...prev, [venueId]: true }));
     setErrors((prev) => ({ ...prev, [venueId]: "" }));
+    setNetError((prev) => ({ ...prev, [venueId]: false }));
 
     try {
       const res = await fetch(
@@ -81,6 +85,10 @@ export function DiningTiles({
           }),
         }
       );
+      if (!res.ok) {
+        setNetError((prev) => ({ ...prev, [venueId]: true }));
+        return;
+      }
       const data = await res.json();
 
       if (data.result?.error) {
@@ -98,7 +106,7 @@ export function DiningTiles({
         handlers?.onReserveDining?.(data);
       }
     } catch {
-      setErrors((prev) => ({ ...prev, [venueId]: "Network error. Please try again." }));
+      setNetError((prev) => ({ ...prev, [venueId]: true }));
     } finally {
       setLoading((prev) => ({ ...prev, [venueId]: false }));
     }
@@ -123,6 +131,7 @@ export function DiningTiles({
         const isReserved = !!reservedInfo;
         const currentSelectedNight = selectedNight[venue.venue_id] ?? null;
         const errMsg = errors[venue.venue_id] ?? "";
+        const isNetError = netError[venue.venue_id] ?? false;
         const isLoading = loading[venue.venue_id] ?? false;
         const isMain = isMainDining(venue);
 
@@ -344,8 +353,20 @@ export function DiningTiles({
                     return (
                       <div
                         key={n.night}
+                        className="tile-selectable"
+                        role="button"
+                        tabIndex={isDisabled ? -1 : 0}
+                        aria-disabled={isDisabled}
+                        aria-pressed={isChosen}
+                        aria-label={`Night ${n.night}${isSoldOut ? ", fully reserved" : isAlreadyReserved ? ", already reserved" : ""}`}
                         title={isSoldOut ? "Fully reserved this night" : isAlreadyReserved ? "Already reserved" : `Night ${n.night}`}
                         onClick={() => !isDisabled && handleNightSelect(venue.venue_id, n.night, n.status)}
+                        onKeyDown={(e) => {
+                          if (!isDisabled && (e.key === "Enter" || e.key === " ")) {
+                            e.preventDefault();
+                            handleNightSelect(venue.venue_id, n.night, n.status);
+                          }
+                        }}
                         style={{
                           background: bg,
                           color,
@@ -371,6 +392,11 @@ export function DiningTiles({
                   <p style={{ fontSize: "12.5px", color: "#5A6B7E", marginBottom: "10px" }}>
                     Night {currentSelectedNight} · 7:30 PM
                   </p>
+                )}
+
+                {/* Retryable network failure — re-invoke the reservation call */}
+                {isNetError && (
+                  <ErrorState onRetry={() => handleConfirm(venue.venue_id)} />
                 )}
 
                 <div style={{ display: "flex", gap: "8px" }}>

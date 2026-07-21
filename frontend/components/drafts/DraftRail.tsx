@@ -126,15 +126,18 @@ function ActiveDraftCard({ draft }: { draft: DraftInfo }) {
       }}
     >
       {/* Ring + label */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <ProgressRing completed={draft.completed_steps} />
-        <div>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
+        <div style={{ flexShrink: 0 }}>
+          <ProgressRing completed={draft.completed_steps} />
+        </div>
+        <div style={{ minWidth: 0 }}>
           <div
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: "14px",
               color: "#0C2340",
               lineHeight: 1.3,
+              overflowWrap: "anywhere",
             }}
           >
             {draft.label}
@@ -189,18 +192,22 @@ function InactiveDraftChip({
         background: "#fff",
         cursor: "pointer",
         width: "100%",
+        minWidth: 0,
         textAlign: "left",
       }}
       aria-label={`Switch to draft: ${draft.label}`}
     >
-      <ProgressRing completed={draft.completed_steps} />
-      <div>
+      <div style={{ flexShrink: 0 }}>
+        <ProgressRing completed={draft.completed_steps} />
+      </div>
+      <div style={{ minWidth: 0 }}>
         <div
           style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "14px",
             color: "#0C2340",
             lineHeight: 1.3,
+            overflowWrap: "anywhere",
           }}
         >
           {draft.label}
@@ -223,6 +230,7 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive }: DraftRail
 
   return (
     <aside
+      className="draft-rail"
       style={{
         width: "240px",
         flexShrink: 0,

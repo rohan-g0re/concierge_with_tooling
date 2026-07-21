@@ -56,7 +56,18 @@ export function StateroomPicker({
           return (
             <div
               key={cat.category}
+              className="tile-selectable"
+              role="button"
+              tabIndex={0}
+              aria-label={`${cat.category} stateroom${cat.delta_formatted ? `, ${cat.delta_formatted} per person` : ""}${isSelected ? ", selected" : ""}`}
+              aria-pressed={isSelected}
               onClick={() => handleCategorySelect(cat.category)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleCategorySelect(cat.category);
+                }
+              }}
               style={{
                 background: "#fff",
                 border: isSelected ? "2px solid #0C2340" : "1px solid rgba(12,35,64,.14)",
@@ -148,7 +159,18 @@ export function StateroomPicker({
             return (
               <div
                 key={loc}
+                className="tile-selectable"
+                role="button"
+                tabIndex={0}
+                aria-label={`${loc} location${isActive ? ", selected" : ""}`}
+                aria-pressed={isActive}
                 onClick={() => handleLocationSelect(loc)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleLocationSelect(loc);
+                  }
+                }}
                 style={{
                   padding: "7px 20px",
                   borderRadius: "999px",
@@ -185,8 +207,8 @@ export function StateroomPicker({
           }}
         >
           {totalFormatted
-            ? `Draft total · 2 guests · ${totalFormatted}`
-            : "Draft total · 2 guests"}
+            ? `Draft total · ${descriptor.party ?? 2} guest${(descriptor.party ?? 2) === 1 ? '' : 's'} · ${totalFormatted}`
+            : `Draft total · ${descriptor.party ?? 2} guest${(descriptor.party ?? 2) === 1 ? '' : 's'}`}
         </div>
         <div
           style={{

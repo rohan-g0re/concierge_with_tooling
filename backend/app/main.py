@@ -12,6 +12,8 @@ from .routes.chat import router as chat_router
 from .routes.action import router as action_router
 from .routes.session import router as session_router
 from .routes.voice import router as voice_router
+from .routes.feedback import router as feedback_router
+from .routes.debug import router as debug_router
 
 settings = get_settings()
 
@@ -34,6 +36,8 @@ app.include_router(chat_router)
 app.include_router(action_router)
 app.include_router(session_router)
 app.include_router(voice_router)
+app.include_router(feedback_router)
+app.include_router(debug_router)
 
 
 @app.get("/health")
