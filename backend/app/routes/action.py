@@ -186,7 +186,7 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
 
     # Natural descriptor for the tool's result
     if tool_name == "search_cruises":
-        cards = result.get("cruises", [])[:5]
+        cards = result.get("results", [])[:5]
         components.append({"type": "card_row", "cards": cards, "filters": result.get("filters", {})})
 
     elif tool_name == "get_itinerary":
