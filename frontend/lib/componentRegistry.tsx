@@ -25,7 +25,7 @@ import { ErrorState } from "@/components/states/ErrorState";
 
 export type RegistryHandlers = {
   /** Called when the user taps Select on a cruise card. */
-  onSelect?: (cruiseId: string) => void;
+  onSelect?: (cruiseId: string, sailingId?: string) => void;
   /** Called when the user taps See Itinerary on a cruise card. */
   onOpenItinerary?: (card: unknown) => void;
   /** Called when the user taps a fare tile. */
@@ -58,7 +58,7 @@ function CardRow({
   return (
     <CardRowComponent
       descriptor={descriptor}
-      onSelect={handlers?.onSelect ?? (() => {})}
+      onSelect={handlers?.onSelect ?? ((_cruiseId: string, _sailingId?: string) => {})}
       onOpenItinerary={handlers?.onOpenItinerary as CardRowProps["onOpenItinerary"] ?? (() => {})}
       onChipClick={handlers?.onChipClick}
     />

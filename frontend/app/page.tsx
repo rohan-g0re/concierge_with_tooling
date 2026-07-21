@@ -256,9 +256,11 @@ export default function ChatShellPage() {
   // ---------------------------------------------------------------------------
 
   const handleSelect = useCallback(
-    async (cruiseId: string) => {
+    async (cruiseId: string, sailingId?: string) => {
       try {
-        const response = await postAction("create_draft", sessionIdRef.current, { cruise_id: cruiseId });
+        const args: Record<string, string> = { cruise_id: cruiseId };
+        if (sailingId) args.sailing_id = sailingId;
+        const response = await postAction("create_draft", sessionIdRef.current, args);
 
         // Merge components + chips as a synthetic assistant message
         if (response.components && response.components.length > 0) {

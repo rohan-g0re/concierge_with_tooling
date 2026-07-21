@@ -48,17 +48,29 @@ interface CardData {
   badge: string | null;
   photo: string;
   region?: string;
+  // Sailing fields (Unit 6 — R6, R12)
+  departure_date?: string;
+  return_date?: string;
+  sailing_id?: string;
+  alt_sailings?: Array<{ sailing_id: string; departure_date: string; return_date: string }>;
   [key: string]: unknown;
 }
 
 interface CruiseCardProps {
   card: CardData;
-  onSelect: (cruiseId: string) => void;
+  onSelect: (cruiseId: string, sailingId?: string) => void;
   onOpenItinerary: (card: CardData) => void;
+}
+
+function formatShortDate(iso: string): string {
+  const [, mm, dd] = iso.split("-");
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${months[parseInt(mm, 10) - 1]} ${parseInt(dd, 10)}`;
 }
 
 function CruiseCard({ card, onSelect, onOpenItinerary }: CruiseCardProps) {
   const [imgFailed, setImgFailed] = useState(false);
+  const [selectedSailingId, setSelectedSailingId] = useState<string | null>(card.sailing_id ?? null);
 
   const dur = `${card.nights}-Night`;
 
@@ -211,6 +223,58 @@ function CruiseCard({ card, onSelect, onOpenItinerary }: CruiseCardProps) {
           Includes Taxes, Fees &amp; Port Expenses
         </div>
 
+        {/* Sailing block */}
+        {(() => {
+          if (!card.departure_date) return null;
+          const allSailings = card.sailing_id && card.departure_date && card.return_date
+            ? [
+                { sailing_id: card.sailing_id, departure_date: card.departure_date, return_date: card.return_date },
+                ...(card.alt_sailings ?? []),
+              ]
+            : [];
+          if (allSailings.length === 0) {
+            // Edge case: dates present but no sailing_id
+            return (
+              <div style={{ fontSize: "12px", color: "#5A6B7E", marginTop: "2px" }}>
+                Departs {formatShortDate(card.departure_date!)} · Returns {card.return_date ? formatShortDate(card.return_date) : ""}
+              </div>
+            );
+          }
+          if (allSailings.length === 1) {
+            const dep = formatShortDate(allSailings[0].departure_date);
+            const ret = formatShortDate(allSailings[0].return_date);
+            return (
+              <div style={{ fontSize: "12px", color: "#5A6B7E", marginTop: "2px" }}>
+                Departs {dep} · Returns {ret}
+              </div>
+            );
+          }
+          // Multiple sailings — show compact select
+          return (
+            <div style={{ marginTop: "4px" }}>
+              <select
+                value={selectedSailingId ?? card.sailing_id}
+                onChange={(e) => setSelectedSailingId(e.target.value)}
+                style={{
+                  fontSize: "12px",
+                  color: "#5A6B7E",
+                  background: "none",
+                  border: "1px solid rgba(12,35,64,.15)",
+                  borderRadius: "4px",
+                  padding: "3px 6px",
+                  cursor: "pointer",
+                }}
+              >
+                {allSailings.map((s) => (
+                  <option key={s.sailing_id} value={s.sailing_id}>
+                    {formatShortDate(s.departure_date)} – {formatShortDate(s.return_date)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          );
+        })()}
+
         {/* Action row */}
         <div
           style={{
@@ -222,7 +286,7 @@ function CruiseCard({ card, onSelect, onOpenItinerary }: CruiseCardProps) {
         >
           {/* Select button */}
           <button
-            onClick={() => onSelect(card.cruise_id)}
+            onClick={() => onSelect(card.cruise_id, selectedSailingId ?? undefined)}
             style={{
               background: "#C8A45C",
               color: "#0C2340",
@@ -272,7 +336,7 @@ function CruiseCard({ card, onSelect, onOpenItinerary }: CruiseCardProps) {
 
 export interface CardRowProps {
   descriptor: ComponentDescriptor;
-  onSelect: (cruiseId: string) => void;
+  onSelect: (cruiseId: string, sailingId?: string) => void;
   onOpenItinerary: (card: CardData) => void;
   /** Widen-chip taps flow through the existing chip-click path (sends as a message). */
   onChipClick?: (value: string) => void;
@@ -299,7 +363,7 @@ function SectionScroller({
   onOpenItinerary,
 }: {
   cards: CardData[];
-  onSelect: (cruiseId: string) => void;
+  onSelect: (cruiseId: string, sailingId?: string) => void;
   onOpenItinerary: (card: CardData) => void;
 }) {
   return (

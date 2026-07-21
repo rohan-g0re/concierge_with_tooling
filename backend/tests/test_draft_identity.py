@@ -170,3 +170,97 @@ class TestSetSailing:
         component_err = _map_tool_result_to_component("set_sailing", result_err)
         assert component_err is not None
         assert component_err.get("type") == "error"
+
+
+# ---------------------------------------------------------------------------
+# Full flow: search with constraint → take card sailing_id → create_draft
+# ---------------------------------------------------------------------------
+
+class TestSearchToSelectFlow:
+    def test_search_month_constraint_card_sailing_id_round_trips(self, catalog):
+        """
+        Full flow (R6, R12): search_cruises with month constraint returns cards
+        with sailing_id + departure_date + return_date; passing card.sailing_id
+        to create_draft stores exactly those dates on the draft.
+        """
+        from app.tools.search import search_cruises
+
+        session = make_session(constraints=Constraints(month=8))
+        result = search_cruises(session, {"region": "alaska"})
+
+        # Gather all cards across sections (or flat cards)
+        all_cards: list[dict] = []
+        if "sections" in result:
+            for section in result["sections"]:
+                all_cards.extend(section.get("cards", []))
+        else:
+            all_cards.extend(result.get("cards", []))
+
+        assert len(all_cards) > 0, "Expected at least one card from alaska/month=8 search"
+
+        # Take the first card that has sailing fields
+        card = next(
+            (c for c in all_cards if c.get("sailing_id") and c.get("departure_date") and c.get("return_date")),
+            None,
+        )
+        assert card is not None, "Expected at least one card with sailing_id, departure_date, return_date"
+
+        card_sailing_id = card["sailing_id"]
+        card_dep = card["departure_date"]
+        card_ret = card["return_date"]
+
+        # create_draft with that exact sailing_id
+        draft_session = make_session()
+        create_result = create_draft(draft_session, {
+            "cruise_id": card["cruise_id"],
+            "sailing_id": card_sailing_id,
+        })
+
+        assert "error" not in create_result, f"create_draft failed: {create_result}"
+        assert create_result.get("sailing_id") == card_sailing_id
+        assert create_result.get("departure_date") == card_dep
+        assert create_result.get("return_date") == card_ret
+
+        # Verify the stored draft also has exactly those dates
+        draft = draft_session.drafts[0]
+        assert draft.sailing_id == card_sailing_id
+        assert draft.departure_date == card_dep
+        assert draft.return_date == card_ret
+
+    def test_card_alt_sailings_all_bookable(self, catalog):
+        """
+        Any sailing_id from a card's alt_sailings list can be passed to
+        create_draft and results in a valid draft with matching dates.
+        """
+        from app.tools.search import search_cruises
+
+        session = make_session()
+        result = search_cruises(session, {"region": "alaska"})
+
+        all_cards: list[dict] = []
+        if "sections" in result:
+            for section in result["sections"]:
+                all_cards.extend(section.get("cards", []))
+        else:
+            all_cards.extend(result.get("results", []))
+
+        # Find a card with alt_sailings
+        card_with_alts = next(
+            (c for c in all_cards if c.get("alt_sailings") and len(c["alt_sailings"]) > 0),
+            None,
+        )
+        assert card_with_alts is not None, "No cards with alt_sailings found in this search result"
+
+        # Try booking each alt sailing
+        for alt in card_with_alts["alt_sailings"]:
+            s = make_session()
+            r = create_draft(s, {
+                "cruise_id": card_with_alts["cruise_id"],
+                "sailing_id": alt["sailing_id"],
+            })
+            assert "error" not in r, (
+                f"create_draft failed for alt sailing {alt['sailing_id']}: {r}"
+            )
+            assert r.get("sailing_id") == alt["sailing_id"]
+            assert r.get("departure_date") == alt["departure_date"]
+            assert r.get("return_date") == alt["return_date"]
