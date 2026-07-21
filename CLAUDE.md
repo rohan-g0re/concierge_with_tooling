@@ -72,3 +72,7 @@ Fable (foreground) — orchestrator only, commits verified phases
         Playwright MCP browser actions, test scripts, setup checks;
         returns screenshots + results as evidence
 ```
+
+## Documented Solutions
+
+`docs/solutions/` — documented solutions to past problems (bugs, integration defects, workflow patterns), organized by category with YAML frontmatter (`module`, `tags`, `problem_type`). Relevant when implementing or debugging in documented areas (e.g. the live Gemini orchestration path).
