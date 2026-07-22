@@ -119,6 +119,7 @@ $env:LLM_MODE="stub"; uvicorn app.main:app --port 8000
 - Autoscroll: do not fight the scroll mid-stream; wait for streaming to finish before scrolling.
 - Hover-delete on rail tile needs deliberate hover to reveal the delete button — do not rush past it.
 - Feedback thumbs appear under completed assistant replies — do not misclick them thinking they are chips.
+- **Booking phrases that name a region with 2+ same-region drafts trigger a which-one card, not checkout** — say "this one" / name the nights (e.g. "the 14-night one"), or enjoy the disambiguation as an improv-safety showcase.
 
 ### Presenter micro-notes
 

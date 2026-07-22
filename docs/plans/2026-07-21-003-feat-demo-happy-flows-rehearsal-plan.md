@@ -192,7 +192,7 @@ Same discipline as R2 for C1–C10 (including backend-restart-before-flow-restar
 
 **Goal:** Prove improvisation safety (D2) and land the demo-ready state.
 
-**Approach:** One REQUIRED mixed run (exact sequence, not a suggestion): B2 (14-day+return-by search) → select one exact tile → C3(b)-style second+third draft build (one more Alaska, one Mexico) → A5 pricing question → C4 "the Alaska one" which-one → tap candidate → B8 compare → C8 hover-delete Mexico → A8 checkout. This sequence deliberately crosses the hard composability edges (sectioned results → multi-draft → ambiguous ref → compare → delete → checkout). Same fix→full-restart discipline as R2 (restart the whole mixed sequence; 3-cycle cap). Then final commit of remaining fixes + runbook.
+**Approach:** One REQUIRED mixed run (exact sequence, not a suggestion): B2 (14-day+return-by search) → select one exact tile → C3(b)-style second+third draft build (one more Alaska, one Mexico) → A5 pricing question → C4 "the Alaska one" which-one → tap candidate → B8 compare → C8 hover-delete Mexico → A8 "Perfect — let's lock in this 14-night one and pay the deposit". This sequence deliberately crosses the hard composability edges (sectioned results → multi-draft → ambiguous ref → compare → delete → checkout). Same fix→full-restart discipline as R2 (restart the whole mixed sequence; 3-cycle cap). Then final commit of remaining fixes + runbook.
 
 **Verification:** Mixed run passes end-to-end; working tree committed; backend suite fully green with test count ≥ the pre-rehearsal baseline (242 at time of writing — new defect fixes should ADD tests).
 
