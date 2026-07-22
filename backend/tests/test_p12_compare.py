@@ -155,6 +155,8 @@ def test_compare_drafts_checkout_urls(catalog):
     assert len(urls) == 2
     assert d1 in urls[0], f"First URL should contain {d1}: {urls[0]}"
     assert d2 in urls[1], f"Second URL should contain {d2}: {urls[1]}"
+    assert "session=" in urls[0], f"Expected session param in first URL: {urls[0]}"
+    assert "session=" in urls[1], f"Expected session param in second URL: {urls[1]}"
 
 
 # ---------------------------------------------------------------------------

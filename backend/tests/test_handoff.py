@@ -33,9 +33,10 @@ def test_handoff_checkout_returns_correct_url(catalog):
 
     assert "error" not in result, f"handoff_checkout failed: {result}"
     assert "url" in result, f"Expected 'url' key in result: {result}"
-    assert result["url"] == f"/checkout/{draft_id}", (
-        f"Expected '/checkout/{draft_id}', got {result['url']!r}"
+    assert result["url"].startswith(f"/checkout/{draft_id}"), (
+        f"Expected URL starting with '/checkout/{draft_id}', got {result['url']!r}"
     )
+    assert f"session=" in result["url"], f"Expected session param in URL: {result['url']!r}"
 
 
 def test_handoff_checkout_url_encodes_draft_id():
@@ -54,7 +55,8 @@ def test_handoff_checkout_url_encodes_draft_id():
     session.drafts.append(draft)
 
     result = handoff_checkout(session, {"draft_id": "d1"})
-    assert result == {"url": "/checkout/d1"}, f"Expected {{url: '/checkout/d1'}}, got {result}"
+    assert result.get("url", "").startswith("/checkout/d1"), f"Expected URL starting with '/checkout/d1', got {result}"
+    assert "session=" in result.get("url", ""), f"Expected session param in URL: {result}"
 
 
 def test_handoff_checkout_unknown_draft_returns_error(catalog):

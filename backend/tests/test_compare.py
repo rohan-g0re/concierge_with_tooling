@@ -96,8 +96,14 @@ def test_compare_two_drafts_row_keys_and_diff(catalog):
     assert "headers" in result
     assert len(result["headers"]) == 2
     assert "checkout_urls" in result
-    assert result["checkout_urls"][0] == f"/checkout/{d1}"
-    assert result["checkout_urls"][1] == f"/checkout/{d2}"
+    assert result["checkout_urls"][0].startswith(f"/checkout/{d1}"), (
+        f"Expected URL starting with '/checkout/{d1}': {result['checkout_urls'][0]}"
+    )
+    assert result["checkout_urls"][1].startswith(f"/checkout/{d2}"), (
+        f"Expected URL starting with '/checkout/{d2}': {result['checkout_urls'][1]}"
+    )
+    assert "session=" in result["checkout_urls"][0], f"Expected session param in URL: {result['checkout_urls'][0]}"
+    assert "session=" in result["checkout_urls"][1], f"Expected session param in URL: {result['checkout_urls'][1]}"
 
 
 def test_compare_same_fare_package_differ_false(catalog):

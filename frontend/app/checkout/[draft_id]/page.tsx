@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { getSessionId } from "@/lib/session";
 import { postAction, getStepOptions, type ComponentDescriptor } from "@/lib/api";
 import { renderComponent, type RegistryHandlers } from "@/lib/componentRegistry";
@@ -99,7 +99,20 @@ export default function CheckoutPage() {
   const [editLoading, setEditLoading] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
 
-  const sessionId = getSessionId();
+  const searchParams = useSearchParams();
+  const urlSessionId = searchParams?.get("session");
+  // Prefer URL-carried session_id (cross-tab checkout link) over tab-local storage.
+  // Also write it back into sessionStorage so in-tab subsequent calls keep working.
+  const sessionId = (() => {
+    const stored = getSessionId();
+    if (urlSessionId && urlSessionId !== stored) {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("compass_session_id", urlSessionId);
+      }
+      return urlSessionId;
+    }
+    return stored;
+  })();
 
   /** Refetch /session and update this draft's summary in place (stay on page). */
   const refreshDraft = useCallback(async () => {

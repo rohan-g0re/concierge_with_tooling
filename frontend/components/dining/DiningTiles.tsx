@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import type { ComponentDescriptor } from "@/lib/api";
 import type { RegistryHandlers } from "@/lib/componentRegistry";
+import { renderComponent } from "@/lib/componentRegistry";
 import { ErrorState } from "@/components/states/ErrorState";
 
 interface NightInfo {
@@ -49,6 +50,9 @@ export function DiningTiles({
   const [timeLoading, setTimeLoading] = useState<Record<string, boolean>>({});
   const [timeError, setTimeError] = useState<Record<string, string>>({});
   const [diningImgFailed, setDiningImgFailed] = React.useState<Record<string, boolean>>({});
+
+  const [handoffComponent, setHandoffComponent] = React.useState<import("@/lib/api").ComponentDescriptor | null>(null);
+  const [handoffLoading, setHandoffLoading] = React.useState(false);
 
   const sessionId =
     typeof window !== "undefined"
@@ -194,19 +198,48 @@ export function DiningTiles({
     }
   };
 
+  const handleDoneWithAddons = async () => {
+    if (!draftId) return;
+    setHandoffLoading(true);
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/action/handoff_checkout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            session_id: sessionId,
+            args: { draft_id: draftId },
+          }),
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        const components = data.components as import("@/lib/api").ComponentDescriptor[] | undefined;
+        const handoff = components?.find((c) => c.type === "handoff");
+        if (handoff) setHandoffComponent(handoff);
+      }
+    } catch {
+      // fail silently — button stays available
+    } finally {
+      setHandoffLoading(false);
+    }
+  };
+
   const isMainDining = (venue: DiningVenue) =>
     venue.price_per_guest === 0 || venue.venue_id === "main_dining";
 
   return (
-    <div
-      className="mt-3"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "16px",
-        paddingBottom: "48px",
-      }}
-    >
+    <div>
+      <div
+        className="mt-3"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "16px",
+          paddingBottom: "16px",
+        }}
+      >
       {venues.map((venue) => {
         const isOpen = openPopover === venue.venue_id;
         const reservedNights = reserved[venue.venue_id] ?? [];
@@ -630,6 +663,34 @@ export function DiningTiles({
           </div>
         );
       })}
+      </div>
+
+      {/* Done with add-ons footer */}
+      {draftId && (
+        <div style={{ paddingTop: "8px", paddingBottom: "32px", textAlign: "center" }}>
+          {handoffComponent ? (
+            renderComponent(handoffComponent, "handoff-cta")
+          ) : (
+            <button
+              onClick={handleDoneWithAddons}
+              disabled={handoffLoading}
+              style={{
+                background: handoffLoading ? "rgba(200,164,92,0.4)" : "#C8A45C",
+                color: "#0C2340",
+                border: "none",
+                borderRadius: "8px",
+                padding: "12px 32px",
+                fontSize: "14px",
+                fontWeight: 700,
+                cursor: handoffLoading ? "not-allowed" : "pointer",
+                opacity: handoffLoading ? 0.7 : 1,
+              }}
+            >
+              {handoffLoading ? "Loading…" : "Done with add-ons → Review"}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

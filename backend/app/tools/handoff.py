@@ -30,4 +30,4 @@ def handoff_checkout(session: "Session", args: dict) -> dict:
     if draft is None:
         return {"error": "draft_not_found", "message": f"Draft {draft_id!r} not found in session."}
 
-    return {"url": f"/checkout/{draft_id}"}
+    return {"url": f"/checkout/{draft_id}?session={session.session_id}"}

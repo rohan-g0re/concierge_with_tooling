@@ -185,7 +185,7 @@ def compare_drafts(session: "Session", args: dict) -> dict:
         for dd in draft_data
     ]
 
-    checkout_urls = [f"/checkout/{dd['draft'].draft_id}" for dd in draft_data]
+    checkout_urls = [f"/checkout/{dd['draft'].draft_id}?session={session.session_id}" for dd in draft_data]
 
     return {
         "rows": rows,
