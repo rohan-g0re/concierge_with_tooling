@@ -1,4 +1,4 @@
----
+﻿---
 title: "feat: Interview Demo — Three Happy-Flow Scripts + Live Playwright Rehearsal"
 type: feat
 status: active
@@ -157,7 +157,7 @@ Talking points if the interviewer digs in:
 
 ## Implementation Units
 
-- [ ] **Unit R1: Environment reset + demo runbook**
+- [x] **Unit R1: Environment reset + demo runbook**
 
 **Goal:** Clean, reproducible live demo environment; documented start procedure.
 
@@ -170,7 +170,7 @@ Talking points if the interviewer digs in:
 
 **Verification:** Both servers respond; a fresh session renders; runbook exists; all three static checks pass (or fixes landed).
 
-- [ ] **Unit R2: Flow A live rehearsal (fix → full restart loop)**
+- [x] **Unit R2: Flow A live rehearsal (fix → full restart loop)**
 
 **Goal:** Flow A passes A1–A8 clean end-to-end under live Gemini.
 
@@ -180,15 +180,15 @@ Talking points if the interviewer digs in:
 
 **Verification:** One uninterrupted clean pass of A1–A8; evidence archived under `.claude/demo_rehearsal/flowA/`.
 
-- [ ] **Unit R3: Flow B live rehearsal (fix → full restart loop)**
+- [x] **Unit R3: Flow B live rehearsal (fix → full restart loop)**
 
 Same discipline as R2 for B1–B9 (including: backend fix → kill :8000 → fresh live uvicorn → restart from B1; fix-cycle cap of 3). Evidence under `.claude/demo_rehearsal/flowB/`.
 
-- [ ] **Unit R4: Flow C live rehearsal (fix → full restart loop)**
+- [x] **Unit R4: Flow C live rehearsal (fix → full restart loop)**
 
 Same discipline as R2 for C1–C10 (including backend-restart-before-flow-restart and the 3-cycle cap). Known-risk steps: C4/C5 (which-one + rail sync lag observed once live), C7 (generic-greeting quality miss observed once live — fix if it recurs: likely history/context handling in live path). Evidence under `.claude/demo_rehearsal/flowC/`.
 
-- [ ] **Unit R5: Composability spot-check + final commit**
+- [x] **Unit R5: Composability spot-check + final commit**
 
 **Goal:** Prove improvisation safety (D2) and land the demo-ready state.
 
