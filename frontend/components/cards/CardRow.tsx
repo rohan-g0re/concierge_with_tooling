@@ -101,7 +101,7 @@ function CruiseCard({ card, onSelect, onOpenItinerary }: CruiseCardProps) {
         {/* Port photo */}
         {card.photo && !imgFailed && (
           <img
-            src={card.photo}
+            src={`/images/cruises/${card.cruise_id}.jpg`}
             alt={card.name}
             onError={() => setImgFailed(true)}
             style={{
@@ -406,6 +406,24 @@ export function CardRow({ descriptor, onSelect, onOpenItinerary, onChipClick }: 
       );
     }
 
+    // Flatten: exact-match section (label === null) first, then labelled sections
+    // in their original order. For cards from labelled sections, stamp the section
+    // label as a badge kicker if the card has no existing badge.
+    const exactSections = sections.filter((s) => s.label === null);
+    const labelledSections = sections.filter((s) => s.label !== null);
+    const orderedSections = [...exactSections, ...labelledSections];
+
+    const flatCards: CardData[] = [];
+    for (const section of orderedSections) {
+      for (const card of section.cards) {
+        if (section.label !== null && !card.badge) {
+          flatCards.push({ ...card, badge: section.label });
+        } else {
+          flatCards.push(card);
+        }
+      }
+    }
+
     return (
       <div style={{ marginTop: "12px", width: "100%", minWidth: 0 }}>
         {/* Active filters summary */}
@@ -424,42 +442,11 @@ export function CardRow({ descriptor, onSelect, onOpenItinerary, onChipClick }: 
           </p>
         )}
 
-        {sections.map((section, si) => {
-          if (section.cards.length === 0) return null;
-          return (
-            <div key={si} style={{ marginBottom: si < sections.length - 1 ? "20px" : 0 }}>
-              {/* Section label (kicker + hairline) — only for non-null labels */}
-              {section.label && (
-                <>
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      fontWeight: 700,
-                      letterSpacing: ".13em",
-                      textTransform: "uppercase",
-                      color: "#8A97A6",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {section.label}
-                  </div>
-                  <div
-                    style={{
-                      height: "1px",
-                      background: "rgba(12,35,64,.08)",
-                      marginBottom: "12px",
-                    }}
-                  />
-                </>
-              )}
-              <SectionScroller
-                cards={section.cards}
-                onSelect={onSelect}
-                onOpenItinerary={onOpenItinerary}
-              />
-            </div>
-          );
-        })}
+        <SectionScroller
+          cards={flatCards}
+          onSelect={onSelect}
+          onOpenItinerary={onOpenItinerary}
+        />
       </div>
     );
   }
