@@ -373,6 +373,135 @@ export default function CheckoutPage() {
                 </div>
               )}
 
+              {/* Remaining Steps — steps not yet in completed_steps */}
+              {!confirmed && (() => {
+                const completedSet = new Set(draft.completed_steps);
+                const remainingSteps = [1, 2, 3, 4, 5].filter((s) => !completedSet.has(s));
+                if (remainingSteps.length === 0) return null;
+                return (
+                  <div style={{ background: "#fff", borderRadius: 12, padding: 24, marginBottom: 24, boxShadow: "0 1px 4px rgba(12,35,64,.08)" }}>
+                    <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16, color: "#0C2340", margin: "0 0 16px 0" }}>
+                      Remaining Steps
+                    </h2>
+                    {remainingSteps.map((step) => (
+                      <div key={step} id={`remaining-step-${step}`}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(12,35,64,.08)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                            <span style={{ color: "#C8A45C", fontWeight: 700, fontSize: 14 }}>{step}</span>
+                            <span style={{ color: "#0C2340", fontSize: 14, fontWeight: 500 }}>
+                              Step {step}: {STEP_LABELS[step] ?? `Step ${step}`}
+                            </span>
+                          </div>
+                          {EDITABLE_STEPS.has(step) && (
+                            <button
+                              onClick={() => toggleEdit(step)}
+                              style={{
+                                background: "transparent",
+                                border: "1px solid #C8A45C",
+                                borderRadius: 6,
+                                color: "#C8A45C",
+                                fontSize: 12,
+                                fontWeight: 600,
+                                padding: "4px 12px",
+                                cursor: "pointer",
+                              }}
+                            >
+                              {editingStep === step ? "Close" : "Open"}
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Step 5 — static review summary panel */}
+                        {step === 5 && (
+                          <div style={{ background: "rgba(200,164,92,.06)", borderRadius: 8, padding: "14px 16px", margin: "8px 0 4px 0" }}>
+                            <p style={{ color: "#5A6B7E", fontSize: 13, margin: "0 0 10px 0" }}>
+                              Review your booking details before reserving.
+                            </p>
+                            <div style={{ fontSize: 13, color: "#0C2340" }}>
+                              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                                <span style={{ color: "#5A6B7E" }}>Fare package</span>
+                                <span style={{ fontWeight: 600 }}>{FARE_DISPLAY[draft.fare_package] ?? draft.fare_package}</span>
+                              </div>
+                              {draft.total_formatted && (
+                                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                                  <span style={{ color: "#5A6B7E" }}>Total</span>
+                                  <span style={{ fontWeight: 700, color: "#0C2340" }}>{draft.total_formatted}</span>
+                                </div>
+                              )}
+                              {draft.deposit_formatted && (
+                                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                                  <span style={{ color: "#5A6B7E" }}>Deposit due today (20%)</span>
+                                  <span style={{ fontWeight: 600, color: "#C8A45C" }}>{draft.deposit_formatted}</span>
+                                </div>
+                              )}
+                              {draft.balance_formatted && (
+                                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                  <span style={{ color: "#5A6B7E" }}>Balance due at sailing</span>
+                                  <span style={{ fontWeight: 600 }}>{draft.balance_formatted}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Steps 2/3/4 — inline edit panel (same machinery as completed steps) */}
+                        {EDITABLE_STEPS.has(step) && editingStep === step && (
+                          <div style={{ background: "rgba(200,164,92,.08)", borderRadius: 8, padding: "14px 16px", margin: "8px 0 4px 0" }}>
+                            <p style={{ color: "#5A6B7E", fontSize: 13, margin: "0 0 6px 0" }}>
+                              Complete Step {step} — {STEP_LABELS[step] ?? `Step ${step}`}: select your preference below.
+                            </p>
+
+                            {editLoading && (
+                              <p style={{ color: "#5A6B7E", fontSize: 13, margin: "8px 0 0 0" }}>
+                                Loading your options…
+                              </p>
+                            )}
+
+                            {editError && (
+                              <ErrorState
+                                message={editError}
+                                onRetry={() => loadStepOptions(step)}
+                              />
+                            )}
+
+                            {!editLoading && !editError && (
+                              <div style={{ marginTop: 8 }}>
+                                {editComponents.length === 0 ? (
+                                  <p style={{ color: "#8A97A6", fontSize: 13, margin: 0 }}>
+                                    No options for this step.
+                                  </p>
+                                ) : (
+                                  editComponents.map((desc, i) =>
+                                    renderComponent(desc, `remaining-${step}-${i}`, editHandlers)
+                                  )
+                                )}
+                              </div>
+                            )}
+
+                            <button
+                              onClick={() => toggleEdit(step)}
+                              style={{
+                                background: "#C8A45C",
+                                color: "#0C2340",
+                                border: "none",
+                                borderRadius: 6,
+                                padding: "6px 16px",
+                                fontSize: 12,
+                                fontWeight: 700,
+                                cursor: "pointer",
+                                marginTop: 12,
+                              }}
+                            >
+                              Done
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+
               {/* Reserve CTA or confirmation */}
               {confirmed ? (
                 <div style={{ background: "#0C2340", borderRadius: 12, padding: 32, textAlign: "center", color: "#fff" }}>
@@ -398,28 +527,65 @@ export default function CheckoutPage() {
                     A deposit confirmation will be sent to your email on file.
                   </p>
                 </div>
-              ) : (
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    onClick={() => setConfirmed(true)}
-                    style={{
-                      background: "#C8A45C",
-                      color: "#0C2340",
-                      border: "none",
-                      borderRadius: 8,
-                      padding: "14px 40px",
-                      fontSize: 16,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Reserve {draft.total_formatted ? `· ${draft.total_formatted}` : ""}
-                  </button>
-                  <p style={{ color: "#8A97A6", fontSize: 12, marginTop: 8 }}>
-                    Nothing is charged until you confirm your deposit.
-                  </p>
-                </div>
-              )}
+              ) : (() => {
+                const completedSet = new Set(draft.completed_steps);
+                const reviewReady = [1, 2, 3, 4].every((s) => completedSet.has(s));
+                const nextIncomplete = checkoutEntry(draft.completed_steps);
+
+                if (reviewReady) {
+                  // All steps 1–4 complete → show Reserve button
+                  return (
+                    <div style={{ textAlign: "center" }}>
+                      <button
+                        onClick={() => setConfirmed(true)}
+                        style={{
+                          background: "#C8A45C",
+                          color: "#0C2340",
+                          border: "none",
+                          borderRadius: 8,
+                          padding: "14px 40px",
+                          fontSize: 16,
+                          fontWeight: 700,
+                          cursor: "pointer",
+                        }}
+                      >
+                        Reserve {draft.total_formatted ? `· ${draft.total_formatted}` : ""}
+                      </button>
+                      <p style={{ color: "#8A97A6", fontSize: 12, marginTop: 8 }}>
+                        Nothing is charged until you confirm your deposit.
+                      </p>
+                    </div>
+                  );
+                }
+
+                // Next incomplete step ≤ 4 → "Next: <label>" gated CTA
+                return (
+                  <div style={{ textAlign: "center" }}>
+                    <button
+                      onClick={() => {
+                        toggleEdit(nextIncomplete);
+                        const el = document.getElementById(`remaining-step-${nextIncomplete}`);
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
+                      style={{
+                        background: "#0C2340",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 8,
+                        padding: "14px 40px",
+                        fontSize: 16,
+                        fontWeight: 700,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Next: {STEP_LABELS[nextIncomplete] ?? `Step ${nextIncomplete}`}
+                    </button>
+                    <p style={{ color: "#8A97A6", fontSize: 12, marginTop: 8 }}>
+                      Complete the remaining steps to reserve.
+                    </p>
+                  </div>
+                );
+              })()}
             </>
           )}
         </div>

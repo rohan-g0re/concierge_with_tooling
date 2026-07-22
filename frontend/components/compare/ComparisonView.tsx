@@ -74,7 +74,7 @@ export function ComparisonView({ descriptor, handlers }: ComparisonViewProps) {
     } finally {
       setLoadingIdx(null);
     }
-    window.location.href = url;
+    window.open(url, "_blank");
   }
 
   return (
