@@ -1,6 +1,7 @@
 ---
 title: Live Gemini function-calling integration — five defect classes when leaving stub mode
 date: 2026-07-21
+last_updated: 2026-07-22
 category: integration-issues
 module: llm-orchestrator
 problem_type: integration_issue
@@ -11,10 +12,11 @@ symptoms:
   - "Literal CHIPS: [\"...\"] control marker visible in streamed chat text"
   - "draft_not_found x4 / no_drafts errors from compare_drafts called with hallucinated draft ids"
   - "Comparison request answered in prose with components: [] instead of a rendered component"
+  - "Dining reservation Confirm re-displayed the identical full dining panel with no receipt — mutation appeared to silently fail (third mapper-gap recurrence, 2026-07-22)"
 root_cause: wrong_api
 resolution_type: code_fix
 severity: high
-tags: [gemini, function-calling, sse-streaming, tool-mapping, model-retirement, snapshot-injection, stub-live-parity, chips-protocol]
+tags: [gemini, function-calling, sse-streaming, tool-mapping, model-retirement, snapshot-injection, stub-live-parity, chips-protocol, mapper-parity, mutation-receipt]
 ---
 
 # Live Gemini function-calling integration — five defect classes when leaving stub mode
@@ -75,6 +77,8 @@ if tool_name == "set_active_draft":
 
 **6. Defense in depth in the tool** — `backend/app/tools/compare.py` filters model-supplied ids to known session drafts; if fewer than 2 valid remain, falls back to all session drafts; polite `no_drafts` error otherwise.
 
+**7a. (2026-07-22) Both-mappers rule formalized after third recurrence.** There are TWO parallel mapper sites, not one: `gemini_client._map_tool_result_to_component` (LLM function-calling path) **and** `backend/app/routes/action.py:_build_components` (UI-action bridge path). A tool or component added to one without the other silently produces nothing on the untested path. Recurrences: (1) `search_cruises` results-key mismatch in action.py, (2) `handoff_checkout` unmapped in gemini_client, (3) `reserve_dining`/`set_dining_time` receipts (commit 8425a28). Companion rule discovered in recurrence 3 — **mutation receipts, not panel re-emits**: the reserve_dining branch originally re-emitted the full `dining_tiles` panel "to refresh statuses"; visually identical to the pre-action state, it read as a silent failure. Every mutation tool response must emit a compact receipt component scoped to the delta (`dining_confirmation` {venue, night}, `dining_time_receipt` {time_label}), never re-emit the panel it was called from. Checklist for every new component type: branch in `_build_components`; matching branch in `_map_tool_result_to_component` (identical field shape); `/action`-only tools added to `_ACTION_ONLY_TOOLS` in gemini_client.py; renderer registered in `frontend/lib/componentRegistry.tsx`; mapper-parity pytest asserting both mappers emit same type + key fields; no-re-emit guard pytest asserting the source panel type is absent from `_build_components` output (reference implementation: `backend/tests/test_u2_dining.py`).
+
 **7. Zero-cost live-path tests** — two independent mechanisms, both required: `set_client(FakeClient(...))` injects the fake API client (so `get_client()` never constructs a real one), and a `patch_genai_types` fixture patches the SDK types module. Harness gotcha for the latter: production code does `from google.genai import types`, which resolves `types` as an **attribute of the `google.genai` module object** — the fake must set `fake_genai.types = FakeTypes`. Setting `sys.modules["google.genai.types"]` too is good defensive practice (covers any future `import google.genai.types` form), but the attribute assignment is what the current import form actually exercises.
 
 ## Why This Works
@@ -90,10 +94,12 @@ if tool_name == "set_active_draft":
 - Stub/live parity tests: one shared tool-result factory per tool, asserted through `_map_tool_result_to_component` — a mapping regression fails both suites.
 - Always use alias model ids; optionally smoke-test `client.models.get(model_name)` at startup to fail fast.
 - Tail-buffer any streamed control-marker protocol by at least the marker's max length.
-- Every tool the model can call must appear in the tool→component mapping, or explicitly be a no-component tool — treat an unmapped tool as a lint/test failure.
+- Every tool the model can call must appear in **both** tool→component mappers (`gemini_client._map_tool_result_to_component` AND `action.py:_build_components`), or explicitly be a no-component tool — treat an unmapped tool as a test failure. Enforce with mapper-parity + no-re-emit pytests (pattern: `backend/tests/test_u2_dining.py::test_mappers_parity_reserve_dining`).
+- Mutation tool responses emit compact receipt components (the delta), never a re-emit of the panel that triggered them — identical-panel re-emits read as silent failure.
 - Cost discipline while debugging: run backend with `LLM_MODE=stub` for free deterministic turns; reserve live turns for final verification (capped per run).
 
 ## Related Issues
 
 - Governing plan: `docs/plans/2026-07-21-001-feat-compass-concierge-plan.md` (P5 Gemini loop, P12 comparison — this doc records the live-integration defects those phases surfaced).
 - Auto memory (claude): project memory note `compass-live-gemini-setup` records the model alias, LLM_MODE stub trick, and backend `.env` cwd requirement.
+- Third recurrence fix: commit 8425a28 (plan `docs/plans/2026-07-22-001-fix-demo-defects-plan.md` U2); parity + no-re-emit test suite `backend/tests/test_u2_dining.py`.
