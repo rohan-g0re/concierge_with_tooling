@@ -74,7 +74,7 @@ def _build_config(tool: Any) -> Any:
 def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict]:
     """Map a tool result dict to a UI component descriptor."""
     if "error" in result:
-        return {"type": "error", "message": result["error"]}
+        return {"type": "error", "message": result.get("message") or result["error"]}
 
     if tool_name == "search_cruises":
         # search_cruises returns results under key "results" (not "cruises")
@@ -129,7 +129,7 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
 
     if tool_name == "set_sailing":
         if "error" in result:
-            return {"type": "error", "message": result["error"]}
+            return {"type": "error", "message": result.get("message") or result["error"]}
         return None  # sailing change reflected on next session refresh
 
     if tool_name == "handoff_checkout":
@@ -137,7 +137,7 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
 
     if tool_name == "reserve_dining":
         if "error" in result:
-            return {"type": "error", "message": result["error"]}
+            return {"type": "error", "message": result.get("message") or result["error"]}
         return {
             "type": "dining_confirmation",
             "draft_id": result.get("draft_id"),
@@ -148,7 +148,7 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
 
     if tool_name == "set_dining_time":
         if "error" in result:
-            return {"type": "error", "message": result["error"]}
+            return {"type": "error", "message": result.get("message") or result["error"]}
         return {
             "type": "dining_time_receipt",
             "draft_id": result.get("draft_id"),

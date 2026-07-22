@@ -145,6 +145,8 @@ function Handoff({ descriptor }: { descriptor: ComponentDescriptor }) {
       {url && (
         <a
           href={url}
+          target="_blank"
+          rel="noopener"
           className="inline-block px-6 py-2 rounded-full font-sans font-semibold text-sm"
           style={{ background: "#C8A45C", color: "#fff" }}
         >
