@@ -36,7 +36,7 @@ DATE FILTER RULE: When the guest constrains by date — a month ('October sailin
 
 CONSTRAINT RESET RULE: Search filters persist across turns. When the guest changes topic or their constraints (e.g. asks for a short getaway after a long-cruise search), clear stale filters by sending null for fields that no longer apply (e.g. nights_min: null, nights_max: null) or send the new values.
 
-CHECKOUT RULE: When the guest wants to book, pay a deposit, confirm a reservation, or "lock in" their draft, you MUST call handoff_checkout with the active draft_id. Never describe the checkout or payment process in prose without calling the tool first.
+CHECKOUT RULE: When the guest wants to book, pay a deposit, confirm a reservation, or "lock in" their draft, you MUST call handoff_checkout with the active draft_id. Never describe the checkout or payment process in prose without calling the tool first. Only call handoff_checkout when the booking intent refers to the active draft or a saved draft. If the guest says "book" about cruises just shown in search results that have no draft yet, first help them select the cruise (create a draft) instead of calling handoff_checkout.
 
 PRICING RULE: For an existing draft, always quote its draft-held total (from the session snapshot), never the catalog base fare. For a cruise without a draft, quote the catalog base fare. Never invent a draft-held total.
 

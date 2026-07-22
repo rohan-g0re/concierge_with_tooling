@@ -94,7 +94,7 @@ $env:LLM_MODE="stub"; uvicorn app.main:app --port 8000
 | C7 | "My friend loved the Caribbean last year" | Conversational reply only; NO `set_active_draft`, NO `search_cruises`; active draft unchanged | Incidental mention — must not trigger switch or search |
 | C8 | Hover over Mexico draft tile in rail; click delete | Rail 3 → 2; Mexico draft gone; confirmation of removal | Hover-delete requires deliberate hover — do not rush |
 | C9 | "Any Hawaii cruises?" | `search_cruises` fires with region=hawaii; flat dated row; draft count stays at 2 | Draft count must not change |
-| C10 | "Book me the best one" | Conversational reply; base fares quoted (no active draft with these words); no new draft created; no checkout triggered | No checkout tool call — "best one" is ambiguous, not a confirmed booking |
+| C10 | "Which of these Hawaii ones would you pick and why?" | Conversational reply; base fares quoted (no active draft with these words); no new draft created; no checkout triggered | No checkout tool call — conversational recommendation only |
 
 ---
 
@@ -127,6 +127,7 @@ $env:LLM_MODE="stub"; uvicorn app.main:app --port 8000
 - Rail highlight (gold ring) may lag up to ~1s after a draft switch — pause briefly before pointing to it.
 - SkeletonCardRow shimmer appears on conversational turns before components arrive — expected behavior.
 - After each tool call, verify the network tab shows HTTP 200 on `/chat` and `/session`.
+- Catalog sailings are seeded from 2026-07-01 — some earliest tile dates may read slightly in the past relative to demo day; pick a later date in the tile's date select if asked about it.
 
 ---
 

@@ -115,7 +115,7 @@ This demo will be shown live in an interview. A single broken step (empty card r
 | C7 | Edge-case: "my friend went to the Caribbean last year and loved it" | NO switch, NO search — plain conversational reply; session untouched | no set_active_draft, no card_row |
 | C8 | Hover the Mexico draft tile → click the "×" | Mexico draft removed; rail count 3→2; active draft unaffected (or correctly reassigned if it was active) | `/action/remove_draft` 200; `GET /session` 2 drafts |
 | C9 | "What about Hawaii? Anything good there?" | No Hawaii draft exists → FRESH `search_cruises` for hawaii; FLAT dated card row (no date constraint → no sections, same rule as C2); tiles will show 10–15 nights because that's the Hawaii catalog, but nights is NOT an asserted filter | fallback path; drafts count unchanged |
-| C10 | "Book me the best one — which would you pick and why?" | Conversational recommendation over the visible Hawaii results (may re-present cards); prices quoted = catalog base (no draft exists for them); NO draft is created in this step (conversational only — post-step draft count unchanged) | PRICING RULE inverse: base fare quoted for draft-less cruises |
+| C10 | "Which of these Hawaii ones would you pick and why?" | Conversational recommendation over the visible Hawaii results (may re-present cards); prices quoted = catalog base (no draft exists for them); NO draft is created in this step (conversational only — post-step draft count unchanged) | PRICING RULE inverse: base fare quoted for draft-less cruises |
 
 ### Cross-Flow Composability Matrix (D2)
 

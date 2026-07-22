@@ -156,6 +156,24 @@ function Handoff({ descriptor }: { descriptor: ComponentDescriptor }) {
 }
 
 // ---------------------------------------------------------------------------
+// ActiveDraftSet — subtle confirmation chip shown after a draft switch
+// ---------------------------------------------------------------------------
+
+function ActiveDraftSet({ descriptor }: { descriptor: ComponentDescriptor }) {
+  const label = descriptor.label as string | undefined;
+  if (!label) return null;
+  return (
+    <span
+      className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-sans text-xs"
+      style={{ background: "rgba(200,164,92,0.1)" }}
+    >
+      <span style={{ color: "#C8A45C" }}>✓</span>
+      <span style={{ color: "#22344B" }}>Switched to {label}</span>
+    </span>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // FareTiles wrapper
 // ---------------------------------------------------------------------------
 
@@ -280,6 +298,7 @@ const REGISTRY: Record<string, RegistryEntry> = {
   dining_tiles: DiningTilesWrapper,
   land_builder: LandTourBuilderWrapper,
   draft_disambiguation: DraftDisambiguation,
+  active_draft_set: ActiveDraftSet,
 };
 
 /**
