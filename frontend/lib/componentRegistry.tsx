@@ -174,6 +174,43 @@ function ActiveDraftSet({ descriptor }: { descriptor: ComponentDescriptor }) {
 }
 
 // ---------------------------------------------------------------------------
+// DiningConfirmation — compact chip shown after reserve_dining success
+// ---------------------------------------------------------------------------
+
+function DiningConfirmation({ descriptor }: { descriptor: ComponentDescriptor }) {
+  const venueName = descriptor.venue_name as string | undefined;
+  const night = descriptor.night as number | undefined;
+  if (!venueName || night == null) return null;
+  return (
+    <span
+      className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-sans text-xs"
+      style={{ background: "rgba(200,164,92,0.1)" }}
+    >
+      <span style={{ color: "#C8A45C" }}>✓</span>
+      <span style={{ color: "#22344B" }}>{venueName} · Night {night} reserved</span>
+    </span>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// DiningTimeReceipt — compact chip shown after set_dining_time success
+// ---------------------------------------------------------------------------
+
+function DiningTimeReceipt({ descriptor }: { descriptor: ComponentDescriptor }) {
+  const timeLabel = descriptor.time_label as string | undefined;
+  if (!timeLabel) return null;
+  return (
+    <span
+      className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-sans text-xs"
+      style={{ background: "rgba(200,164,92,0.1)" }}
+    >
+      <span style={{ color: "#C8A45C" }}>✓</span>
+      <span style={{ color: "#22344B" }}>Main dining · {timeLabel} preferred</span>
+    </span>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // FareTiles wrapper
 // ---------------------------------------------------------------------------
 
@@ -296,6 +333,8 @@ const REGISTRY: Record<string, RegistryEntry> = {
   fare_tiles: FareTilesWrapper,
   stateroom_picker: StateroomPickerWrapper,
   dining_tiles: DiningTilesWrapper,
+  dining_confirmation: DiningConfirmation,
+  dining_time_receipt: DiningTimeReceipt,
   land_builder: LandTourBuilderWrapper,
   draft_disambiguation: DraftDisambiguation,
   active_draft_set: ActiveDraftSet,

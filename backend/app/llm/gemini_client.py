@@ -38,12 +38,18 @@ def set_client(client) -> None:
     _client = client
 
 
+# Tools that are /action-only and must NOT be declared to Gemini
+_ACTION_ONLY_TOOLS = {"set_dining_time"}
+
+
 def _build_tool():
     """Build a types.Tool containing FunctionDeclarations for every TOOL_REGISTRY entry."""
     from google.genai import types  # noqa: PLC0415
 
     declarations = []
     for name, (_, schema) in TOOL_REGISTRY.items():
+        if name in _ACTION_ONLY_TOOLS:
+            continue  # action-only — not exposed to model
         params = schema.get("parameters", {})
         declarations.append(
             types.FunctionDeclaration(
@@ -128,6 +134,27 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
 
     if tool_name == "handoff_checkout":
         return {"type": "handoff", **result}
+
+    if tool_name == "reserve_dining":
+        if "error" in result:
+            return {"type": "error", "message": result["error"]}
+        return {
+            "type": "dining_confirmation",
+            "draft_id": result.get("draft_id"),
+            "venue_id": result.get("venue_id"),
+            "night": result.get("night"),
+            "venue_name": (result.get("venue_id") or "").replace("_", " ").title(),
+        }
+
+    if tool_name == "set_dining_time":
+        if "error" in result:
+            return {"type": "error", "message": result["error"]}
+        return {
+            "type": "dining_time_receipt",
+            "draft_id": result.get("draft_id"),
+            "time_slot": result.get("time_slot"),
+            "time_label": result.get("time_label"),
+        }
 
     return None
 

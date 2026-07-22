@@ -72,6 +72,10 @@ def _make_event_text(tool_name: str, args: dict, result: dict) -> str:
         night = args.get("night", "?")
         return f"user reserved {venue} night {night}"
 
+    if tool_name == "set_dining_time":
+        time_label = result.get("time_label", args.get("time_slot", "?"))
+        return f"user set main dining preferred time to {time_label}"
+
     if tool_name == "set_land_days":
         ids = args.get("option_ids", [])
         ids_str = ", ".join(ids) if ids else "no options"
@@ -237,7 +241,7 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
         components.append({"type": "handoff", **result})
 
     # Tracker update for any tool that touches a draft
-    if tool_name in ("create_draft", "set_fare", "set_stateroom", "reserve_dining", "set_land_days", "set_sailing"):
+    if tool_name in ("create_draft", "set_fare", "set_stateroom", "reserve_dining", "set_land_days", "set_sailing", "set_dining_time"):
         draft_id = result.get("draft_id") or (result.get("draft") or {}).get("draft_id")
         if draft_id:
             draft = next((d for d in session.drafts if d.draft_id == draft_id), None)
@@ -265,9 +269,26 @@ def _build_components(tool_name: str, result: dict, session) -> list[dict]:
             _append_dining_tiles(components, draft_id, session)
             _append_land_builder(components, draft_id, session)
     elif tool_name == "reserve_dining":
+        # Emit a compact confirmation chip instead of re-emitting the full dining panel
+        # (prevents silent identical-panel re-emit — Bug 3)
         draft_id = result.get("draft_id")
-        if draft_id:
-            _append_dining_tiles(components, draft_id, session)
+        if draft_id and "error" not in result:
+            components.append({
+                "type": "dining_confirmation",
+                "draft_id": draft_id,
+                "venue_id": result.get("venue_id"),
+                "night": result.get("night"),
+                "venue_name": result.get("venue_id", "").replace("_", " ").title(),
+            })
+    elif tool_name == "set_dining_time":
+        draft_id = result.get("draft_id")
+        if draft_id and "error" not in result:
+            components.append({
+                "type": "dining_time_receipt",
+                "draft_id": draft_id,
+                "time_slot": result.get("time_slot"),
+                "time_label": result.get("time_label"),
+            })
     elif tool_name == "set_land_days":
         draft_id = result.get("draft_id")
         if draft_id:
@@ -442,6 +463,7 @@ _CHIPS: dict[str, list[str]] = {
     "search_cruises":    ["Tell me more about the top result", "Show Alaska cruises", "What's included?"],
     "get_itinerary":     ["Create a draft booking", "What are the dining options?", "Tell me about the ports"],
     "list_dining":       ["Reserve a dining venue", "Compare my drafts", "Continue to checkout"],
+    "set_dining_time":   ["Reserve a dining night", "Compare my drafts", "Continue to checkout"],
     "list_land_options": ["Select land options", "Reserve dining", "Compare my drafts"],
 }
 

@@ -197,3 +197,51 @@ def reserve_dining(session: "Session", args: dict) -> dict:
         "total": draft.total,
         "total_formatted": format_money(draft.total) if draft.total is not None else None,
     }
+
+
+def set_dining_time(session: "Session", args: dict) -> dict:
+    """
+    Set a preferred dining time for main dining on a draft.
+
+    This is an /action-only tool (NOT registered in Gemini tool declarations).
+    Stores the preference on draft.dining_time_pref.
+
+    Args:
+        session: current session
+        args: {"draft_id": str, "time_slot": str}
+              time_slot one of: "early" (5:30 PM), "main" (7:30 PM), "late" (9:00 PM)
+
+    Returns:
+        dict with draft_id, time_slot, time_label
+    """
+    draft_id = args.get("draft_id")
+    time_slot = args.get("time_slot")
+
+    if not draft_id:
+        return {"error": "missing_draft_id", "message": "draft_id is required"}
+    if not time_slot:
+        return {"error": "missing_time_slot", "message": "time_slot is required"}
+
+    _TIME_LABELS = {
+        "early": "5:30 PM",
+        "main": "7:30 PM",
+        "late": "9:00 PM",
+    }
+
+    if time_slot not in _TIME_LABELS:
+        return {
+            "error": "invalid_time_slot",
+            "message": f"time_slot must be one of: {', '.join(_TIME_LABELS)}",
+        }
+
+    draft = _find_draft(session, draft_id)
+    if draft is None:
+        return {"error": "draft_not_found", "message": f"Draft {draft_id!r} not found"}
+
+    draft.dining_time_pref = time_slot
+
+    return {
+        "draft_id": draft_id,
+        "time_slot": time_slot,
+        "time_label": _TIME_LABELS[time_slot],
+    }

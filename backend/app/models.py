@@ -142,6 +142,7 @@ class Draft(BaseModel):
     fare_package: FarePackage              # "good_to_go" | "have_it_all" (Signature Collection)
     stateroom: DraftStateroom
     dining: list[str] = Field(default_factory=list)   # list of "{venue_id}:night_{n}" selections
+    dining_time_pref: Optional[str] = None             # "early" | "main" | "late"
     land_days: list[DraftLandDay] = Field(default_factory=list)
     completed_steps: list[int] = Field(default_factory=list)
     sailing_id: Optional[str] = None

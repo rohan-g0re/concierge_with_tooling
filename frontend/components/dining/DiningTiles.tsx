@@ -18,6 +18,12 @@ interface DiningVenue {
   nights: NightInfo[];
 }
 
+const TIME_OPTIONS = [
+  { label: "Early", display: "5:30 PM", value: "early" as const },
+  { label: "Main", display: "7:30 PM", value: "main" as const },
+  { label: "Late", display: "9:00 PM", value: "late" as const },
+];
+
 export function DiningTiles({
   descriptor,
   handlers,
@@ -28,18 +34,26 @@ export function DiningTiles({
   const draftId = descriptor.draft_id as string | undefined;
   const venues = (descriptor.venues as DiningVenue[]) ?? [];
 
-  // Track which venue has an open popover
   const [openPopover, setOpenPopover] = useState<string | null>(null);
-  // Track selected night per venue (for the popover)
-  const [selectedNight, setSelectedNight] = useState<Record<string, number | null>>({});
-  // Track error messages per venue
+  // Multi-select: array of selected nights per venue
+  const [selectedNight, setSelectedNight] = useState<Record<string, number[]>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
-  // Track retryable network failures per venue (→ ErrorState with Try again)
   const [netError, setNetError] = useState<Record<string, boolean>>({});
-  // Track reserved state per venue: venue_id → { night, time }
-  const [reserved, setReserved] = useState<Record<string, { night: number; time: string }>>({});
-  // Loading state per venue
+  // Reserved nights per venue: array of night numbers
+  const [reserved, setReserved] = useState<Record<string, number[]>>({});
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+
+  // Time picker state
+  const [timePickerOpen, setTimePickerOpen] = useState<string | null>(null);
+  const [preferredTime, setPreferredTime] = useState<Record<string, string>>({});
+  const [timeLoading, setTimeLoading] = useState<Record<string, boolean>>({});
+  const [timeError, setTimeError] = useState<Record<string, string>>({});
+  const [diningImgFailed, setDiningImgFailed] = React.useState<Record<string, boolean>>({});
+
+  const sessionId =
+    typeof window !== "undefined"
+      ? sessionStorage.getItem("compass_session_id") ?? ""
+      : "";
 
   const handleReserveClick = (venueId: string) => {
     setOpenPopover(venueId);
@@ -47,68 +61,136 @@ export function DiningTiles({
   };
 
   const handleChangeClick = (venueId: string) => {
-    // Remove reserved state and re-open popover
     setReserved((prev) => {
       const next = { ...prev };
       delete next[venueId];
       return next;
     });
     setOpenPopover(venueId);
-    setSelectedNight((prev) => ({ ...prev, [venueId]: null }));
+    setSelectedNight((prev) => ({ ...prev, [venueId]: [] }));
     setErrors((prev) => ({ ...prev, [venueId]: "" }));
   };
 
-  const handleNightSelect = (venueId: string, night: number, status: string) => {
+  const handleNightToggle = (venueId: string, night: number, status: string) => {
     if (status === "sold_out") return;
-    setSelectedNight((prev) => ({ ...prev, [venueId]: night }));
+    setSelectedNight((prev) => {
+      const current = prev[venueId] ?? [];
+      const idx = current.indexOf(night);
+      if (idx === -1) {
+        return { ...prev, [venueId]: [...current, night] };
+      } else {
+        return { ...prev, [venueId]: current.filter((n) => n !== night) };
+      }
+    });
   };
 
   const handleConfirm = async (venueId: string) => {
-    const night = selectedNight[venueId];
-    if (!night || !draftId) return;
+    const nights = selectedNight[venueId] ?? [];
+    if (nights.length === 0 || !draftId) return;
 
     setLoading((prev) => ({ ...prev, [venueId]: true }));
     setErrors((prev) => ({ ...prev, [venueId]: "" }));
     setNetError((prev) => ({ ...prev, [venueId]: false }));
 
+    const succeededNights: number[] = [];
+    let lastError = "";
+    let hasNetError = false;
+
+    for (const night of nights) {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/action/reserve_dining`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              session_id: sessionId,
+              args: { draft_id: draftId, venue_id: venueId, night },
+            }),
+          }
+        );
+        if (!res.ok) {
+          hasNetError = true;
+          continue;
+        }
+        const data = await res.json();
+
+        if (data.result?.error) {
+          const errCode = data.result.error;
+          if (errCode === "sold_out") {
+            lastError = `Night ${night} is now fully reserved. Please choose another.`;
+          } else if (errCode === "double_book") {
+            lastError = `Night ${night} is already reserved for this venue.`;
+          } else {
+            lastError = `Unable to reserve night ${night}.`;
+          }
+        } else {
+          succeededNights.push(night);
+          handlers?.onReserveDining?.(data);
+        }
+      } catch {
+        hasNetError = true;
+      }
+    }
+
+    if (succeededNights.length > 0) {
+      setReserved((prev) => {
+        const existing = prev[venueId] ?? [];
+        const merged = Array.from(new Set([...existing, ...succeededNights]));
+        return { ...prev, [venueId]: merged };
+      });
+      // Clear successfully reserved nights from selection
+      setSelectedNight((prev) => {
+        const remaining = (prev[venueId] ?? []).filter(
+          (n) => !succeededNights.includes(n)
+        );
+        return { ...prev, [venueId]: remaining };
+      });
+    }
+
+    if (lastError) {
+      setErrors((prev) => ({ ...prev, [venueId]: lastError }));
+    }
+    if (hasNetError) {
+      setNetError((prev) => ({ ...prev, [venueId]: true }));
+    }
+
+    // Close popover only if all nights were successfully reserved and no errors
+    if (!lastError && !hasNetError && succeededNights.length === nights.length) {
+      setOpenPopover(null);
+    }
+
+    setLoading((prev) => ({ ...prev, [venueId]: false }));
+  };
+
+  const handleSetTime = async (venueId: string, slot: "early" | "main" | "late") => {
+    if (!draftId) return;
+    setTimeLoading((prev) => ({ ...prev, [venueId]: true }));
+    setTimeError((prev) => ({ ...prev, [venueId]: "" }));
+
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/action/reserve_dining`,
+        `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/action/set_dining_time`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            session_id: typeof window !== "undefined"
-              ? sessionStorage.getItem("compass_session_id") ?? ""
-              : "",
-            args: { draft_id: draftId, venue_id: venueId, night },
+            session_id: sessionId,
+            args: { draft_id: draftId, time_slot: slot },
           }),
         }
       );
       if (!res.ok) {
-        setNetError((prev) => ({ ...prev, [venueId]: true }));
+        setTimeError((prev) => ({ ...prev, [venueId]: "Failed to set time. Please try again." }));
         return;
       }
-      const data = await res.json();
-
-      if (data.result?.error) {
-        const errCode = data.result.error;
-        let msg = "Unable to reserve this night.";
-        if (errCode === "sold_out") msg = "This night is now fully reserved. Please choose another.";
-        else if (errCode === "double_book") msg = "You have already reserved this venue for that night.";
-        setErrors((prev) => ({ ...prev, [venueId]: msg }));
-      } else {
-        // Success - flip tile to reserved state
-        setReserved((prev) => ({ ...prev, [venueId]: { night, time: "7:30 PM" } }));
-        setOpenPopover(null);
-        setSelectedNight((prev) => ({ ...prev, [venueId]: null }));
-        // Notify parent so DraftRail (total + steps) refreshes
-        handlers?.onReserveDining?.(data);
-      }
+      const option = TIME_OPTIONS.find((o) => o.value === slot);
+      setPreferredTime((prev) => ({ ...prev, [venueId]: option?.display ?? "" }));
+      setTimePickerOpen(null);
     } catch {
-      setNetError((prev) => ({ ...prev, [venueId]: true }));
+      setTimeError((prev) => ({ ...prev, [venueId]: "Network error. Please try again." }));
     } finally {
-      setLoading((prev) => ({ ...prev, [venueId]: false }));
+      setTimeLoading((prev) => ({ ...prev, [venueId]: false }));
     }
   };
 
@@ -122,18 +204,22 @@ export function DiningTiles({
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: "16px",
-        paddingBottom: "48px", // space for popover overflow
+        paddingBottom: "48px",
       }}
     >
       {venues.map((venue) => {
         const isOpen = openPopover === venue.venue_id;
-        const reservedInfo = reserved[venue.venue_id];
-        const isReserved = !!reservedInfo;
-        const currentSelectedNight = selectedNight[venue.venue_id] ?? null;
+        const reservedNights = reserved[venue.venue_id] ?? [];
+        const hasReservations = reservedNights.length > 0;
+        const currentSelected = selectedNight[venue.venue_id] ?? [];
         const errMsg = errors[venue.venue_id] ?? "";
         const isNetError = netError[venue.venue_id] ?? false;
         const isLoading = loading[venue.venue_id] ?? false;
         const isMain = isMainDining(venue);
+        const isTimePickerOpen = timePickerOpen === venue.venue_id;
+        const pTime = preferredTime[venue.venue_id];
+        const tLoading = timeLoading[venue.venue_id] ?? false;
+        const tError = timeError[venue.venue_id] ?? "";
 
         return (
           <div
@@ -147,29 +233,19 @@ export function DiningTiles({
               boxShadow: "0 4px 14px rgba(12,35,64,.06)",
             }}
           >
-            {/* Photo placeholder */}
-            <div
-              style={{
-                height: "96px",
-                background: "repeating-linear-gradient(135deg,#DCE4EC 0 10px,#E6EBF1 10px 20px)",
-                borderRadius: "12px 12px 0 0",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  left: "10px",
-                  bottom: "8px",
-                  fontFamily: "ui-monospace, Menlo, monospace",
-                  fontSize: "9.5px",
-                  color: "#5A6B7E",
-                }}
-              >
-                {venue.venue_id.replace(/_/g, " ")}
+            {/* Photo */}
+            {diningImgFailed[venue.venue_id] ? (
+              <div style={{ width: "100%", height: 120, background: "repeating-linear-gradient(135deg,#e5e7eb 0px,#e5e7eb 8px,#f3f4f6 8px,#f3f4f6 16px)", borderRadius: 8, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"monospace", fontSize:11, color:"#9ca3af" }}>{venue.venue_id}</span>
               </div>
-            </div>
+            ) : (
+              <img
+                src={`/images/dining/${venue.venue_id}.jpg`}
+                alt={venue.venue_id}
+                style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, display: "block" }}
+                onError={() => setDiningImgFailed(prev => ({ ...prev, [venue.venue_id]: true }))}
+              />
+            )}
 
             {/* Content */}
             <div style={{ padding: "16px 18px 18px" }}>
@@ -214,22 +290,138 @@ export function DiningTiles({
 
               {/* CTA */}
               {isMain ? (
-                <button
-                  style={{
-                    width: "100%",
-                    padding: "10px 0",
-                    borderRadius: "8px",
-                    border: "1px solid rgba(12,35,64,.25)",
-                    background: "transparent",
-                    color: "#0C2340",
-                    fontSize: "13.5px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                  }}
-                >
-                  Set a preferred time
-                </button>
-              ) : isReserved ? (
+                <div style={{ position: "relative" }}>
+                  {pTime ? (
+                    <div
+                      style={{
+                        padding: "10px 14px",
+                        borderRadius: "8px",
+                        background: "rgba(200,164,92,.14)",
+                        border: "1px solid #C8A45C",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <span style={{ fontSize: "13px", color: "#0C2340", fontWeight: 600 }}>
+                        Preferred time: {pTime}
+                      </span>
+                      <button
+                        onClick={() => setTimePickerOpen(venue.venue_id)}
+                        style={{
+                          fontSize: "12px",
+                          color: "#B08F44",
+                          background: "none",
+                          border: "none",
+                          cursor: "pointer",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Change
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        setTimePickerOpen(
+                          isTimePickerOpen ? null : venue.venue_id
+                        )
+                      }
+                      style={{
+                        width: "100%",
+                        padding: "10px 0",
+                        borderRadius: "8px",
+                        border: "1px solid rgba(12,35,64,.25)",
+                        background: "transparent",
+                        color: "#0C2340",
+                        fontSize: "13.5px",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Set a preferred time
+                    </button>
+                  )}
+
+                  {/* Time picker popover */}
+                  {isTimePickerOpen && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "0",
+                        right: "0",
+                        bottom: "-8px",
+                        transform: "translateY(100%)",
+                        zIndex: 10,
+                        background: "#fff",
+                        border: "1px solid rgba(12,35,64,.14)",
+                        borderRadius: "12px",
+                        boxShadow: "0 8px 32px rgba(12,35,64,.16)",
+                        padding: "16px",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          letterSpacing: ".1em",
+                          textTransform: "uppercase",
+                          color: "#5A6B7E",
+                          marginBottom: "12px",
+                        }}
+                      >
+                        Select seating time
+                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        {TIME_OPTIONS.map((opt) => (
+                          <button
+                            key={opt.value}
+                            disabled={tLoading}
+                            onClick={() => handleSetTime(venue.venue_id, opt.value)}
+                            style={{
+                              padding: "10px 14px",
+                              borderRadius: "8px",
+                              border: "1px solid rgba(12,35,64,.18)",
+                              background: "#fff",
+                              color: "#0C2340",
+                              fontSize: "13.5px",
+                              fontWeight: 600,
+                              cursor: tLoading ? "not-allowed" : "pointer",
+                              textAlign: "left",
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <span>{opt.label}</span>
+                            <span style={{ color: "#5A6B7E", fontWeight: 400 }}>{opt.display}</span>
+                          </button>
+                        ))}
+                      </div>
+                      {tError && (
+                        <p style={{ fontSize: "12px", color: "#c0392b", marginTop: "8px" }}>
+                          {tError}
+                        </p>
+                      )}
+                      <button
+                        onClick={() => setTimePickerOpen(null)}
+                        style={{
+                          marginTop: "10px",
+                          width: "100%",
+                          padding: "9px 0",
+                          borderRadius: "8px",
+                          border: "1px solid rgba(12,35,64,.20)",
+                          background: "transparent",
+                          color: "#5A6B7E",
+                          fontSize: "13px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : hasReservations ? (
                 <div
                   style={{
                     padding: "10px 14px",
@@ -242,7 +434,7 @@ export function DiningTiles({
                   }}
                 >
                   <span style={{ fontSize: "13px", color: "#0C2340", fontWeight: 600 }}>
-                    ✓ Reserved · Night {reservedInfo.night} · {reservedInfo.time}
+                    ✓ {reservedNights.length} {reservedNights.length === 1 ? "night" : "nights"} reserved
                   </span>
                   <button
                     onClick={() => handleChangeClick(venue.venue_id)}
@@ -310,7 +502,7 @@ export function DiningTiles({
                     marginBottom: "12px",
                   }}
                 >
-                  Choose a night
+                  Choose nights
                 </p>
 
                 <div
@@ -323,8 +515,8 @@ export function DiningTiles({
                 >
                   {venue.nights.map((n) => {
                     const isSoldOut = n.status === "sold_out";
-                    const isAlreadyReserved = n.status === "reserved";
-                    const isChosen = currentSelectedNight === n.night;
+                    const isAlreadyReserved = reservedNights.includes(n.night);
+                    const isChosen = currentSelected.includes(n.night);
                     const isDisabled = isSoldOut || isAlreadyReserved;
 
                     let bg = "#fff";
@@ -342,7 +534,7 @@ export function DiningTiles({
                     } else if (isAlreadyReserved) {
                       bg = "rgba(200,164,92,.12)";
                       color = "#B08F44";
-                      border = "1px solid #C8A45C";
+                      border = "2px solid #C8A45C";
                       cursor = "default";
                     } else if (isChosen) {
                       bg = "#C8A45C";
@@ -360,11 +552,11 @@ export function DiningTiles({
                         aria-pressed={isChosen}
                         aria-label={`Night ${n.night}${isSoldOut ? ", fully reserved" : isAlreadyReserved ? ", already reserved" : ""}`}
                         title={isSoldOut ? "Fully reserved this night" : isAlreadyReserved ? "Already reserved" : `Night ${n.night}`}
-                        onClick={() => !isDisabled && handleNightSelect(venue.venue_id, n.night, n.status)}
+                        onClick={() => !isDisabled && handleNightToggle(venue.venue_id, n.night, n.status)}
                         onKeyDown={(e) => {
                           if (!isDisabled && (e.key === "Enter" || e.key === " ")) {
                             e.preventDefault();
-                            handleNightSelect(venue.venue_id, n.night, n.status);
+                            handleNightToggle(venue.venue_id, n.night, n.status);
                           }
                         }}
                         style={{
@@ -387,14 +579,12 @@ export function DiningTiles({
                   })}
                 </div>
 
-                {/* Selected night label */}
-                {currentSelectedNight && (
+                {currentSelected.length > 0 && (
                   <p style={{ fontSize: "12.5px", color: "#5A6B7E", marginBottom: "10px" }}>
-                    Night {currentSelectedNight} · 7:30 PM
+                    {currentSelected.length} {currentSelected.length === 1 ? "night" : "nights"} selected
                   </p>
                 )}
 
-                {/* Retryable network failure — re-invoke the reservation call */}
                 {isNetError && (
                   <ErrorState onRetry={() => handleConfirm(venue.venue_id)} />
                 )}
@@ -417,20 +607,22 @@ export function DiningTiles({
                   </button>
                   <button
                     onClick={() => handleConfirm(venue.venue_id)}
-                    disabled={!currentSelectedNight || isLoading}
+                    disabled={currentSelected.length === 0 || isLoading}
                     style={{
                       flex: 2,
                       padding: "9px 0",
                       borderRadius: "8px",
-                      background: currentSelectedNight && !isLoading ? "#C8A45C" : "rgba(200,164,92,.4)",
+                      background: currentSelected.length > 0 && !isLoading ? "#C8A45C" : "rgba(200,164,92,.4)",
                       border: "none",
                       color: "#fff",
                       fontSize: "13px",
                       fontWeight: 700,
-                      cursor: currentSelectedNight && !isLoading ? "pointer" : "not-allowed",
+                      cursor: currentSelected.length > 0 && !isLoading ? "pointer" : "not-allowed",
                     }}
                   >
-                    {isLoading ? "Reserving…" : "Confirm"}
+                    {isLoading
+                      ? "Reserving…"
+                      : `Confirm ${currentSelected.length > 0 ? `${currentSelected.length} ` : ""}${currentSelected.length === 1 ? "night" : "nights"}`}
                   </button>
                 </div>
               </div>

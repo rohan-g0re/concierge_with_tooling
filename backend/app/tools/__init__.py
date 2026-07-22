@@ -9,7 +9,7 @@ from __future__ import annotations
 from .search import search_cruises
 from .itinerary import get_itinerary
 from .draft import create_draft, set_fare, set_stateroom, remove_draft, set_sailing, disambiguate_drafts
-from .dining import list_dining, reserve_dining
+from .dining import list_dining, reserve_dining, set_dining_time
 from .land import list_land_options, set_land_days
 from .compare import compare_drafts
 from .handoff import handoff_checkout
@@ -249,6 +249,24 @@ TOOL_REGISTRY: dict[str, tuple] = {
                     "sailing_id": {"type": "string", "description": "The sailing ID to switch to"},
                 },
                 "required": ["draft_id", "sailing_id"],
+            },
+        },
+    ),
+    "set_dining_time": (
+        set_dining_time,
+        {
+            "name": "set_dining_time",
+            "description": "Set preferred main-dining time on a draft. Action-only; not exposed to Gemini.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "draft_id": {"type": "string", "description": "The draft ID"},
+                    "time_slot": {
+                        "type": "string",
+                        "description": "Preferred time: early (5:30 PM) | main (7:30 PM) | late (9:00 PM)",
+                    },
+                },
+                "required": ["draft_id", "time_slot"],
             },
         },
     ),
