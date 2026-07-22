@@ -63,14 +63,12 @@ export function MessageStream({ messages, onChipClick, registryHandlers, feedbac
               }
             >
               {msg.role === "assistant" ? (
-                <Preamble
-                  text={msg.text}
-                  streaming={msg.streaming}
-                  components={msg.components ?? []}
-                />
-              ) : (
                 <>
-                  {msg.text}
+                  <Preamble
+                    text={msg.text}
+                    streaming={msg.streaming}
+                    components={msg.components ?? []}
+                  />
                   {/* Streaming cursor */}
                   {msg.streaming && (
                     <span
@@ -79,6 +77,8 @@ export function MessageStream({ messages, onChipClick, registryHandlers, feedbac
                     />
                   )}
                 </>
+              ) : (
+                msg.text
               )}
             </div>
             {msg.role === "assistant" && !msg.streaming && (
