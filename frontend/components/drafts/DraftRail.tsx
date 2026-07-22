@@ -6,7 +6,7 @@
  */
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -132,22 +132,33 @@ function SegmentBar({ completed }: { completed: number[] }) {
 // Active draft card
 // ---------------------------------------------------------------------------
 
-function ActiveDraftCard({ draft, onRemove }: { draft: DraftInfo; onRemove: () => void }) {
+function ActiveDraftCard({
+  draft,
+  onRemove,
+  cardRef,
+}: {
+  draft: DraftInfo;
+  onRemove: () => void;
+  cardRef?: React.RefObject<HTMLDivElement>;
+}) {
   const [hovered, setHovered] = React.useState(false);
   const stepCount = draft.completed_steps.length;
   return (
     <div
+      ref={cardRef}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
-        border: "1px solid #C8A45C",
+        border: "2px solid #C8A45C",
         borderRadius: "10px",
         padding: "12px",
         display: "flex",
         flexDirection: "column",
         gap: "8px",
         background: "rgba(200,164,92,.06)",
+        boxShadow: "0 0 0 3px rgba(200,164,92,.18)",
+        transition: "box-shadow 0.2s",
       }}
     >
       {/* Delete button — appears on hover */}
@@ -334,6 +345,14 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive, onRemoveDra
   const activeDraft = drafts.find((d) => d.draft_id === activeDraftId) ?? null;
   const otherDrafts = drafts.filter((d) => d.draft_id !== activeDraftId);
 
+  // R16: scroll active card into view whenever activeDraftId changes
+  const activeCardRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (activeCardRef.current) {
+      activeCardRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }, [activeDraftId]);
+
   return (
     <aside
       className="draft-rail"
@@ -383,7 +402,7 @@ export function DraftRail({ drafts = [], activeDraftId, onSetActive, onRemoveDra
       >
         {/* Active draft or empty state */}
         {activeDraft ? (
-          <ActiveDraftCard draft={activeDraft} onRemove={() => onRemoveDraft(activeDraft.draft_id)} />
+          <ActiveDraftCard draft={activeDraft} onRemove={() => onRemoveDraft(activeDraft.draft_id)} cardRef={activeCardRef} />
         ) : (
           <div
             style={{

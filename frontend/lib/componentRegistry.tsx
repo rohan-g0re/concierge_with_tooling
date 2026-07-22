@@ -18,6 +18,7 @@ import { DiningTiles } from "@/components/dining/DiningTiles";
 import { LandTourBuilder } from "@/components/land/LandTourBuilder";
 import { ComparisonView } from "@/components/compare/ComparisonView";
 import { ErrorState } from "@/components/states/ErrorState";
+import { DraftDisambiguation } from "@/components/drafts/DraftDisambiguation";
 
 // ---------------------------------------------------------------------------
 // Handler types — injected by page.tsx when rendering
@@ -278,6 +279,7 @@ const REGISTRY: Record<string, RegistryEntry> = {
   stateroom_picker: StateroomPickerWrapper,
   dining_tiles: DiningTilesWrapper,
   land_builder: LandTourBuilderWrapper,
+  draft_disambiguation: DraftDisambiguation,
 };
 
 /**
