@@ -335,3 +335,86 @@ def test_dated_cards_pass_through_action_builder():
         assert "sailing_id" in card, f"sailing_id missing from action card: {card.get('cruise_id')}"
         assert "departure_date" in card, f"departure_date missing from action card: {card.get('cruise_id')}"
         assert "return_date" in card, f"return_date missing from action card: {card.get('cruise_id')}"
+
+
+# ---------------------------------------------------------------------------
+# Test D1-fix: past ISO date in return_by is rolled forward to future
+# ---------------------------------------------------------------------------
+
+def test_past_iso_return_by_rolled_forward():
+    """
+    _parse_return_by("2024-12-28") must resolve to 2026-12-28 (the next future
+    occurrence of Dec 28 >= DEMO_ANCHOR), not the literal past date.
+    Results must equal those from return_by="2026-12-28".
+    """
+    from app.tools.search import _parse_return_by
+    from datetime import date
+
+    resolved = _parse_return_by("2024-12-28")
+    assert resolved is not None, "_parse_return_by returned None for '2024-12-28'"
+    assert resolved >= DEMO_ANCHOR, (
+        f"Resolved date {resolved} is before anchor {DEMO_ANCHOR}"
+    )
+    assert resolved == date(2026, 12, 28), (
+        f"Expected 2026-12-28, got {resolved}"
+    )
+
+    # Also verify search results are the same as using "2026-12-28" directly
+    session_past = make_session()
+    result_past = search_cruises(session_past, {"return_by": "2024-12-28"})
+
+    session_future = make_session()
+    result_future = search_cruises(session_future, {"return_by": "2026-12-28"})
+
+    past_ids = sorted(c["cruise_id"] for c in result_past["results"])
+    future_ids = sorted(c["cruise_id"] for c in result_future["results"])
+    assert past_ids == future_ids, (
+        f"Results differ: past={past_ids}, future={future_ids}"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Test D2-fix: explicit None clears stale nights constraints
+# ---------------------------------------------------------------------------
+
+def test_explicit_none_clears_nights_constraints():
+    """
+    After a search with nights_min=20/nights_max=20, a follow-up search with
+    nights_min=None and nights_max=None must clear those constraints.
+    The result must be a normal (non-empty) list without a nights band,
+    and the session constraints must have nights_min=None, nights_max=None.
+    """
+    session = make_session()
+
+    # First search: 20-night cruises (will likely return empty or near-miss)
+    search_cruises(session, {"nights_min": 20, "nights_max": 20})
+    assert session.constraints.nights_min == 20
+    assert session.constraints.nights_max == 20
+
+    # Second search: clear nights constraints, add region
+    result = search_cruises(session, {
+        "nights_min": None,
+        "nights_max": None,
+        "region": "bermuda_bahamas",
+    })
+
+    # Constraints must be cleared
+    assert session.constraints.nights_min is None, (
+        f"nights_min should be cleared, got {session.constraints.nights_min}"
+    )
+    assert session.constraints.nights_max is None, (
+        f"nights_max should be cleared, got {session.constraints.nights_max}"
+    )
+
+    # Must return results (not an empty or no_exact list)
+    assert "results" in result
+    cards = result["results"]
+    assert len(cards) >= 1, (
+        "Expected results after clearing nights constraints for bermuda_bahamas"
+    )
+
+    # Section label must NOT be no_exact (it's a normal search)
+    label = result.get("section_label", "")
+    assert "no exact" not in label.lower(), (
+        f"Got no_exact label even after clearing nights: {label!r}"
+    )

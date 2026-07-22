@@ -91,7 +91,7 @@ export function ComparisonView({ descriptor, handlers }: ComparisonViewProps) {
           className="font-display font-semibold text-sm"
           style={{ color: "#0C2340" }}
         >
-          Comparing {colCount} of 3
+          Comparing {colCount} drafts
         </p>
         <span className="font-sans text-xs" style={{ color: "#8A97A6" }}>
           Differences highlighted

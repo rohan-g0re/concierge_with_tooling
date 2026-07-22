@@ -59,7 +59,21 @@ def _parse_return_by(value: str) -> date | None:
 
     # ISO format
     try:
-        return date.fromisoformat(value)
+        d = date.fromisoformat(value)
+        # Guard: if the model slipped in a past year (e.g. "2024-12-28"),
+        # re-resolve to the next future occurrence of that month/day >= anchor.
+        if d < DEMO_ANCHOR:
+            year = DEMO_ANCHOR.year
+            try:
+                d = date(year, d.month, d.day)
+            except ValueError:
+                return None
+            if d < DEMO_ANCHOR:
+                try:
+                    d = date(year + 1, d.month, d.day)
+                except ValueError:
+                    return None
+        return d
     except ValueError:
         pass
 
