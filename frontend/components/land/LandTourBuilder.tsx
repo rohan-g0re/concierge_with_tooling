@@ -48,6 +48,7 @@ export function LandTourBuilder({
   // Retryable network failure — holds the ids that failed to persist so
   // "Try again" can re-invoke the same set_land_days call (frame 1o).
   const [netErrorIds, setNetErrorIds] = useState<Set<string> | null>(null);
+  const [landImgFailed, setLandImgFailed] = React.useState<Record<string, boolean>>({});
 
   const getConflictingIds = (ids: Set<string>): Set<string> => {
     const conflicting = new Set<string>();
@@ -241,6 +242,14 @@ export function LandTourBuilder({
                     transition: "opacity 0.15s, box-shadow 0.15s",
                   }}
                 >
+                  {!landImgFailed[opt.id] && (
+                    <img
+                      src={`/images/land/${opt.id}.jpg`}
+                      alt={opt.name}
+                      style={{ width: "100%", height: 80, objectFit: "cover", borderRadius: 6, display: "block", marginBottom: 6 }}
+                      onError={() => setLandImgFailed(prev => ({ ...prev, [opt.id]: true }))}
+                    />
+                  )}
                   <div
                     style={{
                       fontSize: "13.5px",

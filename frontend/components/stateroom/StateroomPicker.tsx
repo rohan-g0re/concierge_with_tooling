@@ -18,6 +18,9 @@ export function StateroomPicker({
   const [totalFormatted, setTotalFormatted] = useState<string | null>(
     (descriptor.total_formatted as string | null) ?? null
   );
+  const [imgFailed, setImgFailed] = React.useState<Record<string, boolean>>({});
+
+  const slug = (s: string) => s.toLowerCase().replace(/ /g, "_");
 
   const handleCategorySelect = async (category: string) => {
     setSelectedCategory(category);
@@ -79,27 +82,19 @@ export function StateroomPicker({
                 cursor: "pointer",
               }}
             >
-              {/* Photo placeholder */}
-              <div
-                style={{
-                  height: "88px",
-                  background: "repeating-linear-gradient(135deg,#DCE4EC 0 10px,#E6EBF1 10px 20px)",
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "10px",
-                    bottom: "8px",
-                    fontFamily: "ui-monospace, Menlo, monospace",
-                    fontSize: "9.5px",
-                    color: "#5A6B7E",
-                  }}
-                >
-                  room photo
+              {/* Photo */}
+              {imgFailed[cat.category] ? (
+                <div style={{ width: "100%", height: 120, background: "repeating-linear-gradient(135deg,#e5e7eb 0px,#e5e7eb 8px,#f3f4f6 8px,#f3f4f6 16px)", borderRadius: 8, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <span style={{ fontFamily:"monospace", fontSize:11, color:"#9ca3af" }}>room photo</span>
                 </div>
-              </div>
+              ) : (
+                <img
+                  src={`/images/staterooms/${slug(cat.category)}.jpg`}
+                  alt={cat.category}
+                  style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, display: "block" }}
+                  onError={() => setImgFailed(prev => ({ ...prev, [cat.category]: true }))}
+                />
+              )}
 
               {/* Content */}
               <div style={{ padding: "12px 14px 14px", display: "flex", flexDirection: "column", gap: "5px" }}>
