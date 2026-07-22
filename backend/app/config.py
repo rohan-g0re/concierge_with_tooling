@@ -4,7 +4,11 @@ All secrets are injected via .env (loaded by the launcher) or real env.
 """
 import os
 from functools import lru_cache
+from pathlib import Path
 from pydantic_settings import BaseSettings
+
+# Anchor .env to backend/.env regardless of cwd (config.py lives in backend/app/)
+_ENV_FILE = Path(__file__).resolve().parent.parent / ".env"
 
 
 class Settings(BaseSettings):
@@ -14,7 +18,7 @@ class Settings(BaseSettings):
     debug: bool = False
     llm_mode: str = "auto"  # 'auto' | 'stub' | 'gemini'
 
-    model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    model_config = {"env_file": str(_ENV_FILE), "env_file_encoding": "utf-8"}
 
 
 @lru_cache

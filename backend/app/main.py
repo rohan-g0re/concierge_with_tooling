@@ -4,6 +4,8 @@ Compass — FastAPI application entry point.
 P0: health endpoint + CORS scaffold.
 Later phases mount /chat, /action, /voice/token, /feedback, /debug routes.
 """
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -15,7 +17,16 @@ from .routes.voice import router as voice_router
 from .routes.feedback import router as feedback_router
 from .routes.debug import router as debug_router
 
+logger = logging.getLogger(__name__)
+
 settings = get_settings()
+
+# Log effective LLM mode once at startup so silent fallback is always visible.
+_mode = settings.llm_mode
+if _mode == "gemini" or (_mode == "auto" and settings.gemini_api_key):
+    logger.info("LLM mode: live (gemini)")
+else:
+    logger.info("LLM mode: stub")
 
 app = FastAPI(
     title="Compass Concierge API",
