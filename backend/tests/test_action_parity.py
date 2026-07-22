@@ -470,3 +470,53 @@ def test_bad_args_returns_validation_error(catalog):
     data = resp.json()
     assert data.get("error") == "validation_error", f"Expected validation_error, got {data}"
     assert "message" in data
+
+
+# ---------------------------------------------------------------------------
+# Test 8: handoff_checkout parity — gemini_client mapper vs action _build_components
+# ---------------------------------------------------------------------------
+
+def test_handoff_checkout_component_parity(catalog):
+    """handoff_checkout result maps to identical {type:'handoff',...} descriptor
+    through both gemini_client._map_tool_result_to_component and
+    action._build_components, with identical url."""
+    from app.tools.handoff import handoff_checkout
+    from app.llm.gemini_client import _map_tool_result_to_component
+    from app.routes.action import _build_components
+    from app.models import Session
+
+    session = Session(session_id="test-p8-handoff-parity", party=2)
+
+    # Build a real draft so handoff_checkout can find it
+    from app.tools.draft import create_draft
+    cruise_id = first_cruise_id(catalog)
+    cr = create_draft(session, {"cruise_id": cruise_id})
+    assert "error" not in cr, f"create_draft failed: {cr}"
+    draft_id = cr["draft_id"]
+
+    # Call the real tool to get the canonical result
+    result = handoff_checkout(session, {"draft_id": draft_id})
+    assert "error" not in result, f"handoff_checkout failed: {result}"
+    assert "url" in result
+
+    # --- Path 1: gemini_client mapper ---
+    gemini_component = _map_tool_result_to_component("handoff_checkout", result)
+    assert gemini_component is not None, "_map_tool_result_to_component returned None for handoff_checkout"
+    assert gemini_component["type"] == "handoff", f"Expected type='handoff', got: {gemini_component}"
+    assert gemini_component["url"] == result["url"], (
+        f"url mismatch in gemini component: {gemini_component['url']!r} != {result['url']!r}"
+    )
+
+    # --- Path 2: action _build_components ---
+    action_components = _build_components("handoff_checkout", result, session)
+    handoff_comps = [c for c in action_components if c.get("type") == "handoff"]
+    assert len(handoff_comps) == 1, f"Expected exactly 1 handoff component from _build_components, got: {action_components}"
+    action_component = handoff_comps[0]
+    assert action_component["url"] == result["url"], (
+        f"url mismatch in action component: {action_component['url']!r} != {result['url']!r}"
+    )
+
+    # --- Parity: both paths produce identical url ---
+    assert gemini_component["url"] == action_component["url"], (
+        f"Parity failure: gemini url={gemini_component['url']!r}, action url={action_component['url']!r}"
+    )

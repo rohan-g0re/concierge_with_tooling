@@ -24,9 +24,9 @@ settings = get_settings()
 # Log effective LLM mode once at startup so silent fallback is always visible.
 _mode = settings.llm_mode
 if _mode == "gemini" or (_mode == "auto" and settings.gemini_api_key):
-    logger.info("LLM mode: live (gemini)")
+    print("LLM mode: live (gemini)", flush=True)
 else:
-    logger.info("LLM mode: stub")
+    print("LLM mode: stub", flush=True)
 
 app = FastAPI(
     title="Compass Concierge API",

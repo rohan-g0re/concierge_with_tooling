@@ -126,6 +126,9 @@ def _map_tool_result_to_component(tool_name: str, result: dict) -> Optional[dict
             return {"type": "error", "message": result["error"]}
         return None  # sailing change reflected on next session refresh
 
+    if tool_name == "handoff_checkout":
+        return {"type": "handoff", **result}
+
     return None
 
 
